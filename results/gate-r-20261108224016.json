@@ -1,0 +1,186 @@
+{
+  "status": "PASS",
+  "network": "testnet",
+  "rpcUrl": "https://rpc.testnet.fastnear.com",
+  "recipient": {
+    "stealthAccount": "c33b272aab306099fd707466554ff15d6d8d854bb09ce0cf1916f9b9b1477b7f",
+    "ephemeralPublicKey": "23e139b9c5ab9d1cfbcfb2ef35fd66387d15465584e6c8c62372dbfbb5cd4648",
+    "viewTag": 221
+  },
+  "funding": {
+    "hash": "73thst1ZRW2GUXnqDuPrLAjRcH8Zm4UoJPnUHocSXgA",
+    "explorerUrl": "https://explorer.testnet.near.org/transactions/73thst1ZRW2GUXnqDuPrLAjRcH8Zm4UoJPnUHocSXgA",
+    "receiverId": "c33b272aab306099fd707466554ff15d6d8d854bb09ce0cf1916f9b9b1477b7f",
+    "signerId": "sender1.veil-williams.testnet",
+    "nonce": "276836964000002",
+    "rawResponse": {
+      "final_execution_status": "EXECUTED_OPTIMISTIC",
+      "receipts_outcome": [
+        {
+          "block_hash": "DuLvjoNhuMJPyxgL8Repfbs3nHHoavWW7yuosYa29Qoy",
+          "id": "9VLVKQwdPaBaCzeYJtsJttRnuDTwNG7dTUGiNaC9DLBd",
+          "outcome": {
+            "executor_id": "c33b272aab306099fd707466554ff15d6d8d854bb09ce0cf1916f9b9b1477b7f",
+            "gas_burnt": 7524947687500,
+            "logs": [],
+            "metadata": {
+              "contracts": [
+                null
+              ],
+              "gas_profile": [],
+              "version": 4
+            },
+            "receipt_ids": [
+              "E8uqTLHgai73esfk9HQXvLtQHypzEQZfBN4WSpdK84VL"
+            ],
+            "status": {
+              "SuccessValue": ""
+            },
+            "tokens_burnt": "752494768750000000000"
+          },
+          "proof": [
+            {
+              "direction": "Left",
+              "hash": "Hxu59iNKmBwcXz7QAcKTPUKGZh7KEjL6A8jr8JiKKdLU"
+            }
+          ]
+        }
+      ],
+      "status": {
+        "SuccessValue": ""
+      },
+      "transaction": {
+        "actions": [
+          {
+            "Transfer": {
+              "deposit": "50000000000000000000000"
+            }
+          }
+        ],
+        "hash": "73thst1ZRW2GUXnqDuPrLAjRcH8Zm4UoJPnUHocSXgA",
+        "nonce": 276836964000002,
+        "priority_fee": 0,
+        "public_key": "ed25519:A1c3SNcv5Yehc2MsSsvE8Ur6bSe1XaKSrEtNkLPCFomu",
+        "receiver_id": "c33b272aab306099fd707466554ff15d6d8d854bb09ce0cf1916f9b9b1477b7f",
+        "signature": "ed25519:2iTuUjzE9FL2B3KXttGqxDMEv2A1HtBuxsB8D13aeps9VkmvoSYiVUc1k5tnm29GzhWkr4LGBSMEVDVT8S2fBGaZ",
+        "signer_id": "sender1.veil-williams.testnet"
+      },
+      "transaction_outcome": {
+        "block_hash": "J1T9zMj7nc3Fjwm1PPQVCogrZe1nYgbwVCWVxH5Qe9ey",
+        "id": "73thst1ZRW2GUXnqDuPrLAjRcH8Zm4UoJPnUHocSXgA",
+        "outcome": {
+          "executor_id": "sender1.veil-williams.testnet",
+          "gas_burnt": 824947687500,
+          "logs": [],
+          "metadata": {
+            "gas_profile": null,
+            "version": 1
+          },
+          "receipt_ids": [
+            "9VLVKQwdPaBaCzeYJtsJttRnuDTwNG7dTUGiNaC9DLBd"
+          ],
+          "status": {
+            "SuccessReceiptId": "9VLVKQwdPaBaCzeYJtsJttRnuDTwNG7dTUGiNaC9DLBd"
+          },
+          "tokens_burnt": "82494768750000000000"
+        },
+        "proof": [
+          {
+            "direction": "Right",
+            "hash": "BmKnZFkZMtP513GmyAnpYMyrcgyyh7grYSkUcpdD2PEY"
+          },
+          {
+            "direction": "Right",
+            "hash": "Cbvb2EQnssLevhdRwj2Q3zopGfqaZDXUuMEEUGApMPCa"
+          }
+        ]
+      }
+    }
+  },
+  "spend": {
+    "hash": "6avEHsr11CVDCobn67CJMwqXhfzxoRWx5rfWyQJQzEAF",
+    "explorerUrl": "https://explorer.testnet.near.org/transactions/6avEHsr11CVDCobn67CJMwqXhfzxoRWx5rfWyQJQzEAF",
+    "receiverId": "sender1.veil-williams.testnet",
+    "signerId": "c33b272aab306099fd707466554ff15d6d8d854bb09ce0cf1916f9b9b1477b7f",
+    "nonce": "276837450000001",
+    "rawResponse": {
+      "final_execution_status": "EXECUTED_OPTIMISTIC",
+      "receipts_outcome": [
+        {
+          "block_hash": "6c9unQPGWZk3Zqbpt7UE4QcBsRWrv4M96zqrHLufv1ot",
+          "id": "C5fQY5ezGSRijhJGPFgf52EWBLjv1Y6wBHFiYfT6RTWH",
+          "outcome": {
+            "executor_id": "sender1.veil-williams.testnet",
+            "gas_burnt": 223182562500,
+            "logs": [],
+            "metadata": {
+              "contracts": [
+                null
+              ],
+              "gas_profile": [],
+              "version": 4
+            },
+            "receipt_ids": [
+              "12qNKsvBhALK7Q2mgrjmt74yzz6VAZmModtKHyxGgMkb"
+            ],
+            "status": {
+              "SuccessValue": ""
+            },
+            "tokens_burnt": "22318256250000000000"
+          },
+          "proof": []
+        }
+      ],
+      "status": {
+        "SuccessValue": ""
+      },
+      "transaction": {
+        "actions": [
+          {
+            "Transfer": {
+              "deposit": "10000000000000000000000"
+            }
+          }
+        ],
+        "hash": "6avEHsr11CVDCobn67CJMwqXhfzxoRWx5rfWyQJQzEAF",
+        "nonce": 276837450000001,
+        "priority_fee": 0,
+        "public_key": "ed25519:E96pLwT5Cx1KtwRvxCyvJuXmkyatgT67kTd5RTQF7Jwp",
+        "receiver_id": "sender1.veil-williams.testnet",
+        "signature": "ed25519:SbLUNedXCiABFzWxPc1qbggjSZQzhwqMXovW9dKfk1kBfU5k3RrSmQQZAcDYdfJTvCQnzxmMUEXE41ztg4qa2ou",
+        "signer_id": "c33b272aab306099fd707466554ff15d6d8d854bb09ce0cf1916f9b9b1477b7f"
+      },
+      "transaction_outcome": {
+        "block_hash": "GvFEaMFQXQi7MAewRuqfciLcoRq7oCdGQM16K1RcDwSv",
+        "id": "6avEHsr11CVDCobn67CJMwqXhfzxoRWx5rfWyQJQzEAF",
+        "outcome": {
+          "executor_id": "c33b272aab306099fd707466554ff15d6d8d854bb09ce0cf1916f9b9b1477b7f",
+          "gas_burnt": 223182562500,
+          "logs": [],
+          "metadata": {
+            "gas_profile": null,
+            "version": 1
+          },
+          "receipt_ids": [
+            "C5fQY5ezGSRijhJGPFgf52EWBLjv1Y6wBHFiYfT6RTWH"
+          ],
+          "status": {
+            "SuccessReceiptId": "C5fQY5ezGSRijhJGPFgf52EWBLjv1Y6wBHFiYfT6RTWH"
+          },
+          "tokens_burnt": "22318256250000000000"
+        },
+        "proof": [
+          {
+            "direction": "Right",
+            "hash": "6a5czYT4aXeQrNBnzPVddvKqpqmmz5jvurdZT1oXF582"
+          }
+        ]
+      }
+    }
+  },
+  "notes": [
+    "The spend transaction was built from the stealth account public key and view_access_key nonce.",
+    "The spending signature used the raw derived scalar through ScalarSigner.",
+    "The account used test-only fixed key material; this is not a user key-generation flow."
+  ]
+}

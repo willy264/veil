@@ -1,0 +1,7 @@
+[workspace]
+members = ["registry", "router", "mock-ft"]
+resolver = "2"
+
+[workspace.dependencies]
+near-sdk = "5.30.0"
+near-contract-standards = "5.30.0"

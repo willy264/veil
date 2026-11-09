@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "transactionHash": "AErSVsRbuiJs8YThhrFGxJSFFG1g6vnNkAZ8jgVYwryJ",
+  "explorerUrl": "https://explorer.testnet.near.org/transactions/AErSVsRbuiJs8YThhrFGxJSFFG1g6vnNkAZ8jgVYwryJ",
+  "signer": "c33b272aab306099fd707466554ff15d6d8d854bb09ce0cf1916f9b9b1477b7f",
+  "token": "mockft.veil-williams.testnet",
+  "recipient": "sender1.veil-williams.testnet",
+  "amountAtomic": "1",
+  "accessKeyNonce": "276837450000002",
+  "finalExecutionStatus": "EXECUTED_OPTIMISTIC",
+  "gasBurnt": 312827871500,
+  "tokensBurntYocto": "31282787150000000000",
+  "note": "This is the observed cost of one FT transfer. A true minimum stipend still requires a fresh-account threshold sweep."
+}

@@ -1,0 +1,14 @@
+{
+  "name": "veil-near",
+  "private": true,
+  "packageManager": "pnpm@10.32.1",
+  "scripts": {
+    "test": "pnpm --filter @veil/sdk test",
+    "typecheck": "pnpm --filter @veil/sdk typecheck",
+    "test:v1": "tsx scripts/v1-property.ts"
+  },
+  "devDependencies": {
+    "near-api-js": "7.4.0",
+    "tsx": "^4.23.15"
+  }
+}
