@@ -63,7 +63,7 @@ async function main() {
   const result = {
     status: 'PASS',
     transactionHash: response.transaction?.hash,
-    explorerUrl: `https://explorer.testnet.near.org/transactions/${response.transaction?.hash}`,
+    explorerUrl: `https://testnet.nearblocks.io/txns/${response.transaction?.hash}`,
     signer: stealthAccount,
     token: tokenAccount,
     recipient: senderAccount,

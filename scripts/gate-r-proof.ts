@@ -24,7 +24,7 @@ function requireEnv(name: string): string {
 }
 
 function explorerUrl(hash: string): string {
-  return `https://explorer.testnet.near.org/transactions/${hash}`;
+  return `https://testnet.nearblocks.io/txns/${hash}`;
 }
 
 function responseHash(response: any): string {
