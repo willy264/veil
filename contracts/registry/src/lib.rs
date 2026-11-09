@@ -98,7 +98,7 @@ mod tests {
 
     #[test]
     fn register_and_resolve_meta() {
-        testing_env!(context(accounts(0), MIN_STORAGE_DEPOSIT));
+        testing_env!(context(accounts(0), MIN_STORAGE_DEPOSIT).build());
         let mut registry = Registry::new();
         registry.register("11".repeat(32), "22".repeat(32), 1);
         let meta = registry.get_meta(accounts(0)).expect("registered meta");
@@ -109,7 +109,7 @@ mod tests {
     #[test]
     #[should_panic(expected = "unsupported scheme")]
     fn rejects_unknown_scheme() {
-        testing_env!(context(accounts(0), MIN_STORAGE_DEPOSIT));
+        testing_env!(context(accounts(0), MIN_STORAGE_DEPOSIT).build());
         let mut registry = Registry::new();
         registry.register("11".repeat(32), "22".repeat(32), 2);
     }

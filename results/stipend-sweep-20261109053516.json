@@ -1,0 +1,1285 @@
+{
+  "status": "FAIL",
+  "network": "testnet",
+  "rpcUrl": "https://rpc.testnet.fastnear.com",
+  "token": "mockft.veil-williams.testnet",
+  "sender": "sender1.veil-williams.testnet",
+  "storageDepositYocto": "1250000000000000000",
+  "testedStipendsNear": [
+    "0.00002",
+    "0.00004",
+    "0.00008",
+    "0.00016"
+  ],
+  "minimumSuccessfulTestedStipendNear": null,
+  "note": "This is an empirical threshold sweep over fresh implicit accounts; the true minimum may lie between tested values.",
+  "rows": [
+    {
+      "index": 0,
+      "stipendNear": "0.00002",
+      "stealthAccount": "2ffc475b41ad08322aca85a94d5a22fef992888508758137df27e78dbd554b9f",
+      "funding": {
+        "ok": true,
+        "hash": "DzhdTDyDDAU2FUWPJcaniUBFKsmj1EAQoBeu6bXw3Tqm",
+        "explorerUrl": "https://testnet.nearblocks.io/txns/DzhdTDyDDAU2FUWPJcaniUBFKsmj1EAQoBeu6bXw3Tqm",
+        "signerId": "sender1.veil-williams.testnet",
+        "receiverId": "2ffc475b41ad08322aca85a94d5a22fef992888508758137df27e78dbd554b9f",
+        "amountNear": "0.00002",
+        "rawResponse": {
+          "final_execution_status": "EXECUTED_OPTIMISTIC",
+          "receipts_outcome": [
+            {
+              "block_hash": "CGuEoNmWRFYyiPsNUYN9tx6Yh4SatqhgTYdTo4zA151L",
+              "id": "EbpqWQ2qUDZEdWo3hbENmWChn1966Xyf9mm1GGwAx1wu",
+              "outcome": {
+                "executor_id": "2ffc475b41ad08322aca85a94d5a22fef992888508758137df27e78dbd554b9f",
+                "gas_burnt": 7524947687500,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    null
+                  ],
+                  "gas_profile": [],
+                  "version": 4
+                },
+                "receipt_ids": [
+                  "EkrFCn4K4D4cfYtuuj7sFjcNj7tHx35WCnPdQ8bZvxWF"
+                ],
+                "status": {
+                  "SuccessValue": ""
+                },
+                "tokens_burnt": "752494768750000000000"
+              },
+              "proof": []
+            }
+          ],
+          "status": {
+            "SuccessValue": ""
+          },
+          "transaction": {
+            "actions": [
+              {
+                "Transfer": {
+                  "deposit": "20000000000000000000"
+                }
+              }
+            ],
+            "hash": "DzhdTDyDDAU2FUWPJcaniUBFKsmj1EAQoBeu6bXw3Tqm",
+            "nonce": 276878621000001,
+            "priority_fee": 0,
+            "public_key": "ed25519:2PtSeFCgPopg2BgU5h2VEneGWDk2aHezPm2wzizH2tgK",
+            "receiver_id": "2ffc475b41ad08322aca85a94d5a22fef992888508758137df27e78dbd554b9f",
+            "signature": "ed25519:AGVogbvBj9oD1iJVHWFS2BgnJbMeDbzaNtUUTcwDzCUCT73W42Q1cra58vfuuWZGYkWDGym88EmokULPTdUA6nB",
+            "signer_id": "sender1.veil-williams.testnet"
+          },
+          "transaction_outcome": {
+            "block_hash": "CHk8Bgczea9L5EJpSDhtwE7BZB9bgLzJXB5DZzjgJEon",
+            "id": "DzhdTDyDDAU2FUWPJcaniUBFKsmj1EAQoBeu6bXw3Tqm",
+            "outcome": {
+              "executor_id": "sender1.veil-williams.testnet",
+              "gas_burnt": 824947687500,
+              "logs": [],
+              "metadata": {
+                "gas_profile": null,
+                "version": 1
+              },
+              "receipt_ids": [
+                "EbpqWQ2qUDZEdWo3hbENmWChn1966Xyf9mm1GGwAx1wu"
+              ],
+              "status": {
+                "SuccessReceiptId": "EbpqWQ2qUDZEdWo3hbENmWChn1966Xyf9mm1GGwAx1wu"
+              },
+              "tokens_burnt": "82494768750000000000"
+            },
+            "proof": []
+          }
+        }
+      },
+      "storage": {
+        "ok": false,
+        "signerId": "sender1.veil-williams.testnet",
+        "receiverId": "mockft.veil-williams.testnet",
+        "methodName": "storage_deposit",
+        "error": "InvalidNonceError: Invalid nonce (ak: 276878621000001, tx: 276878621000001)\n    at parseInvalidTransactionError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:1295:16)\n    at parseTransactionExecutionError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:647:23)\n    at parseHandlerError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:289:24)\n    at parseRpcError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:194:20)\n    at JsonRpcProvider.sendJsonRpc (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\json-rpc-provider.ts:661:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async execute (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\scripts\\stipend-sweep.ts:86:22)\n    at async main (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\scripts\\stipend-sweep.ts:178:21)"
+      },
+      "ftTransfer": {
+        "ok": false,
+        "hash": "7rzcNTq6DGouZT6rQY1UUbbL2VuPdDxErxgGG2uzghf3",
+        "explorerUrl": "https://testnet.nearblocks.io/txns/7rzcNTq6DGouZT6rQY1UUbbL2VuPdDxErxgGG2uzghf3",
+        "signerId": "sender1.veil-williams.testnet",
+        "receiverId": "mockft.veil-williams.testnet",
+        "methodName": "ft_transfer",
+        "rawResponse": {
+          "final_execution_status": "EXECUTED",
+          "receipts_outcome": [
+            {
+              "block_hash": "3ANxonW2XZZk6erqCjWENGN3aBpy3MbVBgHYw9613vYa",
+              "id": "2nJTNKGG3QjAxkrYuRvSk9U4aJabUkGydVorYP6qo7gE",
+              "outcome": {
+                "executor_id": "mockft.veil-williams.testnet",
+                "gas_burnt": 1570471794384,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    {
+                      "local": "474f4VCP7cezQy17caw1bhjptanUpg3YNNb3CW4xaVKW"
+                    }
+                  ],
+                  "gas_profile": [
+                    {
+                      "cost": "BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "4501057887"
+                    },
+                    {
+                      "cost": "CONTRACT_LOADING_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "35445963"
+                    },
+                    {
+                      "cost": "CONTRACT_LOADING_BYTES",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "308478540345"
+                    },
+                    {
+                      "cost": "READ_CACHED_TRIE_NODE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "2280000000"
+                    },
+                    {
+                      "cost": "READ_MEMORY_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "13049316000"
+                    },
+                    {
+                      "cost": "READ_MEMORY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "600610614"
+                    },
+                    {
+                      "cost": "READ_REGISTER_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "12585825930"
+                    },
+                    {
+                      "cost": "READ_REGISTER_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "26907426"
+                    },
+                    {
+                      "cost": "STORAGE_READ_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "169070537247"
+                    },
+                    {
+                      "cost": "STORAGE_READ_KEY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "3342873564"
+                    },
+                    {
+                      "cost": "STORAGE_READ_VALUE_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "639654456"
+                    },
+                    {
+                      "cost": "STORAGE_WRITE_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "64196736000"
+                    },
+                    {
+                      "cost": "STORAGE_WRITE_EVICTED_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "513876912"
+                    },
+                    {
+                      "cost": "STORAGE_WRITE_KEY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "2396417478"
+                    },
+                    {
+                      "cost": "STORAGE_WRITE_VALUE_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "496296624"
+                    },
+                    {
+                      "cost": "TOUCHING_TRIE_NODE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "45600000000"
+                    },
+                    {
+                      "cost": "WASM_INSTRUCTION",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "21776705808"
+                    },
+                    {
+                      "cost": "WRITE_MEMORY_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "16822769166"
+                    },
+                    {
+                      "cost": "WRITE_MEMORY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "787170108"
+                    },
+                    {
+                      "cost": "WRITE_REGISTER_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "14327612430"
+                    },
+                    {
+                      "cost": "WRITE_REGISTER_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "604448676"
+                    }
+                  ],
+                  "version": 4
+                },
+                "receipt_ids": [
+                  "3Xrg93qH4eFVnreDt8SrGcR528XJXxmHxUJuMACn65nM",
+                  "HkrNDJiveE1eVKKwRZFBAM4SwHzSJ56U9VvMqHARvjzY"
+                ],
+                "status": {
+                  "Failure": {
+                    "ActionError": {
+                      "index": 0,
+                      "kind": {
+                        "FunctionCallError": {
+                          "ExecutionError": "WebAssembly trap: An `unreachable` opcode was executed."
+                        }
+                      }
+                    }
+                  }
+                },
+                "tokens_burnt": "157047179438400000000"
+              },
+              "proof": [
+                {
+                  "direction": "Left",
+                  "hash": "4hvN8zFAFrnuogJ3kaa2iVSiS9fmk67hjNC2i9thtSpa"
+                }
+              ]
+            },
+            {
+              "block_hash": "EpRSeJDivM9jua9rHFK1e1T9whwdukGRsx7LaXXfe5g1",
+              "id": "3Xrg93qH4eFVnreDt8SrGcR528XJXxmHxUJuMACn65nM",
+              "outcome": {
+                "executor_id": "sender1.veil-williams.testnet",
+                "gas_burnt": 223182562500,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    null
+                  ],
+                  "gas_profile": [],
+                  "version": 4
+                },
+                "receipt_ids": [],
+                "status": {
+                  "SuccessValue": ""
+                },
+                "tokens_burnt": "0"
+              },
+              "proof": [
+                {
+                  "direction": "Right",
+                  "hash": "8wX5ygcC2vxK6a7W8ghm6DYnWdBzzZ7ugf8NZjRAfiAg"
+                }
+              ]
+            },
+            {
+              "block_hash": "EpRSeJDivM9jua9rHFK1e1T9whwdukGRsx7LaXXfe5g1",
+              "id": "HkrNDJiveE1eVKKwRZFBAM4SwHzSJ56U9VvMqHARvjzY",
+              "outcome": {
+                "executor_id": "sender1.veil-williams.testnet",
+                "gas_burnt": 223182562500,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    null
+                  ],
+                  "gas_profile": [],
+                  "version": 4
+                },
+                "receipt_ids": [],
+                "status": {
+                  "SuccessValue": ""
+                },
+                "tokens_burnt": "0"
+              },
+              "proof": [
+                {
+                  "direction": "Left",
+                  "hash": "7PVETPjmUhiCTkQFMcN91wKfvB5CpqrfP9JxowdMCTQ4"
+                }
+              ]
+            }
+          ],
+          "status": {
+            "Failure": {
+              "ActionError": {
+                "index": 0,
+                "kind": {
+                  "FunctionCallError": {
+                    "ExecutionError": "WebAssembly trap: An `unreachable` opcode was executed."
+                  }
+                }
+              }
+            }
+          },
+          "transaction": {
+            "actions": [
+              {
+                "FunctionCall": {
+                  "args": "eyJyZWNlaXZlcl9pZCI6IjJmZmM0NzViNDFhZDA4MzIyYWNhODVhOTRkNWEyMmZlZjk5Mjg4ODUwODc1ODEzN2RmMjdlNzhkYmQ1NTRiOWYiLCJhbW91bnQiOiIxIiwibWVtbyI6InN0aXBlbmQtMCJ9",
+                  "deposit": "1",
+                  "gas": 30000000000000,
+                  "method_name": "ft_transfer"
+                }
+              }
+            ],
+            "hash": "7rzcNTq6DGouZT6rQY1UUbbL2VuPdDxErxgGG2uzghf3",
+            "nonce": 276878621000002,
+            "priority_fee": 0,
+            "public_key": "ed25519:2PtSeFCgPopg2BgU5h2VEneGWDk2aHezPm2wzizH2tgK",
+            "receiver_id": "mockft.veil-williams.testnet",
+            "signature": "ed25519:2TCZA9f5sUkhwy7Q1kcHLhKTLEEpTeDUwtGBqtCtktLbiZ3SFpUBWLKJ9PsWJJVXe6jhEUQZnA6NnbKucqyA2ztx",
+            "signer_id": "sender1.veil-williams.testnet"
+          },
+          "transaction_outcome": {
+            "block_hash": "cjQzfiXegsgPwNNkNxJJ3uruUJBHskDWHvS3j3BvCFu",
+            "id": "7rzcNTq6DGouZT6rQY1UUbbL2VuPdDxErxgGG2uzghf3",
+            "outcome": {
+              "executor_id": "sender1.veil-williams.testnet",
+              "gas_burnt": 314019964375,
+              "logs": [],
+              "metadata": {
+                "gas_profile": null,
+                "version": 1
+              },
+              "receipt_ids": [
+                "2nJTNKGG3QjAxkrYuRvSk9U4aJabUkGydVorYP6qo7gE"
+              ],
+              "status": {
+                "SuccessReceiptId": "2nJTNKGG3QjAxkrYuRvSk9U4aJabUkGydVorYP6qo7gE"
+              },
+              "tokens_burnt": "31401996437500000000"
+            },
+            "proof": []
+          }
+        }
+      },
+      "spendBack": {
+        "ok": false,
+        "signerId": "2ffc475b41ad08322aca85a94d5a22fef992888508758137df27e78dbd554b9f",
+        "receiverId": "mockft.veil-williams.testnet",
+        "methodName": "ft_transfer",
+        "error": "NotEnoughBalanceError: Not enough balance for 2ffc475b41ad08322aca85a94d5a22fef992888508758137df27e78dbd554b9f (balance: 40000000000000000000, cost: 30919537863328000000001)\n    at parseInvalidTransactionError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:1307:16)\n    at parseTransactionExecutionError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:647:23)\n    at parseHandlerError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:289:24)\n    at parseRpcError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:194:20)\n    at JsonRpcProvider.sendJsonRpc (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\json-rpc-provider.ts:661:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async execute (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\scripts\\stipend-sweep.ts:86:22)\n    at async main (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\scripts\\stipend-sweep.ts:196:23)"
+      },
+      "minimumCandidate": false
+    },
+    {
+      "index": 1,
+      "stipendNear": "0.00004",
+      "stealthAccount": "683126fe8de3107f805b79162fefb11a3a12f3a56cff5c126e80582a9d3c02e3",
+      "funding": {
+        "ok": true,
+        "hash": "4SxQ7C3d7UcEqxWkpgTee3egFShVtRLNh7WUi6pdT2ac",
+        "explorerUrl": "https://testnet.nearblocks.io/txns/4SxQ7C3d7UcEqxWkpgTee3egFShVtRLNh7WUi6pdT2ac",
+        "signerId": "sender1.veil-williams.testnet",
+        "receiverId": "683126fe8de3107f805b79162fefb11a3a12f3a56cff5c126e80582a9d3c02e3",
+        "amountNear": "0.00004",
+        "rawResponse": {
+          "final_execution_status": "EXECUTED_OPTIMISTIC",
+          "receipts_outcome": [
+            {
+              "block_hash": "2WweMaW3jbbwsxs4Pi4xUtg5t6fNkoVCdkPb2jai93ba",
+              "id": "F4zkdLKXCJZyToPxPLu5eh6xvvZobJqd5crt5UCd4KiT",
+              "outcome": {
+                "executor_id": "683126fe8de3107f805b79162fefb11a3a12f3a56cff5c126e80582a9d3c02e3",
+                "gas_burnt": 7524947687500,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    null
+                  ],
+                  "gas_profile": [],
+                  "version": 4
+                },
+                "receipt_ids": [
+                  "CCtZSQk3tCNfutAiTeJLLGcjRbGoVZHPfXAMShnkFNdk"
+                ],
+                "status": {
+                  "SuccessValue": ""
+                },
+                "tokens_burnt": "752494768750000000000"
+              },
+              "proof": []
+            }
+          ],
+          "status": {
+            "SuccessValue": ""
+          },
+          "transaction": {
+            "actions": [
+              {
+                "Transfer": {
+                  "deposit": "40000000000000000000"
+                }
+              }
+            ],
+            "hash": "4SxQ7C3d7UcEqxWkpgTee3egFShVtRLNh7WUi6pdT2ac",
+            "nonce": 276878621000003,
+            "priority_fee": 0,
+            "public_key": "ed25519:2PtSeFCgPopg2BgU5h2VEneGWDk2aHezPm2wzizH2tgK",
+            "receiver_id": "683126fe8de3107f805b79162fefb11a3a12f3a56cff5c126e80582a9d3c02e3",
+            "signature": "ed25519:2RMhCATbVHzH1VmwfTJ415oJHGyB3n51tMWdsaEsTr6VNWVCZruB7TiwxUTN2ZLygpg7tUtGpLEo1M911nn14QDu",
+            "signer_id": "sender1.veil-williams.testnet"
+          },
+          "transaction_outcome": {
+            "block_hash": "Fi7ov2yRBx1vgMCdpux9ZaS5HiEvBc2WQkmip4jEL89T",
+            "id": "4SxQ7C3d7UcEqxWkpgTee3egFShVtRLNh7WUi6pdT2ac",
+            "outcome": {
+              "executor_id": "sender1.veil-williams.testnet",
+              "gas_burnt": 824947687500,
+              "logs": [],
+              "metadata": {
+                "gas_profile": null,
+                "version": 1
+              },
+              "receipt_ids": [
+                "F4zkdLKXCJZyToPxPLu5eh6xvvZobJqd5crt5UCd4KiT"
+              ],
+              "status": {
+                "SuccessReceiptId": "F4zkdLKXCJZyToPxPLu5eh6xvvZobJqd5crt5UCd4KiT"
+              },
+              "tokens_burnt": "82494768750000000000"
+            },
+            "proof": [
+              {
+                "direction": "Right",
+                "hash": "9zYbvdNBqxQFwGbwq25mBBKPdx3Q3n2KULkyDkVia5W1"
+              },
+              {
+                "direction": "Right",
+                "hash": "EayQeJkxhAnjfnAYeVFvrNimGy2JQc2Su9J2fwJtsM5J"
+              }
+            ]
+          }
+        }
+      },
+      "storage": {
+        "ok": false,
+        "signerId": "sender1.veil-williams.testnet",
+        "receiverId": "mockft.veil-williams.testnet",
+        "methodName": "storage_deposit",
+        "error": "InvalidNonceError: Invalid nonce (ak: 276878621000003, tx: 276878621000003)\n    at parseInvalidTransactionError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:1295:16)\n    at parseTransactionExecutionError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:647:23)\n    at parseHandlerError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:289:24)\n    at parseRpcError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:194:20)\n    at JsonRpcProvider.sendJsonRpc (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\json-rpc-provider.ts:661:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async execute (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\scripts\\stipend-sweep.ts:86:22)\n    at async main (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\scripts\\stipend-sweep.ts:178:21)"
+      },
+      "ftTransfer": {
+        "ok": false,
+        "hash": "HvRTrxoBh8M7Q1Sw5Qr7zXRUszRpEjpmYuzZncZavwUN",
+        "explorerUrl": "https://testnet.nearblocks.io/txns/HvRTrxoBh8M7Q1Sw5Qr7zXRUszRpEjpmYuzZncZavwUN",
+        "signerId": "sender1.veil-williams.testnet",
+        "receiverId": "mockft.veil-williams.testnet",
+        "methodName": "ft_transfer",
+        "rawResponse": {
+          "final_execution_status": "EXECUTED",
+          "receipts_outcome": [
+            {
+              "block_hash": "3HQNqfpfywojWAWP5kcBcaKArJjdGXR8iBjQK4AzQKSW",
+              "id": "D1VNe7Q9mfUrHnPiZJ3zYugUJZpuG7455KfG7cuqQExV",
+              "outcome": {
+                "executor_id": "mockft.veil-williams.testnet",
+                "gas_burnt": 1570471794384,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    {
+                      "local": "474f4VCP7cezQy17caw1bhjptanUpg3YNNb3CW4xaVKW"
+                    }
+                  ],
+                  "gas_profile": [
+                    {
+                      "cost": "BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "4501057887"
+                    },
+                    {
+                      "cost": "CONTRACT_LOADING_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "35445963"
+                    },
+                    {
+                      "cost": "CONTRACT_LOADING_BYTES",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "308478540345"
+                    },
+                    {
+                      "cost": "READ_CACHED_TRIE_NODE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "2280000000"
+                    },
+                    {
+                      "cost": "READ_MEMORY_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "13049316000"
+                    },
+                    {
+                      "cost": "READ_MEMORY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "600610614"
+                    },
+                    {
+                      "cost": "READ_REGISTER_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "12585825930"
+                    },
+                    {
+                      "cost": "READ_REGISTER_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "26907426"
+                    },
+                    {
+                      "cost": "STORAGE_READ_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "169070537247"
+                    },
+                    {
+                      "cost": "STORAGE_READ_KEY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "3342873564"
+                    },
+                    {
+                      "cost": "STORAGE_READ_VALUE_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "639654456"
+                    },
+                    {
+                      "cost": "STORAGE_WRITE_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "64196736000"
+                    },
+                    {
+                      "cost": "STORAGE_WRITE_EVICTED_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "513876912"
+                    },
+                    {
+                      "cost": "STORAGE_WRITE_KEY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "2396417478"
+                    },
+                    {
+                      "cost": "STORAGE_WRITE_VALUE_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "496296624"
+                    },
+                    {
+                      "cost": "TOUCHING_TRIE_NODE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "45600000000"
+                    },
+                    {
+                      "cost": "WASM_INSTRUCTION",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "21776705808"
+                    },
+                    {
+                      "cost": "WRITE_MEMORY_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "16822769166"
+                    },
+                    {
+                      "cost": "WRITE_MEMORY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "787170108"
+                    },
+                    {
+                      "cost": "WRITE_REGISTER_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "14327612430"
+                    },
+                    {
+                      "cost": "WRITE_REGISTER_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "604448676"
+                    }
+                  ],
+                  "version": 4
+                },
+                "receipt_ids": [
+                  "AitEuhCntxh8Eg2AcNYTwspUUbdmNoNFBvJu8CqE8MkE",
+                  "2YgvZVtsmcSzSXfjinhHZjMT1QP7Av8e6TCS6ZMufYYm"
+                ],
+                "status": {
+                  "Failure": {
+                    "ActionError": {
+                      "index": 0,
+                      "kind": {
+                        "FunctionCallError": {
+                          "ExecutionError": "WebAssembly trap: An `unreachable` opcode was executed."
+                        }
+                      }
+                    }
+                  }
+                },
+                "tokens_burnt": "157047179438400000000"
+              },
+              "proof": [
+                {
+                  "direction": "Left",
+                  "hash": "EncmvThsagwS5fmafg9xC2yiuA6JEvTFEFy3k1EDyEEC"
+                },
+                {
+                  "direction": "Left",
+                  "hash": "2dJZWqQGC2WnqGZFsKCWLez4oknFnMx8JLPHVu7Xu8Me"
+                }
+              ]
+            },
+            {
+              "block_hash": "HrDzrd8xfx3ULL445jUFXyzaGE9fZj7pqknuBfzCpgpn",
+              "id": "AitEuhCntxh8Eg2AcNYTwspUUbdmNoNFBvJu8CqE8MkE",
+              "outcome": {
+                "executor_id": "sender1.veil-williams.testnet",
+                "gas_burnt": 223182562500,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    null
+                  ],
+                  "gas_profile": [],
+                  "version": 4
+                },
+                "receipt_ids": [],
+                "status": {
+                  "SuccessValue": ""
+                },
+                "tokens_burnt": "0"
+              },
+              "proof": [
+                {
+                  "direction": "Right",
+                  "hash": "34CG3tNJoCo8D1cEhnUQERWSw326ePKTCk4Yz6k3oj3k"
+                },
+                {
+                  "direction": "Right",
+                  "hash": "8L5wdKbq6WSpEZfybtiDM1rnfxaRccHYNX51KSpj7NTr"
+                }
+              ]
+            },
+            {
+              "block_hash": "HrDzrd8xfx3ULL445jUFXyzaGE9fZj7pqknuBfzCpgpn",
+              "id": "2YgvZVtsmcSzSXfjinhHZjMT1QP7Av8e6TCS6ZMufYYm",
+              "outcome": {
+                "executor_id": "sender1.veil-williams.testnet",
+                "gas_burnt": 223182562500,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    null
+                  ],
+                  "gas_profile": [],
+                  "version": 4
+                },
+                "receipt_ids": [],
+                "status": {
+                  "SuccessValue": ""
+                },
+                "tokens_burnt": "0"
+              },
+              "proof": [
+                {
+                  "direction": "Left",
+                  "hash": "CJLhjMoBeFws3NYPaVnau18svuB4coRystyGReG4iVet"
+                },
+                {
+                  "direction": "Right",
+                  "hash": "8L5wdKbq6WSpEZfybtiDM1rnfxaRccHYNX51KSpj7NTr"
+                }
+              ]
+            }
+          ],
+          "status": {
+            "Failure": {
+              "ActionError": {
+                "index": 0,
+                "kind": {
+                  "FunctionCallError": {
+                    "ExecutionError": "WebAssembly trap: An `unreachable` opcode was executed."
+                  }
+                }
+              }
+            }
+          },
+          "transaction": {
+            "actions": [
+              {
+                "FunctionCall": {
+                  "args": "eyJyZWNlaXZlcl9pZCI6IjY4MzEyNmZlOGRlMzEwN2Y4MDViNzkxNjJmZWZiMTFhM2ExMmYzYTU2Y2ZmNWMxMjZlODA1ODJhOWQzYzAyZTMiLCJhbW91bnQiOiIxIiwibWVtbyI6InN0aXBlbmQtMSJ9",
+                  "deposit": "1",
+                  "gas": 30000000000000,
+                  "method_name": "ft_transfer"
+                }
+              }
+            ],
+            "hash": "HvRTrxoBh8M7Q1Sw5Qr7zXRUszRpEjpmYuzZncZavwUN",
+            "nonce": 276878621000004,
+            "priority_fee": 0,
+            "public_key": "ed25519:2PtSeFCgPopg2BgU5h2VEneGWDk2aHezPm2wzizH2tgK",
+            "receiver_id": "mockft.veil-williams.testnet",
+            "signature": "ed25519:33iVwWdS7QT1PZi5kNEtoFLHGRKWXbEz9mw3q2rF75RAWwNCQXzBpYKmQQzM18JfZfhXRqjjE1NdNikj1cYbeRan",
+            "signer_id": "sender1.veil-williams.testnet"
+          },
+          "transaction_outcome": {
+            "block_hash": "BviruGqj6NN6q7wze5PmE7fx7epZD2qKnPtKp4fenVmS",
+            "id": "HvRTrxoBh8M7Q1Sw5Qr7zXRUszRpEjpmYuzZncZavwUN",
+            "outcome": {
+              "executor_id": "sender1.veil-williams.testnet",
+              "gas_burnt": 314019964375,
+              "logs": [],
+              "metadata": {
+                "gas_profile": null,
+                "version": 1
+              },
+              "receipt_ids": [
+                "D1VNe7Q9mfUrHnPiZJ3zYugUJZpuG7455KfG7cuqQExV"
+              ],
+              "status": {
+                "SuccessReceiptId": "D1VNe7Q9mfUrHnPiZJ3zYugUJZpuG7455KfG7cuqQExV"
+              },
+              "tokens_burnt": "31401996437500000000"
+            },
+            "proof": [
+              {
+                "direction": "Right",
+                "hash": "BpmfaM6kseqx35MwecbTB4uSnTfbJJeTyjVnZLFETpfP"
+              },
+              {
+                "direction": "Right",
+                "hash": "E3NyM1uh69eVtqoFAmZ64yTwjtRnQPxz493BuLJNxGew"
+              },
+              {
+                "direction": "Right",
+                "hash": "B3tpXsvAnjZCbG61ZN7qnwMpTAhSq2txAyR7oBySyCKn"
+              },
+              {
+                "direction": "Right",
+                "hash": "2JdLmbgwv7jorPuMA2Uj5U8TszQ8GfifG6ZT7MfUrRyd"
+              }
+            ]
+          }
+        }
+      },
+      "spendBack": {
+        "ok": false,
+        "signerId": "683126fe8de3107f805b79162fefb11a3a12f3a56cff5c126e80582a9d3c02e3",
+        "receiverId": "mockft.veil-williams.testnet",
+        "methodName": "ft_transfer",
+        "error": "NotEnoughBalanceError: Not enough balance for 683126fe8de3107f805b79162fefb11a3a12f3a56cff5c126e80582a9d3c02e3 (balance: 80000000000000000000, cost: 30919537863328000000001)\n    at parseInvalidTransactionError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:1307:16)\n    at parseTransactionExecutionError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:647:23)\n    at parseHandlerError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:289:24)\n    at parseRpcError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:194:20)\n    at JsonRpcProvider.sendJsonRpc (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\json-rpc-provider.ts:661:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async execute (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\scripts\\stipend-sweep.ts:86:22)\n    at async main (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\scripts\\stipend-sweep.ts:196:23)"
+      },
+      "minimumCandidate": false
+    },
+    {
+      "index": 2,
+      "stipendNear": "0.00008",
+      "stealthAccount": "5ec3d6632265cea2e88f9a84aeb07e6075a4dc26a93ec973d495b88d7086b26b",
+      "funding": {
+        "ok": true,
+        "hash": "H4jXXCS9ukJAbjaLqJcHBY6EXi2qs6wbAJKX3MF1PZx1",
+        "explorerUrl": "https://testnet.nearblocks.io/txns/H4jXXCS9ukJAbjaLqJcHBY6EXi2qs6wbAJKX3MF1PZx1",
+        "signerId": "sender1.veil-williams.testnet",
+        "receiverId": "5ec3d6632265cea2e88f9a84aeb07e6075a4dc26a93ec973d495b88d7086b26b",
+        "amountNear": "0.00008",
+        "rawResponse": {
+          "final_execution_status": "EXECUTED_OPTIMISTIC",
+          "receipts_outcome": [
+            {
+              "block_hash": "FjrZRHKeediLZdMSRbwbH1XaiuEnZYTR6VaRLwRN6sj7",
+              "id": "DcSFttJPcMFKGQtSKrM8y5mXukVLACDyX2K1GpEiD85T",
+              "outcome": {
+                "executor_id": "5ec3d6632265cea2e88f9a84aeb07e6075a4dc26a93ec973d495b88d7086b26b",
+                "gas_burnt": 7524947687500,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    null
+                  ],
+                  "gas_profile": [],
+                  "version": 4
+                },
+                "receipt_ids": [
+                  "CZ8KK2x8UKo53XAigUTP71dhreQGdhFo9ThBKH7JkDGL"
+                ],
+                "status": {
+                  "SuccessValue": ""
+                },
+                "tokens_burnt": "7032494768750000000000"
+              },
+              "proof": []
+            }
+          ],
+          "status": {
+            "SuccessValue": ""
+          },
+          "transaction": {
+            "actions": [
+              {
+                "Transfer": {
+                  "deposit": "80000000000000000000"
+                }
+              }
+            ],
+            "hash": "H4jXXCS9ukJAbjaLqJcHBY6EXi2qs6wbAJKX3MF1PZx1",
+            "nonce": 276878621000005,
+            "priority_fee": 0,
+            "public_key": "ed25519:2PtSeFCgPopg2BgU5h2VEneGWDk2aHezPm2wzizH2tgK",
+            "receiver_id": "5ec3d6632265cea2e88f9a84aeb07e6075a4dc26a93ec973d495b88d7086b26b",
+            "signature": "ed25519:4jhojebzGkv3DsprHHGDXYY9bLUa2M96hqRRUSKzZH5AW2tTG8ZzDbDPCgfHLv1Fm3pkvncWCif35pY5QLQReH9N",
+            "signer_id": "sender1.veil-williams.testnet"
+          },
+          "transaction_outcome": {
+            "block_hash": "9YHKXK4SDRt4AqyTRMMxoCJQM2cRDE7RNM1E7q6V9gRK",
+            "id": "H4jXXCS9ukJAbjaLqJcHBY6EXi2qs6wbAJKX3MF1PZx1",
+            "outcome": {
+              "executor_id": "sender1.veil-williams.testnet",
+              "gas_burnt": 824947687500,
+              "logs": [],
+              "metadata": {
+                "gas_profile": null,
+                "version": 1
+              },
+              "receipt_ids": [
+                "DcSFttJPcMFKGQtSKrM8y5mXukVLACDyX2K1GpEiD85T"
+              ],
+              "status": {
+                "SuccessReceiptId": "DcSFttJPcMFKGQtSKrM8y5mXukVLACDyX2K1GpEiD85T"
+              },
+              "tokens_burnt": "82494768750000000000"
+            },
+            "proof": [
+              {
+                "direction": "Right",
+                "hash": "9m6D7U17fmzQXP2jiEPZHND4znMedGPqjjoiDAh3fwWw"
+              }
+            ]
+          }
+        }
+      },
+      "storage": {
+        "ok": false,
+        "signerId": "sender1.veil-williams.testnet",
+        "receiverId": "mockft.veil-williams.testnet",
+        "methodName": "storage_deposit",
+        "error": "InvalidNonceError: Invalid nonce (ak: 276878621000005, tx: 276878621000005)\n    at parseInvalidTransactionError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:1295:16)\n    at parseTransactionExecutionError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:647:23)\n    at parseHandlerError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:289:24)\n    at parseRpcError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:194:20)\n    at JsonRpcProvider.sendJsonRpc (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\json-rpc-provider.ts:661:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async execute (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\scripts\\stipend-sweep.ts:86:22)\n    at async main (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\scripts\\stipend-sweep.ts:178:21)"
+      },
+      "ftTransfer": {
+        "ok": false,
+        "signerId": "sender1.veil-williams.testnet",
+        "receiverId": "mockft.veil-williams.testnet",
+        "methodName": "ft_transfer",
+        "error": "InvalidNonceError: Invalid nonce (ak: 276878621000005, tx: 276878621000005)\n    at parseInvalidTransactionError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:1295:16)\n    at parseTransactionExecutionError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:647:23)\n    at parseHandlerError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:289:24)\n    at parseRpcError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:194:20)\n    at JsonRpcProvider.sendJsonRpc (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\json-rpc-provider.ts:661:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async execute (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\scripts\\stipend-sweep.ts:86:22)\n    at async main (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\scripts\\stipend-sweep.ts:187:24)"
+      },
+      "spendBack": {
+        "ok": false,
+        "signerId": "5ec3d6632265cea2e88f9a84aeb07e6075a4dc26a93ec973d495b88d7086b26b",
+        "receiverId": "mockft.veil-williams.testnet",
+        "methodName": "ft_transfer",
+        "error": "NotEnoughBalanceError: Not enough balance for 5ec3d6632265cea2e88f9a84aeb07e6075a4dc26a93ec973d495b88d7086b26b (balance: 80000000000000000000, cost: 30919537863328000000001)\n    at parseInvalidTransactionError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:1307:16)\n    at parseTransactionExecutionError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:647:23)\n    at parseHandlerError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:289:24)\n    at parseRpcError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:194:20)\n    at JsonRpcProvider.sendJsonRpc (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\json-rpc-provider.ts:661:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async execute (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\scripts\\stipend-sweep.ts:86:22)\n    at async main (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\scripts\\stipend-sweep.ts:196:23)"
+      },
+      "minimumCandidate": false
+    },
+    {
+      "index": 3,
+      "stipendNear": "0.00016",
+      "stealthAccount": "82de05e00fd23f13e9e0034c43cbb577cb3c0a12483ce8e1a66f45a6f2dce8c0",
+      "funding": {
+        "ok": true,
+        "hash": "2LPJ8azNatHhXR5N6Sd3arSXcDNXUyPYUJy32cYmaPSZ",
+        "explorerUrl": "https://testnet.nearblocks.io/txns/2LPJ8azNatHhXR5N6Sd3arSXcDNXUyPYUJy32cYmaPSZ",
+        "signerId": "sender1.veil-williams.testnet",
+        "receiverId": "82de05e00fd23f13e9e0034c43cbb577cb3c0a12483ce8e1a66f45a6f2dce8c0",
+        "amountNear": "0.00016",
+        "rawResponse": {
+          "final_execution_status": "EXECUTED_OPTIMISTIC",
+          "receipts_outcome": [
+            {
+              "block_hash": "7HY7UgFMmnAXmAxooc6YMUFzQdR9S6LfB7y9uDbXn7Gc",
+              "id": "5LHj7yK7FvFdNmrajk2jdfqtBnM4oUimggpjw4Wrgz5K",
+              "outcome": {
+                "executor_id": "82de05e00fd23f13e9e0034c43cbb577cb3c0a12483ce8e1a66f45a6f2dce8c0",
+                "gas_burnt": 7524947687500,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    null
+                  ],
+                  "gas_profile": [],
+                  "version": 4
+                },
+                "receipt_ids": [
+                  "9gSUV8zVNyHo2XtKLfYYhE3zumBkYa9nEs4imUUGZW97"
+                ],
+                "status": {
+                  "SuccessValue": ""
+                },
+                "tokens_burnt": "7032494768750000000000"
+              },
+              "proof": [
+                {
+                  "direction": "Left",
+                  "hash": "2vnxeG524ShaFijv4QVKBjxaM6LcxVcsdLhLb9bkEfop"
+                }
+              ]
+            }
+          ],
+          "status": {
+            "SuccessValue": ""
+          },
+          "transaction": {
+            "actions": [
+              {
+                "Transfer": {
+                  "deposit": "160000000000000000000"
+                }
+              }
+            ],
+            "hash": "2LPJ8azNatHhXR5N6Sd3arSXcDNXUyPYUJy32cYmaPSZ",
+            "nonce": 276878621000006,
+            "priority_fee": 0,
+            "public_key": "ed25519:2PtSeFCgPopg2BgU5h2VEneGWDk2aHezPm2wzizH2tgK",
+            "receiver_id": "82de05e00fd23f13e9e0034c43cbb577cb3c0a12483ce8e1a66f45a6f2dce8c0",
+            "signature": "ed25519:2rHhcTgGniJNHXH31gHgVHxL13ZxfFvzJiqFyFGh45JXEdoVyX7d6RpVqWxB4Qm6cAQ6tY9YsyKxfuvgJrfxtFYg",
+            "signer_id": "sender1.veil-williams.testnet"
+          },
+          "transaction_outcome": {
+            "block_hash": "37Le93QRXWMUd4jL99KZPnNh2g2BVByuxTaH9tR7tV5F",
+            "id": "2LPJ8azNatHhXR5N6Sd3arSXcDNXUyPYUJy32cYmaPSZ",
+            "outcome": {
+              "executor_id": "sender1.veil-williams.testnet",
+              "gas_burnt": 824947687500,
+              "logs": [],
+              "metadata": {
+                "gas_profile": null,
+                "version": 1
+              },
+              "receipt_ids": [
+                "5LHj7yK7FvFdNmrajk2jdfqtBnM4oUimggpjw4Wrgz5K"
+              ],
+              "status": {
+                "SuccessReceiptId": "5LHj7yK7FvFdNmrajk2jdfqtBnM4oUimggpjw4Wrgz5K"
+              },
+              "tokens_burnt": "82494768750000000000"
+            },
+            "proof": [
+              {
+                "direction": "Right",
+                "hash": "GqPWVcJJiKmquC82119YutMzQ9tmk8NPrHqTeLAJhm3i"
+              },
+              {
+                "direction": "Right",
+                "hash": "C6kcjM3abCmk2UW5TmKJPKgJB8jS4iFaFoVqDYqwocpf"
+              }
+            ]
+          }
+        }
+      },
+      "storage": {
+        "ok": false,
+        "signerId": "sender1.veil-williams.testnet",
+        "receiverId": "mockft.veil-williams.testnet",
+        "methodName": "storage_deposit",
+        "error": "InvalidNonceError: Invalid nonce (ak: 276878621000006, tx: 276878621000006)\n    at parseInvalidTransactionError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:1295:16)\n    at parseTransactionExecutionError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:647:23)\n    at parseHandlerError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:289:24)\n    at parseRpcError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:194:20)\n    at JsonRpcProvider.sendJsonRpc (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\json-rpc-provider.ts:661:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async execute (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\scripts\\stipend-sweep.ts:86:22)\n    at async main (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\scripts\\stipend-sweep.ts:178:21)"
+      },
+      "ftTransfer": {
+        "ok": false,
+        "hash": "4RRB3PsvFfPosL5MhE3cMgTiDt9E6GCTSfK4xHL43kqn",
+        "explorerUrl": "https://testnet.nearblocks.io/txns/4RRB3PsvFfPosL5MhE3cMgTiDt9E6GCTSfK4xHL43kqn",
+        "signerId": "sender1.veil-williams.testnet",
+        "receiverId": "mockft.veil-williams.testnet",
+        "methodName": "ft_transfer",
+        "rawResponse": {
+          "final_execution_status": "EXECUTED",
+          "receipts_outcome": [
+            {
+              "block_hash": "RDNwheeLZxqDEL28NFomqAhBcUrTUfpqTbD8SxXrP2U",
+              "id": "3UL8Uujs8gZaKJoeBHxiW8wJkVJ7oWAndSpQpSGY6tVo",
+              "outcome": {
+                "executor_id": "mockft.veil-williams.testnet",
+                "gas_burnt": 1570471794384,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    {
+                      "local": "474f4VCP7cezQy17caw1bhjptanUpg3YNNb3CW4xaVKW"
+                    }
+                  ],
+                  "gas_profile": [
+                    {
+                      "cost": "BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "4501057887"
+                    },
+                    {
+                      "cost": "CONTRACT_LOADING_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "35445963"
+                    },
+                    {
+                      "cost": "CONTRACT_LOADING_BYTES",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "308478540345"
+                    },
+                    {
+                      "cost": "READ_CACHED_TRIE_NODE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "2280000000"
+                    },
+                    {
+                      "cost": "READ_MEMORY_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "13049316000"
+                    },
+                    {
+                      "cost": "READ_MEMORY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "600610614"
+                    },
+                    {
+                      "cost": "READ_REGISTER_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "12585825930"
+                    },
+                    {
+                      "cost": "READ_REGISTER_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "26907426"
+                    },
+                    {
+                      "cost": "STORAGE_READ_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "169070537247"
+                    },
+                    {
+                      "cost": "STORAGE_READ_KEY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "3342873564"
+                    },
+                    {
+                      "cost": "STORAGE_READ_VALUE_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "639654456"
+                    },
+                    {
+                      "cost": "STORAGE_WRITE_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "64196736000"
+                    },
+                    {
+                      "cost": "STORAGE_WRITE_EVICTED_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "513876912"
+                    },
+                    {
+                      "cost": "STORAGE_WRITE_KEY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "2396417478"
+                    },
+                    {
+                      "cost": "STORAGE_WRITE_VALUE_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "496296624"
+                    },
+                    {
+                      "cost": "TOUCHING_TRIE_NODE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "45600000000"
+                    },
+                    {
+                      "cost": "WASM_INSTRUCTION",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "21776705808"
+                    },
+                    {
+                      "cost": "WRITE_MEMORY_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "16822769166"
+                    },
+                    {
+                      "cost": "WRITE_MEMORY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "787170108"
+                    },
+                    {
+                      "cost": "WRITE_REGISTER_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "14327612430"
+                    },
+                    {
+                      "cost": "WRITE_REGISTER_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "604448676"
+                    }
+                  ],
+                  "version": 4
+                },
+                "receipt_ids": [
+                  "EsvQUitVF2XwxJAmQxeVAjfXZjxuxwabBivYhWpxbzTn",
+                  "H4ep17BAwH8U7L64ZTD32w9H98Wje2Fr5tBb8KB24A5C"
+                ],
+                "status": {
+                  "Failure": {
+                    "ActionError": {
+                      "index": 0,
+                      "kind": {
+                        "FunctionCallError": {
+                          "ExecutionError": "WebAssembly trap: An `unreachable` opcode was executed."
+                        }
+                      }
+                    }
+                  }
+                },
+                "tokens_burnt": "157047179438400000000"
+              },
+              "proof": [
+                {
+                  "direction": "Right",
+                  "hash": "7UZzZixqgCE6f41Uywd2dxnkh44aHsFJkmnS5gVg4iky"
+                }
+              ]
+            },
+            {
+              "block_hash": "2KxEWSamFowkMSBbaK21z9ehesjWPDWPggUWHWNF5TSA",
+              "id": "EsvQUitVF2XwxJAmQxeVAjfXZjxuxwabBivYhWpxbzTn",
+              "outcome": {
+                "executor_id": "sender1.veil-williams.testnet",
+                "gas_burnt": 223182562500,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    null
+                  ],
+                  "gas_profile": [],
+                  "version": 4
+                },
+                "receipt_ids": [],
+                "status": {
+                  "SuccessValue": ""
+                },
+                "tokens_burnt": "0"
+              },
+              "proof": [
+                {
+                  "direction": "Right",
+                  "hash": "8rCzGULUQFd3jDfqD8ov59CNFGvpPTasZ1qpDfCzX8vL"
+                },
+                {
+                  "direction": "Right",
+                  "hash": "9P6VMK67wr54KTfKD4LaUkqAQs195WCrDUnbD7rNEJzj"
+                }
+              ]
+            },
+            {
+              "block_hash": "2KxEWSamFowkMSBbaK21z9ehesjWPDWPggUWHWNF5TSA",
+              "id": "H4ep17BAwH8U7L64ZTD32w9H98Wje2Fr5tBb8KB24A5C",
+              "outcome": {
+                "executor_id": "sender1.veil-williams.testnet",
+                "gas_burnt": 223182562500,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    null
+                  ],
+                  "gas_profile": [],
+                  "version": 4
+                },
+                "receipt_ids": [],
+                "status": {
+                  "SuccessValue": ""
+                },
+                "tokens_burnt": "0"
+              },
+              "proof": [
+                {
+                  "direction": "Left",
+                  "hash": "7rZGUYkMpvEGsVaCKPAxNW99hkTSvSKStf4DDk75igrp"
+                },
+                {
+                  "direction": "Right",
+                  "hash": "9P6VMK67wr54KTfKD4LaUkqAQs195WCrDUnbD7rNEJzj"
+                }
+              ]
+            }
+          ],
+          "status": {
+            "Failure": {
+              "ActionError": {
+                "index": 0,
+                "kind": {
+                  "FunctionCallError": {
+                    "ExecutionError": "WebAssembly trap: An `unreachable` opcode was executed."
+                  }
+                }
+              }
+            }
+          },
+          "transaction": {
+            "actions": [
+              {
+                "FunctionCall": {
+                  "args": "eyJyZWNlaXZlcl9pZCI6IjgyZGUwNWUwMGZkMjNmMTNlOWUwMDM0YzQzY2JiNTc3Y2IzYzBhMTI0ODNjZThlMWE2NmY0NWE2ZjJkY2U4YzAiLCJhbW91bnQiOiIxIiwibWVtbyI6InN0aXBlbmQtMyJ9",
+                  "deposit": "1",
+                  "gas": 30000000000000,
+                  "method_name": "ft_transfer"
+                }
+              }
+            ],
+            "hash": "4RRB3PsvFfPosL5MhE3cMgTiDt9E6GCTSfK4xHL43kqn",
+            "nonce": 276878621000007,
+            "priority_fee": 0,
+            "public_key": "ed25519:2PtSeFCgPopg2BgU5h2VEneGWDk2aHezPm2wzizH2tgK",
+            "receiver_id": "mockft.veil-williams.testnet",
+            "signature": "ed25519:7xoCZFBT8DoiSwEskFw9sRqrbY4DrfK91EbkL5gPoFaKWJiwuqMg4ND69SvpzqmJxNpXrSKvgSMgBFcc1oBL95n",
+            "signer_id": "sender1.veil-williams.testnet"
+          },
+          "transaction_outcome": {
+            "block_hash": "kgSqoD2GoEFxB8eiTECaDxhWtqMFCxXQG3XnZ6twcbD",
+            "id": "4RRB3PsvFfPosL5MhE3cMgTiDt9E6GCTSfK4xHL43kqn",
+            "outcome": {
+              "executor_id": "sender1.veil-williams.testnet",
+              "gas_burnt": 314019964375,
+              "logs": [],
+              "metadata": {
+                "gas_profile": null,
+                "version": 1
+              },
+              "receipt_ids": [
+                "3UL8Uujs8gZaKJoeBHxiW8wJkVJ7oWAndSpQpSGY6tVo"
+              ],
+              "status": {
+                "SuccessReceiptId": "3UL8Uujs8gZaKJoeBHxiW8wJkVJ7oWAndSpQpSGY6tVo"
+              },
+              "tokens_burnt": "31401996437500000000"
+            },
+            "proof": [
+              {
+                "direction": "Right",
+                "hash": "EhtqEmnu4tr6u61nQjx6Fpacp3tUviedsfUFAny96LzN"
+              },
+              {
+                "direction": "Right",
+                "hash": "GEYf4f9hmL1a8MQ7hGhCyRpvZh5aZKSvHXhz16MW6SCY"
+              }
+            ]
+          }
+        }
+      },
+      "spendBack": {
+        "ok": false,
+        "signerId": "82de05e00fd23f13e9e0034c43cbb577cb3c0a12483ce8e1a66f45a6f2dce8c0",
+        "receiverId": "mockft.veil-williams.testnet",
+        "methodName": "ft_transfer",
+        "error": "NotEnoughBalanceError: Not enough balance for 82de05e00fd23f13e9e0034c43cbb577cb3c0a12483ce8e1a66f45a6f2dce8c0 (balance: 160000000000000000000, cost: 30919537863328000000001)\n    at parseInvalidTransactionError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:1307:16)\n    at parseTransactionExecutionError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:647:23)\n    at parseHandlerError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:289:24)\n    at parseRpcError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:194:20)\n    at JsonRpcProvider.sendJsonRpc (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\json-rpc-provider.ts:661:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async execute (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\scripts\\stipend-sweep.ts:86:22)\n    at async main (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\scripts\\stipend-sweep.ts:196:23)"
+      },
+      "minimumCandidate": false
+    }
+  ]
+}

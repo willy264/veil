@@ -1,0 +1,2514 @@
+{
+  "status": "FAIL",
+  "network": "testnet",
+  "rpcUrl": "https://rpc.testnet.fastnear.com",
+  "token": "mockft.veil-williams.testnet",
+  "sender": "sender1.veil-williams.testnet",
+  "storageDepositYocto": "1250000000000000000",
+  "testedStipendsNear": [
+    "0.00002",
+    "0.00004",
+    "0.00008",
+    "0.00016"
+  ],
+  "minimumSuccessfulTestedStipendNear": null,
+  "note": "This is an empirical threshold sweep over fresh implicit accounts; the true minimum may lie between tested values.",
+  "rows": [
+    {
+      "index": 0,
+      "stipendNear": "0.00002",
+      "stealthAccount": "2ffc475b41ad08322aca85a94d5a22fef992888508758137df27e78dbd554b9f",
+      "funding": {
+        "ok": true,
+        "hash": "Gw4kU3MFyTCjHx1UyFAfyX4qf8xrqg8jTYjTz6rvCxVV",
+        "explorerUrl": "https://testnet.nearblocks.io/txns/Gw4kU3MFyTCjHx1UyFAfyX4qf8xrqg8jTYjTz6rvCxVV",
+        "signerId": "sender1.veil-williams.testnet",
+        "receiverId": "2ffc475b41ad08322aca85a94d5a22fef992888508758137df27e78dbd554b9f",
+        "amountNear": "0.00002",
+        "rawResponse": {
+          "final_execution_status": "EXECUTED_OPTIMISTIC",
+          "receipts_outcome": [
+            {
+              "block_hash": "3iAsMDVuKcJmSnvRMgAhHJaR8V5H2qT6H2Lyc48zvpwJ",
+              "id": "EgbVtk8MMu8WxB8Zm7ockwYbrMTTsvj24pgAGBz3kWrG",
+              "outcome": {
+                "executor_id": "2ffc475b41ad08322aca85a94d5a22fef992888508758137df27e78dbd554b9f",
+                "gas_burnt": 7524947687500,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    null
+                  ],
+                  "gas_profile": [],
+                  "version": 4
+                },
+                "receipt_ids": [
+                  "C3YucF7SpQBTAm5urA81h9PLhRBAQAEYZ2KieVVFjd1D"
+                ],
+                "status": {
+                  "SuccessValue": ""
+                },
+                "tokens_burnt": "752494768750000000000"
+              },
+              "proof": []
+            }
+          ],
+          "status": {
+            "SuccessValue": ""
+          },
+          "transaction": {
+            "actions": [
+              {
+                "Transfer": {
+                  "deposit": "20000000000000000000"
+                }
+              }
+            ],
+            "hash": "Gw4kU3MFyTCjHx1UyFAfyX4qf8xrqg8jTYjTz6rvCxVV",
+            "nonce": 276878709000001,
+            "priority_fee": 0,
+            "public_key": "ed25519:Jn3UeRb1xJb7X8FRvxoyAKW4FomF5Hmexoz9BjC5QpH",
+            "receiver_id": "2ffc475b41ad08322aca85a94d5a22fef992888508758137df27e78dbd554b9f",
+            "signature": "ed25519:4eKYNyY9UeYAQ33vVqkP8JhQdwwTGDxzZ1vYy6yawTgFBAk6XW66QcYmd96hwKQQRfh1Vv6Usrot4bNiEZYUX7JR",
+            "signer_id": "sender1.veil-williams.testnet"
+          },
+          "transaction_outcome": {
+            "block_hash": "ACtvbqpbPjwwcUietwVY5wJoKYHTCKRQ2KoPj8QsYycQ",
+            "id": "Gw4kU3MFyTCjHx1UyFAfyX4qf8xrqg8jTYjTz6rvCxVV",
+            "outcome": {
+              "executor_id": "sender1.veil-williams.testnet",
+              "gas_burnt": 824947687500,
+              "logs": [],
+              "metadata": {
+                "gas_profile": null,
+                "version": 1
+              },
+              "receipt_ids": [
+                "EgbVtk8MMu8WxB8Zm7ockwYbrMTTsvj24pgAGBz3kWrG"
+              ],
+              "status": {
+                "SuccessReceiptId": "EgbVtk8MMu8WxB8Zm7ockwYbrMTTsvj24pgAGBz3kWrG"
+              },
+              "tokens_burnt": "82494768750000000000"
+            },
+            "proof": [
+              {
+                "direction": "Right",
+                "hash": "FPBBKE9usBQiMSWCVufuWNPcs8s3i4hW7RnRvFnNx741"
+              }
+            ]
+          }
+        }
+      },
+      "storage": {
+        "ok": false,
+        "hash": "aTfKbutxrtmRfKLk8tDx5fP7Pg8Fk3e2cTHMELvpobX",
+        "explorerUrl": "https://testnet.nearblocks.io/txns/aTfKbutxrtmRfKLk8tDx5fP7Pg8Fk3e2cTHMELvpobX",
+        "signerId": "sender1.veil-williams.testnet",
+        "receiverId": "mockft.veil-williams.testnet",
+        "methodName": "storage_deposit",
+        "rawResponse": {
+          "final_execution_status": "EXECUTED",
+          "receipts_outcome": [
+            {
+              "block_hash": "HUKUa1ttrSSPer9G1jmcPhTu92FHSipaw2qxny5Rs8Bd",
+              "id": "6cYPjxnnrTwFA6fqzrCjxSUQP3QvECAMHzx5pQnVaunW",
+              "outcome": {
+                "executor_id": "mockft.veil-williams.testnet",
+                "gas_burnt": 1352525076887,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    {
+                      "local": "474f4VCP7cezQy17caw1bhjptanUpg3YNNb3CW4xaVKW"
+                    }
+                  ],
+                  "gas_profile": [
+                    {
+                      "cost": "BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "2118144888"
+                    },
+                    {
+                      "cost": "CONTRACT_LOADING_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "35445963"
+                    },
+                    {
+                      "cost": "CONTRACT_LOADING_BYTES",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "308478540345"
+                    },
+                    {
+                      "cost": "READ_MEMORY_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "5219726400"
+                    },
+                    {
+                      "cost": "READ_MEMORY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "281298642"
+                    },
+                    {
+                      "cost": "READ_REGISTER_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "5034330372"
+                    },
+                    {
+                      "cost": "READ_REGISTER_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "20106648"
+                    },
+                    {
+                      "cost": "STORAGE_HAS_KEY_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "54039896625"
+                    },
+                    {
+                      "cost": "STORAGE_HAS_KEY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "2124568305"
+                    },
+                    {
+                      "cost": "STORAGE_READ_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "56356845749"
+                    },
+                    {
+                      "cost": "STORAGE_READ_KEY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "154762665"
+                    },
+                    {
+                      "cost": "STORAGE_READ_VALUE_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "549878392"
+                    },
+                    {
+                      "cost": "WASM_INSTRUCTION",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "14667271212"
+                    },
+                    {
+                      "cost": "WRITE_MEMORY_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "8411384583"
+                    },
+                    {
+                      "cost": "WRITE_MEMORY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "599229840"
+                    },
+                    {
+                      "cost": "WRITE_REGISTER_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "5731044972"
+                    },
+                    {
+                      "cost": "WRITE_REGISTER_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "372553272"
+                    }
+                  ],
+                  "version": 4
+                },
+                "receipt_ids": [
+                  "ANu9e5Mz4r7RfufY1KRFqj5DsAfx9sa7ZnGihoWQqVAn",
+                  "6348RdPisQw84rJjdAGM33DiXw6A39AqQLWCcUhUkuw8"
+                ],
+                "status": {
+                  "Failure": {
+                    "ActionError": {
+                      "index": 0,
+                      "kind": {
+                        "FunctionCallError": {
+                          "ExecutionError": "WebAssembly trap: An `unreachable` opcode was executed."
+                        }
+                      }
+                    }
+                  }
+                },
+                "tokens_burnt": "135252507688700000000"
+              },
+              "proof": [
+                {
+                  "direction": "Left",
+                  "hash": "13VGNZB7fSzPtTRX5cHihdrVxMGHmdJyAG7H5VSxoKZR"
+                }
+              ]
+            },
+            {
+              "block_hash": "CdD2DwxUJPRMAkEhWzSFfBsvtjRFButVMBnftShFHojn",
+              "id": "ANu9e5Mz4r7RfufY1KRFqj5DsAfx9sa7ZnGihoWQqVAn",
+              "outcome": {
+                "executor_id": "sender1.veil-williams.testnet",
+                "gas_burnt": 223182562500,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    null
+                  ],
+                  "gas_profile": [],
+                  "version": 4
+                },
+                "receipt_ids": [],
+                "status": {
+                  "SuccessValue": ""
+                },
+                "tokens_burnt": "0"
+              },
+              "proof": [
+                {
+                  "direction": "Left",
+                  "hash": "C3vtfx3CPRdacbCRQCY2rstSXZ2LDLZ9ePEUrugkhtJg"
+                },
+                {
+                  "direction": "Right",
+                  "hash": "5iiLGmCMVmRD9R6CxjEKYcV5naTA1aSwFyUNTv8EVGsD"
+                }
+              ]
+            },
+            {
+              "block_hash": "CdD2DwxUJPRMAkEhWzSFfBsvtjRFButVMBnftShFHojn",
+              "id": "6348RdPisQw84rJjdAGM33DiXw6A39AqQLWCcUhUkuw8",
+              "outcome": {
+                "executor_id": "sender1.veil-williams.testnet",
+                "gas_burnt": 223182562500,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    null
+                  ],
+                  "gas_profile": [],
+                  "version": 4
+                },
+                "receipt_ids": [],
+                "status": {
+                  "SuccessValue": ""
+                },
+                "tokens_burnt": "0"
+              },
+              "proof": [
+                {
+                  "direction": "Left",
+                  "hash": "CfLC2r8KJcMg3tMiJQpCsz18opJgkb9AMRGgyaoVQaqN"
+                }
+              ]
+            }
+          ],
+          "status": {
+            "Failure": {
+              "ActionError": {
+                "index": 0,
+                "kind": {
+                  "FunctionCallError": {
+                    "ExecutionError": "WebAssembly trap: An `unreachable` opcode was executed."
+                  }
+                }
+              }
+            }
+          },
+          "transaction": {
+            "actions": [
+              {
+                "FunctionCall": {
+                  "args": "eyJhY2NvdW50X2lkIjoiMmZmYzQ3NWI0MWFkMDgzMjJhY2E4NWE5NGQ1YTIyZmVmOTkyODg4NTA4NzU4MTM3ZGYyN2U3OGRiZDU1NGI5ZiIsInJlZ2lzdHJhdGlvbl9vbmx5Ijp0cnVlfQ==",
+                  "deposit": "1250000000000000000",
+                  "gas": 30000000000000,
+                  "method_name": "storage_deposit"
+                }
+              }
+            ],
+            "hash": "aTfKbutxrtmRfKLk8tDx5fP7Pg8Fk3e2cTHMELvpobX",
+            "nonce": 276878709000002,
+            "priority_fee": 0,
+            "public_key": "ed25519:Jn3UeRb1xJb7X8FRvxoyAKW4FomF5Hmexoz9BjC5QpH",
+            "receiver_id": "mockft.veil-williams.testnet",
+            "signature": "ed25519:5NKVN274zVE6HhgUCgoYHvCQ2sWuihLDVcnW5zLezvSj6Mx5a5FSfmNmVn1nD7wVPfAuqb49MQXaqQK5qr2KwaTK",
+            "signer_id": "sender1.veil-williams.testnet"
+          },
+          "transaction_outcome": {
+            "block_hash": "BQRdhvkDpb2BE1jQifrDK77ZGkUG6wFkMCzqjqpNvNi8",
+            "id": "aTfKbutxrtmRfKLk8tDx5fP7Pg8Fk3e2cTHMELvpobX",
+            "outcome": {
+              "executor_id": "sender1.veil-williams.testnet",
+              "gas_burnt": 313829229515,
+              "logs": [],
+              "metadata": {
+                "gas_profile": null,
+                "version": 1
+              },
+              "receipt_ids": [
+                "6cYPjxnnrTwFA6fqzrCjxSUQP3QvECAMHzx5pQnVaunW"
+              ],
+              "status": {
+                "SuccessReceiptId": "6cYPjxnnrTwFA6fqzrCjxSUQP3QvECAMHzx5pQnVaunW"
+              },
+              "tokens_burnt": "31382922951500000000"
+            },
+            "proof": [
+              {
+                "direction": "Right",
+                "hash": "DFdQ9Q4twf5v14vMJwgGW22eYiR5ob2792cXpts3DNka"
+              },
+              {
+                "direction": "Right",
+                "hash": "976ejKFFgB6rfHmCzpHpj41GroKNsf8NLmGDNLTH2Ump"
+              }
+            ]
+          }
+        }
+      },
+      "ftTransfer": {
+        "ok": false,
+        "hash": "7PvQa3g8Et7N3BiSezNdu8iM8U3kSeCxwDWu4FtTjKTQ",
+        "explorerUrl": "https://testnet.nearblocks.io/txns/7PvQa3g8Et7N3BiSezNdu8iM8U3kSeCxwDWu4FtTjKTQ",
+        "signerId": "sender1.veil-williams.testnet",
+        "receiverId": "mockft.veil-williams.testnet",
+        "methodName": "ft_transfer",
+        "rawResponse": {
+          "final_execution_status": "EXECUTED",
+          "receipts_outcome": [
+            {
+              "block_hash": "CqHtaYNp7CFvVJtmP8QL4YDZzBBoQ6vjtqGFnjJmjztk",
+              "id": "A9H8V1GgNPsSrryxCpCQhuWyDt29vYZZR5z6CWs4djC9",
+              "outcome": {
+                "executor_id": "mockft.veil-williams.testnet",
+                "gas_burnt": 1570471794384,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    {
+                      "local": "474f4VCP7cezQy17caw1bhjptanUpg3YNNb3CW4xaVKW"
+                    }
+                  ],
+                  "gas_profile": [
+                    {
+                      "cost": "BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "4501057887"
+                    },
+                    {
+                      "cost": "CONTRACT_LOADING_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "35445963"
+                    },
+                    {
+                      "cost": "CONTRACT_LOADING_BYTES",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "308478540345"
+                    },
+                    {
+                      "cost": "READ_CACHED_TRIE_NODE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "11400000000"
+                    },
+                    {
+                      "cost": "READ_MEMORY_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "13049316000"
+                    },
+                    {
+                      "cost": "READ_MEMORY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "600610614"
+                    },
+                    {
+                      "cost": "READ_REGISTER_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "12585825930"
+                    },
+                    {
+                      "cost": "READ_REGISTER_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "26907426"
+                    },
+                    {
+                      "cost": "STORAGE_READ_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "169070537247"
+                    },
+                    {
+                      "cost": "STORAGE_READ_KEY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "3342873564"
+                    },
+                    {
+                      "cost": "STORAGE_READ_VALUE_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "639654456"
+                    },
+                    {
+                      "cost": "STORAGE_WRITE_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "64196736000"
+                    },
+                    {
+                      "cost": "STORAGE_WRITE_EVICTED_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "513876912"
+                    },
+                    {
+                      "cost": "STORAGE_WRITE_KEY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "2396417478"
+                    },
+                    {
+                      "cost": "STORAGE_WRITE_VALUE_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "496296624"
+                    },
+                    {
+                      "cost": "TOUCHING_TRIE_NODE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "36480000000"
+                    },
+                    {
+                      "cost": "WASM_INSTRUCTION",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "21776705808"
+                    },
+                    {
+                      "cost": "WRITE_MEMORY_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "16822769166"
+                    },
+                    {
+                      "cost": "WRITE_MEMORY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "787170108"
+                    },
+                    {
+                      "cost": "WRITE_REGISTER_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "14327612430"
+                    },
+                    {
+                      "cost": "WRITE_REGISTER_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "604448676"
+                    }
+                  ],
+                  "version": 4
+                },
+                "receipt_ids": [
+                  "Dh79JkMR98k88kfD86SY9Pc4TtiKQJuapxVbzAbiBQis",
+                  "3AotHqmesNuzEhPKQoT7qaTGxA5QTfRoQu9wfwE9phba"
+                ],
+                "status": {
+                  "Failure": {
+                    "ActionError": {
+                      "index": 0,
+                      "kind": {
+                        "FunctionCallError": {
+                          "ExecutionError": "WebAssembly trap: An `unreachable` opcode was executed."
+                        }
+                      }
+                    }
+                  }
+                },
+                "tokens_burnt": "157047179438400000000"
+              },
+              "proof": [
+                {
+                  "direction": "Left",
+                  "hash": "HKF41RajKEd38bg4ayMPKrRXS9CgU3BvY5Q4TdsQgasv"
+                }
+              ]
+            },
+            {
+              "block_hash": "CMxyF7Emg2SQWcXaSssEyv9DR7KHixNYuU8Fc7dKpfsQ",
+              "id": "Dh79JkMR98k88kfD86SY9Pc4TtiKQJuapxVbzAbiBQis",
+              "outcome": {
+                "executor_id": "sender1.veil-williams.testnet",
+                "gas_burnt": 223182562500,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    null
+                  ],
+                  "gas_profile": [],
+                  "version": 4
+                },
+                "receipt_ids": [],
+                "status": {
+                  "SuccessValue": ""
+                },
+                "tokens_burnt": "0"
+              },
+              "proof": [
+                {
+                  "direction": "Right",
+                  "hash": "4We6cpoBYHmbBPZFupwCHgittQXHnNFAh2SgYLxXG6d8"
+                }
+              ]
+            },
+            {
+              "block_hash": "CMxyF7Emg2SQWcXaSssEyv9DR7KHixNYuU8Fc7dKpfsQ",
+              "id": "3AotHqmesNuzEhPKQoT7qaTGxA5QTfRoQu9wfwE9phba",
+              "outcome": {
+                "executor_id": "sender1.veil-williams.testnet",
+                "gas_burnt": 223182562500,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    null
+                  ],
+                  "gas_profile": [],
+                  "version": 4
+                },
+                "receipt_ids": [],
+                "status": {
+                  "SuccessValue": ""
+                },
+                "tokens_burnt": "0"
+              },
+              "proof": [
+                {
+                  "direction": "Left",
+                  "hash": "3nwma6vMYE9jTyGrJpRishgRe2vs9scCo8C9q1cNup41"
+                }
+              ]
+            }
+          ],
+          "status": {
+            "Failure": {
+              "ActionError": {
+                "index": 0,
+                "kind": {
+                  "FunctionCallError": {
+                    "ExecutionError": "WebAssembly trap: An `unreachable` opcode was executed."
+                  }
+                }
+              }
+            }
+          },
+          "transaction": {
+            "actions": [
+              {
+                "FunctionCall": {
+                  "args": "eyJyZWNlaXZlcl9pZCI6IjJmZmM0NzViNDFhZDA4MzIyYWNhODVhOTRkNWEyMmZlZjk5Mjg4ODUwODc1ODEzN2RmMjdlNzhkYmQ1NTRiOWYiLCJhbW91bnQiOiIxIiwibWVtbyI6InN0aXBlbmQtMCJ9",
+                  "deposit": "1",
+                  "gas": 30000000000000,
+                  "method_name": "ft_transfer"
+                }
+              }
+            ],
+            "hash": "7PvQa3g8Et7N3BiSezNdu8iM8U3kSeCxwDWu4FtTjKTQ",
+            "nonce": 276878709000003,
+            "priority_fee": 0,
+            "public_key": "ed25519:Jn3UeRb1xJb7X8FRvxoyAKW4FomF5Hmexoz9BjC5QpH",
+            "receiver_id": "mockft.veil-williams.testnet",
+            "signature": "ed25519:63HTCsZxr5i7sNFrKp9foejuU8Seo7qdaAye2DWu6c59RU7mB4uWUwv8eSFZjWCgowz6Z66QtyxxLe8Be9r8rzu4",
+            "signer_id": "sender1.veil-williams.testnet"
+          },
+          "transaction_outcome": {
+            "block_hash": "DdmBYyYP6pKBeumQSFhBz2RKJsZNpq17bY4rmZRvnDFV",
+            "id": "7PvQa3g8Et7N3BiSezNdu8iM8U3kSeCxwDWu4FtTjKTQ",
+            "outcome": {
+              "executor_id": "sender1.veil-williams.testnet",
+              "gas_burnt": 314019964375,
+              "logs": [],
+              "metadata": {
+                "gas_profile": null,
+                "version": 1
+              },
+              "receipt_ids": [
+                "A9H8V1GgNPsSrryxCpCQhuWyDt29vYZZR5z6CWs4djC9"
+              ],
+              "status": {
+                "SuccessReceiptId": "A9H8V1GgNPsSrryxCpCQhuWyDt29vYZZR5z6CWs4djC9"
+              },
+              "tokens_burnt": "31401996437500000000"
+            },
+            "proof": [
+              {
+                "direction": "Right",
+                "hash": "GRAwkdwhT4gwZgQNkM7amE44NSKjcfaHoWKQ6fQnHSpz"
+              }
+            ]
+          }
+        }
+      },
+      "spendBack": {
+        "ok": false,
+        "signerId": "2ffc475b41ad08322aca85a94d5a22fef992888508758137df27e78dbd554b9f",
+        "receiverId": "mockft.veil-williams.testnet",
+        "methodName": "ft_transfer",
+        "error": "NotEnoughBalanceError: Not enough balance for 2ffc475b41ad08322aca85a94d5a22fef992888508758137df27e78dbd554b9f (balance: 60000000000000000000, cost: 30919537863328000000001)\n    at parseInvalidTransactionError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:1307:16)\n    at parseTransactionExecutionError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:647:23)\n    at parseHandlerError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:289:24)\n    at parseRpcError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:194:20)\n    at JsonRpcProvider.sendJsonRpc (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\json-rpc-provider.ts:661:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async execute (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\scripts\\stipend-sweep.ts:91:22)\n    at async main (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\scripts\\stipend-sweep.ts:205:23)"
+      },
+      "minimumCandidate": false
+    },
+    {
+      "index": 1,
+      "stipendNear": "0.00004",
+      "stealthAccount": "683126fe8de3107f805b79162fefb11a3a12f3a56cff5c126e80582a9d3c02e3",
+      "funding": {
+        "ok": true,
+        "hash": "344tSa6wobAT82yonXw35ddPp2uEhcnCRdAAkUm8Pkds",
+        "explorerUrl": "https://testnet.nearblocks.io/txns/344tSa6wobAT82yonXw35ddPp2uEhcnCRdAAkUm8Pkds",
+        "signerId": "sender1.veil-williams.testnet",
+        "receiverId": "683126fe8de3107f805b79162fefb11a3a12f3a56cff5c126e80582a9d3c02e3",
+        "amountNear": "0.00004",
+        "rawResponse": {
+          "final_execution_status": "EXECUTED_OPTIMISTIC",
+          "receipts_outcome": [
+            {
+              "block_hash": "GmhrnviCrbCoX8kpYnp4oB8jC3tdsm6pnktSW7mBxU1D",
+              "id": "GUNd1SPMfS1NdpsEM729yaVo5SCQGvuQ43FvPF4ZhrRf",
+              "outcome": {
+                "executor_id": "683126fe8de3107f805b79162fefb11a3a12f3a56cff5c126e80582a9d3c02e3",
+                "gas_burnt": 7524947687500,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    null
+                  ],
+                  "gas_profile": [],
+                  "version": 4
+                },
+                "receipt_ids": [
+                  "CE9476gJkydqYrpp1zz3XwNdnG9j9RFPMpViWTzUfkzi"
+                ],
+                "status": {
+                  "SuccessValue": ""
+                },
+                "tokens_burnt": "752494768750000000000"
+              },
+              "proof": []
+            }
+          ],
+          "status": {
+            "SuccessValue": ""
+          },
+          "transaction": {
+            "actions": [
+              {
+                "Transfer": {
+                  "deposit": "40000000000000000000"
+                }
+              }
+            ],
+            "hash": "344tSa6wobAT82yonXw35ddPp2uEhcnCRdAAkUm8Pkds",
+            "nonce": 276878709000004,
+            "priority_fee": 0,
+            "public_key": "ed25519:Jn3UeRb1xJb7X8FRvxoyAKW4FomF5Hmexoz9BjC5QpH",
+            "receiver_id": "683126fe8de3107f805b79162fefb11a3a12f3a56cff5c126e80582a9d3c02e3",
+            "signature": "ed25519:5F57Z4LphhUMRr51RZvMJTM1J3uv6sP15LV7igEjkMdDiP9XgC7zq2ubAjJGH3pwWcjVyZg4yhg9yotyYvANmcm",
+            "signer_id": "sender1.veil-williams.testnet"
+          },
+          "transaction_outcome": {
+            "block_hash": "Bk3CrmQ1TWkuaLf66yCgdA5DTVsuPQBFJkhX29eVxFL8",
+            "id": "344tSa6wobAT82yonXw35ddPp2uEhcnCRdAAkUm8Pkds",
+            "outcome": {
+              "executor_id": "sender1.veil-williams.testnet",
+              "gas_burnt": 824947687500,
+              "logs": [],
+              "metadata": {
+                "gas_profile": null,
+                "version": 1
+              },
+              "receipt_ids": [
+                "GUNd1SPMfS1NdpsEM729yaVo5SCQGvuQ43FvPF4ZhrRf"
+              ],
+              "status": {
+                "SuccessReceiptId": "GUNd1SPMfS1NdpsEM729yaVo5SCQGvuQ43FvPF4ZhrRf"
+              },
+              "tokens_burnt": "82494768750000000000"
+            },
+            "proof": [
+              {
+                "direction": "Right",
+                "hash": "3ayJqLxfMhVjHu8VYALGBRHsNptSeVcJkqjN6CWgR2Ny"
+              },
+              {
+                "direction": "Right",
+                "hash": "FmXNXcARZzvHUc4q9WMuUXGd1Z2WXaEg2jCYHmLDtPdx"
+              }
+            ]
+          }
+        }
+      },
+      "storage": {
+        "ok": false,
+        "hash": "2kPFNQjPnKKsXPX5mkWSMKgxm9Em6ZLDmA4qVCRuHx8T",
+        "explorerUrl": "https://testnet.nearblocks.io/txns/2kPFNQjPnKKsXPX5mkWSMKgxm9Em6ZLDmA4qVCRuHx8T",
+        "signerId": "sender1.veil-williams.testnet",
+        "receiverId": "mockft.veil-williams.testnet",
+        "methodName": "storage_deposit",
+        "rawResponse": {
+          "final_execution_status": "EXECUTED",
+          "receipts_outcome": [
+            {
+              "block_hash": "CznUAGPX1io3XpAZqrtp16agxS5zsSUZtorQ1gvQynke",
+              "id": "29Bf8SFo45cWnSFLGjJTP3bMgfVMoFaqYM6XauHCbHsD",
+              "outcome": {
+                "executor_id": "mockft.veil-williams.testnet",
+                "gas_burnt": 1352525076887,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    {
+                      "local": "474f4VCP7cezQy17caw1bhjptanUpg3YNNb3CW4xaVKW"
+                    }
+                  ],
+                  "gas_profile": [
+                    {
+                      "cost": "BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "2118144888"
+                    },
+                    {
+                      "cost": "CONTRACT_LOADING_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "35445963"
+                    },
+                    {
+                      "cost": "CONTRACT_LOADING_BYTES",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "308478540345"
+                    },
+                    {
+                      "cost": "READ_MEMORY_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "5219726400"
+                    },
+                    {
+                      "cost": "READ_MEMORY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "281298642"
+                    },
+                    {
+                      "cost": "READ_REGISTER_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "5034330372"
+                    },
+                    {
+                      "cost": "READ_REGISTER_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "20106648"
+                    },
+                    {
+                      "cost": "STORAGE_HAS_KEY_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "54039896625"
+                    },
+                    {
+                      "cost": "STORAGE_HAS_KEY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "2124568305"
+                    },
+                    {
+                      "cost": "STORAGE_READ_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "56356845749"
+                    },
+                    {
+                      "cost": "STORAGE_READ_KEY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "154762665"
+                    },
+                    {
+                      "cost": "STORAGE_READ_VALUE_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "549878392"
+                    },
+                    {
+                      "cost": "WASM_INSTRUCTION",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "14667271212"
+                    },
+                    {
+                      "cost": "WRITE_MEMORY_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "8411384583"
+                    },
+                    {
+                      "cost": "WRITE_MEMORY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "599229840"
+                    },
+                    {
+                      "cost": "WRITE_REGISTER_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "5731044972"
+                    },
+                    {
+                      "cost": "WRITE_REGISTER_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "372553272"
+                    }
+                  ],
+                  "version": 4
+                },
+                "receipt_ids": [
+                  "58ZLWVZSqh46ax8MwS5eRjiqLTtDj7zLxJMUHFo3swXg",
+                  "3U6YTR2Ser49DUg3XLFq8AZ8PWNivBQsbA31eVT4E2Sa"
+                ],
+                "status": {
+                  "Failure": {
+                    "ActionError": {
+                      "index": 0,
+                      "kind": {
+                        "FunctionCallError": {
+                          "ExecutionError": "WebAssembly trap: An `unreachable` opcode was executed."
+                        }
+                      }
+                    }
+                  }
+                },
+                "tokens_burnt": "135252507688700000000"
+              },
+              "proof": []
+            },
+            {
+              "block_hash": "J4aN2xuabTCPCYWF3Ld9udcfyfnrpAXpivWU5tmrLkkt",
+              "id": "58ZLWVZSqh46ax8MwS5eRjiqLTtDj7zLxJMUHFo3swXg",
+              "outcome": {
+                "executor_id": "sender1.veil-williams.testnet",
+                "gas_burnt": 223182562500,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    null
+                  ],
+                  "gas_profile": [],
+                  "version": 4
+                },
+                "receipt_ids": [],
+                "status": {
+                  "SuccessValue": ""
+                },
+                "tokens_burnt": "0"
+              },
+              "proof": [
+                {
+                  "direction": "Right",
+                  "hash": "Wwtw78cwwyHrH6qg7Zt12sJrv9pk3LpVrcrXgZhUxq7"
+                }
+              ]
+            },
+            {
+              "block_hash": "J4aN2xuabTCPCYWF3Ld9udcfyfnrpAXpivWU5tmrLkkt",
+              "id": "3U6YTR2Ser49DUg3XLFq8AZ8PWNivBQsbA31eVT4E2Sa",
+              "outcome": {
+                "executor_id": "sender1.veil-williams.testnet",
+                "gas_burnt": 223182562500,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    null
+                  ],
+                  "gas_profile": [],
+                  "version": 4
+                },
+                "receipt_ids": [],
+                "status": {
+                  "SuccessValue": ""
+                },
+                "tokens_burnt": "0"
+              },
+              "proof": [
+                {
+                  "direction": "Left",
+                  "hash": "CbJoxx89G5tCrgsa54QZbybSvuVEDbG7ifEGdTJ7R6Z3"
+                }
+              ]
+            }
+          ],
+          "status": {
+            "Failure": {
+              "ActionError": {
+                "index": 0,
+                "kind": {
+                  "FunctionCallError": {
+                    "ExecutionError": "WebAssembly trap: An `unreachable` opcode was executed."
+                  }
+                }
+              }
+            }
+          },
+          "transaction": {
+            "actions": [
+              {
+                "FunctionCall": {
+                  "args": "eyJhY2NvdW50X2lkIjoiNjgzMTI2ZmU4ZGUzMTA3ZjgwNWI3OTE2MmZlZmIxMWEzYTEyZjNhNTZjZmY1YzEyNmU4MDU4MmE5ZDNjMDJlMyIsInJlZ2lzdHJhdGlvbl9vbmx5Ijp0cnVlfQ==",
+                  "deposit": "1250000000000000000",
+                  "gas": 30000000000000,
+                  "method_name": "storage_deposit"
+                }
+              }
+            ],
+            "hash": "2kPFNQjPnKKsXPX5mkWSMKgxm9Em6ZLDmA4qVCRuHx8T",
+            "nonce": 276878709000005,
+            "priority_fee": 0,
+            "public_key": "ed25519:Jn3UeRb1xJb7X8FRvxoyAKW4FomF5Hmexoz9BjC5QpH",
+            "receiver_id": "mockft.veil-williams.testnet",
+            "signature": "ed25519:3coBJf6XSZuZT7MX1owFdG8z8R1EoeKoU622u51C9e2LfzUYiVda2ZMv92nEFV48K9hady1EbVz3ztXgUJ4N1Yb5",
+            "signer_id": "sender1.veil-williams.testnet"
+          },
+          "transaction_outcome": {
+            "block_hash": "8GqW7nActisokUh3ytKACdJP7iHeYshu6TGnqNyHrm2c",
+            "id": "2kPFNQjPnKKsXPX5mkWSMKgxm9Em6ZLDmA4qVCRuHx8T",
+            "outcome": {
+              "executor_id": "sender1.veil-williams.testnet",
+              "gas_burnt": 313829229515,
+              "logs": [],
+              "metadata": {
+                "gas_profile": null,
+                "version": 1
+              },
+              "receipt_ids": [
+                "29Bf8SFo45cWnSFLGjJTP3bMgfVMoFaqYM6XauHCbHsD"
+              ],
+              "status": {
+                "SuccessReceiptId": "29Bf8SFo45cWnSFLGjJTP3bMgfVMoFaqYM6XauHCbHsD"
+              },
+              "tokens_burnt": "31382922951500000000"
+            },
+            "proof": [
+              {
+                "direction": "Right",
+                "hash": "5qzg5TGqg4SrCAFRkMroUn5dbrd1X6pztcNxvrx8Reru"
+              }
+            ]
+          }
+        }
+      },
+      "ftTransfer": {
+        "ok": false,
+        "hash": "BHP2RHPtt1DXCQycxCd2dZ5JvYnRZ69gJZ7Me8hVpJxX",
+        "explorerUrl": "https://testnet.nearblocks.io/txns/BHP2RHPtt1DXCQycxCd2dZ5JvYnRZ69gJZ7Me8hVpJxX",
+        "signerId": "sender1.veil-williams.testnet",
+        "receiverId": "mockft.veil-williams.testnet",
+        "methodName": "ft_transfer",
+        "rawResponse": {
+          "final_execution_status": "EXECUTED",
+          "receipts_outcome": [
+            {
+              "block_hash": "3jAV33dCNHiGvZVaCc2pYaVzAd6ZT29AdHrF8co9bHNq",
+              "id": "Fxv7CFLxJVLtnHWpnm1B8sUujBnY6ibFFFSbuDgTRcFt",
+              "outcome": {
+                "executor_id": "mockft.veil-williams.testnet",
+                "gas_burnt": 1570471794384,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    {
+                      "local": "474f4VCP7cezQy17caw1bhjptanUpg3YNNb3CW4xaVKW"
+                    }
+                  ],
+                  "gas_profile": [
+                    {
+                      "cost": "BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "4501057887"
+                    },
+                    {
+                      "cost": "CONTRACT_LOADING_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "35445963"
+                    },
+                    {
+                      "cost": "CONTRACT_LOADING_BYTES",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "308478540345"
+                    },
+                    {
+                      "cost": "READ_CACHED_TRIE_NODE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "2280000000"
+                    },
+                    {
+                      "cost": "READ_MEMORY_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "13049316000"
+                    },
+                    {
+                      "cost": "READ_MEMORY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "600610614"
+                    },
+                    {
+                      "cost": "READ_REGISTER_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "12585825930"
+                    },
+                    {
+                      "cost": "READ_REGISTER_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "26907426"
+                    },
+                    {
+                      "cost": "STORAGE_READ_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "169070537247"
+                    },
+                    {
+                      "cost": "STORAGE_READ_KEY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "3342873564"
+                    },
+                    {
+                      "cost": "STORAGE_READ_VALUE_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "639654456"
+                    },
+                    {
+                      "cost": "STORAGE_WRITE_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "64196736000"
+                    },
+                    {
+                      "cost": "STORAGE_WRITE_EVICTED_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "513876912"
+                    },
+                    {
+                      "cost": "STORAGE_WRITE_KEY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "2396417478"
+                    },
+                    {
+                      "cost": "STORAGE_WRITE_VALUE_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "496296624"
+                    },
+                    {
+                      "cost": "TOUCHING_TRIE_NODE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "45600000000"
+                    },
+                    {
+                      "cost": "WASM_INSTRUCTION",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "21776705808"
+                    },
+                    {
+                      "cost": "WRITE_MEMORY_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "16822769166"
+                    },
+                    {
+                      "cost": "WRITE_MEMORY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "787170108"
+                    },
+                    {
+                      "cost": "WRITE_REGISTER_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "14327612430"
+                    },
+                    {
+                      "cost": "WRITE_REGISTER_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "604448676"
+                    }
+                  ],
+                  "version": 4
+                },
+                "receipt_ids": [
+                  "FX9cccmFVCQryYXGresgh454F1YhvALAPhHXTtGJH4q4",
+                  "Hx6M6EVQqUP6kQt7KScTqmddpc1GmFwQ4S98wvd1iij6"
+                ],
+                "status": {
+                  "Failure": {
+                    "ActionError": {
+                      "index": 0,
+                      "kind": {
+                        "FunctionCallError": {
+                          "ExecutionError": "WebAssembly trap: An `unreachable` opcode was executed."
+                        }
+                      }
+                    }
+                  }
+                },
+                "tokens_burnt": "157047179438400000000"
+              },
+              "proof": [
+                {
+                  "direction": "Right",
+                  "hash": "8VtpHkSCAUfucvaVAByc4s5ccdrg2LxGTzQtBdtD3jXY"
+                }
+              ]
+            },
+            {
+              "block_hash": "Bc9kcSD1cghDc3BpfDZMgY8Qji8PdMr46igLomwrinHw",
+              "id": "FX9cccmFVCQryYXGresgh454F1YhvALAPhHXTtGJH4q4",
+              "outcome": {
+                "executor_id": "sender1.veil-williams.testnet",
+                "gas_burnt": 223182562500,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    null
+                  ],
+                  "gas_profile": [],
+                  "version": 4
+                },
+                "receipt_ids": [],
+                "status": {
+                  "SuccessValue": ""
+                },
+                "tokens_burnt": "0"
+              },
+              "proof": [
+                {
+                  "direction": "Left",
+                  "hash": "9a8Q8EMYs1feDuWnx9bMSKSMHoYGxCTBBRWXQwy7gP5H"
+                },
+                {
+                  "direction": "Right",
+                  "hash": "CC3EnVsknJx9XVUWksyvYLzWMBDYMZ7juXKFqrPyc6EM"
+                }
+              ]
+            },
+            {
+              "block_hash": "Bc9kcSD1cghDc3BpfDZMgY8Qji8PdMr46igLomwrinHw",
+              "id": "Hx6M6EVQqUP6kQt7KScTqmddpc1GmFwQ4S98wvd1iij6",
+              "outcome": {
+                "executor_id": "sender1.veil-williams.testnet",
+                "gas_burnt": 223182562500,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    null
+                  ],
+                  "gas_profile": [],
+                  "version": 4
+                },
+                "receipt_ids": [],
+                "status": {
+                  "SuccessValue": ""
+                },
+                "tokens_burnt": "0"
+              },
+              "proof": [
+                {
+                  "direction": "Left",
+                  "hash": "BRps22ijLgKDmNnA4vvrpsFkW59XeELXK79whmQSjqDC"
+                }
+              ]
+            }
+          ],
+          "status": {
+            "Failure": {
+              "ActionError": {
+                "index": 0,
+                "kind": {
+                  "FunctionCallError": {
+                    "ExecutionError": "WebAssembly trap: An `unreachable` opcode was executed."
+                  }
+                }
+              }
+            }
+          },
+          "transaction": {
+            "actions": [
+              {
+                "FunctionCall": {
+                  "args": "eyJyZWNlaXZlcl9pZCI6IjY4MzEyNmZlOGRlMzEwN2Y4MDViNzkxNjJmZWZiMTFhM2ExMmYzYTU2Y2ZmNWMxMjZlODA1ODJhOWQzYzAyZTMiLCJhbW91bnQiOiIxIiwibWVtbyI6InN0aXBlbmQtMSJ9",
+                  "deposit": "1",
+                  "gas": 30000000000000,
+                  "method_name": "ft_transfer"
+                }
+              }
+            ],
+            "hash": "BHP2RHPtt1DXCQycxCd2dZ5JvYnRZ69gJZ7Me8hVpJxX",
+            "nonce": 276878709000006,
+            "priority_fee": 0,
+            "public_key": "ed25519:Jn3UeRb1xJb7X8FRvxoyAKW4FomF5Hmexoz9BjC5QpH",
+            "receiver_id": "mockft.veil-williams.testnet",
+            "signature": "ed25519:2C8EHFfrkGbYbYou9xBmudiu9DMHKitfZjeJSYLrERKZFRY2MB7Pv9sB35Geir6PmsiRZ1iz53L8FWxzKJYhAM8L",
+            "signer_id": "sender1.veil-williams.testnet"
+          },
+          "transaction_outcome": {
+            "block_hash": "4CaLZkAyTJcBK5KZ8NPApTLzhfQUShZuMdpFF7z9zAVQ",
+            "id": "BHP2RHPtt1DXCQycxCd2dZ5JvYnRZ69gJZ7Me8hVpJxX",
+            "outcome": {
+              "executor_id": "sender1.veil-williams.testnet",
+              "gas_burnt": 314019964375,
+              "logs": [],
+              "metadata": {
+                "gas_profile": null,
+                "version": 1
+              },
+              "receipt_ids": [
+                "Fxv7CFLxJVLtnHWpnm1B8sUujBnY6ibFFFSbuDgTRcFt"
+              ],
+              "status": {
+                "SuccessReceiptId": "Fxv7CFLxJVLtnHWpnm1B8sUujBnY6ibFFFSbuDgTRcFt"
+              },
+              "tokens_burnt": "31401996437500000000"
+            },
+            "proof": []
+          }
+        }
+      },
+      "spendBack": {
+        "ok": false,
+        "signerId": "683126fe8de3107f805b79162fefb11a3a12f3a56cff5c126e80582a9d3c02e3",
+        "receiverId": "mockft.veil-williams.testnet",
+        "methodName": "ft_transfer",
+        "error": "NotEnoughBalanceError: Not enough balance for 683126fe8de3107f805b79162fefb11a3a12f3a56cff5c126e80582a9d3c02e3 (balance: 120000000000000000000, cost: 30919537863328000000001)\n    at parseInvalidTransactionError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:1307:16)\n    at parseTransactionExecutionError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:647:23)\n    at parseHandlerError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:289:24)\n    at parseRpcError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:194:20)\n    at JsonRpcProvider.sendJsonRpc (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\json-rpc-provider.ts:661:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async execute (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\scripts\\stipend-sweep.ts:91:22)\n    at async main (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\scripts\\stipend-sweep.ts:205:23)"
+      },
+      "minimumCandidate": false
+    },
+    {
+      "index": 2,
+      "stipendNear": "0.00008",
+      "stealthAccount": "5ec3d6632265cea2e88f9a84aeb07e6075a4dc26a93ec973d495b88d7086b26b",
+      "funding": {
+        "ok": true,
+        "hash": "FW7ET2Hono2g8azvw6ZFcwxC9PSGdfLJuRBjS2mCdh4a",
+        "explorerUrl": "https://testnet.nearblocks.io/txns/FW7ET2Hono2g8azvw6ZFcwxC9PSGdfLJuRBjS2mCdh4a",
+        "signerId": "sender1.veil-williams.testnet",
+        "receiverId": "5ec3d6632265cea2e88f9a84aeb07e6075a4dc26a93ec973d495b88d7086b26b",
+        "amountNear": "0.00008",
+        "rawResponse": {
+          "final_execution_status": "EXECUTED_OPTIMISTIC",
+          "receipts_outcome": [
+            {
+              "block_hash": "74xk1MHoBGQoZ95h2kyRFZKkv8EzSEcg5KbfpXa4X67q",
+              "id": "4FEWzwvsmWQ6ZoqynLCKpVCGVTCRmud7uNnaEWkuHwmm",
+              "outcome": {
+                "executor_id": "5ec3d6632265cea2e88f9a84aeb07e6075a4dc26a93ec973d495b88d7086b26b",
+                "gas_burnt": 7524947687500,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    null
+                  ],
+                  "gas_profile": [],
+                  "version": 4
+                },
+                "receipt_ids": [
+                  "8fSgQ4dbwqXb2BHTD4W3SfALu9ecLr353JWzKDvPiHzL"
+                ],
+                "status": {
+                  "SuccessValue": ""
+                },
+                "tokens_burnt": "752494768750000000000"
+              },
+              "proof": []
+            }
+          ],
+          "status": {
+            "SuccessValue": ""
+          },
+          "transaction": {
+            "actions": [
+              {
+                "Transfer": {
+                  "deposit": "80000000000000000000"
+                }
+              }
+            ],
+            "hash": "FW7ET2Hono2g8azvw6ZFcwxC9PSGdfLJuRBjS2mCdh4a",
+            "nonce": 276878709000007,
+            "priority_fee": 0,
+            "public_key": "ed25519:Jn3UeRb1xJb7X8FRvxoyAKW4FomF5Hmexoz9BjC5QpH",
+            "receiver_id": "5ec3d6632265cea2e88f9a84aeb07e6075a4dc26a93ec973d495b88d7086b26b",
+            "signature": "ed25519:5NqvndegdBCJQHPmWWyshyXaZSHYxUVaqs7LzDDkVDUwDxNczY397pPkbhrkg2f73QkqrxYpuEHyG27mvG6STEvz",
+            "signer_id": "sender1.veil-williams.testnet"
+          },
+          "transaction_outcome": {
+            "block_hash": "5H39ohCqYykrAMk59MDwxUbu17eTLGoRPwsNwR2V236C",
+            "id": "FW7ET2Hono2g8azvw6ZFcwxC9PSGdfLJuRBjS2mCdh4a",
+            "outcome": {
+              "executor_id": "sender1.veil-williams.testnet",
+              "gas_burnt": 824947687500,
+              "logs": [],
+              "metadata": {
+                "gas_profile": null,
+                "version": 1
+              },
+              "receipt_ids": [
+                "4FEWzwvsmWQ6ZoqynLCKpVCGVTCRmud7uNnaEWkuHwmm"
+              ],
+              "status": {
+                "SuccessReceiptId": "4FEWzwvsmWQ6ZoqynLCKpVCGVTCRmud7uNnaEWkuHwmm"
+              },
+              "tokens_burnt": "82494768750000000000"
+            },
+            "proof": [
+              {
+                "direction": "Right",
+                "hash": "HZG2vdKLi2cE2DqQW4ZJgP16UffVX68XxssHKNmvxVmx"
+              },
+              {
+                "direction": "Right",
+                "hash": "GP8HobkHS39x9F6XFrBmxKxW1HLYUTrFk7tcqZxzzoXo"
+              },
+              {
+                "direction": "Right",
+                "hash": "GCmYuF2btUjc8NJTpLjugoHNUT3u6SbwpoHxqYwmBucY"
+              }
+            ]
+          }
+        }
+      },
+      "storage": {
+        "ok": false,
+        "hash": "DKh5wupJhuG5aTeHYcStxXVDrKdrifJMk2FdSYYHp3kU",
+        "explorerUrl": "https://testnet.nearblocks.io/txns/DKh5wupJhuG5aTeHYcStxXVDrKdrifJMk2FdSYYHp3kU",
+        "signerId": "sender1.veil-williams.testnet",
+        "receiverId": "mockft.veil-williams.testnet",
+        "methodName": "storage_deposit",
+        "rawResponse": {
+          "final_execution_status": "EXECUTED",
+          "receipts_outcome": [
+            {
+              "block_hash": "CJjYXiCHCYAawkq6PXoHfPGtkcL9s4sWxweJBbxFmPhz",
+              "id": "2H5cuqyfzHuxCpaKbofv62bKsY9Eeovw7tGpqjRjCF5U",
+              "outcome": {
+                "executor_id": "mockft.veil-williams.testnet",
+                "gas_burnt": 1352525076887,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    {
+                      "local": "474f4VCP7cezQy17caw1bhjptanUpg3YNNb3CW4xaVKW"
+                    }
+                  ],
+                  "gas_profile": [
+                    {
+                      "cost": "BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "2118144888"
+                    },
+                    {
+                      "cost": "CONTRACT_LOADING_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "35445963"
+                    },
+                    {
+                      "cost": "CONTRACT_LOADING_BYTES",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "308478540345"
+                    },
+                    {
+                      "cost": "READ_MEMORY_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "5219726400"
+                    },
+                    {
+                      "cost": "READ_MEMORY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "281298642"
+                    },
+                    {
+                      "cost": "READ_REGISTER_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "5034330372"
+                    },
+                    {
+                      "cost": "READ_REGISTER_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "20106648"
+                    },
+                    {
+                      "cost": "STORAGE_HAS_KEY_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "54039896625"
+                    },
+                    {
+                      "cost": "STORAGE_HAS_KEY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "2124568305"
+                    },
+                    {
+                      "cost": "STORAGE_READ_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "56356845749"
+                    },
+                    {
+                      "cost": "STORAGE_READ_KEY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "154762665"
+                    },
+                    {
+                      "cost": "STORAGE_READ_VALUE_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "549878392"
+                    },
+                    {
+                      "cost": "WASM_INSTRUCTION",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "14667271212"
+                    },
+                    {
+                      "cost": "WRITE_MEMORY_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "8411384583"
+                    },
+                    {
+                      "cost": "WRITE_MEMORY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "599229840"
+                    },
+                    {
+                      "cost": "WRITE_REGISTER_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "5731044972"
+                    },
+                    {
+                      "cost": "WRITE_REGISTER_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "372553272"
+                    }
+                  ],
+                  "version": 4
+                },
+                "receipt_ids": [
+                  "Avj9NR9eNt1npqDBZVzWMysrjJM82b9zsdVXfeod6gPj",
+                  "38jRdNRxJwWUh7KhGBeEsS7PapVgwXMYbxWsA49rjXSf"
+                ],
+                "status": {
+                  "Failure": {
+                    "ActionError": {
+                      "index": 0,
+                      "kind": {
+                        "FunctionCallError": {
+                          "ExecutionError": "WebAssembly trap: An `unreachable` opcode was executed."
+                        }
+                      }
+                    }
+                  }
+                },
+                "tokens_burnt": "135252507688700000000"
+              },
+              "proof": []
+            },
+            {
+              "block_hash": "69fRdxUuQxX35MinKaH2CXEAZmjpGvigz17Evkz3MiKr",
+              "id": "Avj9NR9eNt1npqDBZVzWMysrjJM82b9zsdVXfeod6gPj",
+              "outcome": {
+                "executor_id": "sender1.veil-williams.testnet",
+                "gas_burnt": 223182562500,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    null
+                  ],
+                  "gas_profile": [],
+                  "version": 4
+                },
+                "receipt_ids": [],
+                "status": {
+                  "SuccessValue": ""
+                },
+                "tokens_burnt": "0"
+              },
+              "proof": [
+                {
+                  "direction": "Left",
+                  "hash": "7wuDmhSX4PNfStD7TqGUE5zQhZ6d1CKozmFd1KMxhaGL"
+                },
+                {
+                  "direction": "Right",
+                  "hash": "BbNRdasT2Luuy4ZZ9PiuCLtns9k1UfC9mteFRasZbMbv"
+                }
+              ]
+            },
+            {
+              "block_hash": "69fRdxUuQxX35MinKaH2CXEAZmjpGvigz17Evkz3MiKr",
+              "id": "38jRdNRxJwWUh7KhGBeEsS7PapVgwXMYbxWsA49rjXSf",
+              "outcome": {
+                "executor_id": "sender1.veil-williams.testnet",
+                "gas_burnt": 223182562500,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    null
+                  ],
+                  "gas_profile": [],
+                  "version": 4
+                },
+                "receipt_ids": [],
+                "status": {
+                  "SuccessValue": ""
+                },
+                "tokens_burnt": "0"
+              },
+              "proof": [
+                {
+                  "direction": "Left",
+                  "hash": "7pJMnkFCgLrBg7uHd3B2NQGRDnxkCTbYVg7VwejJMF7b"
+                }
+              ]
+            }
+          ],
+          "status": {
+            "Failure": {
+              "ActionError": {
+                "index": 0,
+                "kind": {
+                  "FunctionCallError": {
+                    "ExecutionError": "WebAssembly trap: An `unreachable` opcode was executed."
+                  }
+                }
+              }
+            }
+          },
+          "transaction": {
+            "actions": [
+              {
+                "FunctionCall": {
+                  "args": "eyJhY2NvdW50X2lkIjoiNWVjM2Q2NjMyMjY1Y2VhMmU4OGY5YTg0YWViMDdlNjA3NWE0ZGMyNmE5M2VjOTczZDQ5NWI4OGQ3MDg2YjI2YiIsInJlZ2lzdHJhdGlvbl9vbmx5Ijp0cnVlfQ==",
+                  "deposit": "1250000000000000000",
+                  "gas": 30000000000000,
+                  "method_name": "storage_deposit"
+                }
+              }
+            ],
+            "hash": "DKh5wupJhuG5aTeHYcStxXVDrKdrifJMk2FdSYYHp3kU",
+            "nonce": 276878709000008,
+            "priority_fee": 0,
+            "public_key": "ed25519:Jn3UeRb1xJb7X8FRvxoyAKW4FomF5Hmexoz9BjC5QpH",
+            "receiver_id": "mockft.veil-williams.testnet",
+            "signature": "ed25519:5odxjybgMsVxw3q5q7KE4Z59MM7Nz9zFX5F6N9NSeeHPTUsdqZt7MJEPUE79Cok7MKBkHsWjnDiStQhsgv1BnzWA",
+            "signer_id": "sender1.veil-williams.testnet"
+          },
+          "transaction_outcome": {
+            "block_hash": "GciWFXhMP8uVUVH5vsfJZMKFVqbsM83DaaYWLrdUF6VM",
+            "id": "DKh5wupJhuG5aTeHYcStxXVDrKdrifJMk2FdSYYHp3kU",
+            "outcome": {
+              "executor_id": "sender1.veil-williams.testnet",
+              "gas_burnt": 313829229515,
+              "logs": [],
+              "metadata": {
+                "gas_profile": null,
+                "version": 1
+              },
+              "receipt_ids": [
+                "2H5cuqyfzHuxCpaKbofv62bKsY9Eeovw7tGpqjRjCF5U"
+              ],
+              "status": {
+                "SuccessReceiptId": "2H5cuqyfzHuxCpaKbofv62bKsY9Eeovw7tGpqjRjCF5U"
+              },
+              "tokens_burnt": "31382922951500000000"
+            },
+            "proof": [
+              {
+                "direction": "Right",
+                "hash": "C49NEz6RwsFy5TqkHNPPiU7QLAwKGk7oq1wpUjuR5Avs"
+              }
+            ]
+          }
+        }
+      },
+      "ftTransfer": {
+        "ok": false,
+        "hash": "mFq7m8by5Vmiz9K21u8mJj8KVjuC1nXAxuy4hKHq3wZ",
+        "explorerUrl": "https://testnet.nearblocks.io/txns/mFq7m8by5Vmiz9K21u8mJj8KVjuC1nXAxuy4hKHq3wZ",
+        "signerId": "sender1.veil-williams.testnet",
+        "receiverId": "mockft.veil-williams.testnet",
+        "methodName": "ft_transfer",
+        "rawResponse": {
+          "final_execution_status": "EXECUTED",
+          "receipts_outcome": [
+            {
+              "block_hash": "HV3QzwPrgrpATCTdNAwewteXM7rDqEYgwMgpvuWQMPWS",
+              "id": "JC2KJVefYQX4L7PGRd6W7urfJXgiS4epcYGjZYjq3Zm5",
+              "outcome": {
+                "executor_id": "mockft.veil-williams.testnet",
+                "gas_burnt": 1570471794384,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    {
+                      "local": "474f4VCP7cezQy17caw1bhjptanUpg3YNNb3CW4xaVKW"
+                    }
+                  ],
+                  "gas_profile": [
+                    {
+                      "cost": "BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "4501057887"
+                    },
+                    {
+                      "cost": "CONTRACT_LOADING_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "35445963"
+                    },
+                    {
+                      "cost": "CONTRACT_LOADING_BYTES",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "308478540345"
+                    },
+                    {
+                      "cost": "READ_CACHED_TRIE_NODE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "2280000000"
+                    },
+                    {
+                      "cost": "READ_MEMORY_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "13049316000"
+                    },
+                    {
+                      "cost": "READ_MEMORY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "600610614"
+                    },
+                    {
+                      "cost": "READ_REGISTER_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "12585825930"
+                    },
+                    {
+                      "cost": "READ_REGISTER_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "26907426"
+                    },
+                    {
+                      "cost": "STORAGE_READ_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "169070537247"
+                    },
+                    {
+                      "cost": "STORAGE_READ_KEY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "3342873564"
+                    },
+                    {
+                      "cost": "STORAGE_READ_VALUE_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "639654456"
+                    },
+                    {
+                      "cost": "STORAGE_WRITE_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "64196736000"
+                    },
+                    {
+                      "cost": "STORAGE_WRITE_EVICTED_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "513876912"
+                    },
+                    {
+                      "cost": "STORAGE_WRITE_KEY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "2396417478"
+                    },
+                    {
+                      "cost": "STORAGE_WRITE_VALUE_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "496296624"
+                    },
+                    {
+                      "cost": "TOUCHING_TRIE_NODE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "45600000000"
+                    },
+                    {
+                      "cost": "WASM_INSTRUCTION",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "21776705808"
+                    },
+                    {
+                      "cost": "WRITE_MEMORY_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "16822769166"
+                    },
+                    {
+                      "cost": "WRITE_MEMORY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "787170108"
+                    },
+                    {
+                      "cost": "WRITE_REGISTER_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "14327612430"
+                    },
+                    {
+                      "cost": "WRITE_REGISTER_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "604448676"
+                    }
+                  ],
+                  "version": 4
+                },
+                "receipt_ids": [
+                  "Dt1WDWnAkbK8wpD392BKk4pRMkCbSa9Vvv1DAu271XoA",
+                  "HV7vpcAsh1zh9T5kYyUaggEgA4BDAsj9DfRuDmqnhk66"
+                ],
+                "status": {
+                  "Failure": {
+                    "ActionError": {
+                      "index": 0,
+                      "kind": {
+                        "FunctionCallError": {
+                          "ExecutionError": "WebAssembly trap: An `unreachable` opcode was executed."
+                        }
+                      }
+                    }
+                  }
+                },
+                "tokens_burnt": "157047179438400000000"
+              },
+              "proof": [
+                {
+                  "direction": "Left",
+                  "hash": "XteCMp4ub6pcVjsuZ2BRwqsK74RvH9unBKe2qqDaz43"
+                }
+              ]
+            },
+            {
+              "block_hash": "3acTWEvyAmuqNR72GQoMBY1nMxUC19d7LK2n6JZWZuGZ",
+              "id": "Dt1WDWnAkbK8wpD392BKk4pRMkCbSa9Vvv1DAu271XoA",
+              "outcome": {
+                "executor_id": "sender1.veil-williams.testnet",
+                "gas_burnt": 223182562500,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    null
+                  ],
+                  "gas_profile": [],
+                  "version": 4
+                },
+                "receipt_ids": [],
+                "status": {
+                  "SuccessValue": ""
+                },
+                "tokens_burnt": "0"
+              },
+              "proof": [
+                {
+                  "direction": "Right",
+                  "hash": "ET2ZMzvwFxLxwVDGhKHp8PAFQ46A6taDANrm1UwoUsbt"
+                }
+              ]
+            },
+            {
+              "block_hash": "3acTWEvyAmuqNR72GQoMBY1nMxUC19d7LK2n6JZWZuGZ",
+              "id": "HV7vpcAsh1zh9T5kYyUaggEgA4BDAsj9DfRuDmqnhk66",
+              "outcome": {
+                "executor_id": "sender1.veil-williams.testnet",
+                "gas_burnt": 223182562500,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    null
+                  ],
+                  "gas_profile": [],
+                  "version": 4
+                },
+                "receipt_ids": [],
+                "status": {
+                  "SuccessValue": ""
+                },
+                "tokens_burnt": "0"
+              },
+              "proof": [
+                {
+                  "direction": "Left",
+                  "hash": "EmPHpLP4Y2emYPAbFzMeSV4pe32fL9ur8dXj148uChBN"
+                }
+              ]
+            }
+          ],
+          "status": {
+            "Failure": {
+              "ActionError": {
+                "index": 0,
+                "kind": {
+                  "FunctionCallError": {
+                    "ExecutionError": "WebAssembly trap: An `unreachable` opcode was executed."
+                  }
+                }
+              }
+            }
+          },
+          "transaction": {
+            "actions": [
+              {
+                "FunctionCall": {
+                  "args": "eyJyZWNlaXZlcl9pZCI6IjVlYzNkNjYzMjI2NWNlYTJlODhmOWE4NGFlYjA3ZTYwNzVhNGRjMjZhOTNlYzk3M2Q0OTViODhkNzA4NmIyNmIiLCJhbW91bnQiOiIxIiwibWVtbyI6InN0aXBlbmQtMiJ9",
+                  "deposit": "1",
+                  "gas": 30000000000000,
+                  "method_name": "ft_transfer"
+                }
+              }
+            ],
+            "hash": "mFq7m8by5Vmiz9K21u8mJj8KVjuC1nXAxuy4hKHq3wZ",
+            "nonce": 276878709000009,
+            "priority_fee": 0,
+            "public_key": "ed25519:Jn3UeRb1xJb7X8FRvxoyAKW4FomF5Hmexoz9BjC5QpH",
+            "receiver_id": "mockft.veil-williams.testnet",
+            "signature": "ed25519:4W64vGPbVY94M8fEtiHAonS13jJBStgWccGVCadHsxwKoD6PirBN8X9gvB2yzGTkkogVEG7zptVPYsVQd8NbNfsM",
+            "signer_id": "sender1.veil-williams.testnet"
+          },
+          "transaction_outcome": {
+            "block_hash": "HEsgPe23ufEb2aPuAhjgUkQBynfJSEmzZYBupt6VTYSh",
+            "id": "mFq7m8by5Vmiz9K21u8mJj8KVjuC1nXAxuy4hKHq3wZ",
+            "outcome": {
+              "executor_id": "sender1.veil-williams.testnet",
+              "gas_burnt": 314019964375,
+              "logs": [],
+              "metadata": {
+                "gas_profile": null,
+                "version": 1
+              },
+              "receipt_ids": [
+                "JC2KJVefYQX4L7PGRd6W7urfJXgiS4epcYGjZYjq3Zm5"
+              ],
+              "status": {
+                "SuccessReceiptId": "JC2KJVefYQX4L7PGRd6W7urfJXgiS4epcYGjZYjq3Zm5"
+              },
+              "tokens_burnt": "31401996437500000000"
+            },
+            "proof": [
+              {
+                "direction": "Right",
+                "hash": "HLxntDq2r34xY47JTFrPm6UNRm6m1h9wgkXYD85FbewP"
+              }
+            ]
+          }
+        }
+      },
+      "spendBack": {
+        "ok": false,
+        "signerId": "5ec3d6632265cea2e88f9a84aeb07e6075a4dc26a93ec973d495b88d7086b26b",
+        "receiverId": "mockft.veil-williams.testnet",
+        "methodName": "ft_transfer",
+        "error": "NotEnoughBalanceError: Not enough balance for 5ec3d6632265cea2e88f9a84aeb07e6075a4dc26a93ec973d495b88d7086b26b (balance: 160000000000000000000, cost: 30919537863328000000001)\n    at parseInvalidTransactionError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:1307:16)\n    at parseTransactionExecutionError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:647:23)\n    at parseHandlerError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:289:24)\n    at parseRpcError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:194:20)\n    at JsonRpcProvider.sendJsonRpc (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\json-rpc-provider.ts:661:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async execute (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\scripts\\stipend-sweep.ts:91:22)\n    at async main (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\scripts\\stipend-sweep.ts:205:23)"
+      },
+      "minimumCandidate": false
+    },
+    {
+      "index": 3,
+      "stipendNear": "0.00016",
+      "stealthAccount": "82de05e00fd23f13e9e0034c43cbb577cb3c0a12483ce8e1a66f45a6f2dce8c0",
+      "funding": {
+        "ok": true,
+        "hash": "88Ptj6B9ro8846mSNzdAbVAdRGonkoNZ51TCS4KwkTAN",
+        "explorerUrl": "https://testnet.nearblocks.io/txns/88Ptj6B9ro8846mSNzdAbVAdRGonkoNZ51TCS4KwkTAN",
+        "signerId": "sender1.veil-williams.testnet",
+        "receiverId": "82de05e00fd23f13e9e0034c43cbb577cb3c0a12483ce8e1a66f45a6f2dce8c0",
+        "amountNear": "0.00016",
+        "rawResponse": {
+          "final_execution_status": "EXECUTED_OPTIMISTIC",
+          "receipts_outcome": [
+            {
+              "block_hash": "9c3SFE5kHf6U9nreL2nTpi3bTxP5dfupyN7oMRcj3ZV8",
+              "id": "2Jooey5Cg9Gizu58uAni5sEK5z8LSCuNzEfbitmBo8tS",
+              "outcome": {
+                "executor_id": "82de05e00fd23f13e9e0034c43cbb577cb3c0a12483ce8e1a66f45a6f2dce8c0",
+                "gas_burnt": 7524947687500,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    null
+                  ],
+                  "gas_profile": [],
+                  "version": 4
+                },
+                "receipt_ids": [
+                  "GsMJGZRp8vDkZRRsSJqKSttsKQs9oKz2wynX5cwaG1pb"
+                ],
+                "status": {
+                  "SuccessValue": ""
+                },
+                "tokens_burnt": "752494768750000000000"
+              },
+              "proof": []
+            }
+          ],
+          "status": {
+            "SuccessValue": ""
+          },
+          "transaction": {
+            "actions": [
+              {
+                "Transfer": {
+                  "deposit": "160000000000000000000"
+                }
+              }
+            ],
+            "hash": "88Ptj6B9ro8846mSNzdAbVAdRGonkoNZ51TCS4KwkTAN",
+            "nonce": 276878709000010,
+            "priority_fee": 0,
+            "public_key": "ed25519:Jn3UeRb1xJb7X8FRvxoyAKW4FomF5Hmexoz9BjC5QpH",
+            "receiver_id": "82de05e00fd23f13e9e0034c43cbb577cb3c0a12483ce8e1a66f45a6f2dce8c0",
+            "signature": "ed25519:5NNasmHC1RfqFJ71oj7HTbrjJXAhbm6wgAb8BrtrPkAf3GTpoweAaPCCGkBauAUCjGXtMrHQWpSF7xPpYji95jiW",
+            "signer_id": "sender1.veil-williams.testnet"
+          },
+          "transaction_outcome": {
+            "block_hash": "57e4TU4Rk6Mgur8oThvdeEQ8gGjdHEsQL97gRKt9AbJ7",
+            "id": "88Ptj6B9ro8846mSNzdAbVAdRGonkoNZ51TCS4KwkTAN",
+            "outcome": {
+              "executor_id": "sender1.veil-williams.testnet",
+              "gas_burnt": 824947687500,
+              "logs": [],
+              "metadata": {
+                "gas_profile": null,
+                "version": 1
+              },
+              "receipt_ids": [
+                "2Jooey5Cg9Gizu58uAni5sEK5z8LSCuNzEfbitmBo8tS"
+              ],
+              "status": {
+                "SuccessReceiptId": "2Jooey5Cg9Gizu58uAni5sEK5z8LSCuNzEfbitmBo8tS"
+              },
+              "tokens_burnt": "82494768750000000000"
+            },
+            "proof": [
+              {
+                "direction": "Right",
+                "hash": "5TUeyFAoGQce45JJqMyTa6CmyDMpFUCinvmeTnzkfTez"
+              }
+            ]
+          }
+        }
+      },
+      "storage": {
+        "ok": false,
+        "hash": "4bgNWGu2txGiAWukvCk3AYat7cLBcvyrUB32m9GPSUHY",
+        "explorerUrl": "https://testnet.nearblocks.io/txns/4bgNWGu2txGiAWukvCk3AYat7cLBcvyrUB32m9GPSUHY",
+        "signerId": "sender1.veil-williams.testnet",
+        "receiverId": "mockft.veil-williams.testnet",
+        "methodName": "storage_deposit",
+        "rawResponse": {
+          "final_execution_status": "EXECUTED",
+          "receipts_outcome": [
+            {
+              "block_hash": "JBf6pUisnhuUVrGM7d9BvoGK5tnLZCzANKi4pzUnnSwn",
+              "id": "FdPFrHxYKHeunHEVJYxn8u7NQkMDXM7VfM8zNSg6YCau",
+              "outcome": {
+                "executor_id": "mockft.veil-williams.testnet",
+                "gas_burnt": 1352525076887,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    {
+                      "local": "474f4VCP7cezQy17caw1bhjptanUpg3YNNb3CW4xaVKW"
+                    }
+                  ],
+                  "gas_profile": [
+                    {
+                      "cost": "BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "2118144888"
+                    },
+                    {
+                      "cost": "CONTRACT_LOADING_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "35445963"
+                    },
+                    {
+                      "cost": "CONTRACT_LOADING_BYTES",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "308478540345"
+                    },
+                    {
+                      "cost": "READ_MEMORY_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "5219726400"
+                    },
+                    {
+                      "cost": "READ_MEMORY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "281298642"
+                    },
+                    {
+                      "cost": "READ_REGISTER_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "5034330372"
+                    },
+                    {
+                      "cost": "READ_REGISTER_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "20106648"
+                    },
+                    {
+                      "cost": "STORAGE_HAS_KEY_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "54039896625"
+                    },
+                    {
+                      "cost": "STORAGE_HAS_KEY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "2124568305"
+                    },
+                    {
+                      "cost": "STORAGE_READ_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "56356845749"
+                    },
+                    {
+                      "cost": "STORAGE_READ_KEY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "154762665"
+                    },
+                    {
+                      "cost": "STORAGE_READ_VALUE_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "549878392"
+                    },
+                    {
+                      "cost": "WASM_INSTRUCTION",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "14667271212"
+                    },
+                    {
+                      "cost": "WRITE_MEMORY_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "8411384583"
+                    },
+                    {
+                      "cost": "WRITE_MEMORY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "599229840"
+                    },
+                    {
+                      "cost": "WRITE_REGISTER_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "5731044972"
+                    },
+                    {
+                      "cost": "WRITE_REGISTER_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "372553272"
+                    }
+                  ],
+                  "version": 4
+                },
+                "receipt_ids": [
+                  "4KtRG5WjE3VNXYeJM2FSXsW7CwECKHYjhna2Z37iEpUZ",
+                  "9QncQfuGWkJvAusnWZZt2KWkL9miKeRqVsE5UzmYTRAE"
+                ],
+                "status": {
+                  "Failure": {
+                    "ActionError": {
+                      "index": 0,
+                      "kind": {
+                        "FunctionCallError": {
+                          "ExecutionError": "WebAssembly trap: An `unreachable` opcode was executed."
+                        }
+                      }
+                    }
+                  }
+                },
+                "tokens_burnt": "135252507688700000000"
+              },
+              "proof": [
+                {
+                  "direction": "Left",
+                  "hash": "3krjUwMEJSpHjSD8C2vngKP8NFuYRpwdFSr9LqZfgi1J"
+                },
+                {
+                  "direction": "Right",
+                  "hash": "EUAaKy26g8yDzcu1ma8qrjRn2YQfQD2FmR7hcTEFWGnT"
+                }
+              ]
+            },
+            {
+              "block_hash": "ENR5afrEaikHXaSkZoRa5HGpNhaVghPJQfimrtqcos5D",
+              "id": "4KtRG5WjE3VNXYeJM2FSXsW7CwECKHYjhna2Z37iEpUZ",
+              "outcome": {
+                "executor_id": "sender1.veil-williams.testnet",
+                "gas_burnt": 223182562500,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    null
+                  ],
+                  "gas_profile": [],
+                  "version": 4
+                },
+                "receipt_ids": [],
+                "status": {
+                  "SuccessValue": ""
+                },
+                "tokens_burnt": "0"
+              },
+              "proof": [
+                {
+                  "direction": "Left",
+                  "hash": "2kZ8FT1Tzv2EZcDj2b1K2u29CpoLPDsi1AFftyzgbPMs"
+                },
+                {
+                  "direction": "Right",
+                  "hash": "8Zo4pWa7SW3hPgTXteWw8XdVBkgKosbMGsnJSEtmMxtj"
+                }
+              ]
+            },
+            {
+              "block_hash": "ENR5afrEaikHXaSkZoRa5HGpNhaVghPJQfimrtqcos5D",
+              "id": "9QncQfuGWkJvAusnWZZt2KWkL9miKeRqVsE5UzmYTRAE",
+              "outcome": {
+                "executor_id": "sender1.veil-williams.testnet",
+                "gas_burnt": 223182562500,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    null
+                  ],
+                  "gas_profile": [],
+                  "version": 4
+                },
+                "receipt_ids": [],
+                "status": {
+                  "SuccessValue": ""
+                },
+                "tokens_burnt": "0"
+              },
+              "proof": [
+                {
+                  "direction": "Left",
+                  "hash": "GSgPxMsHDhaMjaqcao1M6fQq8M3dnwNsJXVpEbJ4LMWd"
+                }
+              ]
+            }
+          ],
+          "status": {
+            "Failure": {
+              "ActionError": {
+                "index": 0,
+                "kind": {
+                  "FunctionCallError": {
+                    "ExecutionError": "WebAssembly trap: An `unreachable` opcode was executed."
+                  }
+                }
+              }
+            }
+          },
+          "transaction": {
+            "actions": [
+              {
+                "FunctionCall": {
+                  "args": "eyJhY2NvdW50X2lkIjoiODJkZTA1ZTAwZmQyM2YxM2U5ZTAwMzRjNDNjYmI1NzdjYjNjMGExMjQ4M2NlOGUxYTY2ZjQ1YTZmMmRjZThjMCIsInJlZ2lzdHJhdGlvbl9vbmx5Ijp0cnVlfQ==",
+                  "deposit": "1250000000000000000",
+                  "gas": 30000000000000,
+                  "method_name": "storage_deposit"
+                }
+              }
+            ],
+            "hash": "4bgNWGu2txGiAWukvCk3AYat7cLBcvyrUB32m9GPSUHY",
+            "nonce": 276878709000011,
+            "priority_fee": 0,
+            "public_key": "ed25519:Jn3UeRb1xJb7X8FRvxoyAKW4FomF5Hmexoz9BjC5QpH",
+            "receiver_id": "mockft.veil-williams.testnet",
+            "signature": "ed25519:3A6VgMb9wW7C2TYfFEkuoXezjJw8zdEG4Rt5t4CGUcG2JJjqkagbJhUf9u5Uu2TMvhPKKbu69dP3TadUoHGGCLnV",
+            "signer_id": "sender1.veil-williams.testnet"
+          },
+          "transaction_outcome": {
+            "block_hash": "Dk28i3kjLwRKpVkdwCGrULLaTzqinpBg4tFzv7aUFphG",
+            "id": "4bgNWGu2txGiAWukvCk3AYat7cLBcvyrUB32m9GPSUHY",
+            "outcome": {
+              "executor_id": "sender1.veil-williams.testnet",
+              "gas_burnt": 313829229515,
+              "logs": [],
+              "metadata": {
+                "gas_profile": null,
+                "version": 1
+              },
+              "receipt_ids": [
+                "FdPFrHxYKHeunHEVJYxn8u7NQkMDXM7VfM8zNSg6YCau"
+              ],
+              "status": {
+                "SuccessReceiptId": "FdPFrHxYKHeunHEVJYxn8u7NQkMDXM7VfM8zNSg6YCau"
+              },
+              "tokens_burnt": "31382922951500000000"
+            },
+            "proof": [
+              {
+                "direction": "Right",
+                "hash": "EpgpW8HanorgVyUQyqKbuUBB6LwYkUTnTf7sfyvzFPZz"
+              },
+              {
+                "direction": "Right",
+                "hash": "3Db4LEMYFaMd7NknMqDqCXNnKcscv9UKvP8hpy2WDZtj"
+              },
+              {
+                "direction": "Right",
+                "hash": "Hn54hA6tipLTv3SesAMWvWUSuZ71Wo8bXDbF7eJaSk2Q"
+              }
+            ]
+          }
+        }
+      },
+      "ftTransfer": {
+        "ok": false,
+        "hash": "BxrAkCFDRQqzwD2PEGDWbUQahsHVQVsTCQHSdiPDkuvZ",
+        "explorerUrl": "https://testnet.nearblocks.io/txns/BxrAkCFDRQqzwD2PEGDWbUQahsHVQVsTCQHSdiPDkuvZ",
+        "signerId": "sender1.veil-williams.testnet",
+        "receiverId": "mockft.veil-williams.testnet",
+        "methodName": "ft_transfer",
+        "rawResponse": {
+          "final_execution_status": "EXECUTED",
+          "receipts_outcome": [
+            {
+              "block_hash": "2CVBEgoDACvAV4SFFkVJwGs8nED5orbCymEqxU186faN",
+              "id": "F852Ug3UPBhh2TUCmALHAeQm7quk1t9UFDDhzcpydK6z",
+              "outcome": {
+                "executor_id": "mockft.veil-williams.testnet",
+                "gas_burnt": 1570471794384,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    {
+                      "local": "474f4VCP7cezQy17caw1bhjptanUpg3YNNb3CW4xaVKW"
+                    }
+                  ],
+                  "gas_profile": [
+                    {
+                      "cost": "BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "4501057887"
+                    },
+                    {
+                      "cost": "CONTRACT_LOADING_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "35445963"
+                    },
+                    {
+                      "cost": "CONTRACT_LOADING_BYTES",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "308478540345"
+                    },
+                    {
+                      "cost": "READ_CACHED_TRIE_NODE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "2280000000"
+                    },
+                    {
+                      "cost": "READ_MEMORY_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "13049316000"
+                    },
+                    {
+                      "cost": "READ_MEMORY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "600610614"
+                    },
+                    {
+                      "cost": "READ_REGISTER_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "12585825930"
+                    },
+                    {
+                      "cost": "READ_REGISTER_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "26907426"
+                    },
+                    {
+                      "cost": "STORAGE_READ_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "169070537247"
+                    },
+                    {
+                      "cost": "STORAGE_READ_KEY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "3342873564"
+                    },
+                    {
+                      "cost": "STORAGE_READ_VALUE_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "639654456"
+                    },
+                    {
+                      "cost": "STORAGE_WRITE_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "64196736000"
+                    },
+                    {
+                      "cost": "STORAGE_WRITE_EVICTED_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "513876912"
+                    },
+                    {
+                      "cost": "STORAGE_WRITE_KEY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "2396417478"
+                    },
+                    {
+                      "cost": "STORAGE_WRITE_VALUE_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "496296624"
+                    },
+                    {
+                      "cost": "TOUCHING_TRIE_NODE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "45600000000"
+                    },
+                    {
+                      "cost": "WASM_INSTRUCTION",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "21776705808"
+                    },
+                    {
+                      "cost": "WRITE_MEMORY_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "16822769166"
+                    },
+                    {
+                      "cost": "WRITE_MEMORY_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "787170108"
+                    },
+                    {
+                      "cost": "WRITE_REGISTER_BASE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "14327612430"
+                    },
+                    {
+                      "cost": "WRITE_REGISTER_BYTE",
+                      "cost_category": "WASM_HOST_COST",
+                      "gas_used": "604448676"
+                    }
+                  ],
+                  "version": 4
+                },
+                "receipt_ids": [
+                  "71G56oDfVPkrB4o7pZJDiK8WYFuXuU4AbwXNGrtkGAWX",
+                  "ErEzGyZc2HHfhTVXrBYFVjMn7QHiSdgAnhF85rw87VWf"
+                ],
+                "status": {
+                  "Failure": {
+                    "ActionError": {
+                      "index": 0,
+                      "kind": {
+                        "FunctionCallError": {
+                          "ExecutionError": "WebAssembly trap: An `unreachable` opcode was executed."
+                        }
+                      }
+                    }
+                  }
+                },
+                "tokens_burnt": "157047179438400000000"
+              },
+              "proof": [
+                {
+                  "direction": "Left",
+                  "hash": "EYnrgbp9yKupgzWr5ToUJyjxJCwHHtCbhqP7jYJAJu78"
+                }
+              ]
+            },
+            {
+              "block_hash": "3aY1X9Ar5kbnmRsA628RkwsJispbLs2M2zcrteRa6HHu",
+              "id": "71G56oDfVPkrB4o7pZJDiK8WYFuXuU4AbwXNGrtkGAWX",
+              "outcome": {
+                "executor_id": "sender1.veil-williams.testnet",
+                "gas_burnt": 223182562500,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    null
+                  ],
+                  "gas_profile": [],
+                  "version": 4
+                },
+                "receipt_ids": [],
+                "status": {
+                  "SuccessValue": ""
+                },
+                "tokens_burnt": "0"
+              },
+              "proof": [
+                {
+                  "direction": "Left",
+                  "hash": "6YXa7BwYdeyen1VHDYH3YuGWaz1PgZAhVhi9GxXVbf22"
+                },
+                {
+                  "direction": "Right",
+                  "hash": "SckhHBKPE2mrAT771Qnc2F1CVaZ8qyJukp8nqp51bnS"
+                }
+              ]
+            },
+            {
+              "block_hash": "3aY1X9Ar5kbnmRsA628RkwsJispbLs2M2zcrteRa6HHu",
+              "id": "ErEzGyZc2HHfhTVXrBYFVjMn7QHiSdgAnhF85rw87VWf",
+              "outcome": {
+                "executor_id": "sender1.veil-williams.testnet",
+                "gas_burnt": 223182562500,
+                "logs": [],
+                "metadata": {
+                  "contracts": [
+                    null
+                  ],
+                  "gas_profile": [],
+                  "version": 4
+                },
+                "receipt_ids": [],
+                "status": {
+                  "SuccessValue": ""
+                },
+                "tokens_burnt": "0"
+              },
+              "proof": [
+                {
+                  "direction": "Left",
+                  "hash": "3nvKDJDj9iibVxLLGfUHuAmixm978E7dPcafvWNH6bBS"
+                }
+              ]
+            }
+          ],
+          "status": {
+            "Failure": {
+              "ActionError": {
+                "index": 0,
+                "kind": {
+                  "FunctionCallError": {
+                    "ExecutionError": "WebAssembly trap: An `unreachable` opcode was executed."
+                  }
+                }
+              }
+            }
+          },
+          "transaction": {
+            "actions": [
+              {
+                "FunctionCall": {
+                  "args": "eyJyZWNlaXZlcl9pZCI6IjgyZGUwNWUwMGZkMjNmMTNlOWUwMDM0YzQzY2JiNTc3Y2IzYzBhMTI0ODNjZThlMWE2NmY0NWE2ZjJkY2U4YzAiLCJhbW91bnQiOiIxIiwibWVtbyI6InN0aXBlbmQtMyJ9",
+                  "deposit": "1",
+                  "gas": 30000000000000,
+                  "method_name": "ft_transfer"
+                }
+              }
+            ],
+            "hash": "BxrAkCFDRQqzwD2PEGDWbUQahsHVQVsTCQHSdiPDkuvZ",
+            "nonce": 276878709000012,
+            "priority_fee": 0,
+            "public_key": "ed25519:Jn3UeRb1xJb7X8FRvxoyAKW4FomF5Hmexoz9BjC5QpH",
+            "receiver_id": "mockft.veil-williams.testnet",
+            "signature": "ed25519:3GFcuDVi7pbSawSShmLa6qAdXzdSk1oqzUBqA6NNh9tzc8fEqTo7xT8jGJ69xQ6E73ajRYHG6yoDbNQqVr9aGCj",
+            "signer_id": "sender1.veil-williams.testnet"
+          },
+          "transaction_outcome": {
+            "block_hash": "aFCZukJfv3tLsWunb6MMRmM45qU8KvstkAFf5Mueajw",
+            "id": "BxrAkCFDRQqzwD2PEGDWbUQahsHVQVsTCQHSdiPDkuvZ",
+            "outcome": {
+              "executor_id": "sender1.veil-williams.testnet",
+              "gas_burnt": 314019964375,
+              "logs": [],
+              "metadata": {
+                "gas_profile": null,
+                "version": 1
+              },
+              "receipt_ids": [
+                "F852Ug3UPBhh2TUCmALHAeQm7quk1t9UFDDhzcpydK6z"
+              ],
+              "status": {
+                "SuccessReceiptId": "F852Ug3UPBhh2TUCmALHAeQm7quk1t9UFDDhzcpydK6z"
+              },
+              "tokens_burnt": "31401996437500000000"
+            },
+            "proof": []
+          }
+        }
+      },
+      "spendBack": {
+        "ok": false,
+        "signerId": "82de05e00fd23f13e9e0034c43cbb577cb3c0a12483ce8e1a66f45a6f2dce8c0",
+        "receiverId": "mockft.veil-williams.testnet",
+        "methodName": "ft_transfer",
+        "error": "NotEnoughBalanceError: Not enough balance for 82de05e00fd23f13e9e0034c43cbb577cb3c0a12483ce8e1a66f45a6f2dce8c0 (balance: 320000000000000000000, cost: 30919537863328000000001)\n    at parseInvalidTransactionError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:1307:16)\n    at parseTransactionExecutionError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:647:23)\n    at parseHandlerError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:289:24)\n    at parseRpcError (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\errors\\parse.ts:194:20)\n    at JsonRpcProvider.sendJsonRpc (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\near-api-js@7.4.0\\node_modules\\near-api-js\\src\\providers\\json-rpc-provider.ts:661:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async execute (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\scripts\\stipend-sweep.ts:91:22)\n    at async main (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\scripts\\stipend-sweep.ts:205:23)"
+      },
+      "minimumCandidate": false
+    }
+  ]
+}

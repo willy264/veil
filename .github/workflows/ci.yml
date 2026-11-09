@@ -28,7 +28,7 @@ jobs:
       - run: cargo clippy --workspace --all-targets -- -D warnings
       - run: cargo test --workspace
       - run: cargo build --workspace --target wasm32-unknown-unknown --release
-      - run: cargo test --test sandbox_round
+      - run: cargo test -p veil-router --test sandbox_round
 
   typescript:
     runs-on: ubuntu-latest

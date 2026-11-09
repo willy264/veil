@@ -157,7 +157,7 @@ mod tests {
 
     #[test]
     fn appends_and_paginates_announcements() {
-        testing_env!(context(NearToken::from_yoctonear(1)));
+        testing_env!(context(NearToken::from_yoctonear(1)).build());
         let mut router = Router::new();
         router.announce(
             accounts(1),
@@ -177,7 +177,7 @@ mod tests {
     #[test]
     #[should_panic(expected = "ephemeral key must be 32-byte hex")]
     fn rejects_malformed_ephemeral_key() {
-        testing_env!(context(NearToken::from_yoctonear(1)));
+        testing_env!(context(NearToken::from_yoctonear(1)).build());
         let mut router = Router::new();
         router.announce(accounts(1), accounts(2), "bad".into(), 7, None);
     }

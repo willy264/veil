@@ -5,3 +5,5 @@ resolver = "2"
 [workspace.dependencies]
 near-sdk = "5.30.0"
 near-contract-standards = "5.30.0"
+near-workspaces = "0.24.0"
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
