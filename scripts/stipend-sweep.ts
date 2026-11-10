@@ -19,7 +19,7 @@ const TOKEN_ID = 'mockft.veil-williams.testnet';
 const RESULTS_DIR = new URL('../results/', import.meta.url);
 const FT_STORAGE = 1_250_000_000_000_000_000_000n;
 const FT_GAS = 30_000_000_000_000n;
-const STIPENDS = ['0.01', '0.02', '0.04', '0.08'];
+const STIPENDS = ['0.03090', '0.03091', '0.03092', '0.03093', '0.03095', '0.03100'];
 const nextNonces = new Map<string, bigint>();
 
 function requireEnv(name: string): string {
@@ -38,6 +38,19 @@ function responseHash(response: any): string | undefined {
 
 function isSuccess(response: any): boolean {
   return Boolean(response.status && ('SuccessValue' in response.status || 'SuccessReceiptId' in response.status));
+}
+
+async function viewAccountAfterFinality(provider: JsonRpcProvider, accountId: string): Promise<any> {
+  let lastError: unknown;
+  for (let attempt = 0; attempt < 5; attempt += 1) {
+    try {
+      return await provider.viewAccount({ accountId, finalityQuery: { finality: 'final' } });
+    } catch (error) {
+      lastError = error;
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+    }
+  }
+  throw lastError;
 }
 
 class ScalarSigner extends Signer {
@@ -164,10 +177,11 @@ async function main(): Promise<void> {
   const provider = new JsonRpcProvider({ url: RPC_URL });
   const senderSigner = new KeyPairSigner(KeyPair.fromString(requireEnv('VEIL_SENDER1_PRIVATE_KEY')));
   const recipientKeys = generateKeys(0x123456789abcdef123456789abcdefn, 0x23456789abcdef123456789abcdefn);
+  const sweepSalt = BigInt(process.env.VEIL_SWEEP_SALT ?? Date.now());
   const rows: Record<string, unknown>[] = [];
 
   for (let index = 0; index < STIPENDS.length; index += 1) {
-    const ephemeral = 0x3456789abcdef123456789abcdefn + BigInt(index + 10);
+    const ephemeral = 0x3456789abcdef123456789abcdefn + sweepSalt + BigInt(index);
     const derived = deriveStealth(recipientKeys.spendPublicKey, recipientKeys.viewPublicKey, ephemeral);
     const found = scanAnnouncement(recipientKeys, derived);
     if (!found.owned) throw new Error('local derivation failed');
@@ -184,6 +198,9 @@ async function main(): Promise<void> {
       });
       continue;
     }
+    const account = await viewAccountAfterFinality(provider, derived.stealthAccount);
+    const storageUsage = BigInt(account.storage_usage);
+    const accountStorageCostYocto = storageUsage * 10_000_000_000_000_000_000n;
     const storage = await execute(
       provider,
       SENDER_ID,
@@ -220,6 +237,10 @@ async function main(): Promise<void> {
       storage,
       ftTransfer,
       spendBack,
+      storageUsageBytes: storageUsage.toString(),
+      accountStorageCostYocto: accountStorageCostYocto.toString(),
+      spendGasBurnt: spendBack.rawResponse?.transaction_outcome?.outcome?.gas_burnt,
+      spendTokensBurntYocto: spendBack.rawResponse?.transaction_outcome?.outcome?.tokens_burnt,
       minimumCandidate: Boolean(spendBack.ok),
     });
   }
@@ -233,6 +254,7 @@ async function main(): Promise<void> {
     sender: SENDER_ID,
     storageDepositYocto: FT_STORAGE.toString(),
     testedStipendsNear: STIPENDS,
+    sweepSalt: sweepSalt.toString(),
     minimumSuccessfulTestedStipendNear: successful[0] ?? null,
     note: 'This is an empirical threshold sweep over fresh implicit accounts; the true minimum may lie between tested values.',
     rows,

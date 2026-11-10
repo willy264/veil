@@ -1,6 +1,6 @@
 # Veil execution ledger
 
-Last updated: 2026-11-10 08:03 UTC
+Last updated: 2026-11-10 08:13 UTC
 
 ## Context
 
@@ -17,7 +17,7 @@ Last updated: 2026-11-10 08:03 UTC
 | R1 | Prior-art research | in progress | `research/01-prior-art.md` |
 | R2 | Problem evidence | pending | Use public DAO/foundation accounts only |
 | R3 | Cryptography design and scalar-sign proof | complete | Local proof plus confirmed testnet spend |
-| R4 | Practical flow and cost verification | complete | FT storage bound corrected to `0.00125 NEAR`; fresh-account sweep proves `0.04 NEAR` as the minimum successful tested stipend; announcement storage is `191 bytes` / `0.00191 NEAR` |
+| R4 | Practical flow and cost verification | complete | FT storage bound `0.00125 NEAR`; fine fresh-account sweep proves `0.03092 NEAR` as the lowest reliable tested stipend; account footprint `182 bytes` / `0.00182 NEAR`; announcement storage `191 bytes` / `0.00191 NEAR` |
 | GATE-R | Choose scheme and record proof transaction | complete | `docs/VERIFIED.md`; `results/gate-r-20261108224016.json` |
 | P1 | Scaffold SDK and tests | in progress | Crypto core exists; V1, V2, V3, V5 pass; SDK flow integration remains |
 | P2 | Registry and router contracts | complete | WSL2 Ubuntu clippy, workspace tests, sandbox test, and `wasm32-unknown-unknown --release` build pass; V4 router unit/sandbox coverage committed |
@@ -30,7 +30,7 @@ Last updated: 2026-11-10 08:03 UTC
 
 ## Hours remaining
 
-At 2026-11-10 08:03 UTC: approximately 111.83 hours remain until 2026-11-14 23:59 UTC. Recalculate at the start of each work session.
+At 2026-11-10 08:13 UTC: approximately 111.67 hours remain until 2026-11-14 23:59 UTC. Recalculate at the start of each work session.
 
 ## Pause checkpoint: 2026-11-09 06:25 UTC
 
@@ -40,5 +40,6 @@ At 2026-11-10 08:03 UTC: approximately 111.83 hours remain until 2026-11-14 23:5
 - Done: CI and Ubuntu Rust gate. `.github/workflows/ci.yml` now runs fmt, clippy, workspace tests, WASM build, sandbox test, and TypeScript tests. WSL2 execution completed with all Rust checks passing.
 - In progress: `contracts/Cargo.lock` includes `near-workspaces 0.24.0` and its sandbox dependencies; registry/router test contexts were updated for near-sdk 5.30.1.
 - Done: V4 router coverage. `cargo test -p veil-router --lib` reports 6 passing tests; the WSL2 sandbox test reports 1 passing test covering native NEAR, FT receipt, malformed refund, and pagination.
-- Exact next action: rerun a finer fresh-account stipend sweep around the `0.04 NEAR` boundary and record the native account storage reserve separately from FT gas/transaction cost.
+- Done: fine fresh-account stipend sweep. `0.03090` and `0.03091` failed; `0.03092` through `0.03100` succeeded. The reported balance requirement is `0.030919537863328 NEAR`; account storage footprint is `182 bytes` / `0.00182 NEAR`; actual FT spend burn is `0.000031263713664 NEAR`.
+- Exact next action: implement and test the SDK flows: NEP-413 key derivation, registry register/resolve, sendNear/sendFt, scan, spend, exportViewKey, and re-link warnings.
 - Not started: V4 router refund/FT/pagination coverage beyond the existing announce pagination test; SDK flows; V3/V5 vectors; demo; web app; NEP draft; README/video plan; submission JSON/X draft; final tag.

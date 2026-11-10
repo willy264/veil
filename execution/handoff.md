@@ -1,6 +1,6 @@
 # Veil handoff
 
-Updated 2026-11-10 08:03 UTC. Approximately 111.83 hours remain until the 2026-11-14 23:59 UTC deadline.
+Updated 2026-11-10 08:13 UTC. Approximately 111.67 hours remain until the 2026-11-14 23:59 UTC deadline.
 
 ## Current state
 
@@ -20,6 +20,7 @@ The repository contains the research-first scaffolding and a working TypeScript 
 - WSL2 Ubuntu results: router unit tests `2 passed`; router sandbox test `1 passed`.
 - WSL2 Ubuntu full gate now passes: fmt, clippy with `-D warnings`, workspace tests, sandbox test, and release WASM build for registry, router, and mock FT.
 - V4 router coverage now passes: 6 unit tests plus 1 sandbox test covering NEAR, FT, failed-transfer refund, malformed FT refund, and pagination.
+- Fine stipend sweep now passes with `0.03092 NEAR` as the lowest tested success. `0.03090` and `0.03091` fail against the exact `0.030919537863328 NEAR` preflight requirement. Each account uses 182 bytes (`0.00182 NEAR` nominal storage footprint); actual FT spend burn is `0.000031263713664 NEAR`.
 
 ## Exact next action
 
@@ -31,6 +32,6 @@ The registry and router contracts are implemented and deployed to `registry.veil
 
 ## Resume command
 
-Next: run a finer stipend sweep around `0.04 NEAR`, measuring the implicit account storage reserve separately from FT gas/transaction cost.
+Next: implement SDK flows for NEP-413 key derivation, registry register/resolve, sendNear/sendFt, scan, spend, exportViewKey, and re-link warnings.
 
 After that gate, add V4 router tests for NEAR/FT/refund/pagination, then continue SDK flows and V3/V5 vectors. The web app, demo, NEP draft, README/video plan, submission JSON/X draft, and `hackathon-submission` tag are not started.
