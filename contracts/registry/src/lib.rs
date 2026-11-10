@@ -106,10 +106,7 @@ fn assert_valid_point(hex: &str, label: &str) {
         !point.is_identity(),
         "{label} must not be the identity point"
     );
-    assert!(
-        bool::from(point.is_torsion_free()),
-        "{label} must be torsion-free"
-    );
+    assert!(point.is_torsion_free(), "{label} must be torsion-free");
 }
 
 fn decode_hex(value: &str) -> Option<[u8; 32]> {
@@ -117,7 +114,7 @@ fn decode_hex(value: &str) -> Option<[u8; 32]> {
         return None;
     }
     let mut output = [0u8; 32];
-    for (index, pair) in value.as_bytes().chunks_exact(2).enumerate() {
+    for (index, pair) in value.as_bytes().chunks(2).enumerate() {
         output[index] = (hex_digit(pair[0])? << 4) | hex_digit(pair[1])?;
     }
     Some(output)

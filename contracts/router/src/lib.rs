@@ -292,7 +292,7 @@ fn assert_valid_account_point(account_id: &AccountId, label: &str) {
         "{label} must be a 32-byte implicit account"
     );
     let mut bytes = [0u8; 32];
-    for (index, pair) in value.as_bytes().chunks_exact(2).enumerate() {
+    for (index, pair) in value.as_bytes().chunks(2).enumerate() {
         bytes[index] = (hex_digit(pair[0]).expect("hex") << 4) | hex_digit(pair[1]).expect("hex");
     }
     let point = CompressedEdwardsY(bytes)
@@ -302,16 +302,13 @@ fn assert_valid_account_point(account_id: &AccountId, label: &str) {
         !point.is_identity(),
         "{label} must not be the identity point"
     );
-    assert!(
-        bool::from(point.is_torsion_free()),
-        "{label} must be torsion-free"
-    );
+    assert!(point.is_torsion_free(), "{label} must be torsion-free");
 }
 
 fn assert_valid_point(hex: &str, label: &str) {
     assert!(hex.len() == 64, "{label} must be 32-byte hex");
     let mut bytes = [0u8; 32];
-    for (index, pair) in hex.as_bytes().chunks_exact(2).enumerate() {
+    for (index, pair) in hex.as_bytes().chunks(2).enumerate() {
         bytes[index] = (hex_digit(pair[0]).expect("hex") << 4) | hex_digit(pair[1]).expect("hex");
     }
     let point = CompressedEdwardsY(bytes)
@@ -321,10 +318,7 @@ fn assert_valid_point(hex: &str, label: &str) {
         !point.is_identity(),
         "{label} must not be the identity point"
     );
-    assert!(
-        bool::from(point.is_torsion_free()),
-        "{label} must be torsion-free"
-    );
+    assert!(point.is_torsion_free(), "{label} must be torsion-free");
 }
 
 fn hex_digit(value: u8) -> Option<u8> {
