@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Veil | Private receiving for NEAR</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <p class="kicker">NEAR testnet</p>
+          <h1>Veil</h1>
+        </div>
+        <span class="status"><i></i> Registry online</span>
+      </header>
+
+      <section class="hero-band">
+        <div>
+          <p class="kicker">Private receiving for named accounts</p>
+          <h2>Receive to a fresh implicit account, keep your name public.</h2>
+          <p class="lede">Veil separates the public identity people pay from the one-time accounts that hold each payment.</p>
+        </div>
+        <div class="network-card"><span>Registry</span><strong id="registry-id">registry.veil-williams.testnet</strong><span>Router</span><strong id="router-id">router.veil-williams.testnet</strong></div>
+      </section>
+
+      <section class="grid">
+        <article class="panel">
+          <div class="panel-heading"><div><p class="kicker">Identity</p><h3>Resolve a named account</h3></div><span class="badge">read-only</span></div>
+          <label for="name">NEAR name</label>
+          <div class="inline"><input id="name" value="alice.veil-williams.testnet" /><button id="resolve">Resolve</button></div>
+          <pre id="resolve-output" aria-live="polite">No lookup yet.</pre>
+        </article>
+
+        <article class="panel">
+          <div class="panel-heading"><div><p class="kicker">Wallet action</p><h3>Prepare a private send</h3></div><span class="badge accent">unsigned</span></div>
+          <label for="recipient">Recipient name</label><input id="recipient" value="alice.veil-williams.testnet" />
+          <label for="amount">Amount in NEAR</label><input id="amount" value="0.01" inputmode="decimal" />
+          <button class="wide" id="prepare">Build router action</button>
+          <pre id="send-output" aria-live="polite">The action is prepared locally and must be signed by a wallet.</pre>
+        </article>
+
+        <article class="panel wide-panel">
+          <div class="panel-heading"><div><p class="kicker">Scanner</p><h3>Recent announcements</h3></div><button class="quiet" id="refresh">Refresh</button></div>
+          <p class="muted">Announcements are public metadata. A wallet or SDK view key is required to identify owned outputs.</p>
+          <div id="announcements" class="table-wrap"><div class="empty">Loading announcements...</div></div>
+        </article>
+      </section>
+      <footer>Veil V1 · Testnet only · amounts, timing, and sender identities remain public.</footer>
+    </main>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
