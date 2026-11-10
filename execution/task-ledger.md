@@ -21,7 +21,7 @@ Last updated: 2026-11-10 08:15 UTC
 | GATE-R | Choose scheme and record proof transaction | complete | `docs/VERIFIED.md`; `results/gate-r-20261108224016.json` |
 | P1 | Scaffold SDK and tests | complete | SDK flows plus committed V3/V5 vectors and malformed-input tests pass; 14 SDK tests total |
 | P2 | Registry and router contracts | complete | WSL2 Ubuntu clippy, workspace tests, sandbox test, and `wasm32-unknown-unknown --release` build pass; V4 router unit/sandbox coverage committed |
-| P3 | Web demo | pending | Must follow SDK and contract interfaces |
+| P3 | Web demo | in progress | Testnet demo passes register, 3 private sends, scan=3, and one spend; DAO payout remains an authority prerequisite. Evidence: `results/demo-20261110085124.json` |
 
 ## Decisions needed from human
 
@@ -30,7 +30,16 @@ Last updated: 2026-11-10 08:15 UTC
 
 ## Hours remaining
 
-At 2026-11-10 08:15 UTC: approximately 111.74 hours remain until 2026-11-14 23:59 UTC. Recalculate at the start of each work session.
+At 2026-11-10 08:55 UTC: approximately 110.99 hours remain until 2026-11-14 23:59 UTC. Recalculate at the start of each work session.
+
+## Completed since prior checkpoint
+
+- Demo script corrected for near-api-js 7 `callFunction`, output-index binding, yocto conversion, finality polling, fresh faucet-funded demo accounts, and secret-free evidence output.
+- Testnet demo passed: Alice registration, three private NEAR sends, scan found 3, and one stealth spend. Sputnik factory probe succeeded; payout was not submitted without DAO authority.
+
+## Next action
+
+Build and verify the web app wired to the registry/router, then commit the NEP draft, README, video plan, X draft, and submission JSON before tagging `hackathon-submission`.
 
 ## Pause checkpoint: 2026-11-09 06:25 UTC
 

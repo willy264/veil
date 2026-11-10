@@ -44,3 +44,11 @@ Only facts backed by a source or a real executed test belong here. Simulated res
 
 - The mock FT `storage_deposit` cost is `0.00125 NEAR` per registered account, from `storage_balance_bounds` and the successful registration transaction above.
 - The router announcement storage delta was `191 bytes`, or `0.00191 NEAR` at `10^19 yoctoNEAR/byte`, across the second announcement.
+
+## Testnet demo: 2026-11-10
+
+- **VERIFIED:** The scripted demo registered Alice's meta-address, sent three private `0.01 NEAR` payments from fresh faucet-funded demo accounts, scanned and found all three, then spent one stealth output. Evidence: `results/demo-20261110085124.json`.
+- Register: https://testnet.nearblocks.io/txns/EACePGCGboNaxyMUFg6yc9FbYeqwDjB7fd57QaMHvjST
+- Sends: https://testnet.nearblocks.io/txns/CcP8bbX9aGgogtFrCxdeoZt5oXP8SuvGThryjM9uS9Fy, https://testnet.nearblocks.io/txns/5w1RTyMMG8sakMUhACxop8N1LtnJf4GSCXkujaY6mNCF, https://testnet.nearblocks.io/txns/9Pzghy1VHauxJViZac6MotLezD4uL5WGrDyhRMSLrS1z
+- Spend: https://testnet.nearblocks.io/txns/vMbgFyzUb1PnU9eN5pR9cgUsWF1QafS1kXznp2kBQJH
+- **LIMITATION:** `sputnikv2.testnet` is visible, but the demo did not submit a DAO payout because no existing DAO/proposal authority was provided. The result records this as `PASS_WITH_DAO_PREREQUISITE` rather than claiming a payout.

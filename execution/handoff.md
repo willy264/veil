@@ -26,14 +26,13 @@ The repository contains the research-first scaffolding and a working TypeScript 
 
 ## Exact next action
 
-The registry and router contracts are implemented and deployed to `registry.veil-williams.testnet`. The full Ubuntu Rust gate and V4 behavior coverage pass.
+The scripted testnet demo is complete in `results/demo-20261110085124.json`: register, three private sends, scan found 3, and one stealth spend. Build the web app wired to the deployed registry/router contracts, then complete the remaining submission documents and tag the local repository.
 
 ## Blockers
 
 - Host-side Rust verification is complete in WSL2 Ubuntu; the Windows GNU native linker remains unsupported for sandbox tests.
+- Sputnik DAO payout is not executed: `sputnikv2.testnet` is visible, but no existing DAO/proposal authority was provided. Keep this as an explicit limitation unless an authorized DAO is supplied.
 
 ## Resume command
 
-Next: build `pnpm demo:all` on testnet and write `results/demo-<ts>.json` with three private sends, scan, one spend, and the Sputnik DAO payout.
-
-After that gate, add V4 router tests for NEAR/FT/refund/pagination, then continue SDK flows and V3/V5 vectors. The web app, demo, NEP draft, README/video plan, submission JSON/X draft, and `hackathon-submission` tag are not started.
+Resume with the web app. The contracts, WSL2 gate, V4 tests, stipend measurements, SDK flows, V3/V5 vectors, and testnet demo are complete. The web app, NEP draft, README/video plan, submission JSON/X draft, and `hackathon-submission` tag remain.

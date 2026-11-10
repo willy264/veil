@@ -5,7 +5,8 @@
   "scripts": {
     "test": "pnpm --filter @veil/sdk test",
     "typecheck": "pnpm --filter @veil/sdk typecheck",
-    "test:v1": "tsx scripts/v1-property.ts"
+    "test:v1": "tsx scripts/v1-property.ts",
+    "demo:all": "tsx scripts/demo-all.ts"
   },
   "devDependencies": {
     "near-api-js": "7.4.0",

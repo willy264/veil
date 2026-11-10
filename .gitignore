@@ -10,4 +10,9 @@ neardev/
 data/
 cache/
 data/cache/
+.demo-output.txt
+results/demo-20261110082336.json
+results/demo-20261110083345.json
+results/demo-20261110084826.json
+results/demo-20261110084930.json
 *.log
