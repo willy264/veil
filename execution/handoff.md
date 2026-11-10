@@ -26,7 +26,7 @@ The repository contains the research-first scaffolding and a working TypeScript 
 
 ## Exact next action
 
-The scripted testnet demo is complete in `results/demo-20261110085124.json`: register, three private sends, scan found 3, and one stealth spend. The web app and submission documents are complete. Run the fresh-clone check, inspect the final staged diff, and create the local `hackathon-submission` tag.
+The scripted testnet demo is complete in `results/demo-20261110085124.json`: register, three private sends, scan found 3, and one stealth spend. The web app and submission documents are complete. Fresh-clone frozen install, typecheck, and all 14 SDK tests pass. The final local `hackathon-submission` tag is applied after the checkpoint commit.
 
 ## Blockers
 
@@ -35,4 +35,4 @@ The scripted testnet demo is complete in `results/demo-20261110085124.json`: reg
 
 ## Resume command
 
-Resume with the fresh-clone check and final tag. The contracts, WSL2 gate, V4 tests, stipend measurements, SDK flows, V3/V5 vectors, testnet demo, web app, NEP draft, README, video plan, X draft, and submission JSON are complete. Human-only actions remain: record the video, post X, publish the repository, and submit the form. Mainnet remains untouched.
+The project is submission-ready locally. The contracts, WSL2 gate, V4 tests, stipend measurements, SDK flows, V3/V5 vectors, testnet demo, web app, NEP draft, README, video plan, X draft, submission JSON, and fresh-clone check are complete. Human-only actions remain: record the video, post X, publish the repository, and submit the form. Mainnet remains untouched.
