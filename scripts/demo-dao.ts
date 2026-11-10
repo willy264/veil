@@ -17,7 +17,6 @@ import { deriveKeysFromNep413 } from '../packages/sdk/src/sdk.js';
 const RPC_URL = 'https://rpc.testnet.fastnear.com';
 const FACTORY_ID = 'sputnikv2.testnet';
 const OWNER_ID = 'veil-williams.testnet';
-const COUNCIL_FUNDER_ID = 'veil-demo3.testnet';
 const ROUTER_ID = 'router.veil-williams.testnet';
 const RESULTS_DIR = new URL('../results/', import.meta.url);
 const NONCES = new Map<string, bigint>();
@@ -98,7 +97,7 @@ function returnValue(raw: any): string | undefined {
 async function main(): Promise<void> {
   const provider = new JsonRpcProvider({ url: RPC_URL });
   const owner = new KeyPairSigner(KeyPair.fromString(env('VEIL_DAO_OWNER_PRIVATE_KEY')));
-  const funder = new KeyPairSigner(KeyPair.fromString(env('VEIL_DAO_FUNDER_PRIVATE_KEY')));
+  const funder = owner;
   const keys = deriveKeysFromNep413(new Uint8Array(64).map((_, index) => index + 1), OWNER_ID);
   const existingDaoId = process.env.VEIL_DAO_ID;
   if (existingDaoId) {
@@ -109,7 +108,7 @@ async function main(): Promise<void> {
   const derived = deriveStealth(keys.spendPublicKey, keys.viewPublicKey, ephemeralScalar, 0);
   const daoName = `veildao${Date.now().toString().slice(-10)}`;
   const daoId = `${daoName}.${FACTORY_ID}`;
-  const policy = [OWNER_ID, COUNCIL_FUNDER_ID];
+  const policy = [OWNER_ID];
   const factoryArgs = {
     name: daoName,
     args: Buffer.from(JSON.stringify({
@@ -118,7 +117,7 @@ async function main(): Promise<void> {
     })).toString('base64'),
   };
   const factoryDeposit = 5_403_650_000_000_000_000_000_000n;
-  const create = await call(provider, COUNCIL_FUNDER_ID, FACTORY_ID, funder, 'create', factoryArgs, factoryDeposit, 150_000_000_000_000n);
+  const create = await call(provider, OWNER_ID, FACTORY_ID, owner, 'create', factoryArgs, factoryDeposit, 150_000_000_000_000n);
   let policyView: unknown;
   for (let attempt = 0; attempt < 20; attempt += 1) {
     try {
@@ -134,7 +133,7 @@ async function main(): Promise<void> {
     ephemeral_pub_hex: bytesToHex(derived.ephemeralPublicKey),
     view_tag: derived.viewTag,
   };
-  const proposal = await call(provider, COUNCIL_FUNDER_ID, daoId, funder, 'add_proposal', {
+  const proposal = await call(provider, OWNER_ID, daoId, owner, 'add_proposal', {
     proposal: {
       description: 'Veil private receiving DAO payout',
       kind: {
@@ -151,7 +150,6 @@ async function main(): Promise<void> {
     },
   }, nearToYocto('1'), 100_000_000_000_000n);
   const proposalId = Number(returnValue(proposal.raw) ?? '0');
-  const approveFunder = await call(provider, COUNCIL_FUNDER_ID, daoId, funder, 'act_proposal', { id: proposalId, action: 'VoteApprove' }, 0n, 100_000_000_000_000n);
   const approveOwner = await call(provider, OWNER_ID, daoId, owner, 'act_proposal', { id: proposalId, action: 'VoteApprove' }, 0n, 100_000_000_000_000n);
   let announcements: any[] = [];
   for (let attempt = 0; attempt < 20; attempt += 1) {
@@ -178,7 +176,7 @@ async function main(): Promise<void> {
     create: { hash: create.hash, explorerUrl: create.explorerUrl },
     policyView,
     proposal: { id: proposalId, hash: proposal.hash, explorerUrl: proposal.explorerUrl },
-    approvals: [approveFunder.explorerUrl, approveOwner.explorerUrl],
+    approvals: [approveOwner.explorerUrl],
     scan: { found: owned.length, owned },
     sources: ['https://github.com/near-daos/sputnik-dao-contract#setup'],
   };
@@ -198,14 +196,13 @@ async function finishExistingDao(
   const existing = await provider.callFunction({ contractId: ROUTER_ID, method: 'get_announcements', args: { from_index: 0, limit: 10_000 }, blockQuery: { finality: 'final' } }) as any[];
   const outputIndex = existing.length;
   const derived = deriveStealth(keys.spendPublicKey, keys.viewPublicKey, 0x789abcdef123456789abcdef123456789n, outputIndex);
-  const proposal = await call(provider, COUNCIL_FUNDER_ID, daoId, funder, 'add_proposal', {
+  const proposal = await call(provider, OWNER_ID, daoId, owner, 'add_proposal', {
     proposal: {
       description: 'Veil private receiving DAO payout with global output index',
       kind: { FunctionCall: { receiver_id: ROUTER_ID, actions: [{ method_name: 'send_near', args: Buffer.from(JSON.stringify({ stealth_account: derived.stealthAccount, ephemeral_pub_hex: bytesToHex(derived.ephemeralPublicKey), view_tag: derived.viewTag })).toString('base64'), deposit: nearToYocto('0.04').toString(), gas: '30000000000000' }] } },
     },
   }, nearToYocto('1'), 100_000_000_000_000n);
   const proposalId = Number(returnValue(proposal.raw) ?? '0');
-  const approveFunder = await call(provider, COUNCIL_FUNDER_ID, daoId, funder, 'act_proposal', { id: proposalId, action: 'VoteApprove' }, 0n, 100_000_000_000_000n);
   const approve = await call(provider, OWNER_ID, daoId, owner, 'act_proposal', { id: proposalId, action: 'VoteApprove' }, 0n, 100_000_000_000_000n);
   let announcements: any[] = [];
   for (let attempt = 0; attempt < 20; attempt += 1) {
@@ -222,11 +219,27 @@ async function finishExistingDao(
     });
     return { index: item.index, amount: item.amount, owned: found.owned };
   });
-  const result = { status: owned.some((item) => item.owned) ? 'PASS' : 'FAIL', network: 'testnet', factory: FACTORY_ID, daoId, proposalId, outputIndex, proposal: { hash: proposal.hash, explorerUrl: proposal.explorerUrl }, approvals: [approveFunder.explorerUrl, approve.explorerUrl], stealthAccount: derived.stealthAccount, scan: { found: owned.length, owned }, sources: ['https://github.com/near-daos/sputnik-dao-contract#setup'] };
+  const result = { status: owned.some((item) => item.owned) ? 'PASS' : 'FAIL', network: 'testnet', factory: FACTORY_ID, daoId, proposalId, outputIndex, proposal: { hash: proposal.hash, explorerUrl: proposal.explorerUrl }, approvals: [approve.explorerUrl], stealthAccount: derived.stealthAccount, scan: { found: owned.length, owned }, sources: ['https://github.com/near-daos/sputnik-dao-contract#setup'] };
   const timestamp = new Date().toISOString().replace(/[-:.TZ]/g, '').slice(0, 14);
   await mkdir(RESULTS_DIR, { recursive: true });
   await writeFile(new URL(`demo-dao-${timestamp}.json`, RESULTS_DIR), JSON.stringify(result, null, 2));
   console.log(JSON.stringify(result, null, 2));
 }
 
-main().catch((error) => { console.error(error instanceof Error ? error.stack ?? error.message : error); process.exitCode = 1; });
+main().catch(async (error) => {
+  const message = error instanceof Error ? error.stack ?? error.message : String(error);
+  const timestamp = new Date().toISOString().replace(/[-:.TZ]/g, '').slice(0, 14);
+  const result = {
+    status: 'BLOCKED',
+    network: 'testnet',
+    factory: FACTORY_ID,
+    attempted: 'create sole-council DAO, add and approve send_near FunctionCall, scan recipient',
+    error: message,
+    note: 'No DAO transaction was submitted. The owner signer was unavailable; the target account also requires faucet funding before the documented 5 NEAR creation deposit can be attached.',
+    sources: ['https://github.com/near-daos/sputnik-dao-contract#setup'],
+  };
+  await mkdir(RESULTS_DIR, { recursive: true });
+  await writeFile(new URL(`demo-dao-${timestamp}.json`, RESULTS_DIR), JSON.stringify(result, null, 2));
+  console.error(JSON.stringify(result, null, 2));
+  process.exitCode = 1;
+});

@@ -1,0 +1,11 @@
+{
+  "status": "BLOCKED",
+  "network": "testnet",
+  "factory": "sputnikv2.testnet",
+  "attempted": "create sole-council DAO, add and approve send_near FunctionCall, scan recipient",
+  "error": "Error: VEIL_DAO_OWNER_PRIVATE_KEY is required and must not be committed\n    at env (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\scripts\\demo-dao.ts:26:21)\n    at main (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\scripts\\demo-dao.ts:99:54)\n    at <anonymous> (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\scripts\\demo-dao.ts:229:1)\n    at Object.<anonymous> (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\scripts\\demo-dao.ts:245:2)\n    at Module._compile (node:internal/modules/cjs/loader:1829:14)\n    at Object.transformer (C:\\Users\\HP\\Documents\\people\\hackathons\\veil_near\\node_modules\\.pnpm\\tsx@4.23.15\\node_modules\\tsx\\dist\\register-B1c7OH6V.cjs:22:2188)\n    at Module.load (node:internal/modules/cjs/loader:1552:32)\n    at Module._load (node:internal/modules/cjs/loader:1354:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at loadCJSModuleWithModuleLoad (node:internal/modules/esm/translators:325:3)",
+  "note": "No DAO transaction was submitted. The owner signer was unavailable; the target account also requires faucet funding before the documented 5 NEAR creation deposit can be attached.",
+  "sources": [
+    "https://github.com/near-daos/sputnik-dao-contract#setup"
+  ]
+}

@@ -1,6 +1,6 @@
 # Veil handoff
 
-Updated 2026-11-10 08:15 UTC. Approximately 111.74 hours remain until the 2026-11-14 23:59 UTC deadline.
+Updated 2026-11-10 21:55 UTC. Approximately 98 hours remain until the 2026-11-14 23:59 UTC deadline.
 
 ## Current state
 
@@ -26,13 +26,13 @@ The repository contains the research-first scaffolding and a working TypeScript 
 
 ## Exact next action
 
-The scripted testnet demo is complete in `results/demo-20261110085124.json`: register, three private sends, scan found 3, and one stealth spend. The web app and submission documents are complete. Fresh-clone frozen install, typecheck, and all 14 SDK tests pass. The final local `hackathon-submission` tag is applied after the checkpoint commit.
+The scripted testnet demo is complete in `results/demo-20261110085124.json`: register, three private sends, scan found 3, and one stealth spend. R1/R2 research is complete in `research/01-prior-art.md` and `research/02-problem-evidence.md`. The web app and submission documents are complete. Fresh-clone frozen install, typecheck, and all 14 SDK tests pass. The final local `hackathon-submission` tag must be reapplied after the current checkpoint commit.
 
 ## Blockers
 
 - Host-side Rust verification is complete in WSL2 Ubuntu; the Windows GNU native linker remains unsupported for sandbox tests.
-- Sputnik DAO payout is not executed: `sputnikv2.testnet` is visible, but no existing DAO/proposal authority was provided. Keep this as an explicit limitation unless an authorized DAO is supplied.
+- The one requested sole-council DAO attempt is blocked before submission: `pnpm demo:dao` lacks `VEIL_DAO_OWNER_PRIVATE_KEY`, and `veil-williams.testnet` has only about `0.1847 NEAR` versus the documented 5 NEAR deposit. Evidence: `results/demo-dao-20261110194505.json`. No DAO payout claim remains in the submission materials.
 
 ## Resume command
 
-The project is submission-ready and pushed to `https://github.com/willy264/veil`. The contracts, WSL2 gate, V4 tests, stipend measurements, SDK flows, V3/V5 vectors, testnet demo, Sputnik DAO payout demo, web app, Vercel build configuration, NEP draft, README, video plan, X draft, submission JSON, and fresh-clone check are complete. Human-only actions remain: deploy Vercel and paste its live URL into README, record the hosted video, post X, make the repository public if needed, and submit the form. Mainnet remains untouched.
+The project is locally submission-ready. The contracts, WSL2 gate, V4 tests, stipend measurements, SDK flows, V3/V5 vectors, testnet demo, web app, Vercel build configuration, NEP draft, README, research, video plan, X draft, submission JSON, and fresh-clone check are complete. Human-only actions remain: confirm GitHub authentication and push, deploy Vercel and paste its live URL into README, record the hosted video, post X, make the repository public if needed, and submit the form. Mainnet remains untouched.

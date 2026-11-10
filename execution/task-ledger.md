@@ -1,6 +1,6 @@
 # Veil execution ledger
 
-Last updated: 2026-11-10 16:55 UTC
+Last updated: 2026-11-10 21:55 UTC
 
 ## Context
 
@@ -14,15 +14,15 @@ Last updated: 2026-11-10 16:55 UTC
 | ID | Task | Status | Evidence / blocker |
 |---|---|---|---|
 | R0 | Read brief and common rules | done | Source files read on 2026-11-08 |
-| R1 | Prior-art research | in progress | `research/01-prior-art.md` |
-| R2 | Problem evidence | pending | Use public DAO/foundation accounts only |
+| R1 | Prior-art research | done | `research/01-prior-art.md`; source-backed comparison completed |
+| R2 | Problem evidence | done | `research/02-problem-evidence.md`; public protocol/DAO account table |
 | R3 | Cryptography design and scalar-sign proof | complete | Local proof plus confirmed testnet spend |
 | R4 | Practical flow and cost verification | complete | FT storage bound `0.00125 NEAR`; fine fresh-account sweep proves `0.03092 NEAR` as the lowest reliable tested stipend; account footprint `182 bytes` / `0.00182 NEAR`; announcement storage `191 bytes` / `0.00191 NEAR` |
 | GATE-R | Choose scheme and record proof transaction | complete | `docs/VERIFIED.md`; `results/gate-r-20261108224016.json` |
 | P1 | Scaffold SDK and tests | complete | SDK flows plus committed V3/V5 vectors and malformed-input tests pass; 14 SDK tests total |
 | P2 | Registry and router contracts | complete | WSL2 Ubuntu clippy, workspace tests, sandbox test, and `wasm32-unknown-unknown --release` build pass; V4 router unit/sandbox coverage committed |
-| P3 | Web demo | complete | Static web app reads the deployed registry/router through final testnet RPC; demo evidence passes register, 3 private sends, scan=3, and one spend. DAO payout remains an authority prerequisite. |
-| P4 | Submission package | complete | NEP draft, README, video plan, X draft, submission JSON, NearBlocks evidence, DAO payout evidence, and Vercel build configuration committed. |
+| P3 | Web demo | complete | Static web app reads the deployed registry/router through final testnet RPC; demo evidence passes register, 3 private sends, scan=3, and one spend. |
+| P4 | Submission package | complete | NEP draft, README, video plan, X draft, submission JSON, NearBlocks evidence, research, and Vercel build configuration committed. |
 
 ## Decisions needed from human
 
@@ -36,11 +36,13 @@ At 2026-11-10 09:56 UTC: approximately 110.00 hours remain until 2026-11-14 23:5
 ## Completed since prior checkpoint
 
 - Demo script corrected for near-api-js 7 `callFunction`, output-index binding, yocto conversion, finality polling, fresh faucet-funded demo accounts, and secret-free evidence output.
-- Testnet demo passed: Alice registration, three private NEAR sends, scan found 3, and one stealth spend. Sputnik factory probe succeeded; payout was not submitted without DAO authority.
+- Testnet demo passed: Alice registration, three private NEAR sends, scan found 3, and one stealth spend.
+- DAO attempt was made once with the requested sole-council script. It stopped before submission because `VEIL_DAO_OWNER_PRIVATE_KEY` was unavailable and the owner account had only about `0.1847 NEAR` versus the documented 5 NEAR creation deposit. Evidence: `results/demo-dao-20261110194505.json`.
+- R1/R2 completed with source-backed prior art and a public-account visibility table.
 
 ## Next action
 
-Fresh-clone install, typecheck, and 14-test SDK suite pass. DAO payout passes with scan ownership confirmed. Vercel static build passes. GitHub `main` and `hackathon-submission` are pushed. Human must deploy Vercel, paste the live URL into README, record the hosted video, post X, make the repo public if needed, and submit the form.
+Fresh-clone install, typecheck, and 14-test SDK suite pass. Vercel static build passes. GitHub push remains intentionally pending authentication confirmation. Human must deploy Vercel, paste the live URL into README, record the hosted video, post X, make the repo public if needed, and submit the form.
 
 ## Pause checkpoint: 2026-11-09 06:25 UTC
 
@@ -53,5 +55,5 @@ Fresh-clone install, typecheck, and 14-test SDK suite pass. DAO payout passes wi
 - Done: fine fresh-account stipend sweep. `0.03090` and `0.03091` failed; `0.03092` through `0.03100` succeeded. The reported balance requirement is `0.030919537863328 NEAR`; account storage footprint is `182 bytes` / `0.00182 NEAR`; actual FT spend burn is `0.000031263713664 NEAR`.
 - Done: SDK flows. `pnpm typecheck` and `pnpm test` pass with 10 tests for NEP-413 derivation, registry actions, NEAR/FT sends, scan, spend, export, and re-link warnings.
 - Done: V3/V5 suite. `pnpm typecheck` and `pnpm test` pass with 14 SDK tests, including `verification/v3-v5-vectors.json`.
-- Exact next action: build `pnpm demo:all` on testnet, with three private sends, scan, one spend, and the Sputnik DAO payout evidence JSON.
+- Historical checkpoint superseded: the testnet demo, research, and DAO attempt are now recorded above.
 - Not started: V4 router refund/FT/pagination coverage beyond the existing announce pagination test; SDK flows; V3/V5 vectors; demo; web app; NEP draft; README/video plan; submission JSON/X draft; final tag.

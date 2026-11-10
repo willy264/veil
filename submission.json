@@ -13,9 +13,7 @@
     "register": true,
     "private_sends": 3,
     "scan_found": 3,
-    "spend": true,
-    "sputnik_dao_payout": false,
-    "sputnik_note": "Factory visibility was verified; an existing DAO and proposal authority were not available, so no payout was submitted."
+    "spend": true
   },
   "limitations": [
     "Amounts, timing, sender identity, and token contracts remain public.",

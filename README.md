@@ -45,7 +45,7 @@ $env:VEIL_SENDER3_PRIVATE_KEY = "ed25519:..."
 pnpm demo:all
 ```
 
-The demo writes `results/demo-<timestamp>.json`. The committed run registered Alice, sent three private payments, scanned all three, and spent one; its NearBlocks links are in [verified evidence](docs/VERIFIED.md). The DAO payout evidence is [demo-dao-20261110155003.json](results/demo-dao-20261110155003.json).
+The demo writes `results/demo-<timestamp>.json`. The committed run registered Alice, sent three private payments, scanned all three, and spent one; its NearBlocks links are in [verified evidence](docs/VERIFIED.md).
 
 For Rust and sandbox verification in WSL2 Ubuntu:
 
@@ -63,9 +63,13 @@ Alice registers a viewing public key and spending public key in the registry. A 
 
 The SDK uses a NEP-413 signature as wallet-bound key material. `exportViewKey` supports selective disclosure; a view key cannot spend. See `docs/NEP-DRAFT-stealth-meta-address.md`, `docs/ARCHITECTURE.md`, and `docs/THREAT_MODEL.md`.
 
+## Research
+
+Veil follows the stealth-address pattern established by [ERC-5564](https://eips.ethereum.org/EIPS/eip-5564) and [ERC-6538](https://eips.ethereum.org/EIPS/eip-6538), with lessons from [Umbra](https://github.com/ScopeLift/umbra-protocol), [Fluidkey](https://docs.fluidkey.com/), [Monero](https://web.getmonero.org/resources/moneropedia/stealthaddress.html), and the [Nervos CCC extension](https://talk.nervos.org/t/introducing-a-stealth-address-extension-for-ccc/10802). NEAR-specific grounding is its [implicit-account model](https://github.com/near/nearcore/blob/master/docs/DataStructures/Account.md); no finalized stealth-address NEP was found in the [NEP repository](https://github.com/near/NEPs) during this research pass. See the full [prior-art review](research/01-prior-art.md) and [public visibility table](research/02-problem-evidence.md).
+
 ## Related projects
 
-Veil is independent; no second hackathon project is being submitted under this team. The DAO demonstration uses the [Sputnik DAO contract](https://github.com/near-daos/sputnik-dao-contract#setup).
+Veil is independent; no second hackathon project is being submitted under this team.
 
 ## AI and tools disclosure
 
