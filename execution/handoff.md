@@ -26,7 +26,7 @@ The repository contains the research-first scaffolding and a working TypeScript 
 
 ## Exact next action
 
-The scripted testnet demo is complete in `results/demo-20261110085124.json`: register, three private sends, scan found 3, and one stealth spend. R1/R2 research is complete in `research/01-prior-art.md` and `research/02-problem-evidence.md`. The web app and submission documents are complete. Fresh-clone frozen install, typecheck, and all 14 SDK tests pass. The final local `hackathon-submission` tag must be reapplied after the current checkpoint commit.
+The scripted testnet demo is complete in `results/demo-20261110085124.json`: register, three private sends, scan found 3, and one stealth spend. R1/R2 research is complete in `research/01-prior-art.md` and `research/02-problem-evidence.md`. The web app and submission documents are complete. Fresh-clone frozen install, typecheck, and all 14 SDK tests pass. The final local `hackathon-submission` tag points to the current commit.
 
 ## Blockers
 
