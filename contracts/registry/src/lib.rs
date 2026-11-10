@@ -1,5 +1,7 @@
+use curve25519_dalek::edwards::CompressedEdwardsY;
+use curve25519_dalek::traits::IsIdentity;
+use near_sdk::store::LookupMap;
 use near_sdk::{env, near, AccountId, NearToken, PanicOnDefault, Promise};
-use std::collections::HashMap;
 
 const MIN_STORAGE_DEPOSIT: NearToken = NearToken::from_yoctonear(1_000_000_000_000_000_000_000);
 
@@ -14,8 +16,8 @@ pub struct Meta {
 #[near(contract_state)]
 #[derive(PanicOnDefault)]
 pub struct Registry {
-    metas: HashMap<AccountId, Meta>,
-    storage_deposits: HashMap<AccountId, NearToken>,
+    metas: LookupMap<AccountId, Meta>,
+    storage_deposits: LookupMap<AccountId, NearToken>,
 }
 
 #[near]
@@ -23,8 +25,8 @@ impl Registry {
     #[init]
     pub fn new() -> Self {
         Self {
-            metas: HashMap::new(),
-            storage_deposits: HashMap::new(),
+            metas: LookupMap::new(b'm'),
+            storage_deposits: LookupMap::new(b'd'),
         }
     }
 
@@ -40,6 +42,9 @@ impl Registry {
         assert_eq!(spend_pub_hex.len(), 64, "spend key must be 32-byte hex");
         assert_eq!(view_pub_hex.len(), 64, "view key must be 32-byte hex");
         assert_eq!(scheme_id, 1, "unsupported scheme");
+        assert_valid_point(&spend_pub_hex, "spend key");
+        assert_valid_point(&view_pub_hex, "view key");
+        let before = env::storage_usage();
         self.metas.insert(
             account_id.clone(),
             Meta {
@@ -48,9 +53,18 @@ impl Registry {
                 scheme_id,
             },
         );
-        let previous = self.storage_deposits.insert(account_id.clone(), attached);
+        let required = NearToken::from_yoctonear(
+            u128::from(env::storage_usage().saturating_sub(before))
+                * env::storage_byte_cost().as_yoctonear(),
+        );
+        assert!(attached >= required, "insufficient storage deposit");
+        let previous = self.storage_deposits.insert(account_id.clone(), required);
+        let refund = attached.saturating_sub(required);
         if let Some(previous) = previous {
             let _ = Promise::new(account_id.clone()).transfer(previous);
+        }
+        if refund > NearToken::from_yoctonear(0) {
+            let _ = Promise::new(account_id.clone()).transfer(refund);
         }
         env::log_str(&format!(
             r#"{{"standard":"veil","event":"meta_registered","account_id":"{}"}}"#,
@@ -82,6 +96,42 @@ impl Registry {
     }
 }
 
+fn assert_valid_point(hex: &str, label: &str) {
+    let bytes =
+        decode_hex(hex).unwrap_or_else(|| env::panic_str(&format!("{label} must be valid hex")));
+    let point = CompressedEdwardsY(bytes)
+        .decompress()
+        .unwrap_or_else(|| env::panic_str(&format!("{label} must be a valid Edwards point")));
+    assert!(
+        !point.is_identity(),
+        "{label} must not be the identity point"
+    );
+    assert!(
+        bool::from(point.is_torsion_free()),
+        "{label} must be torsion-free"
+    );
+}
+
+fn decode_hex(value: &str) -> Option<[u8; 32]> {
+    if value.len() != 64 {
+        return None;
+    }
+    let mut output = [0u8; 32];
+    for (index, pair) in value.as_bytes().chunks_exact(2).enumerate() {
+        output[index] = (hex_digit(pair[0])? << 4) | hex_digit(pair[1])?;
+    }
+    Some(output)
+}
+
+fn hex_digit(value: u8) -> Option<u8> {
+    match value {
+        b'0'..=b'9' => Some(value - b'0'),
+        b'a'..=b'f' => Some(value - b'a' + 10),
+        b'A'..=b'F' => Some(value - b'A' + 10),
+        _ => None,
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -96,14 +146,18 @@ mod tests {
         builder
     }
 
+    fn point_hex() -> String {
+        format!("58{}", "66".repeat(31))
+    }
+
     #[test]
     fn register_and_resolve_meta() {
         testing_env!(context(accounts(0), MIN_STORAGE_DEPOSIT).build());
         let mut registry = Registry::new();
-        registry.register("11".repeat(32), "22".repeat(32), 1);
+        registry.register(point_hex(), point_hex(), 1);
         let meta = registry.get_meta(accounts(0)).expect("registered meta");
         assert_eq!(meta.scheme_id, 1);
-        assert_eq!(meta.spend_pub_hex, "11".repeat(32));
+        assert_eq!(meta.spend_pub_hex, point_hex());
     }
 
     #[test]
@@ -111,6 +165,6 @@ mod tests {
     fn rejects_unknown_scheme() {
         testing_env!(context(accounts(0), MIN_STORAGE_DEPOSIT).build());
         let mut registry = Registry::new();
-        registry.register("11".repeat(32), "22".repeat(32), 2);
+        registry.register(point_hex(), point_hex(), 2);
     }
 }

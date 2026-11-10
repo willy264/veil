@@ -4259,6 +4259,7 @@ dependencies = [
 name = "veil-registry"
 version = "0.1.0"
 dependencies = [
+ "curve25519-dalek",
  "near-sdk",
 ]
 
@@ -4267,6 +4268,7 @@ name = "veil-router"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "curve25519-dalek",
  "near-contract-standards",
  "near-sdk",
  "near-workspaces",
