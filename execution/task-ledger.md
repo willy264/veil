@@ -1,6 +1,6 @@
 # Veil execution ledger
 
-Last updated: 2026-11-10 09:58 UTC
+Last updated: 2026-11-10 16:55 UTC
 
 ## Context
 
@@ -40,7 +40,7 @@ At 2026-11-10 09:56 UTC: approximately 110.00 hours remain until 2026-11-14 23:5
 
 ## Next action
 
-Fresh-clone install, typecheck, and 14-test SDK suite pass. DAO payout passes with scan ownership confirmed. Vercel static build passes. Final local tag and GitHub push are the next handoff checkpoint; then hand off video recording, Vercel deployment, X posting, repository publication, and form submission to the human.
+Fresh-clone install, typecheck, and 14-test SDK suite pass. DAO payout passes with scan ownership confirmed. Vercel static build passes. GitHub `main` and `hackathon-submission` are pushed. Human must deploy Vercel, paste the live URL into README, record the hosted video, post X, make the repo public if needed, and submit the form.
 
 ## Pause checkpoint: 2026-11-09 06:25 UTC
 
