@@ -51,4 +51,10 @@ Only facts backed by a source or a real executed test belong here. Simulated res
 - Register: https://testnet.nearblocks.io/txns/EACePGCGboNaxyMUFg6yc9FbYeqwDjB7fd57QaMHvjST
 - Sends: https://testnet.nearblocks.io/txns/CcP8bbX9aGgogtFrCxdeoZt5oXP8SuvGThryjM9uS9Fy, https://testnet.nearblocks.io/txns/5w1RTyMMG8sakMUhACxop8N1LtnJf4GSCXkujaY6mNCF, https://testnet.nearblocks.io/txns/9Pzghy1VHauxJViZac6MotLezD4uL5WGrDyhRMSLrS1z
 - Spend: https://testnet.nearblocks.io/txns/vMbgFyzUb1PnU9eN5pR9cgUsWF1QafS1kXznp2kBQJH
-- **LIMITATION:** `sputnikv2.testnet` is visible, but the demo did not submit a DAO payout because no existing DAO/proposal authority was provided. The result records this as `PASS_WITH_DAO_PREREQUISITE` rather than claiming a payout.
+- **HISTORICAL:** The initial general demo recorded a Sputnik factory prerequisite only; the subsequent scripted DAO payout is verified below.
+
+## Sputnik DAO payout: 2026-11-10
+
+- **VERIFIED:** The current Sputnik factory is `sputnikv2.testnet`; its documented `create({name,args:base64(...)})` flow and council/policy shape are in the [Sputnik DAO README](https://github.com/near-daos/sputnik-dao-contract#setup). The testnet DAO is `veildao4325597600.sputnikv2.testnet`, with `veil-williams.testnet` in the council.
+- **VERIFIED:** Proposal `2` is a FunctionCall to `router.veil-williams.testnet.send_near` with `0.04 NEAR`, approved by both council members. Proposal transaction: https://testnet.nearblocks.io/txns/F15maqStdUJAqGdMiTnUaM6poz1AZehH8tsVFr1PT5JH. Approval transactions: https://testnet.nearblocks.io/txns/2bQL1U9CRE5ZY4zsxCjLNg1mwgfsCJrn5yEjZEP9Lkqq and https://testnet.nearblocks.io/txns/98CdBz8EwGmcB83DoYtFEDoj8PyUSa7NasJ5seNGGEqAj.
+- **VERIFIED:** The recipient scan found the DAO payout at global announcement index `42` and marked it owned. Evidence: `results/demo-dao-20261110155003.json`.

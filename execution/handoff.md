@@ -35,4 +35,4 @@ The scripted testnet demo is complete in `results/demo-20261110085124.json`: reg
 
 ## Resume command
 
-The project is submission-ready locally. The contracts, WSL2 gate, V4 tests, stipend measurements, SDK flows, V3/V5 vectors, testnet demo, web app, NEP draft, README, video plan, X draft, submission JSON, and fresh-clone check are complete. Human-only actions remain: record the video, post X, publish the repository, and submit the form. Mainnet remains untouched.
+The project is submission-ready locally. The contracts, WSL2 gate, V4 tests, stipend measurements, SDK flows, V3/V5 vectors, testnet demo, Sputnik DAO payout demo, web app, Vercel build configuration, NEP draft, README, video plan, X draft, submission JSON, and fresh-clone check are complete. Human-only actions remain: deploy Vercel and paste its live URL into README, record the video, post X, publish the repository, and submit the form. Mainnet remains untouched.

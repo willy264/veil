@@ -7,6 +7,7 @@
     "typecheck": "pnpm --filter @veil/sdk typecheck",
     "test:v1": "tsx scripts/v1-property.ts",
     "demo:all": "tsx scripts/demo-all.ts",
+    "demo:dao": "tsx scripts/demo-dao.ts",
     "web:dev": "python -m http.server 4173 --directory apps/web"
   },
   "devDependencies": {

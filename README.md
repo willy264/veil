@@ -4,13 +4,13 @@ Private receiving for NEAR named accounts. Veil lets `ada.near` publish one reus
 
 ## Status
 
-The V1 registry and router contracts are deployed on NEAR testnet:
+The V1 registry and router contracts are deployed on NEAR testnet; receipts are listed in [verified evidence](docs/VERIFIED.md):
 
 - Registry: `registry.veil-williams.testnet`
 - Router: `router.veil-williams.testnet`
 - Mock six-decimal FT: `mockft.veil-williams.testnet`
 
-The WSL2 Ubuntu gate passes Rust formatting, clippy with warnings denied, workspace tests, sandbox tests, and release WASM builds. The SDK tests cover NEP-413 derivation, registry and router actions, scanning, spending, view-key export, relinking warnings, V3 vectors, and malformed inputs.
+The WSL2 Ubuntu gate passes Rust formatting, clippy with warnings denied, workspace tests, sandbox tests, and release WASM builds; the checks are defined in [CI](.github/workflows/ci.yml). The SDK tests cover NEP-413 derivation, registry and router actions, scanning, spending, view-key export, relinking warnings, V3 vectors, and malformed inputs; [14 tests pass](packages/sdk/test).
 
 ## Try it
 
@@ -31,6 +31,10 @@ pnpm web:dev
 
 Open `http://127.0.0.1:4173`. It reads the deployed registry and router through final testnet RPC. Wallet signing is intentionally not embedded in the static demo.
 
+### Vercel deployment
+
+Run `pnpm --dir apps/web build` locally to validate the static build. In Vercel, import `willy264/veil`, set Root Directory to `apps/web`, choose **Other**, set Build Command to `pnpm build`, set Output Directory to `.`, and add `VEIL_NETWORK=testnet`, `VEIL_RPC_URL=https://rpc.testnet.fastnear.com`, `VEIL_REGISTRY_ID=registry.veil-williams.testnet`, and `VEIL_ROUTER_ID=router.veil-williams.testnet`. Do not add private keys. The build rejects non-testnet configuration. Live demo URL: pending human Vercel deployment.
+
 Run the scripted testnet demo with process-only key variables:
 
 ```powershell
@@ -41,7 +45,7 @@ $env:VEIL_SENDER3_PRIVATE_KEY = "ed25519:..."
 pnpm demo:all
 ```
 
-The demo writes `results/demo-<timestamp>.json`. The committed run registered Alice, sent three private payments, scanned all three, and spent one; its NearBlocks links are in `docs/VERIFIED.md`.
+The demo writes `results/demo-<timestamp>.json`. The committed run registered Alice, sent three private payments, scanned all three, and spent one; its NearBlocks links are in [verified evidence](docs/VERIFIED.md). The DAO payout evidence is [demo-dao-20261110155003.json](results/demo-dao-20261110155003.json).
 
 For Rust and sandbox verification in WSL2 Ubuntu:
 
@@ -59,6 +63,14 @@ Alice registers a viewing public key and spending public key in the registry. A 
 
 The SDK uses a NEP-413 signature as wallet-bound key material. `exportViewKey` supports selective disclosure; a view key cannot spend. See `docs/NEP-DRAFT-stealth-meta-address.md`, `docs/ARCHITECTURE.md`, and `docs/THREAT_MODEL.md`.
 
+## Related projects
+
+Veil is independent; no second hackathon project is being submitted under this team. The DAO demonstration uses the [Sputnik DAO contract](https://github.com/near-daos/sputnik-dao-contract#setup).
+
+## AI and tools disclosure
+
+Codex assisted with implementation, review, research, and test orchestration. References and dependencies include [NEAR docs](https://docs.near.org/), [near-api-js](https://github.com/near/near-api-js), [noble-hashes](https://github.com/paulmillr/noble-hashes), and the [Sputnik README](https://github.com/near-daos/sputnik-dao-contract#setup). Wallet keys were never supplied to AI tools or committed.
+
 ## Honest limits
 
-Amounts, timing, sender identities, and token contracts remain public. Sweeping multiple stealth balances to one destination links them. The demo probes `sputnikv2.testnet`, but does not submit a DAO payout without an existing DAO and proposal authority. The project is testnet-only and has not touched mainnet.
+Amounts, timing, sender identities, and token contracts remain public. Sweeping multiple stealth balances to one destination links them. The project is testnet-only and has not touched mainnet; transaction-level limits and receipts are in [verified evidence](docs/VERIFIED.md).

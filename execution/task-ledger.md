@@ -22,7 +22,7 @@ Last updated: 2026-11-10 09:58 UTC
 | P1 | Scaffold SDK and tests | complete | SDK flows plus committed V3/V5 vectors and malformed-input tests pass; 14 SDK tests total |
 | P2 | Registry and router contracts | complete | WSL2 Ubuntu clippy, workspace tests, sandbox test, and `wasm32-unknown-unknown --release` build pass; V4 router unit/sandbox coverage committed |
 | P3 | Web demo | complete | Static web app reads the deployed registry/router through final testnet RPC; demo evidence passes register, 3 private sends, scan=3, and one spend. DAO payout remains an authority prerequisite. |
-| P4 | Submission package | complete | NEP draft, README, video plan, X draft, submission JSON, and NearBlocks evidence committed. |
+| P4 | Submission package | complete | NEP draft, README, video plan, X draft, submission JSON, NearBlocks evidence, DAO payout evidence, and Vercel build configuration committed. |
 
 ## Decisions needed from human
 
@@ -40,7 +40,7 @@ At 2026-11-10 09:56 UTC: approximately 110.00 hours remain until 2026-11-14 23:5
 
 ## Next action
 
-Fresh-clone install, typecheck, and 14-test SDK suite pass. Final local tag is the next handoff checkpoint; then hand off video recording, X posting, repository publication, and form submission to the human.
+Fresh-clone install, typecheck, and 14-test SDK suite pass. DAO payout passes with scan ownership confirmed. Vercel static build passes. Final local tag and GitHub push are the next handoff checkpoint; then hand off video recording, Vercel deployment, X posting, repository publication, and form submission to the human.
 
 ## Pause checkpoint: 2026-11-09 06:25 UTC
 

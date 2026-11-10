@@ -1,6 +1,7 @@
-const RPC = 'https://rpc.testnet.fastnear.com';
-const REGISTRY = 'registry.veil-williams.testnet';
-const ROUTER = 'router.veil-williams.testnet';
+const CONFIG = window.VEIL_CONFIG ?? {};
+const RPC = CONFIG.rpcUrl ?? 'https://rpc.testnet.fastnear.com';
+const REGISTRY = CONFIG.registryId ?? 'registry.veil-williams.testnet';
+const ROUTER = CONFIG.routerId ?? 'router.veil-williams.testnet';
 
 const $ = (id) => document.getElementById(id);
 const encodeArgs = (args) => btoa(JSON.stringify(args));
