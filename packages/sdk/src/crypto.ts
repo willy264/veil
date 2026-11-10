@@ -41,7 +41,7 @@ function scalarFromBytes(bytes: Uint8Array): bigint {
   return result;
 }
 
-function scalarToBytes(value: bigint): Uint8Array {
+export function scalarToBytes(value: bigint): Uint8Array {
   const result = new Uint8Array(32);
   let remaining = value;
   for (let index = 0; index < 32; index += 1) {
