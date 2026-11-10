@@ -1,0 +1,14 @@
+{
+  "spend": "123456789abcdef123456789abcdef",
+  "view": "23456789abcdef123456789abcdef",
+  "ephemeral": "3456789abcdef123456789abcdef",
+  "spendPublicKey": "a5ade9a74c2653042dc9f919e6ce924ab73f1d98655d2d3114f3de70c6457d50",
+  "viewPublicKey": "6b7ab3088bd9b404e6bd92960814690ba0a43527d7be7af1c60999f9818e25bb",
+  "stealthAccount": "c33b272aab306099fd707466554ff15d6d8d854bb09ce0cf1916f9b9b1477b7f",
+  "ephemeralPublicKey": "23e139b9c5ab9d1cfbcfb2ef35fd66387d15465584e6c8c62372dbfbb5cd4648",
+  "viewTag": 221,
+  "hashScalar": "4655b7207e4a7e430c4b35cb0c116ed155455cf6afcdca11ccd7a1ea0c198c7",
+  "privateScalar": "4655b7207e4a7e430c4b35cb0c116ed15668a25e39799800df0bf862a6d66b6",
+  "message": "veil-v5-vector",
+  "signature": "b3fcb47023ad987f1bf22d90e13253363c41082b8a09118b17f1cd14f186f3a0fe42170c36e39afc52ffbc2593fbfb40691940fbf76dd4b376c697fbc428570c"
+}

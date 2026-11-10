@@ -1,6 +1,6 @@
 # Veil execution ledger
 
-Last updated: 2026-11-10 08:12 UTC
+Last updated: 2026-11-10 08:15 UTC
 
 ## Context
 
@@ -19,7 +19,7 @@ Last updated: 2026-11-10 08:12 UTC
 | R3 | Cryptography design and scalar-sign proof | complete | Local proof plus confirmed testnet spend |
 | R4 | Practical flow and cost verification | complete | FT storage bound `0.00125 NEAR`; fine fresh-account sweep proves `0.03092 NEAR` as the lowest reliable tested stipend; account footprint `182 bytes` / `0.00182 NEAR`; announcement storage `191 bytes` / `0.00191 NEAR` |
 | GATE-R | Choose scheme and record proof transaction | complete | `docs/VERIFIED.md`; `results/gate-r-20261108224016.json` |
-| P1 | Scaffold SDK and tests | in progress | SDK flows committed and 10 tests pass; dedicated committed V3/V5 vectors and malformed-input suite remains |
+| P1 | Scaffold SDK and tests | complete | SDK flows plus committed V3/V5 vectors and malformed-input tests pass; 14 SDK tests total |
 | P2 | Registry and router contracts | complete | WSL2 Ubuntu clippy, workspace tests, sandbox test, and `wasm32-unknown-unknown --release` build pass; V4 router unit/sandbox coverage committed |
 | P3 | Web demo | pending | Must follow SDK and contract interfaces |
 
@@ -30,7 +30,7 @@ Last updated: 2026-11-10 08:12 UTC
 
 ## Hours remaining
 
-At 2026-11-10 08:12 UTC: approximately 111.79 hours remain until 2026-11-14 23:59 UTC. Recalculate at the start of each work session.
+At 2026-11-10 08:15 UTC: approximately 111.74 hours remain until 2026-11-14 23:59 UTC. Recalculate at the start of each work session.
 
 ## Pause checkpoint: 2026-11-09 06:25 UTC
 
@@ -42,5 +42,6 @@ At 2026-11-10 08:12 UTC: approximately 111.79 hours remain until 2026-11-14 23:5
 - Done: V4 router coverage. `cargo test -p veil-router --lib` reports 6 passing tests; the WSL2 sandbox test reports 1 passing test covering native NEAR, FT receipt, malformed refund, and pagination.
 - Done: fine fresh-account stipend sweep. `0.03090` and `0.03091` failed; `0.03092` through `0.03100` succeeded. The reported balance requirement is `0.030919537863328 NEAR`; account storage footprint is `182 bytes` / `0.00182 NEAR`; actual FT spend burn is `0.000031263713664 NEAR`.
 - Done: SDK flows. `pnpm typecheck` and `pnpm test` pass with 10 tests for NEP-413 derivation, registry actions, NEAR/FT sends, scan, spend, export, and re-link warnings.
-- Exact next action: add committed V3/V5 vectors, malformed meta-address/input tests, wrong-key tests, and explicit view-key-no-spend tests.
+- Done: V3/V5 suite. `pnpm typecheck` and `pnpm test` pass with 14 SDK tests, including `verification/v3-v5-vectors.json`.
+- Exact next action: build `pnpm demo:all` on testnet, with three private sends, scan, one spend, and the Sputnik DAO payout evidence JSON.
 - Not started: V4 router refund/FT/pagination coverage beyond the existing announce pagination test; SDK flows; V3/V5 vectors; demo; web app; NEP draft; README/video plan; submission JSON/X draft; final tag.

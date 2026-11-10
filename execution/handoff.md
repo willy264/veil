@@ -1,6 +1,6 @@
 # Veil handoff
 
-Updated 2026-11-10 08:12 UTC. Approximately 111.79 hours remain until the 2026-11-14 23:59 UTC deadline.
+Updated 2026-11-10 08:15 UTC. Approximately 111.74 hours remain until the 2026-11-14 23:59 UTC deadline.
 
 ## Current state
 
@@ -22,6 +22,7 @@ The repository contains the research-first scaffolding and a working TypeScript 
 - V4 router coverage now passes: 6 unit tests plus 1 sandbox test covering NEAR, FT, failed-transfer refund, malformed FT refund, and pagination.
 - Fine stipend sweep now passes with `0.03092 NEAR` as the lowest tested success. `0.03090` and `0.03091` fail against the exact `0.030919537863328 NEAR` preflight requirement. Each account uses 182 bytes (`0.00182 NEAR` nominal storage footprint); actual FT spend burn is `0.000031263713664 NEAR`.
 - SDK flows are implemented in `packages/sdk/src/sdk.ts` and exported from `packages/sdk/src/index.ts`; `pnpm typecheck` and `pnpm test` pass with 10 tests.
+- V3/V5 evidence is committed in `verification/v3-v5-vectors.json`; the SDK test suite now has 14 passing tests, including malformed points, wrong-key rejection, and view-only spend rejection.
 
 ## Exact next action
 
@@ -33,6 +34,6 @@ The registry and router contracts are implemented and deployed to `registry.veil
 
 ## Resume command
 
-Next: add committed V3/V5 vectors, malformed meta-address/input tests, wrong-key tests, and explicit view-key-no-spend tests.
+Next: build `pnpm demo:all` on testnet and write `results/demo-<ts>.json` with three private sends, scan, one spend, and the Sputnik DAO payout.
 
 After that gate, add V4 router tests for NEAR/FT/refund/pagination, then continue SDK flows and V3/V5 vectors. The web app, demo, NEP draft, README/video plan, submission JSON/X draft, and `hackathon-submission` tag are not started.
