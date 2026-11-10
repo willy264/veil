@@ -1,6 +1,6 @@
 # Veil execution ledger
 
-Last updated: 2026-11-10 08:15 UTC
+Last updated: 2026-11-10 09:56 UTC
 
 ## Context
 
@@ -21,7 +21,8 @@ Last updated: 2026-11-10 08:15 UTC
 | GATE-R | Choose scheme and record proof transaction | complete | `docs/VERIFIED.md`; `results/gate-r-20261108224016.json` |
 | P1 | Scaffold SDK and tests | complete | SDK flows plus committed V3/V5 vectors and malformed-input tests pass; 14 SDK tests total |
 | P2 | Registry and router contracts | complete | WSL2 Ubuntu clippy, workspace tests, sandbox test, and `wasm32-unknown-unknown --release` build pass; V4 router unit/sandbox coverage committed |
-| P3 | Web demo | in progress | Testnet demo passes register, 3 private sends, scan=3, and one spend; DAO payout remains an authority prerequisite. Evidence: `results/demo-20261110085124.json` |
+| P3 | Web demo | complete | Static web app reads the deployed registry/router through final testnet RPC; demo evidence passes register, 3 private sends, scan=3, and one spend. DAO payout remains an authority prerequisite. |
+| P4 | Submission package | complete | NEP draft, README, video plan, X draft, submission JSON, and NearBlocks evidence committed. |
 
 ## Decisions needed from human
 
@@ -30,7 +31,7 @@ Last updated: 2026-11-10 08:15 UTC
 
 ## Hours remaining
 
-At 2026-11-10 08:55 UTC: approximately 110.99 hours remain until 2026-11-14 23:59 UTC. Recalculate at the start of each work session.
+At 2026-11-10 09:56 UTC: approximately 110.00 hours remain until 2026-11-14 23:59 UTC. Recalculate at the start of each work session.
 
 ## Completed since prior checkpoint
 
@@ -39,7 +40,7 @@ At 2026-11-10 08:55 UTC: approximately 110.99 hours remain until 2026-11-14 23:5
 
 ## Next action
 
-Build and verify the web app wired to the registry/router, then commit the NEP draft, README, video plan, X draft, and submission JSON before tagging `hackathon-submission`.
+Run the fresh-clone check, inspect the final staged diff, create the local `hackathon-submission` tag, and hand off video recording, X posting, and form submission to the human.
 
 ## Pause checkpoint: 2026-11-09 06:25 UTC
 

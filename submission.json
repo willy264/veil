@@ -1,0 +1,25 @@
+{
+  "project": "Veil",
+  "network": "NEAR testnet",
+  "contracts": {
+    "registry": "registry.veil-williams.testnet",
+    "router": "router.veil-williams.testnet",
+    "mock_ft": "mockft.veil-williams.testnet"
+  },
+  "proof": "results/demo-20261110085124.json",
+  "verified": "docs/VERIFIED.md",
+  "repository": "local-only-until-published",
+  "demo": {
+    "register": true,
+    "private_sends": 3,
+    "scan_found": 3,
+    "spend": true,
+    "sputnik_dao_payout": false,
+    "sputnik_note": "Factory visibility was verified; an existing DAO and proposal authority were not available, so no payout was submitted."
+  },
+  "limitations": [
+    "Amounts, timing, sender identity, and token contracts remain public.",
+    "Sweeping multiple stealth accounts to one destination creates a link.",
+    "The current implementation is testnet-only and uses Ed25519 implicit accounts."
+  ]
+}
