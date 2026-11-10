@@ -1,6 +1,6 @@
 # Veil handoff
 
-Updated 2026-11-09 06:25 UTC. Approximately 137.56 hours remain until the 2026-11-14 23:59 UTC deadline.
+Updated 2026-11-10 07:40 UTC. Approximately 112.22 hours remain until the 2026-11-14 23:59 UTC deadline.
 
 ## Current state
 
@@ -18,17 +18,18 @@ The repository contains the research-first scaffolding and a working TypeScript 
 - Converted evidence links in the verification documents and scripts to `testnet.nearblocks.io`.
 - Added `.github/workflows/ci.yml`, `near-workspaces 0.24.0`, and `contracts/router/tests/sandbox_round.rs`.
 - WSL2 Ubuntu results: router unit tests `2 passed`; router sandbox test `1 passed`.
+- WSL2 Ubuntu full gate now passes: fmt, clippy with `-D warnings`, workspace tests, sandbox test, and release WASM build for registry, router, and mock FT.
 
 ## Exact next action
 
-The registry and router contracts are implemented and deployed to `registry.veil-williams.testnet` and `router.veil-williams.testnet`. The Ubuntu router unit and sandbox tests pass. The full Rust gate is half-finished: it was stopped during clippy dependency checking before final clippy, workspace tests, and WASM build results.
+The registry and router contracts are implemented and deployed to `registry.veil-williams.testnet`. The full Ubuntu Rust gate passes. V4 contract behavior coverage remains the next task.
 
 ## Blockers
 
-- Full clippy/workspace/WASM verification is open because the pause interrupted it during clippy. Host-side Rust tests must run in WSL2 Ubuntu or GitHub Actions; the Windows GNU native linker is not an accepted test environment.
+- Host-side Rust verification is complete in WSL2 Ubuntu; the Windows GNU native linker remains unsupported for sandbox tests.
 
 ## Resume command
 
-`cd contracts && cargo fmt --all -- --check && cargo clippy --workspace --all-targets -- -D warnings && cargo test --workspace && rustup target add wasm32-unknown-unknown && cargo build --workspace --target wasm32-unknown-unknown --release`
+Next: add V4 router tests for native NEAR, FT, failed-transfer refund, and pagination, then run the full WSL2 Rust gate again.
 
 After that gate, add V4 router tests for NEAR/FT/refund/pagination, then continue SDK flows and V3/V5 vectors. The web app, demo, NEP draft, README/video plan, submission JSON/X draft, and `hackathon-submission` tag are not started.
