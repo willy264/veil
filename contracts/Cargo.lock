@@ -4267,6 +4267,7 @@ name = "veil-router"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "near-contract-standards",
  "near-sdk",
  "near-workspaces",
  "serde_json",

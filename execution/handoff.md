@@ -1,6 +1,6 @@
 # Veil handoff
 
-Updated 2026-11-10 07:40 UTC. Approximately 112.22 hours remain until the 2026-11-14 23:59 UTC deadline.
+Updated 2026-11-10 08:03 UTC. Approximately 111.83 hours remain until the 2026-11-14 23:59 UTC deadline.
 
 ## Current state
 
@@ -19,10 +19,11 @@ The repository contains the research-first scaffolding and a working TypeScript 
 - Added `.github/workflows/ci.yml`, `near-workspaces 0.24.0`, and `contracts/router/tests/sandbox_round.rs`.
 - WSL2 Ubuntu results: router unit tests `2 passed`; router sandbox test `1 passed`.
 - WSL2 Ubuntu full gate now passes: fmt, clippy with `-D warnings`, workspace tests, sandbox test, and release WASM build for registry, router, and mock FT.
+- V4 router coverage now passes: 6 unit tests plus 1 sandbox test covering NEAR, FT, failed-transfer refund, malformed FT refund, and pagination.
 
 ## Exact next action
 
-The registry and router contracts are implemented and deployed to `registry.veil-williams.testnet`. The full Ubuntu Rust gate passes. V4 contract behavior coverage remains the next task.
+The registry and router contracts are implemented and deployed to `registry.veil-williams.testnet`. The full Ubuntu Rust gate and V4 behavior coverage pass.
 
 ## Blockers
 
@@ -30,6 +31,6 @@ The registry and router contracts are implemented and deployed to `registry.veil
 
 ## Resume command
 
-Next: add V4 router tests for native NEAR, FT, failed-transfer refund, and pagination, then run the full WSL2 Rust gate again.
+Next: run a finer stipend sweep around `0.04 NEAR`, measuring the implicit account storage reserve separately from FT gas/transaction cost.
 
 After that gate, add V4 router tests for NEAR/FT/refund/pagination, then continue SDK flows and V3/V5 vectors. The web app, demo, NEP draft, README/video plan, submission JSON/X draft, and `hackathon-submission` tag are not started.
