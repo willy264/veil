@@ -4,4 +4,4 @@ Veil brings private receiving to NEAR named accounts. Built at NEAR HACKATHON wi
 
 Why NEAR: named accounts create a privacy leak, while implicit accounts make one-time destinations possible without a protocol change.
 
-Testnet proof: 3 private sends, scan finds 3, and 1 stealth spend discovered by the recipient scanner. Amounts, timing, senders, and later sweeping remain public. #NEAR #Privacy
+Testnet proof: 3 private sends, scan finds 3, 1 stealth spend, and a Sputnik DAO sole-council payout approved through the router and found by the recipient scanner. Amounts, timing, senders, and later sweeping remain public. #NEAR #Privacy

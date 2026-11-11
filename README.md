@@ -12,7 +12,7 @@ The V1 registry and router contracts are deployed on NEAR testnet; receipts are 
 - Router: `router2.veil-williams.testnet`
 - Mock six-decimal FT: `mockft.veil-williams.testnet`
 
-Fresh registry/router creation, funding, deployment, initialization, WASM sizes, and view checks are recorded in [deployment evidence](results/deploy-20261111.json) and [verified links](docs/VERIFIED.md). The DAO payout step has not been run yet.
+Fresh registry/router creation, funding, deployment, initialization, WASM sizes, and view checks are recorded in [deployment evidence](results/deploy-20261111.json) and [verified links](docs/VERIFIED.md). The verified DAO payout is recorded in [DAO evidence](results/demo-dao-20261111220608.json).
 
 The WSL2 Ubuntu gate passes Rust formatting, clippy with warnings denied, workspace tests, sandbox tests, and release WASM builds; the checks are defined in [CI](.github/workflows/ci.yml). The SDK tests cover NEP-413 derivation, registry and router actions, scanning, spending, view-key export, relinking warnings, V3 vectors, and malformed inputs; [14 tests pass](packages/sdk/test).
 
@@ -49,7 +49,7 @@ $env:VEIL_SENDER3_PRIVATE_KEY = "ed25519:..."
 pnpm demo:all
 ```
 
-The demo writes `results/demo-<timestamp>.json`. The committed run registered Alice, sent three private payments, scanned all three, and spent one; its NearBlocks links are in [verified evidence](docs/VERIFIED.md). The Sputnik DAO payout remains unverified and is not part of the submission claims.
+The demo writes `results/demo-<timestamp>.json`. The committed run registered Alice, sent three private payments, scanned all three, and spent one; its NearBlocks links are in [verified evidence](docs/VERIFIED.md). The committed DAO run also created a sole-council Sputnik DAO, approved a private router payout, and verified the recipient scan in [DAO evidence](results/demo-dao-20261111220608.json).
 
 For Rust and sandbox verification in WSL2 Ubuntu:
 

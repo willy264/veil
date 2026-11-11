@@ -7,6 +7,7 @@
     "mock_ft": "mockft.veil-williams.testnet"
   },
   "proof": "results/deploy-20261111.json",
+  "dao_proof": "results/demo-dao-20261111220608.json",
   "verified": "docs/VERIFIED.md",
   "repository": "https://github.com/willy264/veil",
   "live_url": "https://veil-eta-khaki.vercel.app",
@@ -14,7 +15,8 @@
     "register": true,
     "private_sends": 3,
     "scan_found": 3,
-    "spend": true
+    "spend": true,
+    "dao_payout": true
   },
   "limitations": [
     "Amounts, timing, sender identity, and token contracts remain public.",

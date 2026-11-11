@@ -31,15 +31,15 @@ The repository contains the research-first scaffolding, tested contracts, TypeSc
 
 ## Exact next action
 
-The scripted testnet demo is complete in `results/demo-20261110085124.json` against the prior deployment. The fresh deployment is separately verified in `results/deploy-20261111.json`; `pnpm demo:dao` has intentionally not been run yet. R1/R2 research is complete in `research/01-prior-art.md` and `research/02-problem-evidence.md`.
+The scripted testnet demo is complete in `results/demo-20261110085124.json` against the prior deployment. The fresh deployment is separately verified in `results/deploy-20261111.json`; the DAO payout passed in `results/demo-dao-20261111220608.json`. R1/R2 research is complete in `research/01-prior-art.md` and `research/02-problem-evidence.md`.
 
 ## Blockers
 
 - Host-side Rust verification is complete in WSL2 Ubuntu; the Windows GNU native linker remains unsupported for sandbox tests.
-- The one requested sole-council DAO attempt is blocked before submission: `pnpm demo:dao` lacks `VEIL_DAO_OWNER_PRIVATE_KEY`, and `veil-williams.testnet` has only about `0.1847 NEAR` versus the documented 5 NEAR deposit. Evidence: `results/demo-dao-20261110194505.json`. No DAO payout claim remains in the submission materials.
+- The initial DAO attempt was blocked by unavailable signer/funds, but the later retry passed after the key was available and the signer input was normalized. Evidence: `results/demo-dao-20261111220608.json`.
 - A fresh `registry2.veil-williams.testnet` account attempt was rejected by the faucet flow because the available signer was interpreted as `testnet`; no fresh deployment was made. The verified contracts remain `registry.veil-williams.testnet` and `router.veil-williams.testnet`.
-- That earlier blocker is resolved. Current verified contracts are `registry2.veil-williams.testnet` and `router2.veil-williams.testnet`; the remaining blocker is only the unrun DAO verification requested by the user.
+- Current verified contracts are `registry2.veil-williams.testnet` and `router2.veil-williams.testnet`; DAO verification is complete.
 
 ## Resume command
 
-The project has fresh deployed contracts, a live Vercel app, and code/evidence submission readiness; DAO verification remains intentionally pending. Next action is `pnpm demo:dao`, then verify the hosted wallet flow, record the video, post X, and submit the form. Mainnet remains untouched.
+The project has fresh deployed contracts, a live Vercel app, and code/evidence submission readiness. Remaining human-only actions are to verify the hosted wallet flow, record the video, post X, and submit the form. Mainnet remains untouched.

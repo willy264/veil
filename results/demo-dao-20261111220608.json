@@ -1,0 +1,75 @@
+{
+  "status": "PASS",
+  "network": "testnet",
+  "factory": "sputnikv2.testnet",
+  "daoId": "veildao4434750196.sputnikv2.testnet",
+  "council": [
+    "veil-williams.testnet"
+  ],
+  "stealthAccount": "47fc80fb091df782903007d9b568a40098409d3c93f94b9cc0df7cc903937c10",
+  "create": {
+    "hash": "5ZHuDo2n792VicWzMSbP3zx2ZMyqVeKcAkzoGVBkwuWG",
+    "explorerUrl": "https://testnet.nearblocks.io/txns/5ZHuDo2n792VicWzMSbP3zx2ZMyqVeKcAkzoGVBkwuWG"
+  },
+  "policyView": {
+    "roles": [
+      {
+        "name": "all",
+        "kind": "Everyone",
+        "permissions": [
+          "*:AddProposal"
+        ],
+        "vote_policy": {}
+      },
+      {
+        "name": "council",
+        "kind": {
+          "Group": [
+            "veil-williams.testnet"
+          ]
+        },
+        "permissions": [
+          "*:Finalize",
+          "*:AddProposal",
+          "*:VoteApprove",
+          "*:VoteReject",
+          "*:VoteRemove"
+        ],
+        "vote_policy": {}
+      }
+    ],
+    "default_vote_policy": {
+      "weight_kind": "RoleWeight",
+      "quorum": "0",
+      "threshold": [
+        1,
+        2
+      ]
+    },
+    "proposal_bond": "1000000000000000000000000",
+    "proposal_period": "604800000000000",
+    "bounty_bond": "1000000000000000000000000",
+    "bounty_forgiveness_period": "86400000000000"
+  },
+  "proposal": {
+    "id": 0,
+    "hash": "8vsaYtRBkkPv68wUhuRF5F3yyXRtJJDzVYKCqmzEV14M",
+    "explorerUrl": "https://testnet.nearblocks.io/txns/8vsaYtRBkkPv68wUhuRF5F3yyXRtJJDzVYKCqmzEV14M"
+  },
+  "approvals": [
+    "https://testnet.nearblocks.io/txns/5JQtGN7P2xUM2zMef2QxT9s3eWErPFrWgNkHMVhJBSHP"
+  ],
+  "scan": {
+    "found": 1,
+    "owned": [
+      {
+        "index": 0,
+        "amount": "40000000000000000000000",
+        "owned": true
+      }
+    ]
+  },
+  "sources": [
+    "https://github.com/near-daos/sputnik-dao-contract#setup"
+  ]
+}

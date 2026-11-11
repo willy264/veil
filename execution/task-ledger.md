@@ -43,12 +43,12 @@ At 2026-11-10 09:56 UTC: approximately 110.00 hours remain until 2026-11-14 23:5
 - Fresh clone passed frozen install, SDK typecheck, 14 SDK tests with one worker, and `pnpm --dir apps/web build` on 2026-11-11.
 - Fresh `registry2.veil-williams.testnet` creation was attempted once and rejected because the faucet workflow treated the available signer as `testnet`, not the `veil-williams.testnet` namespace. No new deployment was claimed.
 - Fresh deployment completed after the owner key became available: registry2 and router2 were created by `veil-williams.testnet`, funded, deployed, initialized, and view-verified. Evidence: `results/deploy-20261111.json`.
-- DAO demo was intentionally not run in this step. Remaining DAO requirement: execute `pnpm demo:dao` with `VEIL_DAO_OWNER_PRIVATE_KEY` set, then restore claims only if the DAO proposal, approval, router announcement, and recipient scan all pass.
+- DAO demo passed from the user PowerShell after signer-key normalization. Evidence: `results/demo-dao-20261111220608.json`; sole-council creation, proposal, approval, and recipient scan all passed.
 - Vercel project `veil` deployed successfully at `https://veil-eta-khaki.vercel.app`; HTTP 200 and the expected page title were verified. `veil.vercel.app` is unavailable to this account.
 
 ## Next action
 
-Run `pnpm demo:dao` next, then deploy Vercel, replace the pending live URL in README after verifying the hosted wallet flow, record the approximately two-minute video, post X, and submit the form. Mainnet and public submission remain human-controlled.
+Verify the hosted wallet flow, record the approximately two-minute video, post X, and submit the form. Mainnet and public submission remain human-controlled.
 
 ## Pause checkpoint: 2026-11-09 06:25 UTC
 
