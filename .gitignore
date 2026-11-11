@@ -20,3 +20,5 @@ apps/web/config.js
 results/demo-dao-20261110154824.json
 results/demo-dao-20261110154917.json
 *.log
+results/video-assets/
+results/*.mp4
