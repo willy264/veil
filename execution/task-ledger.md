@@ -44,6 +44,7 @@ At 2026-11-10 09:56 UTC: approximately 110.00 hours remain until 2026-11-14 23:5
 - Fresh `registry2.veil-williams.testnet` creation was attempted once and rejected because the faucet workflow treated the available signer as `testnet`, not the `veil-williams.testnet` namespace. No new deployment was claimed.
 - Fresh deployment completed after the owner key became available: registry2 and router2 were created by `veil-williams.testnet`, funded, deployed, initialized, and view-verified. Evidence: `results/deploy-20261111.json`.
 - DAO demo was intentionally not run in this step. Remaining DAO requirement: execute `pnpm demo:dao` with `VEIL_DAO_OWNER_PRIVATE_KEY` set, then restore claims only if the DAO proposal, approval, router announcement, and recipient scan all pass.
+- Vercel project `veil` deployed successfully at `https://veil-eta-khaki.vercel.app`; HTTP 200 and the expected page title were verified. `veil.vercel.app` is unavailable to this account.
 
 ## Next action
 

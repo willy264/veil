@@ -1,6 +1,6 @@
 # Demo video plan
 
-Target length: about 2 minutes, screen capture plus voiceover. The hosted URL must be deployed first; the web controls below are all present in the static app.
+Target length: about 2 minutes, screen capture plus voiceover. Hosted URL: https://veil-eta-khaki.vercel.app. The web controls below are all present in the deployed app.
 
 1. Show `ada.veil-williams.testnet` and the Veil app's registry lookup.
 2. Register the viewing and spending keys through the wallet action flow.

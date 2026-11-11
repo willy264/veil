@@ -37,7 +37,7 @@ Open `http://127.0.0.1:4173`. The app reads `registry2.veil-williams.testnet` an
 
 ### Vercel deployment
 
-Run `pnpm --dir apps/web build` locally to validate the static build. In Vercel, import `willy264/veil`, set Root Directory to `apps/web`, choose **Other**, set Build Command to `pnpm build`, set Output Directory to `.`, and add `VEIL_NETWORK=testnet`, `VEIL_RPC_URL=https://rpc.testnet.fastnear.com`, `VEIL_REGISTRY_ID=registry2.veil-williams.testnet`, and `VEIL_ROUTER_ID=router2.veil-williams.testnet`. Do not add private keys. The build rejects non-testnet configuration. Live demo URL: pending human Vercel deployment.
+Run `pnpm --dir apps/web build` locally to validate the static build. The Vercel project is named `veil`, uses `apps/web`, and is deployed at [veil-eta-khaki.vercel.app](https://veil-eta-khaki.vercel.app). `veil.vercel.app` was unavailable to this account, so Vercel assigned its unique production alias. The build uses `VEIL_NETWORK=testnet`, `VEIL_RPC_URL=https://rpc.testnet.fastnear.com`, `VEIL_REGISTRY_ID=registry2.veil-williams.testnet`, and `VEIL_ROUTER_ID=router2.veil-williams.testnet`; no private keys are configured.
 
 Run the scripted testnet demo with process-only key variables:
 
