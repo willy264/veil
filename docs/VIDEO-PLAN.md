@@ -10,4 +10,4 @@ Target length: about 2 minutes, screen capture plus voiceover. The hosted URL mu
 6. Spend one payment back to a sender using the derived scalar and show the NearBlocks receipt.
 7. Close with the honest limits: amounts, timing, senders, and later sweeping remain linkable; the app is testnet-only.
 
-Use `docs/VERIFIED.md` for exact links and the two committed evidence JSON files. Before recording on the hosted URL, click Resolve, Refresh, and Build router action and verify each produces visible output. Do not show or narrate private keys.
+Use `docs/VERIFIED.md` for exact links and the committed evidence JSON. On the hosted URL, connect a testnet wallet, derive keys, register, resolve a name, send privately, scan the inbox, and use the auditor view. The app currently has no verified DAO payout, so do not show one. Do not show or narrate private keys.

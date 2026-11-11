@@ -8,7 +8,7 @@
   },
   "proof": "results/demo-20261110085124.json",
   "verified": "docs/VERIFIED.md",
-  "repository": "local-only-until-published",
+  "repository": "https://github.com/willy264/veil",
   "demo": {
     "register": true,
     "private_sends": 3,

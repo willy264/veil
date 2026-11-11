@@ -4,7 +4,7 @@ Only facts backed by a source or a real executed test belong here. Simulated res
 
 ## 2026-11-08
 
-- **VERIFIED:** The supplied brief requires research before product code and requires testnet proof of spending from a derived stealth account. Source: `VEIL-BRIEF.md`.
+- **VERIFIED:** The supplied brief requires research before product code and requires testnet proof of spending from a derived stealth account. Source: `docs/VEIL-BRIEF.md`.
 - **VERIFIED:** ERC-5564 specifies stealth meta-addresses, announcements, view tags, and separate viewing/spending capabilities. Source: https://eips.ethereum.org/EIPS/eip-5564
 - **VERIFIED:** ERC-6538 specifies a stealth meta-address registry. Source: https://eips.ethereum.org/EIPS/eip-6538
 - **VERIFIED:** Local toolchain check found Node 25.8.1, pnpm 10.32.1, Rust 1.99.1, cargo-near 0.22.0, and near-cli-rs 0.31.1. Rust tests are run in WSL2 Ubuntu/CI because the Windows GNU linker is not supported for the sandbox dependency.

@@ -31,7 +31,7 @@ Run the web surface:
 pnpm web:dev
 ```
 
-Open `http://127.0.0.1:4173`. It reads the deployed registry and router through final testnet RPC. Wallet signing is intentionally not embedded in the static demo.
+Open `http://127.0.0.1:4173`. The app reads the deployed registry and router through final testnet RPC, connects a testnet wallet with near-connect, derives keys in memory from a NEP-413 signature, and never sends keys to a server.
 
 ### Vercel deployment
 
@@ -47,7 +47,7 @@ $env:VEIL_SENDER3_PRIVATE_KEY = "ed25519:..."
 pnpm demo:all
 ```
 
-The demo writes `results/demo-<timestamp>.json`. The committed run registered Alice, sent three private payments, scanned all three, and spent one; its NearBlocks links are in [verified evidence](docs/VERIFIED.md).
+The demo writes `results/demo-<timestamp>.json`. The committed run registered Alice, sent three private payments, scanned all three, and spent one; its NearBlocks links are in [verified evidence](docs/VERIFIED.md). The Sputnik DAO payout remains unverified and is not part of the submission claims.
 
 For Rust and sandbox verification in WSL2 Ubuntu:
 
