@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "network": "testnet",
+  "owner": "veil-williams.testnet",
+  "contracts": {
+    "registry": "registry2.veil-williams.testnet",
+    "router": "router2.veil-williams.testnet"
+  },
+  "wasm_bytes": {
+    "registry": 225233,
+    "router": 312040
+  },
+  "transactions": {
+    "registry_create": "https://testnet.nearblocks.io/txns/2WzojzVdrGTtPBHRB1FG86bKxQswGvUzKKLXJ4HbasEA",
+    "router_create": "https://testnet.nearblocks.io/txns/HqzyLWd9y53md74Wd8weX7YgWwpRYkz8RVLTbu7u2xAM",
+    "registry_funding": "https://testnet.nearblocks.io/txns/CJRj7GksPP71v5KmpB1XQefJ2MtTbQzdvratNXxKA4VG",
+    "router_funding": "https://testnet.nearblocks.io/txns/6x82QtMGurV9k5JPjxwucUV2T8KrXYW6VSLX6gS7GG5r",
+    "registry_deploy": "https://testnet.nearblocks.io/txns/Gb2WV6yiFGQKfuASYPnma3V1mPPrYgGpW99Lcajzt3j1",
+    "registry_init": "https://testnet.nearblocks.io/txns/BodQ7uxwKrzwvcikozHwJNn34cfUmdB3P3oPGHLAgNoq",
+    "router_deploy": "https://testnet.nearblocks.io/txns/BvHS4STvW5C8zimzCHdmQdW68DaNVNrtD75jehgtLrMx",
+    "router_init": "https://testnet.nearblocks.io/txns/86rukk9rutc431c93VTmnt7TyFafLZYUb6kiUPYhJzsZ"
+  },
+  "verification": {
+    "registry_get_meta_unregistered": null,
+    "router_total_announcements": 0,
+    "owner_balance_near": "14.470371962853741"
+  },
+  "dao": "not_run"
+}

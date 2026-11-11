@@ -1,6 +1,6 @@
 # Veil handoff
 
-Updated 2026-11-11 05:30 UTC. Approximately 90 hours remain until the 2026-11-14 23:59 UTC deadline.
+Updated 2026-11-11 06:30 UTC. Approximately 89 hours remain until the 2026-11-14 23:59 UTC deadline.
 
 ## Current state
 
@@ -26,17 +26,19 @@ The repository contains the research-first scaffolding, tested contracts, TypeSc
 - Web UI is committed in `apps/web`: near-connect testnet login, NEP-413 key derivation in memory, registry registration/resolution, private NEAR send, scanner/balance inbox, scalar spend with relink warning, explorer link, and view-only auditor scan. `pnpm --dir apps/web build` passes.
 - Cleanup is committed: `veil-kit.zip` removed and `VEIL-BRIEF.md`/`COMMON-RULES.md` moved into `docs/`. `submission.json` points at `https://github.com/willy264/veil`; dependency limitations are documented in `docs/DEPENDABOT.md`.
 - Fresh clone on 2026-11-11 passed frozen install, SDK typecheck, 14 tests with one worker, and the web build.
+- Fresh deployment completed: `registry2.veil-williams.testnet` and `router2.veil-williams.testnet` were created under `veil-williams.testnet`, funded, deployed, initialized, and view-verified. Evidence: `results/deploy-20261111.json`.
 
 ## Exact next action
 
-The scripted testnet demo is complete in `results/demo-20261110085124.json`: register, three private sends, scan found 3, and one stealth spend. R1/R2 research is complete in `research/01-prior-art.md` and `research/02-problem-evidence.md`. The web app and submission documents are complete. The final tag is created only after this handoff commit.
+The scripted testnet demo is complete in `results/demo-20261110085124.json` against the prior deployment. The fresh deployment is separately verified in `results/deploy-20261111.json`; `pnpm demo:dao` has intentionally not been run yet. R1/R2 research is complete in `research/01-prior-art.md` and `research/02-problem-evidence.md`.
 
 ## Blockers
 
 - Host-side Rust verification is complete in WSL2 Ubuntu; the Windows GNU native linker remains unsupported for sandbox tests.
 - The one requested sole-council DAO attempt is blocked before submission: `pnpm demo:dao` lacks `VEIL_DAO_OWNER_PRIVATE_KEY`, and `veil-williams.testnet` has only about `0.1847 NEAR` versus the documented 5 NEAR deposit. Evidence: `results/demo-dao-20261110194505.json`. No DAO payout claim remains in the submission materials.
 - A fresh `registry2.veil-williams.testnet` account attempt was rejected by the faucet flow because the available signer was interpreted as `testnet`; no fresh deployment was made. The verified contracts remain `registry.veil-williams.testnet` and `router.veil-williams.testnet`.
+- That earlier blocker is resolved. Current verified contracts are `registry2.veil-williams.testnet` and `router2.veil-williams.testnet`; the remaining blocker is only the unrun DAO verification requested by the user.
 
 ## Resume command
 
-The project is code-and-evidence submission-ready. The contracts, WSL2 gate, V4 tests, stipend measurements, SDK flows, V3/V5 vectors, testnet demo, wallet UI, Vercel build configuration, NEP draft, research, video plan, X draft, submission JSON, cleanup, and fresh-clone check are complete. Human-only actions remain: deploy Vercel and paste its live URL into README, verify the hosted wallet flow, record the video, post X, make the repository public if needed, and submit the form. Mainnet remains untouched.
+The project has fresh deployed contracts and code/evidence submission readiness; DAO verification remains intentionally pending. Next action is `pnpm demo:dao`, then deploy Vercel and paste its live URL into README, verify the hosted wallet flow, record the video, post X, and submit the form. Mainnet remains untouched.

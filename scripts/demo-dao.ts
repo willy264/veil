@@ -17,7 +17,7 @@ import { deriveKeysFromNep413 } from '../packages/sdk/src/sdk.js';
 const RPC_URL = 'https://rpc.testnet.fastnear.com';
 const FACTORY_ID = 'sputnikv2.testnet';
 const OWNER_ID = 'veil-williams.testnet';
-const ROUTER_ID = 'router.veil-williams.testnet';
+const ROUTER_ID = 'router2.veil-williams.testnet';
 const RESULTS_DIR = new URL('../results/', import.meta.url);
 const NONCES = new Map<string, bigint>();
 

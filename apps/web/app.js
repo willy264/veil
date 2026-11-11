@@ -7,8 +7,8 @@ import { JsonRpcProvider, PublicKey, Signer, actions, baseDecode, baseEncode, cr
 
 const CONFIG = window.VEIL_CONFIG ?? {};
 const RPC = CONFIG.rpcUrl ?? 'https://rpc.testnet.fastnear.com';
-const REGISTRY = CONFIG.registryId ?? 'registry.veil-williams.testnet';
-const ROUTER = CONFIG.routerId ?? 'router.veil-williams.testnet';
+const REGISTRY = CONFIG.registryId ?? 'registry2.veil-williams.testnet';
+const ROUTER = CONFIG.routerId ?? 'router2.veil-williams.testnet';
 const ORDER = ed25519.CURVE.n;
 const text = new TextEncoder();
 const connector = new NearConnector({ network: 'testnet', features: { testnet: true, signMessage: true } });

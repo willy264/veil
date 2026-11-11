@@ -21,8 +21,8 @@ import {
 import { deriveKeysFromNep413 } from '../packages/sdk/src/sdk.js';
 
 const RPC_URL = 'https://rpc.testnet.fastnear.com';
-const REGISTRY_ID = 'registry.veil-williams.testnet';
-const ROUTER_ID = 'router.veil-williams.testnet';
+const REGISTRY_ID = 'registry2.veil-williams.testnet';
+const ROUTER_ID = 'router2.veil-williams.testnet';
 const ALICE_ID = 'alice.veil-williams.testnet';
 const SENDERS = ['veil-demo1.testnet', 'veil-demo2.testnet', 'veil-demo3.testnet'];
 const DAO_FACTORY = 'sputnikv2.testnet';

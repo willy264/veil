@@ -23,6 +23,17 @@ Only facts backed by a source or a real executed test belong here. Simulated res
 
 - **VERIFIED:** `veil-registry` release WASM built for `wasm32-unknown-unknown` and deployed/initialized at `registry.veil-williams.testnet`. Transaction: https://testnet.nearblocks.io/txns/CSWjocpzb4UkcxLqpPAkTFrC7UcEeLBMnkRKFt4RHBUy
 - **VERIFIED:** `veil-router` release WASM built for `wasm32-unknown-unknown` and deployed/initialized at `router.veil-williams.testnet`. Transaction: https://testnet.nearblocks.io/txns/Dubffp7Ev7BXQ8RcTaoXhM2GVVeqRQ94SigXHLTjNCpi
+
+## Fresh contract deployment: 2026-11-11
+
+- **VERIFIED:** `registry2.veil-williams.testnet` was created by `veil-williams.testnet` with 0.1 NEAR initial balance. Creation transaction: https://testnet.nearblocks.io/txns/2WzojzVdrGTtPBHRB1FG86bKxQswGvUzKKLXJ4HbasEA
+- **VERIFIED:** `router2.veil-williams.testnet` was created by `veil-williams.testnet` with 0.1 NEAR initial balance. Creation transaction: https://testnet.nearblocks.io/txns/HqzyLWd9y53md74Wd8weX7YgWwpRYkz8RVLTbu7u2xAM
+- **VERIFIED:** The owner funded the fresh registry and router accounts with 2.3 and 3.2 NEAR. Registry funding: https://testnet.nearblocks.io/txns/CJRj7GksPP71v5KmpB1XQefJ2MtTbQzdvratNXxKA4VG. Router funding: https://testnet.nearblocks.io/txns/6x82QtMGurV9k5JPjxwucUV2T8KrXYW6VSLX6gS7GG5r
+- **VERIFIED:** `veil-registry` WASM (225,233 bytes) was deployed to `registry2.veil-williams.testnet`. Transaction: https://testnet.nearblocks.io/txns/Gb2WV6yiFGQKfuASYPnma3V1mPPrYgGpW99Lcajzt3j1
+- **VERIFIED:** `veil-registry` was initialized successfully; `get_meta` returned `null` for an unregistered account. Transaction: https://testnet.nearblocks.io/txns/BodQ7uxwKrzwvcikozHwJNn34cfUmdB3P3oPGHLAgNoq
+- **VERIFIED:** `veil-router` WASM (312,040 bytes) was deployed to `router2.veil-williams.testnet`. Transaction: https://testnet.nearblocks.io/txns/BvHS4STvW5C8zimzCHdmQdW68DaNVNrtD75jehgtLrMx
+- **VERIFIED:** `veil-router` was initialized successfully; `total_announcements` returned `0`. Transaction: https://testnet.nearblocks.io/txns/86rukk9rutc431c93VTmnt7TyFafLZYUb6kiUPYhJzsZ
+- **VERIFIED:** The owner balance after these operations is `14.470371962853741 NEAR`; no DAO transaction was run in this step.
 - **VERIFIED:** `router.total_announcements()` returned `0` from the deployed contract.
 - **VERIFIED:** The owner funded the contract accounts with testnet NEAR. Registry transfers: https://testnet.nearblocks.io/txns/u9ZeW3hYGeA1M1FLwENDnbsEr746EJkMFtPJeEAn4Wu and https://testnet.nearblocks.io/txns/EmZVhh76HpwPhXfezS3soL44dqeX9Q9VvPJTH5jGkPJv. Router transfers: https://testnet.nearblocks.io/txns/AsgvYT7GWTT9M1v3YMvvscHcQkUyCHQXe9yhTD2zSs69 and https://testnet.nearblocks.io/txns/5foKaHp6smgRpkaNmLsGh4Zf2oUCxku7525gUi9AWJvv.
 

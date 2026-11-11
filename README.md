@@ -8,9 +8,11 @@ Private receiving for NEAR named accounts. Veil lets `ada.near` publish one reus
 
 The V1 registry and router contracts are deployed on NEAR testnet; receipts are listed in [verified evidence](docs/VERIFIED.md):
 
-- Registry: `registry.veil-williams.testnet`
-- Router: `router.veil-williams.testnet`
+- Registry: `registry2.veil-williams.testnet`
+- Router: `router2.veil-williams.testnet`
 - Mock six-decimal FT: `mockft.veil-williams.testnet`
+
+Fresh registry/router creation, funding, deployment, initialization, WASM sizes, and view checks are recorded in [deployment evidence](results/deploy-20261111.json) and [verified links](docs/VERIFIED.md). The DAO payout step has not been run yet.
 
 The WSL2 Ubuntu gate passes Rust formatting, clippy with warnings denied, workspace tests, sandbox tests, and release WASM builds; the checks are defined in [CI](.github/workflows/ci.yml). The SDK tests cover NEP-413 derivation, registry and router actions, scanning, spending, view-key export, relinking warnings, V3 vectors, and malformed inputs; [14 tests pass](packages/sdk/test).
 
@@ -31,11 +33,11 @@ Run the web surface:
 pnpm web:dev
 ```
 
-Open `http://127.0.0.1:4173`. The app reads the deployed registry and router through final testnet RPC, connects a testnet wallet with near-connect, derives keys in memory from a NEP-413 signature, and never sends keys to a server.
+Open `http://127.0.0.1:4173`. The app reads `registry2.veil-williams.testnet` and `router2.veil-williams.testnet` through final testnet RPC, connects a testnet wallet with near-connect, derives keys in memory from a NEP-413 signature, and never sends keys to a server.
 
 ### Vercel deployment
 
-Run `pnpm --dir apps/web build` locally to validate the static build. In Vercel, import `willy264/veil`, set Root Directory to `apps/web`, choose **Other**, set Build Command to `pnpm build`, set Output Directory to `.`, and add `VEIL_NETWORK=testnet`, `VEIL_RPC_URL=https://rpc.testnet.fastnear.com`, `VEIL_REGISTRY_ID=registry.veil-williams.testnet`, and `VEIL_ROUTER_ID=router.veil-williams.testnet`. Do not add private keys. The build rejects non-testnet configuration. Live demo URL: pending human Vercel deployment.
+Run `pnpm --dir apps/web build` locally to validate the static build. In Vercel, import `willy264/veil`, set Root Directory to `apps/web`, choose **Other**, set Build Command to `pnpm build`, set Output Directory to `.`, and add `VEIL_NETWORK=testnet`, `VEIL_RPC_URL=https://rpc.testnet.fastnear.com`, `VEIL_REGISTRY_ID=registry2.veil-williams.testnet`, and `VEIL_ROUTER_ID=router2.veil-williams.testnet`. Do not add private keys. The build rejects non-testnet configuration. Live demo URL: pending human Vercel deployment.
 
 Run the scripted testnet demo with process-only key variables:
 

@@ -16,6 +16,9 @@ const NEP_413_MESSAGE = 'Veil key derivation v1: derive private receiving keys f
 const MIN_REGISTRY_DEPOSIT = 1_000_000_000_000_000_000_000n;
 const DEFAULT_GAS = 30_000_000_000_000n;
 
+export const DEFAULT_REGISTRY_ID = 'registry2.veil-williams.testnet';
+export const DEFAULT_ROUTER_ID = 'router2.veil-williams.testnet';
+
 export type VeilMeta = {
   spend_pub_hex: string;
   view_pub_hex: string;
