@@ -9,6 +9,7 @@
   "proof": "results/deploy-20261111.json",
   "verified": "docs/VERIFIED.md",
   "repository": "https://github.com/willy264/veil",
+  "live_url": "https://veil-eta-khaki.vercel.app",
   "demo": {
     "register": true,
     "private_sends": 3,
