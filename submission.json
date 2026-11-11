@@ -6,7 +6,8 @@
     "router": "router2.veil-williams.testnet",
     "mock_ft": "mockft.veil-williams.testnet"
   },
-  "proof": "results/deploy-20261111.json",
+  "proof": "results/demo-20261111221900.json",
+  "deployment_proof": "results/deploy-20261111.json",
   "dao_proof": "results/demo-dao-20261111220608.json",
   "verified": "docs/VERIFIED.md",
   "repository": "https://github.com/willy264/veil",

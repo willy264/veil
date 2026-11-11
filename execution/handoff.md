@@ -28,6 +28,7 @@ The repository contains the research-first scaffolding, tested contracts, TypeSc
 - Fresh clone on 2026-11-11 passed frozen install, SDK typecheck, 14 tests with one worker, and the web build.
 - Fresh deployment completed: `registry2.veil-williams.testnet` and `router2.veil-williams.testnet` were created under `veil-williams.testnet`, funded, deployed, initialized, and view-verified. Evidence: `results/deploy-20261111.json`.
 - Vercel project `veil` is deployed at `https://veil-eta-khaki.vercel.app` and returned HTTP 200 with title `Veil | Private receiving for NEAR`. The exact `veil.vercel.app` hostname was unavailable to the account.
+- Fresh `pnpm demo:all` completed against registry2/router2 with status `PASS_WITH_DAO_PREREQUISITE`: register passed, three private sends passed, scan found 3, and spend passed. Evidence: `results/demo-20261111221900.json`. DAO payout is separately verified in `results/demo-dao-20261111220608.json`.
 
 ## Exact next action
 
@@ -42,4 +43,4 @@ The scripted testnet demo is complete in `results/demo-20261110085124.json` agai
 
 ## Resume command
 
-The project has fresh deployed contracts, a live Vercel app, and code/evidence submission readiness. Remaining human-only actions are to verify the hosted wallet flow, record the video, post X, and submit the form. Mainnet remains untouched.
+The project has fresh deployed contracts, a live Vercel app, fresh end-to-end demo evidence, and code/evidence submission readiness. Remaining human-only actions are to verify the hosted wallet flow, record the video, post X, and submit the form. Mainnet remains untouched.

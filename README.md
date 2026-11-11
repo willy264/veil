@@ -49,7 +49,7 @@ $env:VEIL_SENDER3_PRIVATE_KEY = "ed25519:..."
 pnpm demo:all
 ```
 
-The demo writes `results/demo-<timestamp>.json`. The committed run registered Alice, sent three private payments, scanned all three, and spent one; its NearBlocks links are in [verified evidence](docs/VERIFIED.md). The committed DAO run also created a sole-council Sputnik DAO, approved a private router payout, and verified the recipient scan in [DAO evidence](results/demo-dao-20261111220608.json).
+The fresh-contract demo is committed as [demo evidence](results/demo-20261111221900.json): it registered Alice, sent three private payments through `router2`, scanned all three, and spent one. The committed DAO run separately created a sole-council Sputnik DAO, approved a private router payout, and verified the recipient scan in [DAO evidence](results/demo-dao-20261111220608.json).
 
 For Rust and sandbox verification in WSL2 Ubuntu:
 

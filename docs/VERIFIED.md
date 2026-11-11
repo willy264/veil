@@ -41,6 +41,13 @@ Only facts backed by a source or a real executed test belong here. Simulated res
 - **VERIFIED:** DAO policy confirmed `veil-williams.testnet` as the council. The FunctionCall proposal to `router2.veil-williams.testnet` was added as proposal `0`: https://testnet.nearblocks.io/txns/8vsaYtRBkkPv68wUhuRF5F3yyXRtJJDzVYKCqmzEV14M
 - **VERIFIED:** The sole council approved proposal `0`: https://testnet.nearblocks.io/txns/5JQtGN7P2xUM2zMef2QxT9s3eWErPFrWgNkHMVhJBSHP
 - **VERIFIED:** The recipient scanner found one owned announcement for stealth account `47fc80fb091df782903007d9b568a40098409d3c93f94b9cc0df7cc903937c10`, amount `0.04 NEAR`. Full secret-free evidence: `results/demo-dao-20261111220608.json`.
+
+## Fresh-contract end-to-end demo: 2026-11-11
+
+- **VERIFIED:** `alice.veil-williams.testnet` registered on `registry2.veil-williams.testnet`: https://testnet.nearblocks.io/txns/EY8L8AHEMQ4n26ZyrXsFUi1uhR4HoW3oBrUAtaFQ9n8d
+- **VERIFIED:** Three private sends through `router2.veil-williams.testnet` succeeded: https://testnet.nearblocks.io/txns/AFm3ATfYfq6TYcboWhkjgitHZ9VRmErULUquBXMAeiCw, https://testnet.nearblocks.io/txns/D4KjHNuT945xVQyjDWC9kpMsYudMZwjMdAo4TxoVZFry, and https://testnet.nearblocks.io/txns/Zp7ne1RCZA7uVtgt6p7Yfku727Ni7HqUa4J6dSiQhKW
+- **VERIFIED:** Alice's scan found all three owned announcements, and one stealth account spent back to `veil-demo1.testnet`: https://testnet.nearblocks.io/txns/HQMiR2HzAcByzDGKDK6mptaEA69Sjoe9HrAVKQQqQCsN
+- **VERIFIED:** Full secret-free evidence is committed in `results/demo-20261111221900.json`. Its DAO field is a prerequisite probe only; the completed DAO payout is documented in `results/demo-dao-20261111220608.json`.
 - **VERIFIED:** `router.total_announcements()` returned `0` from the deployed contract.
 - **VERIFIED:** The owner funded the contract accounts with testnet NEAR. Registry transfers: https://testnet.nearblocks.io/txns/u9ZeW3hYGeA1M1FLwENDnbsEr746EJkMFtPJeEAn4Wu and https://testnet.nearblocks.io/txns/EmZVhh76HpwPhXfezS3soL44dqeX9Q9VvPJTH5jGkPJv. Router transfers: https://testnet.nearblocks.io/txns/AsgvYT7GWTT9M1v3YMvvscHcQkUyCHQXe9yhTD2zSs69 and https://testnet.nearblocks.io/txns/5foKaHp6smgRpkaNmLsGh4Zf2oUCxku7525gUi9AWJvv.
 

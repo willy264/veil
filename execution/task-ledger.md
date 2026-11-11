@@ -45,6 +45,7 @@ At 2026-11-10 09:56 UTC: approximately 110.00 hours remain until 2026-11-14 23:5
 - Fresh deployment completed after the owner key became available: registry2 and router2 were created by `veil-williams.testnet`, funded, deployed, initialized, and view-verified. Evidence: `results/deploy-20261111.json`.
 - DAO demo passed from the user PowerShell after signer-key normalization. Evidence: `results/demo-dao-20261111220608.json`; sole-council creation, proposal, approval, and recipient scan all passed.
 - Vercel project `veil` deployed successfully at `https://veil-eta-khaki.vercel.app`; HTTP 200 and the expected page title were verified. `veil.vercel.app` is unavailable to this account.
+- Fresh `pnpm demo:all` passed against registry2/router2: registration succeeded, three private sends succeeded, scan found 3, and one stealth spend succeeded. Evidence: `results/demo-20261111221900.json`. The script's DAO prerequisite status is covered by the separately passing DAO evidence.
 
 ## Next action
 
