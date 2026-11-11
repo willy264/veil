@@ -22,8 +22,11 @@ const RESULTS_DIR = new URL('../results/', import.meta.url);
 const NONCES = new Map<string, bigint>();
 
 function env(name: string): string {
-  const value = process.env[name];
+  const value = process.env[name]?.trim();
   if (!value) throw new Error(`${name} is required and must not be committed`);
+  if (!/^ed25519:[1-9A-HJ-NP-Za-km-z]+$/.test(value)) {
+    throw new Error(`${name} must be an ed25519 private key in near-api-js format`);
+  }
   return value;
 }
 
@@ -235,7 +238,7 @@ main().catch(async (error) => {
     factory: FACTORY_ID,
     attempted: 'create sole-council DAO, add and approve send_near FunctionCall, scan recipient',
     error: message,
-    note: 'No DAO transaction was submitted. The owner signer was unavailable; the target account also requires faucet funding before the documented 5 NEAR creation deposit can be attached.',
+    note: 'No DAO transaction was submitted. The failure occurred before signing or submission.',
     sources: ['https://github.com/near-daos/sputnik-dao-contract#setup'],
   };
   await mkdir(RESULTS_DIR, { recursive: true });
