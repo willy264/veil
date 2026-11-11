@@ -1,6 +1,6 @@
 # Veil execution ledger
 
-Last updated: 2026-11-10 21:55 UTC
+Last updated: 2026-11-11 05:30 UTC
 
 ## Context
 
@@ -21,8 +21,8 @@ Last updated: 2026-11-10 21:55 UTC
 | GATE-R | Choose scheme and record proof transaction | complete | `docs/VERIFIED.md`; `results/gate-r-20261108224016.json` |
 | P1 | Scaffold SDK and tests | complete | SDK flows plus committed V3/V5 vectors and malformed-input tests pass; 14 SDK tests total |
 | P2 | Registry and router contracts | complete | WSL2 Ubuntu clippy, workspace tests, sandbox test, and `wasm32-unknown-unknown --release` build pass; V4 router unit/sandbox coverage committed |
-| P3 | Web demo | complete | Static web app reads the deployed registry/router through final testnet RPC; demo evidence passes register, 3 private sends, scan=3, and one spend. |
-| P4 | Submission package | complete | NEP draft, README, video plan, X draft, submission JSON, NearBlocks evidence, research, and Vercel build configuration committed. |
+| P3 | Web demo | complete | near-connect wallet UI, NEP-413 local derivation, register/resolve, private NEAR send, inbox scan/balances, scalar spend warning, explorer comparison, auditor view; static build passes. |
+| P4 | Submission package | complete | NEP draft, README, video plan, X draft, submission JSON, NearBlocks evidence, research, dependency report, and Vercel configuration committed. |
 
 ## Decisions needed from human
 
@@ -39,10 +39,13 @@ At 2026-11-10 09:56 UTC: approximately 110.00 hours remain until 2026-11-14 23:5
 - Testnet demo passed: Alice registration, three private NEAR sends, scan found 3, and one stealth spend.
 - DAO attempt was made once with the requested sole-council script. It stopped before submission because `VEIL_DAO_OWNER_PRIVATE_KEY` was unavailable and the owner account had only about `0.1847 NEAR` versus the documented 5 NEAR creation deposit. Evidence: `results/demo-dao-20261110194505.json`.
 - R1/R2 completed with source-backed prior art and a public-account visibility table.
+- Web and repository cleanup committed and pushed: wallet UI, auditor mode, relocated briefs, removed `veil-kit.zip`, fixed repository URL in `submission.json`, and documented seven open Dependabot alerts.
+- Fresh clone passed frozen install, SDK typecheck, 14 SDK tests with one worker, and `pnpm --dir apps/web build` on 2026-11-11.
+- Fresh `registry2.veil-williams.testnet` creation was attempted once and rejected because the faucet workflow treated the available signer as `testnet`, not the `veil-williams.testnet` namespace. No new deployment was claimed.
 
 ## Next action
 
-Fresh-clone install, typecheck, and 14-test SDK suite pass. Vercel static build passes. GitHub push remains intentionally pending authentication confirmation. Human must deploy Vercel, paste the live URL into README, record the hosted video, post X, make the repo public if needed, and submit the form.
+Human must deploy Vercel, replace the pending live URL in README after verifying the hosted wallet flow, record the approximately two-minute video, post X, and submit the form. Mainnet and public submission remain human-controlled.
 
 ## Pause checkpoint: 2026-11-09 06:25 UTC
 
