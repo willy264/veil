@@ -6,6 +6,8 @@ Updated 2026-11-12 08:29 UTC. About 63.5 hours remain until 14 Nov 23:59 UTC.
 
 The trading-style redesign was reverted to the previous green fintech design from `ebfd14f`. The web files, wallet behavior, tests, design notes and recording instructions again match that version. The prior redesign remains in Git history. The local narration has been regenerated to match the restored Spend control. Continue from this design unless the user requests another change.
 
+Rollback commit `7ff421b` is pushed and live. Build, typecheck and 21 tests pass; a fresh [public browser check](../results/hosted-check-1794472250465.json) confirms the six panels, wallet chooser and live registry/router reads without login or runtime errors. [Rollback CI](https://github.com/willy264/veil/actions/runs/43183430706). Actual wallet approvals remain outside this read-only check.
+
 ## Verified state
 
 - Public app: https://veil-eta-khaki.vercel.app. Fresh anonymous browser access to root/index aliases/assets, six panels and wallet chooser passes. Live Alice registry resolution and router announcement reads pass with no page errors. [Hosted evidence](../results/hosted-check-1794466492403.json).

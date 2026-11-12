@@ -2,6 +2,11 @@
 
 Only facts backed by a source or a real executed test belong here. Simulated results must be labelled `SIMULATED` elsewhere.
 
+## Design rollback: 2026-11-12
+
+- **VERIFIED:** At the user's request, commit `7ff421b` restores the previous green fintech design from `ebfd14f`. Web files and wallet-flow tests match that version. Build, typecheck and all 21 tests pass.
+- **VERIFIED:** The public site serves the restored six-panel interface. Anonymous access, assets, wallet chooser, registry2 lookup and router2 reads pass with no runtime errors. [New hosted evidence](../results/hosted-check-1794472250465.json). This check submitted no wallet transactions.
+
 ## Hosted app and recording package: 2026-11-12
 
 - **VERIFIED:** https://veil-eta-khaki.vercel.app loads in a fresh anonymous browser, with no Vercel login. Root/index aliases and JavaScript/CSS/config assets return HTTP 200. All six panels render; the near-connect wallet chooser opens. [Browser evidence](../results/hosted-check-1794466492403.json).

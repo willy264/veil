@@ -4,7 +4,7 @@ Updated 2026-11-12 08:29 UTC. Deadline: 2026-11-14 23:59 UTC; approximately 63.5
 
 | Task | State | Evidence / next action |
 |---|---|---|
-| Design rollback | Restored at user request | Previous green fintech design from ebfd14f; trading-style redesign reverted with Git history preserved |
+| Design rollback | Live; browser verified | 7ff421b restores ebfd14f; build/typecheck/21 tests pass; results/hosted-check-1794472250465.json; Git history preserved |
 | R0-R2 brief, prior art, public-account research | Done | docs/VEIL-BRIEF.md; research/01-prior-art.md; research/02-problem-evidence.md |
 | Gate R raw-scalar spend | Verified | results/gate-r-20261108224016.json |
 | Costs | Measured | FT storage 0.00125 NEAR; lowest tested FT stipend 0.03092 NEAR; docs/VERIFIED.md |
