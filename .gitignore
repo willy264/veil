@@ -22,3 +22,4 @@ results/demo-dao-20261110154917.json
 *.log
 results/video-assets/
 results/*.mp4
+results/ui-*.png

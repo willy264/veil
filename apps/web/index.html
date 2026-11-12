@@ -7,16 +7,17 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to app</a>
     <main class="shell">
       <header class="topbar">
         <div><p class="kicker">NEAR testnet</p><h1>Veil</h1></div>
         <div class="wallet"><span id="wallet-status">Wallet disconnected</span><button id="connect">Connect wallet</button></div>
       </header>
-      <section class="hero-band">
-        <div><p class="kicker">Private receiving for named accounts</p><h2>Keep your name public. Keep each payment separate.</h2><p class="lede">Veil derives a fresh implicit account for every payment to a registered NEAR name.</p></div>
+      <section class="hero-band" aria-labelledby="hero-title">
+        <div><p class="kicker">Private receiving for named accounts</p><h2 id="hero-title">Keep each payment separate.</h2><p class="lede">Veil lets a named-account owner receive payments at fresh implicit accounts while the public name stays readable.</p></div>
         <div class="network-card"><span>Registry</span><strong id="registry-id">registry2.veil-williams.testnet</strong><span>Router</span><strong id="router-id">router2.veil-williams.testnet</strong></div>
       </section>
-      <section class="grid">
+      <section class="grid" id="main-content" tabindex="-1" aria-label="Veil controls">
         <article class="panel"><div class="panel-heading"><div><p class="kicker">Receive</p><h3>Enable Veil</h3></div><span class="badge accent">keys in memory</span></div><p class="muted">A NEP-413 wallet signature derives viewing and spending keys locally. Keys are never sent to a server. Use the same wallet signing key to recover your inbox; changing wallets or signing keys can derive different keys.</p><div class="inline"><button id="enable">Derive keys</button><button id="register">Register name</button><button id="export-view">Copy view key</button></div><pre id="identity-output" aria-live="polite">Connect a testnet wallet to begin.</pre></article>
         <article class="panel"><div class="panel-heading"><div><p class="kicker">Identity</p><h3>Resolve a named account</h3></div><span class="badge">read-only</span></div><label for="name">NEAR name</label><div class="inline"><input id="name" value="alice.veil-williams.testnet" /><button id="resolve">Resolve</button></div><pre id="resolve-output" aria-live="polite">No lookup yet.</pre><a id="public-history" class="quiet-link" target="_blank" rel="noreferrer">Open public history</a></article>
         <article class="panel"><div class="panel-heading"><div><p class="kicker">Send</p><h3>Private payment</h3></div><span class="badge accent">wallet signed</span></div><label for="recipient">Recipient name</label><input id="recipient" value="alice.veil-williams.testnet" /><label for="amount">Amount in NEAR</label><input id="amount" value="0.01" inputmode="decimal" /><button class="wide" id="send">Send privately</button><pre id="send-output" aria-live="polite">Resolve the recipient, then sign with your wallet.</pre></article>
@@ -24,7 +25,7 @@
         <article class="panel"><div class="panel-heading"><div><p class="kicker">Auditor</p><h3>View-only scan</h3></div><span class="badge">no spend key</span></div><label for="auditor-name">Registered name</label><input id="auditor-name" placeholder="alice.veil-williams.testnet" /><label for="view-key">View key (32-byte hex)</label><input id="view-key" type="password" placeholder="Paste a view key" autocomplete="off" /><button id="audit">Scan as auditor</button><pre id="auditor-output" aria-live="polite">An auditor can inspect incoming payments but cannot spend them.</pre></article>
         <article class="panel"><div class="panel-heading"><div><p class="kicker">Public comparison</p><h3>Explorer view</h3></div><span class="badge">NearBlocks</span></div><p class="muted">The named account remains the public identity. Private outputs are separate implicit accounts.</p><a id="comparison-link" class="quiet-link" target="_blank" rel="noreferrer">Compare on testnet.nearblocks.io</a></article>
       </section>
-      <footer>Veil V1 · Testnet only · amounts, timing, sender identities, and token contracts remain public.</footer>
+      <footer>Veil V1 | Testnet only | amounts, timing, sender identities, and token contracts remain public.</footer>
     </main>
     <script src="./config.js"></script>
     <script type="module" src="./app.js"></script>
