@@ -1,9 +1,10 @@
 # Veil execution ledger
 
-Updated 2026-11-12 06:57 UTC. Deadline: 2026-11-14 23:59 UTC; approximately 65.0 hours remain.
+Updated 2026-11-12 08:16 UTC. Deadline: 2026-11-14 23:59 UTC; approximately 63.7 hours remain.
 
 | Task | State | Evidence / next action |
 |---|---|---|
+| Wallet UI/brand refresh | Implemented; release checks in progress | Send/Receive/Transfer, original logo/favicon, real NEAR totals, 25 tests; results/wallet-ui-1794471265204.json and results/wallet-lighthouse-1794471315329.json |
 | R0-R2 brief, prior art, public-account research | Done | docs/VEIL-BRIEF.md; research/01-prior-art.md; research/02-problem-evidence.md |
 | Gate R raw-scalar spend | Verified | results/gate-r-20261108224016.json |
 | Costs | Measured | FT storage 0.00125 NEAR; lowest tested FT stipend 0.03092 NEAR; docs/VERIFIED.md |

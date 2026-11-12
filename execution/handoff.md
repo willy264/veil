@@ -1,6 +1,14 @@
 # Veil handoff
 
-Updated 2026-11-12 06:57 UTC. About 65.0 hours remain until 14 Nov 23:59 UTC.
+Updated 2026-11-12 08:16 UTC. About 63.7 hours remain until 14 Nov 23:59 UTC.
+
+## Wallet UI refresh
+
+Implemented a trading-wallet layout with Send/Receive/Transfer tabs, original Veil SVG logo/favicon, self-hosted Geist, real scanned NEAR totals, readable receipt links, and keyboard/loading/error states. Transfer selects an owned account, destination and amount, then requires the relinking confirmation. Wallet sign-out clears private session state. Failed balance reads show unavailable instead of zero.
+
+Local checks pass: 25 tests (11 simulated web-flow tests), typecheck/build, live testnet reads and wallet chooser. [Responsive/axe evidence](../results/wallet-ui-1794471265204.json): all three tabs at six widths in both motion modes, zero violations/errors/overflow. [Mobile Lighthouse lab](../results/wallet-lighthouse-1794471315329.json): performance 93, accessibility 100, SEO 100. These are lab/read-only checks, not wallet transaction receipts.
+
+Current release step: commit/push the refresh, check CI, deploy/verify the production alias, update the video instructions and tag. Real hosted wallet approvals and recording still require the human's wallet session.
 
 ## Verified state
 
@@ -27,7 +35,7 @@ Agent can rerun the read-only check with `node scripts/check-hosted.mjs https://
 
 - Public access and live reads are verified. Actual hosted wallet approvals need a human browser session; this agent has no signed-in wallet or demo signer environment variables.
 - V1 sends must be sequential: concurrent submissions can change the expected router index and prevent normal discovery. Wallet recovery requires the same signing key; older random-nonce registrations may not be recoverable through this flow.
-- The current Spend button sends 0.001 NEAR to the connected named account and warns that the link becomes public.
+- The inbox Transfer button opens a form. It defaults to 0.001 NEAR and the connected named account; destination and amount are editable. Review transfer displays the explicit public-link confirmation.
 - Seven dependency alerts remain documented in [DEPENDABOT.md](../docs/DEPENDABOT.md), per instruction.
 - Human recording/edit/upload, X publication and form submission are pending. Mainnet is not authorized. Commit/push/tag updates are authorized.
 

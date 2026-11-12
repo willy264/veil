@@ -1,0 +1,60 @@
+{
+  "checkedAt": "2026-11-12T08:10:15.249Z",
+  "url": "http://127.0.0.1:61959",
+  "scope": "LOCAL_BROWSER_LIVE_TESTNET_READS",
+  "walletTransactionsSubmitted": false,
+  "checks": [
+    {
+      "asset": "app.js",
+      "status": 200
+    },
+    {
+      "asset": "config.js",
+      "status": 200
+    },
+    {
+      "asset": "styles.css",
+      "status": 200
+    },
+    {
+      "asset": "logo.svg",
+      "status": 200
+    },
+    {
+      "asset": "favicon.svg",
+      "status": 200
+    },
+    {
+      "registryResolve": "PASS",
+      "account": "alice.veil-williams.testnet"
+    },
+    {
+      "routerRead": "PASS",
+      "announcements": 4
+    },
+    {
+      "paymentTabs": "PASS",
+      "logoAndFavicon": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "httpStatus": 200,
+  "finalUrl": "http://127.0.0.1:61959/",
+  "config": {
+    "rpcUrl": "https://rpc.testnet.fastnear.com",
+    "registryId": "registry2.veil-williams.testnet",
+    "routerId": "router2.veil-williams.testnet",
+    "network": "testnet"
+  },
+  "sections": [
+    "Wallet overview",
+    "Send privately",
+    "Receive with your name",
+    "Transfer from your inbox",
+    "Private inbox —",
+    "Look up a name",
+    "Auditor access"
+  ],
+  "walletChooserVisible": true,
+  "status": "PASS_READ_ONLY"
+}
