@@ -12,7 +12,9 @@
   "verified": "docs/VERIFIED.md",
   "repository": "https://github.com/willy264/veil",
   "live_url": "https://veil-eta-khaki.vercel.app",
-  "hosted_verification": "results/hosted-check-1794466492403.json",
+  "hosted_verification": "results/hosted-check-1794471529711.json",
+  "ui_verification": "results/wallet-ui-1794471265204.json",
+  "ui_description": "Wallet overview with Send, Receive and Transfer tabs, original Veil branding, private inbox and read-only auditor access.",
   "hosted_wallet_approvals": "pending human browser session; automated check is read-only",
   "video": {
     "status": "narration and shot list ready; wallet recording and upload pending",

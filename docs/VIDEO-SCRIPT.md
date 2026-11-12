@@ -11,7 +11,7 @@ The generated synthetic narration is `results/video-assets/voiceover-final.wav` 
 | 0:24–0:36 | Register name publishes the two public keys. Approve the registry transaction, then resolve the name. Senders can now look up this reusable identity. |
 | 0:36–0:53 | In a separate sender window, enter that name and send a small testnet payment. The browser derives a new implicit account and asks the wallet to approve the router call. The result shows the one-time destination. |
 | 0:53–1:07 | Back in the recipient window, Scan checks the public announcements with the private viewing key. The matching payment appears with its balance. Other people's announcements stay outside this inbox. |
-| 1:07–1:22 | Choose Spend to send a small amount from that stealth account. Read the warning: sending to your named account creates a public link. Confirm, then check the successful transaction receipt. |
+| 1:07–1:22 | Choose Transfer to send a small amount from that stealth account. Read the warning: sending to your named account creates a public link. Review and confirm, then check the successful transaction receipt. |
 | 1:22–1:36 | Copy the view key and open a separate auditor window. Paste it into the masked field and scan the registered name. The auditor sees incoming payments, with no spending key or spend control. |
 | 1:36–1:47 | Recorded Sputnik DAO evidence shows council approval of a private router payout, and the recipient scanner finding that payment. |
 | 1:47–1:57 | Testnet only. Amounts, timing and senders remain public. Combining balances reveals links. |

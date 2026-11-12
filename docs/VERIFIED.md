@@ -2,6 +2,14 @@
 
 Only facts backed by a source or a real executed test belong here. Simulated results must be labelled `SIMULATED` elsewhere.
 
+## Wallet redesign: 2026-11-12
+
+- **VERIFIED:** The public production URL serves the new Send/Receive/Transfer wallet, original Veil logo and SVG favicon. Anonymous browser checks passed the tabs, assets, wallet chooser, Alice registry2 lookup and router2 reads, with no page errors. [Hosted evidence](../results/hosted-check-1794471529711.json). No wallet transactions were submitted in this check.
+- **VERIFIED:** All three tabs pass 36 viewport/motion combinations (320, 375, 768, 1024, 1440, 1920px; normal/reduced motion). No page overflow, small targets or axe violations in the checked states. Keyboard navigation passes. [UI evidence](../results/wallet-ui-1794471265204.json).
+- **VERIFIED:** Local mobile Lighthouse: performance 93, accessibility 100, SEO 100, LCP 0.9s and CLS 0. Total blocking time is 310ms; this is lab data, not field INP. [Result](../results/wallet-lighthouse-1794471315329.json).
+- **VERIFIED:** [CI for ec43451](https://github.com/willy264/veil/actions/runs/43181741193) passes Rust/sandbox/WASM, typecheck, 25 tests, the 10,000-send property check and web build. Eleven web-flow tests simulate wallet/RPC behavior, including transfer destination/amount, cancellation, balance failures, receipt preservation and repeated-action protection.
+- **VERIFIED:** Narration was regenerated for the Transfer label; all complete speech still fits the 117-second timeline. [Timing](../results/video-narration-timing.json). Human wallet footage remains pending.
+
 ## Hosted app and recording package: 2026-11-12
 
 - **VERIFIED:** https://veil-eta-khaki.vercel.app loads in a fresh anonymous browser, with no Vercel login. Root/index aliases and JavaScript/CSS/config assets return HTTP 200. All six panels render; the near-connect wallet chooser opens. [Browser evidence](../results/hosted-check-1794466492403.json).

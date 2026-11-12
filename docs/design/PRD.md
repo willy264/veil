@@ -48,7 +48,7 @@ The overview is an account surface, not an exchange dashboard.
 
 ### Send
 
-The Send tab exposes asset, network, destination and amount as labeled controls. V1 asset is NEAR and network is NEAR testnet; fixed values may be presented as read-only selectors so the transaction context is still explicit. Destination accepts the supported Veil name/account form. Amount validation must cover empty, invalid, zero, insufficient-balance and fee/storage requirements before wallet approval. After submission, show pending, success and failure states plus a transaction hash when available.
+The Send tab exposes the asset, network, registered recipient name and amount. V1 asset is NEAR and network is NEAR testnet; these fixed values are presented as text. The app rejects empty, invalid and zero amounts; the wallet and chain enforce source balance and gas requirements. After submission, show pending, success and failure states plus a transaction hash when available.
 
 V1 private sends remain sequential because derivation uses the next router index. The interface must prevent ambiguous repeat submission while a send is unresolved.
 
@@ -61,13 +61,13 @@ Receive is a short stateful flow, not a marketing panel:
 3. Register the chosen receiving name, including wallet approval and storage-deposit context where applicable.
 4. Show the confirmed registered name with a copy action.
 
-Derivation and registration are distinct states. Copy is enabled only when a name is present; a local derived name is not presented as registered until registration has runtime confirmation. Keys stay in browser memory and never appear in logs, URLs, analytics, evidence panels or copyable output.
+Derivation and registration are distinct states. Copy name is enabled only after confirmed registration. Spending keys stay in browser memory and never appear in logs, URLs, analytics, evidence panels or copyable output. Public keys may appear in Identity details. The explicit Copy view key action shares read-only access with an auditor.
 
 ### Transfer
 
 Transfer spends from an owned stealth account. The source is an explicit selector populated by scan results; the destination and NEAR amount remain adjustable until confirmation. The review state shows source, destination, amount, network and known fee/storage implications.
 
-Before wallet approval, present a prominent, plain-language warning: transferring to the user's named account or another identity-linked destination can publicly relink the stealth account and weaken privacy. Acknowledging the warning does not claim anonymity or make the transfer private. Disable submission when the selected source is unavailable, ownership is not established, the amount is invalid or required data is stale.
+Before local signing, show a plain-language confirmation with source, destination and amount: transferring to an identity-linked destination publicly relinks the stealth account. Reject missing sources, unknown balances, invalid amounts and amounts at or above the last-read balance. The chain enforces final balance and gas/storage requirements; the UI does not claim to quote a maximum spendable amount. Acknowledging the warning does not make the transfer private.
 
 ## Trust, privacy and evidence
 

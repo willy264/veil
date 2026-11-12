@@ -5,6 +5,7 @@
 - PASS: local mobile Lighthouse performance 93, accessibility 100, SEO 100; LCP 0.9s, CLS 0. [Lab result](../../results/wallet-lighthouse-1794471315329.json). Total blocking time is 310ms; this run does not measure field INP or prove a production p75 result.
 - PASS: 25 SDK/web tests, including exact signed transfer destination/amount, cancellation, over-balance rejection, balance RPC failure, receipt preservation after refresh failure, and duplicate-action prevention. Wallet/RPC tests are simulations.
 - PASS: local build/typecheck; live registry2 resolution, router2 reads, public assets and wallet chooser. [Read-only check](../../results/local-browser-1794471026046.json).
+- PASS: production alias anonymous access, tabs, logo/favicon, live testnet reads and wallet chooser after deployment. [Hosted evidence](../../results/hosted-check-1794471529711.json). [CI ec43451](https://github.com/willy264/veil/actions/runs/43181741193) passes the complete Ubuntu and TypeScript gates.
 - PASS: original Veil mark and SVG favicon, one gold accent, self-hosted Geist Latin (SIL OFL in `apps/web/fonts/OFL.txt`), restrained motion. SVG brand colors and HTML theme-color intentionally match CSS tokens; they are standalone assets.
 - Pending human: real wallet approvals on the hosted redesign, screen-reader review and final video footage. Existing scripted testnet receipts remain separate evidence.
 

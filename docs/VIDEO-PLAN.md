@@ -1,6 +1,6 @@
 # Human recording shot list — 1:57
 
-Public URL: https://veil-eta-khaki.vercel.app. This is a single-page app with six panels. Public loading, live contract views and the wallet chooser are verified; actual wallet approvals and footage are still to be recorded. Use the prepared `results/video-assets/voiceover-final.wav` and [word-for-word script](VIDEO-SCRIPT.md).
+Public URL: https://veil-eta-khaki.vercel.app. The wallet overview sits beside Send, Receive and Transfer tabs; the private inbox, public name lookup and auditor tools are below. Public loading, live contract views and the wallet chooser are verified; actual wallet approvals and footage are still to be recorded. Use `results/video-assets/voiceover-final.wav` and the [word-for-word script](VIDEO-SCRIPT.md).
 
 ## Before recording
 
@@ -14,17 +14,17 @@ Public URL: https://veil-eta-khaki.vercel.app. This is a single-page app with si
 
 | Time | Record this |
 |---|---|
-| 0:00–0:10 | Public URL and testnet badge; show registry2/router2. No Vercel login screen. |
-| 0:10–0:24 | Recipient window: Connect wallet, Derive keys, NEP-413 approval, confirmation. Hide wallet recovery screens. |
+| 0:00–0:10 | Public URL, Veil logo and testnet badge. Expand Testnet contracts in the footer to show registry2/router2. No Vercel login screen. |
+| 0:10–0:24 | Recipient window: Connect wallet opens Receive. Derive keys, NEP-413 approval, confirmation. Hide wallet recovery screens. |
 | 0:24–0:36 | Recipient: Register name; approve 0.01 NEAR storage deposit; wait for confirmation; Resolve the actual account. |
-| 0:36–0:53 | Separate sender profile: connect, enter recipient and 0.01 NEAR, Send privately, approve router2, show destination/receipt. Keep recipient tab open. |
-| 0:53–1:07 | After finality, recipient clicks Scan. Show real owned account and balance; retain receipt/hash separately. |
-| 1:07–1:22 | Recipient: Spend; record re-link confirmation for 0.001 NEAR to connected account; show result hash and NearBlocks receipt. |
-| 1:22–1:36 | Copy view key; separate unsigned context: paste in password field, enter name, Scan as auditor. Never unmask or record clipboard contents. |
+| 0:36–0:53 | Separate sender profile: connect, choose Send tab, enter recipient and 0.01 NEAR, Send privately, approve router2. Expand Payment details for the destination; open receipt link. Keep recipient tab open. |
+| 0:53–1:07 | After finality, recipient clicks Scan inbox. Show the real account, NEAR balance and overview total; retain receipt/hash separately. |
+| 1:07–1:22 | Recipient: click Transfer on an inbox row. Keep 0.001 NEAR and the connected account destination; Review transfer, record the public-link confirmation, confirm and open the NearBlocks receipt. |
+| 1:22–1:36 | Receive tab: Copy view key. Separate unsigned context: paste in masked field, enter name, Scan as auditor; expand Incoming payments. Never unmask or record clipboard contents. |
 | 1:36–1:47 | Show committed DAO JSON PASS, DAO ID, scan.found=1 and NearBlocks approval. Label: previously recorded DAO evidence. |
 | 1:47–1:57 | Hold final app/limits card through end; keep complete last sentence audible. |
 
-Registration attaches 0.01 testnet NEAR for contract storage/refunds. The send is 0.01 NEAR. The current Spend control sends 0.001 NEAR to the connected recipient's named account; it explicitly reveals that link. Do not describe this spend as anonymous or a full-balance withdrawal.
+Registration attaches 0.01 testnet NEAR for contract storage/refunds. The send is 0.01 NEAR. Transfer defaults to 0.001 NEAR and the connected recipient's named account, with editable destination and amount. Keep those defaults for this recording. The transfer explicitly reveals that link; do not describe it as anonymous or a full-balance withdrawal. Displayed balances include storage reserves, and transaction gas costs extra.
 
 For the DAO scene show [PASS evidence](../results/demo-dao-20261111220608.json), DAO `veildao4434750196.sputnikv2.testnet`, and [approval receipt](https://testnet.nearblocks.io/txns/5JQtGN7P2xUM2zMef2QxT9s3eWErPFrWgNkHMVhJBSHP). Label it “Previously recorded DAO evidence”; there is no DAO proposal page in the app.
 
