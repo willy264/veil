@@ -1,0 +1,55 @@
+{
+  "checkedAt": "2026-11-12T06:54:40.655Z",
+  "url": "https://veil-eta-khaki.vercel.app",
+  "scope": "PUBLIC_BROWSER_LIVE_TESTNET_READS",
+  "walletTransactionsSubmitted": false,
+  "checks": [
+    {
+      "asset": "index",
+      "status": 200
+    },
+    {
+      "asset": "index.html",
+      "status": 200
+    },
+    {
+      "asset": "app.js",
+      "status": 200
+    },
+    {
+      "asset": "config.js",
+      "status": 200
+    },
+    {
+      "asset": "styles.css",
+      "status": 200
+    },
+    {
+      "registryResolve": "PASS",
+      "account": "alice.veil-williams.testnet"
+    },
+    {
+      "routerRead": "PASS",
+      "announcements": 4
+    }
+  ],
+  "pageErrors": [],
+  "httpStatus": 200,
+  "finalUrl": "https://veil-eta-khaki.vercel.app/",
+  "config": {
+    "rpcUrl": "https://rpc.testnet.fastnear.com",
+    "registryId": "registry2.veil-williams.testnet",
+    "routerId": "router2.veil-williams.testnet",
+    "network": "testnet"
+  },
+  "sections": [
+    "Enable Veil",
+    "Resolve a named account",
+    "Private payment",
+    "Owned stealth accounts",
+    "View-only scan",
+    "Explorer view"
+  ],
+  "walletChooserVisible": true,
+  "status": "PASS_READ_ONLY"
+}

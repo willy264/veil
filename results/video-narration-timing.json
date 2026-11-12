@@ -1,0 +1,81 @@
+{
+    "status":  "PASS",
+    "type":  "NARRATION_TIMING_ONLY",
+    "duration_seconds":  117,
+    "truncated_speech":  false,
+    "voice":  "Windows System.Speech synthetic voice",
+    "scenes":  [
+                   {
+                       "id":  "intro",
+                       "start":  0,
+                       "end":  10,
+                       "spoken_seconds":  8.674,
+                       "speech_rate":  1,
+                       "shot":  "Public URL and testnet badge; show registry2/router2. No Vercel login screen."
+                   },
+                   {
+                       "id":  "enable",
+                       "start":  10,
+                       "end":  24,
+                       "spoken_seconds":  13.24,
+                       "speech_rate":  1,
+                       "shot":  "Recipient window: Connect wallet, Derive keys, NEP-413 approval, confirmation. Hide wallet recovery screens."
+                   },
+                   {
+                       "id":  "register",
+                       "start":  24,
+                       "end":  36,
+                       "spoken_seconds":  11.191,
+                       "speech_rate":  1,
+                       "shot":  "Recipient: Register name; approve 0.01 NEAR storage deposit; wait for confirmation; Resolve the actual account."
+                   },
+                   {
+                       "id":  "send",
+                       "start":  36,
+                       "end":  53,
+                       "spoken_seconds":  15.999,
+                       "speech_rate":  0,
+                       "shot":  "Separate sender profile: connect, enter recipient and 0.01 NEAR, Send privately, approve router2, show destination/receipt. Keep recipient tab open."
+                   },
+                   {
+                       "id":  "scan",
+                       "start":  53,
+                       "end":  67,
+                       "spoken_seconds":  12.975,
+                       "speech_rate":  1,
+                       "shot":  "After finality, recipient clicks Scan. Show real owned account and balance; retain receipt/hash separately."
+                   },
+                   {
+                       "id":  "spend",
+                       "start":  67,
+                       "end":  82,
+                       "spoken_seconds":  13.51,
+                       "speech_rate":  1,
+                       "shot":  "Recipient: Spend; record re-link confirmation for 0.001 NEAR to connected account; show result hash and NearBlocks receipt."
+                   },
+                   {
+                       "id":  "auditor",
+                       "start":  82,
+                       "end":  96,
+                       "spoken_seconds":  13.322,
+                       "speech_rate":  1,
+                       "shot":  "Copy view key; separate unsigned context: paste in password field, enter name, Scan as auditor. Never unmask or record clipboard contents."
+                   },
+                   {
+                       "id":  "dao",
+                       "start":  96,
+                       "end":  107,
+                       "spoken_seconds":  9.261,
+                       "speech_rate":  0,
+                       "shot":  "Show committed DAO JSON PASS, DAO ID, scan.found=1 and NearBlocks approval. Label: previously recorded DAO evidence."
+                   },
+                   {
+                       "id":  "limits",
+                       "start":  107,
+                       "end":  117,
+                       "spoken_seconds":  9.327,
+                       "speech_rate":  0,
+                       "shot":  "Hold final app/limits card through end; keep complete last sentence audible."
+                   }
+               ]
+}

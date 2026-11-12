@@ -27,8 +27,9 @@ try {
   await page.waitForFunction(() => document.querySelector('#scan-output')?.textContent !== 'No scan yet.', null, { timeout: 45000 });
   report.config = await page.evaluate(() => window.VEIL_CONFIG);
   if (report.config.network !== 'testnet' || report.config.registryId !== 'registry2.veil-williams.testnet' || report.config.routerId !== 'router2.veil-williams.testnet') throw new Error('Unexpected contract configuration');
-  for (const asset of ['app.js','config.js','styles.css']) {
+  for (const asset of [...(local ? [] : ['index','index.html']), 'app.js','config.js','styles.css']) {
     const r = await page.request.get(new URL(asset, url + '/').href); if (!r.ok()) throw new Error(`Asset failed: ${asset}`);
+    if (new URL(r.url()).hostname !== new URL(url).hostname) throw new Error(`Asset redirected away from the app: ${asset}`);
     report.checks.push({ asset, status: r.status() });
   }
   await page.locator('#resolve').click();

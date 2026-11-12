@@ -1,34 +1,34 @@
 # Veil handoff
 
-Updated 2026-11-12 06:52 UTC. About 65.1 hours remain until 14 Nov 23:59 UTC.
+Updated 2026-11-12 06:57 UTC. About 65.0 hours remain until 14 Nov 23:59 UTC.
 
 ## Verified state
 
-- Active testnet contracts: `registry2.veil-williams.testnet` and `router2.veil-williams.testnet`. Creation/deployment/init: [evidence](../results/deploy-20261111.json).
-- Registration, three private sends, scan finding three, and one spend: [fresh demo](../results/demo-20261111221900.json). The DAO prerequisite field is covered by the separate passing [DAO run](../results/demo-dao-20261111220608.json).
-- Gate R, FT storage of 0.00125 NEAR, and the lowest tested FT stipend of 0.03092 NEAR: [verified measurements](../docs/VERIFIED.md).
-- Research, NEP draft, SDK, Rust/sandbox suite and 10,000-send property test exist. CI was green at 4645e62 before this checkpoint.
-- Current local checks: 21 tests, SDK typecheck and web build pass. Seven new tests simulate wallet/RPC responses; they are not new on-chain evidence.
-- Actual browser with live testnet reads: all six sections, Alice registry lookup, four router announcements and wallet chooser passed without page errors. [Local browser evidence](../results/local-browser-1794466234781.json). No wallet transaction was submitted by this check.
-- Web fixes cover integer storage deposit, repeatable wallet-key derivation, nonzero announcement indices, paginated scanning, view-only scans/export, point validation, and retained spend receipts. V1 still requires sequential sends and the same wallet signing key for recovery.
+- Public app: https://veil-eta-khaki.vercel.app. Fresh anonymous browser access to root/index aliases/assets, six panels and wallet chooser passes. Live Alice registry resolution and router announcement reads pass with no page errors. [Hosted evidence](../results/hosted-check-1794466492403.json).
+- Vercel project `veil` uses repository root `.`; root `vercel.json` now builds/serves `apps/web`. The production alias is public. Generated Vercel deployment aliases may still require login; use the production URL.
+- Active testnet contracts: `registry2.veil-williams.testnet` and `router2.veil-williams.testnet`. [Deployment](../results/deploy-20261111.json).
+- Registration, three private sends, scan finding three and one spend: [fresh demo](../results/demo-20261111221900.json). Separate [DAO PASS](../results/demo-dao-20261111220608.json) covers its DAO prerequisite field.
+- Gate R, FT storage of 0.00125 NEAR, and lowest tested FT stipend of 0.03092 NEAR: [measurements](../docs/VERIFIED.md).
+- Web fixes: integer registration deposit, repeatable derivation with the same wallet signing key, nonzero announcement indices, pagination, auditor scan/export, point validation, spend warning/receipt and visible RPC failures.
+- CI at fce35d5 is [green](https://github.com/willy264/veil/actions/runs/43171196000): Rust/sandbox/WASM, 21 tests, 10,000-send property test and web build. Seven web tests simulate wallet/RPC responses and are not new testnet receipts.
+- Research, NEP, README, X and submission drafts exist. README/submission now distinguish verified public access from pending hosted wallet approvals.
 
-## Hosting
+## Recording package
 
-Vercel project `veil` has repository root `.`. Root `vercel.json` now builds `apps/web` and serves that directory; earlier automatic deployments lacked this configuration. The old README alias returned 404. The production alias `https://veil-willy264s-projects.vercel.app` and deployment URLs currently redirect to Vercel login. The human is disabling Deployment Protection. Do not label the URL publicly verified until an anonymous browser loads the application.
+The [shot list](../docs/VIDEO-PLAN.md) and [script](../docs/VIDEO-SCRIPT.md) cover enable → register → send → scan → spend → auditor → prior DAO evidence. Generated synthetic narration: `results/video-assets/voiceover-final.wav`, exactly 117 seconds. [Timing evidence](../results/video-narration-timing.json) confirms no spoken segment is cut. The old `results/veil-demo.mp4` is a draft and must not be submitted.
 
 ## Exact next action
 
-Push the hosting/web fixes, wait for deployment, and run `node scripts/check-hosted.mjs https://veil-willy264s-projects.vercel.app` after protection is disabled. The script requires Playwright (install outside the repository if preferred and set `VEIL_PLAYWRIGHT_MODULE` to its module path). It records anonymous assets, contract views, wallet chooser and runtime errors. Then verify real wallet approvals with the human's wallet session, update the canonical URL in README/submission, and record the shot list.
+Human: record the shot list with a funded recipient and sender in separate wallet browser profiles, and a third unsigned auditor context. Use a recipient with no conflicting Veil registration; do not overwrite the scripted Alice identity. Preserve public transaction hashes, keep view keys masked, and avoid recording signatures/seed material. Then assemble the 1:57 video using the narration, upload it, and put the public video URL into submission.json.
 
-## Video and release
+Agent can rerun the read-only check with `node scripts/check-hosted.mjs https://veil-eta-khaki.vercel.app`; install Playwright or set `VEIL_PLAYWRIGHT_MODULE` to its installed module path.
 
-A 115-second segmented narration is generated at `results/video-assets/voiceover-final.wav`, with [timing evidence](../results/video-narration-timing.json). The older `results/veil-demo.mp4` is a draft with incomplete footage and must not be submitted. The human will record the wallet steps using the updated shot list; do not simulate approved transactions or expose viewing/spending material.
+## Remaining limits
 
-## Open items
+- Public access and live reads are verified. Actual hosted wallet approvals need a human browser session; this agent has no signed-in wallet or demo signer environment variables.
+- V1 sends must be sequential: concurrent submissions can change the expected router index and prevent normal discovery. Wallet recovery requires the same signing key; older random-nonce registrations may not be recoverable through this flow.
+- The current Spend button sends 0.001 NEAR to the connected named account and warns that the link becomes public.
+- Seven dependency alerts remain documented in [DEPENDABOT.md](../docs/DEPENDABOT.md), per instruction.
+- Human recording/edit/upload, X publication and form submission are pending. Mainnet is not authorized. Commit/push/tag updates are authorized.
 
-- Public hosted access and real hosted wallet transactions remain unverified.
-- No demo signer environment variables are present in this agent process. Existing successful DAO/demo evidence remains valid; rerunning those scripts is not required for the read-only hosting check.
-- Seven dependency alerts stay documented in [DEPENDABOT.md](../docs/DEPENDABOT.md), per the user's instruction.
-- Video assembly/upload, X publication and form submission remain pending. Mainnet is not authorized. Commit/push are authorized; retag after final checks.
-
-Old faucet, missing DAO funding and fresh-contract deployment blockers are resolved and removed.
+The previous hosting, faucet, DAO-funding and fresh-contract blockers are resolved. Do not report them as outstanding.

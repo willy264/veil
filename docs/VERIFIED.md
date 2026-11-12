@@ -2,6 +2,14 @@
 
 Only facts backed by a source or a real executed test belong here. Simulated results must be labelled `SIMULATED` elsewhere.
 
+## Hosted app and recording package: 2026-11-12
+
+- **VERIFIED:** https://veil-eta-khaki.vercel.app loads in a fresh anonymous browser, with no Vercel login. Root/index aliases and JavaScript/CSS/config assets return HTTP 200. All six panels render; the near-connect wallet chooser opens. [Browser evidence](../results/hosted-check-1794466492403.json).
+- **VERIFIED:** The hosted browser resolves Alice through registry2 and reads four announcements from router2 over testnet RPC, with no page errors. This is read-only verification; it did not approve a wallet transaction.
+- **VERIFIED:** CI at fce35d5 passes Rust, sandbox, WASM, 21 tests, the 10,000-send property check and web build. [Run](https://github.com/willy264/veil/actions/runs/43171196000). Seven web tests use simulated wallet/RPC responses; real hosted approvals remain for the human session.
+- **VERIFIED:** Generated narration is 117 seconds. Each complete spoken segment fits its scene with at least 0.5 seconds spare; [timing report](../results/video-narration-timing.json). The final wallet footage is not recorded yet. The earlier MP4 is an obsolete draft.
+- **LIMIT:** V1 derives against the next router index. Concurrent submissions can change it and prevent normal discovery. Sequential recording is required; the current deployment has no index reservation protocol.
+
 ## 2026-11-08
 
 - **VERIFIED:** The supplied brief requires research before product code and requires testnet proof of spending from a derived stealth account. Source: `docs/VEIL-BRIEF.md`.

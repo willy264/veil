@@ -14,7 +14,7 @@ The V1 registry and router contracts are deployed on NEAR testnet; receipts are 
 
 Fresh registry/router creation, funding, deployment, initialization, WASM sizes, and view checks are recorded in [deployment evidence](results/deploy-20261111.json) and [verified links](docs/VERIFIED.md). The verified DAO payout is recorded in [DAO evidence](results/demo-dao-20261111220608.json).
 
-The WSL2 Ubuntu gate passes Rust formatting, clippy with warnings denied, workspace tests, sandbox tests, and release WASM builds; the checks are defined in [CI](.github/workflows/ci.yml). The SDK tests cover NEP-413 derivation, registry and router actions, scanning, spending, view-key export, relinking warnings, V3 vectors, and malformed inputs; [14 tests pass](packages/sdk/test).
+The Ubuntu gate passes Rust formatting, clippy with warnings denied, workspace tests, sandbox tests, release WASM builds and the web build; see the [green run](https://github.com/willy264/veil/actions/runs/43171196000). There are [21 passing tests](packages/sdk/test), including seven web-flow regressions with simulated wallet/RPC responses. The standalone 10,000-send property test also passes in CI. Simulated wallet tests are not hosted transaction receipts.
 
 ## Try it
 
@@ -37,7 +37,11 @@ Open `http://127.0.0.1:4173`. The app reads `registry2.veil-williams.testnet` an
 
 ### Vercel deployment
 
-Run `pnpm --dir apps/web build` locally to validate the static build. The Vercel project is named `veil`, uses `apps/web`, and is deployed at [veil-eta-khaki.vercel.app](https://veil-eta-khaki.vercel.app). `veil.vercel.app` was unavailable to this account, so Vercel assigned its unique production alias. The build uses `VEIL_NETWORK=testnet`, `VEIL_RPC_URL=https://rpc.testnet.fastnear.com`, `VEIL_REGISTRY_ID=registry2.veil-williams.testnet`, and `VEIL_ROUTER_ID=router2.veil-williams.testnet`; no private keys are configured.
+Open [Veil on testnet](https://veil-eta-khaki.vercel.app). Anonymous access to the page, index aliases and assets, all six panels, the wallet chooser and real registry2/router2 reads passed on 12 Nov: [hosted evidence](results/hosted-check-1794466492403.json). Actual hosted wallet approvals still need the human recording session; prior scripted receipts are linked below.
+
+Vercel project `veil` uses repository root `.`. The root [vercel.json](vercel.json) runs `pnpm --dir apps/web build` and serves `apps/web`. This corrects the old empty-root deployment. `veil.vercel.app` was unavailable; use the verified production alias above, not the protected generated deployment URLs. Environment: `VEIL_NETWORK=testnet`, `VEIL_RPC_URL=https://rpc.testnet.fastnear.com`, `VEIL_REGISTRY_ID=registry2.veil-williams.testnet`, `VEIL_ROUTER_ID=router2.veil-williams.testnet`. No private keys belong in Vercel configuration.
+
+For the recording, follow the [1:57 wallet shot list](docs/VIDEO-PLAN.md) and [narration script](docs/VIDEO-SCRIPT.md). The generated local track is `results/video-assets/voiceover-final.wav`; [timing checks](results/video-narration-timing.json) confirm complete speech within every scene. Human wallet footage, final editing and video upload remain pending; the older MP4 is a draft.
 
 Run the scripted testnet demo with process-only key variables:
 
@@ -82,3 +86,5 @@ Codex assisted with implementation, review, research, and test orchestration. Re
 ## Honest limits
 
 Amounts, timing, sender identities, and token contracts remain public. Sweeping multiple stealth balances to one destination links them. The project is testnet-only and has not touched mainnet; transaction-level limits and receipts are in [verified evidence](docs/VERIFIED.md).
+
+V1 sends must be sequential: [browser derivation](apps/web/app.js) uses the next router index, so concurrent sends can change that index and prevent normal discovery. Re-derivation requires the same wallet signing key; older random-nonce registrations or a different signing key cannot be assumed recoverable. The current Spend control sends 0.001 NEAR to the connected named account and warns about that public link. Seven dependency alerts remain [documented](docs/DEPENDABOT.md), as requested.

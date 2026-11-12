@@ -1,10 +1,11 @@
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 
-const { chromium } = createRequire(import.meta.url)('C:/Users/HP/AppData/Local/Temp/veil-video-tools/node_modules/playwright');
+// Read-only B-roll capture; this does not record real wallet approvals.
+const { chromium } = createRequire(import.meta.url)(process.env.VEIL_PLAYWRIGHT_MODULE || 'playwright');
 
 const output = fileURLToPath(new URL('../results/video-assets/', import.meta.url));
-const appUrl = process.env.VEIL_VIDEO_URL ?? 'http://127.0.0.1:4173';
+const appUrl = process.env.VEIL_VIDEO_URL ?? 'https://veil-eta-khaki.vercel.app';
 const browser = await chromium.launch({ headless: true });
 const context = await browser.newContext({
   viewport: { width: 1440, height: 900 },
@@ -29,4 +30,4 @@ await page.goto(appUrl, { waitUntil: 'networkidle' });
 await page.waitForTimeout(38000);
 await context.close();
 await browser.close();
-console.log('recorded hosted Veil demo');
+console.log('recorded read-only Veil B-roll; wallet footage must be recorded separately');

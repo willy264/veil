@@ -12,6 +12,17 @@
   "verified": "docs/VERIFIED.md",
   "repository": "https://github.com/willy264/veil",
   "live_url": "https://veil-eta-khaki.vercel.app",
+  "hosted_verification": "results/hosted-check-1794466492403.json",
+  "hosted_wallet_approvals": "pending human browser session; automated check is read-only",
+  "video": {
+    "status": "narration and shot list ready; wallet recording and upload pending",
+    "duration_seconds": 117,
+    "script": "docs/VIDEO-SCRIPT.md",
+    "shot_list": "docs/VIDEO-PLAN.md",
+    "narration_local_file": "results/video-assets/voiceover-final.wav",
+    "timing_evidence": "results/video-narration-timing.json",
+    "public_url": null
+  },
   "demo": {
     "register": true,
     "private_sends": 3,
@@ -22,6 +33,9 @@
   "limitations": [
     "Amounts, timing, sender identity, and token contracts remain public.",
     "Sweeping multiple stealth accounts to one destination creates a link.",
-    "The current implementation is testnet-only and uses Ed25519 implicit accounts."
+    "The current implementation is testnet-only and uses Ed25519 implicit accounts.",
+    "Concurrent sends can change the derivation index; V1 requires sequential sends.",
+    "Wallet key recovery requires the same signing key; older random-nonce registrations may not be recoverable by re-deriving.",
+    "Seven dependency alerts remain documented in docs/DEPENDABOT.md."
   ]
 }
