@@ -48,3 +48,4 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm test
       - run: pnpm test:v1
+      - run: pnpm --dir apps/web build

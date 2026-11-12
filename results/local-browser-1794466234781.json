@@ -1,0 +1,48 @@
+{
+  "checkedAt": "2026-11-12T06:50:23.252Z",
+  "url": "http://127.0.0.1:55118",
+  "scope": "LOCAL_BROWSER_LIVE_TESTNET_READS",
+  "walletTransactionsSubmitted": false,
+  "checks": [
+    {
+      "asset": "app.js",
+      "status": 200
+    },
+    {
+      "asset": "config.js",
+      "status": 200
+    },
+    {
+      "asset": "styles.css",
+      "status": 200
+    },
+    {
+      "registryResolve": "PASS",
+      "account": "alice.veil-williams.testnet"
+    },
+    {
+      "routerRead": "PASS",
+      "announcements": 4
+    }
+  ],
+  "pageErrors": [],
+  "httpStatus": 200,
+  "finalUrl": "http://127.0.0.1:55118/",
+  "config": {
+    "rpcUrl": "https://rpc.testnet.fastnear.com",
+    "registryId": "registry2.veil-williams.testnet",
+    "routerId": "router2.veil-williams.testnet",
+    "network": "testnet"
+  },
+  "sections": [
+    "Enable Veil",
+    "Resolve a named account",
+    "Private payment",
+    "Owned stealth accounts",
+    "View-only scan",
+    "Explorer view"
+  ],
+  "walletChooserVisible": true,
+  "walletChooserText": "\nVeil derives a fresh implicit account for every payment to a registered NEAR name.\n\nREGISTRY\nregistry2.veil-williams.testnet\nROUTER\nrouter2.veil-williams.testnet\n\nRECEIVE\n\nEnable Veil\nKEYS IN MEMORY\n\nA NEP-413 wallet signature derives viewing and spending keys locally. Keys are never sent to a server. Use the same wallet signing key to recover your inbox; changing wallets or signing keys can derive different keys.\n\nDerive keys\nRegister name\nCopy view key\nConnect a testnet wallet to begin.\n\nIDENTITY\n\nResolve a named account\nREAD-ONLY\nNEAR name\nResolve\n{\n  \"spend_pub_hex\": \"60056ec42a97ba68abc2f6fd0c95755fb66ec7a224e5dd335b5b2a12f6b021cb\",\n  \"view_pub_hex\": \"3dc9fff256104ffef52924f5dec51225fac3df034595305a1b5734b40bbfd2df\",\n  \"scheme_id\": 1\n}\nOpen public history\n\nSEND\n\nPrivate payment\nWALLET SIGNED\nRecipient name\nAmount in NEAR\nSend privately\nResolve the recipient, then sign with your wallet.\n\nINBOX\n\nOwned stealth accounts\nScan\n\nThe view tag filters unrelated announcements before the full key calculation. Balances are read directly from testnet RPC.\n\nIndex\tOne-time account\tBalance (yoctoNEAR)\t\nNo owned payments found. Enable Veil and refresh.\n{\n  \"announcements\": 4,\n  \"owned\": 0\n}\n\nAUDITOR\n\nView-only scan\nNO SPEND KEY\nRegistered name\nView key (32-byte hex)\nScan as auditor\nAn auditor can inspect incoming payments but cannot spend them.\n\nPUBLIC COMPARISON\n\nExplorer view\nNEARBLOCKS\n\nThe named account remains the public identity. Private outputs are separate implicit accounts.\n\nCompare on testnet.nearblocks.io\nVeil V1 · Testnet only · amounts, timing, sender identities, and token contracts remain public.\n\nSelect wallet\n\nMeteor Wallet\nmeteorwallet.app\nIntear Wallet\nintea.rs\nLedger\nledger.com\nNightly Wallet\nnightly.app\nNEAR CLI\nnear.cli.rs\n\nNEAR Connector\n\nDon't have a wallet?",
+  "status": "PASS_READ_ONLY"
+}
