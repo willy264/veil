@@ -1,0 +1,99 @@
+1
+00:00:00,000 --> 00:00:03,484
+Veil brings private receiving to NEAR names.
+
+2
+00:00:03,484 --> 00:00:09,047
+This tour shows the current app and verified transactions from November eleventh.
+
+3
+00:00:10,000 --> 00:00:12,629
+Start with a testnet wallet.
+
+4
+00:00:12,629 --> 00:00:16,327
+Derive keys asks for a signed message.
+
+5
+00:00:16,327 --> 00:00:21,160
+Veil keeps the resulting viewing and spending keys in your browser.
+
+6
+00:00:24,000 --> 00:00:26,969
+Register name publishes two public keys.
+
+7
+00:00:26,969 --> 00:00:31,703
+Here, Resolve reads Alice's existing registration directly from testnet.
+
+8
+00:00:31,703 --> 00:00:34,886
+Her private keys are not part of that record.
+
+9
+00:00:36,000 --> 00:00:39,133
+Enter a registered name and an amount.
+
+10
+00:00:39,133 --> 00:00:43,257
+A signed payment goes to a fresh implicit account.
+
+11
+00:00:43,257 --> 00:00:48,645
+These three recorded sends each used a different sender and destination.
+
+12
+00:00:53,000 --> 00:00:58,887
+In the verified testnet run, Alice's viewing key found all three incoming payments.
+
+13
+00:00:58,887 --> 00:01:02,531
+View tags help filter unrelated announcements.
+
+14
+00:01:02,531 --> 00:01:05,772
+Each matching payment lives in its own account.
+
+15
+00:01:07,000 --> 00:01:12,193
+The recorded spend proves that a one-time account can send funds.
+
+16
+00:01:12,193 --> 00:01:18,686
+The app warns before spending to your named account, because that creates a public link.
+
+17
+00:01:22,000 --> 00:01:26,212
+Copy view key shares read-only access with an accountant.
+
+18
+00:01:26,212 --> 00:01:30,148
+The auditor enters the registered name and viewing key here.
+
+19
+00:01:30,148 --> 00:01:34,436
+They can find incoming payments, but cannot spend them.
+
+20
+00:01:36,000 --> 00:01:41,798
+The recorded Sputnik DAO payout was approved by its sole council member.
+
+21
+00:01:41,798 --> 00:01:46,286
+The recipient scanner found the payment at a fresh account.
+
+22
+00:01:47,000 --> 00:01:48,674
+Veil is testnet-only.
+
+23
+00:01:48,674 --> 00:01:51,616
+Amounts, timing and senders remain public.
+
+24
+00:01:51,616 --> 00:01:54,001
+Combining balances reveals links.
+
+25
+00:01:54,001 --> 00:01:56,324
+Try the app at the address on screen.

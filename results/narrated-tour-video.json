@@ -1,0 +1,98 @@
+{
+  "recordedAt": "2026-11-12T09:45:41.642Z",
+  "appUrl": "https://veil-eta-khaki.vercel.app",
+  "type": "CURRENT_UI_WITH_PRIOR_TESTNET_EVIDENCE",
+  "walletTransactionsSubmitted": false,
+  "walletSignedIn": false,
+  "privateKeysLoaded": false,
+  "syntheticNarration": true,
+  "durationSeconds": 117,
+  "pageErrors": [],
+  "scenes": [
+    {
+      "id": "intro",
+      "seconds": 10,
+      "scope": "LIVE_UI",
+      "source": "https://veil-eta-khaki.vercel.app"
+    },
+    {
+      "id": "enable",
+      "seconds": 14,
+      "scope": "LIVE_UI",
+      "source": "https://veil-eta-khaki.vercel.app",
+      "trimStartSeconds": 7
+    },
+    {
+      "id": "register",
+      "seconds": 12,
+      "scope": "LIVE_UI",
+      "source": "https://veil-eta-khaki.vercel.app"
+    },
+    {
+      "id": "send",
+      "seconds": 17,
+      "scope": "UI_AND_RECORDED_EVIDENCE",
+      "source": "https://veil-eta-khaki.vercel.app"
+    },
+    {
+      "id": "scan",
+      "seconds": 14,
+      "scope": "RECORDED_EVIDENCE",
+      "source": "results/demo-20261111221900.json"
+    },
+    {
+      "id": "spend",
+      "seconds": 15,
+      "scope": "RECORDED_EVIDENCE",
+      "source": "results/demo-20261111221900.json"
+    },
+    {
+      "id": "auditor",
+      "seconds": 14,
+      "scope": "LIVE_UI",
+      "source": "https://veil-eta-khaki.vercel.app"
+    },
+    {
+      "id": "dao",
+      "seconds": 11,
+      "scope": "RECORDED_EVIDENCE",
+      "source": "results/demo-dao-20261111220608.json"
+    },
+    {
+      "id": "limits",
+      "seconds": 10,
+      "scope": "LIVE_UI",
+      "source": "https://veil-eta-khaki.vercel.app"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "results/demo-20261111221900.json",
+      "sha256": "c422c125b04bfadb0eb8e907938094444e34ad8b287312fb5488074b14d77b48"
+    },
+    {
+      "path": "results/demo-dao-20261111220608.json",
+      "sha256": "bedc6447519d1548faa4a9dda0a5512d6f83acb7d9b1e3c9baddeb77c0412a10"
+    }
+  ],
+  "editor": "Playwright + Windows System.Speech + FFmpeg",
+  "clipdio": "Browser requires email sign-in; desktop download requires email submission. Neither was performed.",
+  "captionCount": 25,
+  "status": "PASS",
+  "file": "results/veil-demo-green-ui.mp4",
+  "bytes": 5886501,
+  "renderedAt": "2026-11-12T23:44:15.209Z",
+  "sha256": "b30c7a792e6b7ad33a4da270af6c7acad021cab7d216dedba28a4e79ea5311bc",
+  "resolution": "1920x1080",
+  "fps": 30,
+  "videoCodec": "H.264",
+  "audioCodec": "AAC",
+  "speechTruncated": false,
+  "validation": [
+    "117-second duration",
+    "H.264 1080p video and AAC audio",
+    "full decode without errors",
+    "sentence-timed captions with complete narration coverage",
+    "public UI and dated evidence clearly distinguished"
+  ]
+}

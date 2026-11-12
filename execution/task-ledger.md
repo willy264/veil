@@ -1,10 +1,10 @@
 # Veil execution ledger
 
-Updated 2026-11-12 09:32 UTC. Deadline: 2026-11-14 23:59 UTC; approximately 62.5 hours remain.
+Updated 2026-11-12 23:44 UTC. Deadline: 2026-11-14 23:59 UTC; approximately 48.3 hours remain.
 
 | Task | State | Evidence / next action |
 |---|---|---|
-| Narrated video recreation | Narration complete; recording/render in progress | Current green UI plus labeled prior testnet evidence; 117 seconds; results/narrated-tour-timing.json |
+| Narrated video recreation | Complete locally | results/veil-demo-green-ui.mp4; 117 seconds, 1080p, synthetic voice, full captions; results/narrated-tour-video.json |
 | Design rollback | Live; browser verified | 7ff421b restores ebfd14f; build/typecheck/21 tests pass; results/hosted-check-1794472250465.json; Git history preserved |
 | R0-R2 brief, prior art, public-account research | Done | docs/VEIL-BRIEF.md; research/01-prior-art.md; research/02-problem-evidence.md |
 | Gate R raw-scalar spend | Verified | results/gate-r-20261108224016.json |
@@ -17,13 +17,14 @@ Updated 2026-11-12 09:32 UTC. Deadline: 2026-11-14 23:59 UTC; approximately 62.5
 | Public hosting | Verified | https://veil-eta-khaki.vercel.app; results/hosted-check-1794466492403.json |
 | Hosted read checks | Passed | Six panels, root/index/assets, wallet chooser, registry2/router2 views; no login or page errors |
 | Hosted wallet approvals | Pending human session | Automated checks are read-only; simulated tests verify call routing, not real approvals |
-| Video script/shot list/narration | Ready | docs/VIDEO-SCRIPT.md; docs/VIDEO-PLAN.md; 117-second WAV; results/video-narration-timing.json |
-| Wallet footage/edit/upload | Pending human | Record actual steps, trim waits, overlay full narration, export and add public URL |
+| Current-UI footage, narration and editing | Complete | docs/NARRATED-TOUR.md; sentence-timed SRT; local WAV/MP4; dated evidence labels; no new wallet signatures |
+| Wallet footage | Separate human verification | docs/VIDEO-PLAN.md remains the real-wallet shot list; current tour does not claim live approvals |
+| Video public upload | Pending human | Review the completed local export and upload it; add public URL |
 | Research/NEP/README/submission/X drafts | Prepared | Working URL and honest status documented; video public_url remains null until upload |
 | Dependency alerts | Documented, retained | docs/DEPENDABOT.md; seven open alerts |
 | Release CI/tag/push | CI runs on pushes; tag follows checked release | Code fix CI 43171196000 at fce35d5 is green; use GitHub Actions and hackathon-submission for final commit status |
 | X and submission | Pending human | No post or submission made |
 
-Next: human records real wallet steps using the shot list. Preserve the original Alice script identity; use a compatible recipient wallet/key. Sends must be sequential because V1 has no index reservation. Spend intentionally demonstrates the warning by sending to the connected named account.
+Next: review the completed narrated video, upload it when authorized, and add the public URL. For separate hosted-wallet verification, preserve the original Alice script identity and use a compatible recipient wallet/key. Sends must be sequential because V1 has no index reservation. Spend sends to the connected named account with a re-link warning.
 
 Historical: fresh-clone frozen install/typecheck/14-test/web-build passed on 11 Nov before these web fixes. Current full CI includes 21 tests and web build. The old hosting, faucet, funding and deployment blockers are resolved. Ubuntu/WSL2 remains the supported Rust/sandbox environment.

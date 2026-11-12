@@ -5,13 +5,13 @@
     "truncated_speech":  false,
     "voice":  "Microsoft Hazel Desktop",
     "synthetic":  true,
-    "caption_timing":  "System.Speech SpeakProgress audio positions",
+    "caption_timing":  "Sentence WAV sample durations; complete narration coverage",
     "scenes":  [
                    {
                        "id":  "intro",
                        "start":  0,
                        "end":  10,
-                       "spoken_seconds":  9.048,
+                       "spoken_seconds":  9.047,
                        "speech_rate":  1,
                        "scope":  "LIVE_UI"
                    },
@@ -19,7 +19,7 @@
                        "id":  "enable",
                        "start":  10,
                        "end":  24,
-                       "spoken_seconds":  11.161,
+                       "spoken_seconds":  11.16,
                        "speech_rate":  0,
                        "scope":  "LIVE_UI"
                    },
@@ -27,7 +27,7 @@
                        "id":  "register",
                        "start":  24,
                        "end":  36,
-                       "spoken_seconds":  10.887,
+                       "spoken_seconds":  10.886,
                        "speech_rate":  2,
                        "scope":  "LIVE_UI"
                    },
@@ -35,7 +35,7 @@
                        "id":  "send",
                        "start":  36,
                        "end":  53,
-                       "spoken_seconds":  12.646,
+                       "spoken_seconds":  12.645,
                        "speech_rate":  0,
                        "scope":  "UI_AND_RECORDED_EVIDENCE"
                    },
@@ -43,7 +43,7 @@
                        "id":  "scan",
                        "start":  53,
                        "end":  67,
-                       "spoken_seconds":  12.773,
+                       "spoken_seconds":  12.772,
                        "speech_rate":  1,
                        "scope":  "RECORDED_EVIDENCE"
                    },
@@ -59,7 +59,7 @@
                        "id":  "auditor",
                        "start":  82,
                        "end":  96,
-                       "spoken_seconds":  12.437,
+                       "spoken_seconds":  12.436,
                        "speech_rate":  1,
                        "scope":  "LIVE_UI"
                    },
@@ -75,7 +75,7 @@
                        "id":  "limits",
                        "start":  107,
                        "end":  117,
-                       "spoken_seconds":  9.325,
+                       "spoken_seconds":  9.324,
                        "speech_rate":  3,
                        "scope":  "LIVE_UI"
                    }

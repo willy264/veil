@@ -41,7 +41,7 @@ Open [Veil on testnet](https://veil-eta-khaki.vercel.app). Anonymous access to t
 
 Vercel project `veil` uses repository root `.`. The root [vercel.json](vercel.json) runs `pnpm --dir apps/web build` and serves `apps/web`. This corrects the old empty-root deployment. `veil.vercel.app` was unavailable; use the verified production alias above, not the protected generated deployment URLs. Environment: `VEIL_NETWORK=testnet`, `VEIL_RPC_URL=https://rpc.testnet.fastnear.com`, `VEIL_REGISTRY_ID=registry2.veil-williams.testnet`, `VEIL_ROUTER_ID=router2.veil-williams.testnet`. No private keys belong in Vercel configuration.
 
-For the recording, follow the [1:57 wallet shot list](docs/VIDEO-PLAN.md) and [narration script](docs/VIDEO-SCRIPT.md). The generated local track is `results/video-assets/voiceover-final.wav`; [timing checks](results/video-narration-timing.json) confirm complete speech within every scene. Human wallet footage, final editing and video upload remain pending; the older MP4 is a draft.
+The recreated [1:57 narrated tour](docs/NARRATED-TOUR.md) uses the restored green UI, synthetic voiceover and captions. Its local export is `results/veil-demo-green-ui.mp4`; [media verification](results/narrated-tour-video.json) and [narration timing](results/narrated-tour-timing.json) record the checks. It combines current public UI footage with clearly dated prior transaction evidence. It does not record new wallet approvals. Public video upload remains pending; the older `results/veil-demo.mp4` is superseded. The separate [wallet shot list](docs/VIDEO-PLAN.md) remains available for recording real approvals.
 
 Run the scripted testnet demo with process-only key variables:
 
@@ -81,7 +81,7 @@ Veil is independent; no second hackathon project is being submitted under this t
 
 ## AI and tools disclosure
 
-Codex assisted with implementation, review, research, and test orchestration. References and dependencies include [NEAR docs](https://docs.near.org/), [near-api-js](https://github.com/near/near-api-js), [noble-hashes](https://github.com/paulmillr/noble-hashes), and the [Sputnik README](https://github.com/near-daos/sputnik-dao-contract#setup). Wallet keys were never supplied to AI tools or committed.
+Codex assisted with implementation, review, research, and test orchestration. References and dependencies include [NEAR docs](https://docs.near.org/), [near-api-js](https://github.com/near/near-api-js), [noble-hashes](https://github.com/paulmillr/noble-hashes), and the [Sputnik README](https://github.com/near-daos/sputnik-dao-contract#setup). Wallet keys were never supplied to AI tools or committed. The [narrated tour](docs/NARRATED-TOUR.md) uses synthetic Windows speech and Playwright/FFmpeg editing.
 
 ## Honest limits
 

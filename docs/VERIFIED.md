@@ -89,3 +89,11 @@ Only facts backed by a source or a real executed test belong here. Simulated res
 - Register: https://testnet.nearblocks.io/txns/EACePGCGboNaxyMUFg6yc9FbYeqwDjB7fd57QaMHvjST
 - Sends: https://testnet.nearblocks.io/txns/CcP8bbX9aGgogtFrCxdeoZt5oXP8SuvGThryjM9uS9Fy, https://testnet.nearblocks.io/txns/5w1RTyMMG8sakMUhACxop8N1LtnJf4GSCXkujaY6mNCF, https://testnet.nearblocks.io/txns/9Pzghy1VHauxJViZac6MotLezD4uL5WGrDyhRMSLrS1z
 - Spend: https://testnet.nearblocks.io/txns/vMbgFyzUb1PnU9eN5pR9cgUsWF1QafS1kXznp2kBQJH
+
+## Narrated current-UI video: 2026-11-12
+
+- The recreated local export is `results/veil-demo-green-ui.mp4`: 117 seconds, 1920×1080 at 30 fps, H.264/AAC, synthetic voiceover and burned-in captions. [Media verification](../results/narrated-tour-video.json) contains its SHA-256 and complete decode result.
+- [Narration timing](../results/narrated-tour-timing.json) verifies all nine scenes fit without cutting speech. The [SRT](../results/veil-demo-green-ui.srt) covers the full narration using measured sentence audio durations.
+- [Final review](../results/narrated-tour-review.json) records the inspected scene frames and audio levels. Its checksum matches the delivered video; 48 kHz audio peaks at −1.5 dB without clipping.
+- Live footage shows the restored green public UI, wallet chooser, public registry resolution, payment form and auditor controls. Dated cards separately show the three-send/scan/spend and DAO evidence from 11 November. The recording submitted no transactions and loaded no signing keys; it is not evidence of hosted wallet approvals.
+- [Delivery and reproduction notes](NARRATED-TOUR.md) list the local assets. Public video upload remains pending. Clipdio required email access, so this export was assembled locally.

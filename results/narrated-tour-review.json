@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "reviewedAt": "2026-11-12T23:45:06.108Z",
+  "file": "results/veil-demo-green-ui.mp4",
+  "sha256": "b30c7a792e6b7ad33a4da270af6c7acad021cab7d216dedba28a4e79ea5311bc",
+  "durationSeconds": 117,
+  "audio": {
+    "meanDb": -16.8,
+    "peakDb": -1.5,
+    "sampleRate": 48000
+  },
+  "captions": {
+    "count": 25,
+    "coverage": "All narration sentences match the scene script; timing uses individual sentence WAV durations"
+  },
+  "visualReview": [
+    "Nine-scene contact sheet inspected",
+    "Wallet chooser retained in reviewed trim",
+    "Enable panel returns to disconnected state",
+    "Public registry resolution visible",
+    "Prior send, scan, spend and DAO records carry dated evidence labels",
+    "Auditor key field stays empty",
+    "Caption strip stays separate from the UI"
+  ],
+  "walletApprovalsRecorded": false,
+  "privateKeysLoaded": false
+}

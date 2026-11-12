@@ -1,10 +1,10 @@
 # Veil handoff
 
-Updated 2026-11-12 09:32 UTC. About 62.5 hours remain until 14 Nov 23:59 UTC.
+Updated 2026-11-12 23:44 UTC. About 48.3 hours remain until 14 Nov 23:59 UTC.
 
 ## Narrated video recreation
 
-The user requested a finished video with the restored green UI. `docs/narrated-tour-scenes.json` and `scripts/narrate-tour.ps1` produce a separate 117-second narrated walkthrough with word-timed captions; `results/narrated-tour-timing.json` passes. The original human-wallet shot list remains separate. Live signing keys are absent in this agent session, so the recording uses live public UI plus explicitly dated prior testnet evidence. Clipdio requires email sign-in/download submission, so no Clipdio account or email was submitted. Recording/rendering is running locally with Playwright, System.Speech and FFmpeg; the target is `results/veil-demo-green-ui.mp4`. Next: finish capture/render, inspect frames/audio, then commit evidence and update delivery status.
+The recreated video is `results/veil-demo-green-ui.mp4`: 117 seconds, 1080p, synthetic Hazel voiceover, sentence-timed captions and nine scenes. See [delivery notes](../docs/NARRATED-TOUR.md), [media verification](../results/narrated-tour-video.json), [timing](../results/narrated-tour-timing.json), and [captions](../results/veil-demo-green-ui.srt). Captions cover the complete narration; speech is not truncated. Live signing keys are absent in this agent session, so the recording uses current public UI plus explicitly dated prior testnet evidence. Clipdio requires email sign-in/download submission, so no Clipdio account or email was submitted. The local MP4 was assembled with Playwright, System.Speech and FFmpeg. Raw clips and audio are preserved locally under `results/video-assets/green-ui/`; large media is Git-ignored.
 
 ## Design restored at the user's request
 
@@ -25,11 +25,11 @@ Rollback commit `7ff421b` is pushed and live. Build, typecheck and 21 tests pass
 
 ## Recording package
 
-The [shot list](../docs/VIDEO-PLAN.md) and [script](../docs/VIDEO-SCRIPT.md) cover enable → register → send → scan → spend → auditor → prior DAO evidence. Generated synthetic narration: `results/video-assets/voiceover-final.wav`, exactly 117 seconds. [Timing evidence](../results/video-narration-timing.json) confirms no spoken segment is cut. The old `results/veil-demo.mp4` is a draft and must not be submitted.
+The completed current-UI tour uses `docs/narrated-tour-scenes.json` and `results/video-assets/green-ui/voiceover-final.wav`. The [wallet shot list](../docs/VIDEO-PLAN.md) and [wallet script](../docs/VIDEO-SCRIPT.md) remain a separate plan for genuine signed-in footage. The old `results/veil-demo.mp4` is superseded and must not be submitted.
 
 ## Exact next action
 
-Human: record the shot list with a funded recipient and sender in separate wallet browser profiles, and a third unsigned auditor context. Use a recipient with no conflicting Veil registration; do not overwrite the scripted Alice identity. Preserve public transaction hashes, keep view keys masked, and avoid recording signatures/seed material. Then assemble the 1:57 video using the narration, upload it, and put the public video URL into submission.json.
+Human: review `results/veil-demo-green-ui.mp4`, then authorize or perform the public upload and put its URL into `submission.json`. The video is complete locally. Real hosted wallet approvals are still unverified in this session. To add signed-in footage, follow the separate wallet shot list with funded recipient/sender profiles and an unsigned auditor context. Do not overwrite the scripted Alice identity or expose signing material.
 
 Agent can rerun the read-only check with `node scripts/check-hosted.mjs https://veil-eta-khaki.vercel.app`; install Playwright or set `VEIL_PLAYWRIGHT_MODULE` to its installed module path.
 
@@ -39,6 +39,6 @@ Agent can rerun the read-only check with `node scripts/check-hosted.mjs https://
 - V1 sends must be sequential: concurrent submissions can change the expected router index and prevent normal discovery. Wallet recovery requires the same signing key; older random-nonce registrations may not be recoverable through this flow.
 - The current Spend button sends 0.001 NEAR to the connected named account and warns that the link becomes public.
 - Seven dependency alerts remain documented in [DEPENDABOT.md](../docs/DEPENDABOT.md), per instruction.
-- Human recording/edit/upload, X publication and form submission are pending. Mainnet is not authorized. Commit/push/tag updates are authorized.
+- Public video upload, X publication and form submission are pending. Optional replacement footage requires a signed-in wallet session. Mainnet is not authorized. Commit/push/tag updates are authorized.
 
 The previous hosting, faucet, DAO-funding and fresh-contract blockers are resolved. Do not report them as outstanding.
