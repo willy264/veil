@@ -1,6 +1,10 @@
 # Veil handoff
 
-Updated 2026-11-12 08:29 UTC. About 63.5 hours remain until 14 Nov 23:59 UTC.
+Updated 2026-11-12 09:32 UTC. About 62.5 hours remain until 14 Nov 23:59 UTC.
+
+## Narrated video recreation
+
+The user requested a finished video with the restored green UI. `docs/narrated-tour-scenes.json` and `scripts/narrate-tour.ps1` produce a separate 117-second narrated walkthrough with word-timed captions; `results/narrated-tour-timing.json` passes. The original human-wallet shot list remains separate. Live signing keys are absent in this agent session, so the recording uses live public UI plus explicitly dated prior testnet evidence. Clipdio requires email sign-in/download submission, so no Clipdio account or email was submitted. Recording/rendering is running locally with Playwright, System.Speech and FFmpeg; the target is `results/veil-demo-green-ui.mp4`. Next: finish capture/render, inspect frames/audio, then commit evidence and update delivery status.
 
 ## Design restored at the user's request
 

@@ -1,0 +1,83 @@
+{
+    "status":  "PASS",
+    "type":  "NARRATION_TIMING_ONLY",
+    "duration_seconds":  117,
+    "truncated_speech":  false,
+    "voice":  "Microsoft Hazel Desktop",
+    "synthetic":  true,
+    "caption_timing":  "System.Speech SpeakProgress audio positions",
+    "scenes":  [
+                   {
+                       "id":  "intro",
+                       "start":  0,
+                       "end":  10,
+                       "spoken_seconds":  9.048,
+                       "speech_rate":  1,
+                       "scope":  "LIVE_UI"
+                   },
+                   {
+                       "id":  "enable",
+                       "start":  10,
+                       "end":  24,
+                       "spoken_seconds":  11.161,
+                       "speech_rate":  0,
+                       "scope":  "LIVE_UI"
+                   },
+                   {
+                       "id":  "register",
+                       "start":  24,
+                       "end":  36,
+                       "spoken_seconds":  10.887,
+                       "speech_rate":  2,
+                       "scope":  "LIVE_UI"
+                   },
+                   {
+                       "id":  "send",
+                       "start":  36,
+                       "end":  53,
+                       "spoken_seconds":  12.646,
+                       "speech_rate":  0,
+                       "scope":  "UI_AND_RECORDED_EVIDENCE"
+                   },
+                   {
+                       "id":  "scan",
+                       "start":  53,
+                       "end":  67,
+                       "spoken_seconds":  12.773,
+                       "speech_rate":  1,
+                       "scope":  "RECORDED_EVIDENCE"
+                   },
+                   {
+                       "id":  "spend",
+                       "start":  67,
+                       "end":  82,
+                       "spoken_seconds":  11.686,
+                       "speech_rate":  0,
+                       "scope":  "RECORDED_EVIDENCE"
+                   },
+                   {
+                       "id":  "auditor",
+                       "start":  82,
+                       "end":  96,
+                       "spoken_seconds":  12.437,
+                       "speech_rate":  1,
+                       "scope":  "LIVE_UI"
+                   },
+                   {
+                       "id":  "dao",
+                       "start":  96,
+                       "end":  107,
+                       "spoken_seconds":  10.286,
+                       "speech_rate":  0,
+                       "scope":  "RECORDED_EVIDENCE"
+                   },
+                   {
+                       "id":  "limits",
+                       "start":  107,
+                       "end":  117,
+                       "spoken_seconds":  9.325,
+                       "speech_rate":  3,
+                       "scope":  "LIVE_UI"
+                   }
+               ]
+}

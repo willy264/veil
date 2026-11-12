@@ -1,0 +1,74 @@
+[
+  {
+    "id": "intro",
+    "seconds": 10,
+    "title": "Current interface, prior evidence",
+    "text": "Veil brings private receiving to NEAR names. This tour shows the current app and verified transactions from November eleventh.",
+    "scope": "LIVE_UI",
+    "shot": "Open the hosted restored green six-panel UI. Show the testnet, registry2, and router2 labels. Add a small persistent label: Current UI plus prior verified evidence."
+  },
+  {
+    "id": "enable",
+    "seconds": 14,
+    "title": "Enable Veil",
+    "text": "Start with a testnet wallet. Derive keys asks for a signed message. Veil keeps the resulting viewing and spending keys in your browser.",
+    "scope": "LIVE_UI",
+    "shot": "Open and close the wallet chooser without signing in. Point to Derive keys and Register name, but do not click either button. Keep the disconnected wallet state visible; no keys or signatures appear."
+  },
+  {
+    "id": "register",
+    "seconds": 12,
+    "title": "Resolve the public registration",
+    "text": "Register name publishes two public keys. Here, Resolve reads Alice's existing registration directly from testnet. Her private keys are not part of that record.",
+    "scope": "LIVE_UI",
+    "shot": "In Resolve a named account, keep alice.veil-williams.testnet and click Resolve. Show the actual get_meta response from registry2.veil-williams.testnet, including spend_pub_hex, view_pub_hex, and scheme_id."
+  },
+  {
+    "id": "send",
+    "seconds": 17,
+    "title": "Prepare a private payment",
+    "text": "Enter a registered name and an amount. A signed payment goes to a fresh implicit account. These three recorded sends each used a different sender and destination.",
+    "scope": "UI_AND_RECORDED_EVIDENCE",
+    "shot": "Edit the live Recipient name and Amount in NEAR fields, then stop before Send privately. Cut to an evidence card labeled Prior transactions, 11 November 2026 with hashes AFm3ATfYfq6TYcboWhkjgitHZ9VRmErULUquBXMAeiCw, D4KjHNuT945xVQyjDWC9kpMsYudMZwjMdAo4TxoVZFry, and Zp7ne1RCZA7uVtgt6p7Yfku727Ni7HqUa4J6dSiQhKW."
+  },
+  {
+    "id": "scan",
+    "seconds": 14,
+    "title": "Recorded recipient scan",
+    "text": "In the verified testnet run, Alice's viewing key found all three incoming payments. View tags help filter unrelated announcements. Each matching payment lives in its own account.",
+    "scope": "RECORDED_EVIDENCE",
+    "shot": "Show an evidence card labeled Prior evidence, 11 November 2026. Cite results/demo-20261111221900.json and display scan.found = 3. Do not imply a current scan."
+  },
+  {
+    "id": "spend",
+    "seconds": 15,
+    "title": "Recorded spend and relink warning",
+    "text": "The recorded spend proves that a one-time account can send funds. The app warns before spending to your named account, because that creates a public link.",
+    "scope": "RECORDED_EVIDENCE",
+    "shot": "Show an evidence card labeled Prior transaction, 11 November 2026 with spend hash HQMiR2HzAcByzDGKDK6mptaEA69Sjoe9HrAVKQQqQCsN from results/demo-20261111221900.json. Quote the current control as 0.001 testnet NEAR and summarize its explicit relink warning. Do not show a new confirmation or spend."
+  },
+  {
+    "id": "auditor",
+    "seconds": 14,
+    "title": "View-only auditor",
+    "text": "Copy view key shares read-only access with an accountant. The auditor enters the registered name and viewing key here. They can find incoming payments, but cannot spend them.",
+    "scope": "LIVE_UI",
+    "shot": "Show the Registered name and masked View key fields, Scan as auditor, the no spend key badge, and the read-only description. Leave the view key empty and do not click Scan as auditor."
+  },
+  {
+    "id": "dao",
+    "seconds": 11,
+    "title": "Recorded DAO payout",
+    "text": "The recorded Sputnik DAO payout was approved by its sole council member. The recipient scanner found the payment at a fresh account.",
+    "scope": "RECORDED_EVIDENCE",
+    "shot": "Show an evidence card labeled Prior evidence, 11 November 2026. Cite results/demo-dao-20261111220608.json; display status PASS, DAO veildao4434750196.sputnikv2.testnet, sole council veil-williams.testnet, approval transaction 5JQtGN7P2xUM2zMef2QxT9s3eWErPFrWgNkHMVhJBSHP, and scan.found = 1."
+  },
+  {
+    "id": "limits",
+    "seconds": 10,
+    "title": "Privacy limits",
+    "text": "Veil is testnet-only. Amounts, timing and senders remain public. Combining balances reveals links. Try the app at the address on screen.",
+    "scope": "LIVE_UI",
+    "shot": "Return to the live green UI and hold on its limits footer through the final sentence, then close cleanly."
+  }
+]
