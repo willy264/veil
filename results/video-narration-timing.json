@@ -11,7 +11,7 @@
                        "end":  10,
                        "spoken_seconds":  8.674,
                        "speech_rate":  1,
-                       "shot":  "Public URL, Veil logo and testnet badge; expand Testnet contracts in the footer for registry2/router2. No Vercel login screen."
+                       "shot":  "Public URL and testnet badge; show registry2/router2. No Vercel login screen."
                    },
                    {
                        "id":  "enable",
@@ -19,7 +19,7 @@
                        "end":  24,
                        "spoken_seconds":  13.24,
                        "speech_rate":  1,
-                       "shot":  "Recipient: Connect wallet opens Receive. Derive keys, NEP-413 approval, confirmation. Hide wallet recovery screens."
+                       "shot":  "Recipient window: Connect wallet, Derive keys, NEP-413 approval, confirmation. Hide wallet recovery screens."
                    },
                    {
                        "id":  "register",
@@ -35,7 +35,7 @@
                        "end":  53,
                        "spoken_seconds":  15.999,
                        "speech_rate":  0,
-                       "shot":  "Sender profile: connect, choose Send tab, enter recipient and 0.01 NEAR, Send privately, approve router2. Expand Payment details and receipt link. Keep recipient tab open."
+                       "shot":  "Separate sender profile: connect, enter recipient and 0.01 NEAR, Send privately, approve router2, show destination/receipt. Keep recipient tab open."
                    },
                    {
                        "id":  "scan",
@@ -43,15 +43,15 @@
                        "end":  67,
                        "spoken_seconds":  12.975,
                        "speech_rate":  1,
-                       "shot":  "After finality, click Scan inbox. Show the owned account and real NEAR balance; retain receipt/hash separately."
+                       "shot":  "After finality, recipient clicks Scan. Show real owned account and balance; retain receipt/hash separately."
                    },
                    {
                        "id":  "spend",
                        "start":  67,
                        "end":  82,
-                       "spoken_seconds":  14.233,
+                       "spoken_seconds":  13.51,
                        "speech_rate":  1,
-                       "shot":  "Click Transfer on an inbox row. Keep 0.001 NEAR and connected account destination. Review transfer, show public-link confirmation, confirm, then open receipt."
+                       "shot":  "Recipient: Spend; record re-link confirmation for 0.001 NEAR to connected account; show result hash and NearBlocks receipt."
                    },
                    {
                        "id":  "auditor",
@@ -59,7 +59,7 @@
                        "end":  96,
                        "spoken_seconds":  13.322,
                        "speech_rate":  1,
-                       "shot":  "Receive: Copy view key. Unsigned context: paste into masked input, enter name, Scan as auditor; expand Incoming payments. Never record clipboard contents."
+                       "shot":  "Copy view key; separate unsigned context: paste in password field, enter name, Scan as auditor. Never unmask or record clipboard contents."
                    },
                    {
                        "id":  "dao",

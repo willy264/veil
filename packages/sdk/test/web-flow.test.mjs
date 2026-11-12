@@ -12,26 +12,26 @@ import * as near from 'near-api-js';
 const source = readFileSync(new URL('../../../apps/web/app.js', import.meta.url), 'utf8').replace(/^import .*;\r?\n/gm, '');
 function harness() {
   const elements = new Map();
-  const element = (id) => { if (!elements.has(id)) elements.set(id, { value: '', textContent: '', innerHTML: '', dataset: {}, disabled: false, setAttribute() {}, removeAttribute() {}, addEventListener() {}, focus() {}, querySelectorAll: () => [] }); return elements.get(id); };
-  const state = { rows: [], calls: [], meta: null, copied: '', httpStatus: 200, balanceStatus: 200, confirm: true, providerResult: { status: { SuccessValue: '' }, transaction: { hash: 'simulated-spend' } } };
+  const element = (id) => { if (!elements.has(id)) elements.set(id, { value: '', textContent: '', addEventListener() {}, querySelectorAll: () => [] }); return elements.get(id); };
+  const state = { rows: [], calls: [], meta: null, copied: '', httpStatus: 200, providerResult: { status: { SuccessValue: '' }, transaction: { hash: 'simulated-spend' } } };
   class Provider {
     async viewAccessKey() { return { nonce: 1 }; }
     async viewBlock() { return { header: { hash: near.baseEncode(new Uint8Array(32)) } }; }
     async sendTransaction(tx) { state.signed = tx; return state.providerResult; }
   }
   const ctx = createContext({ ...near, JsonRpcProvider: Provider, ed25519, hkdf, sha256, sha512, Uint8Array, DataView, TextEncoder, TextDecoder, crypto: webcrypto, btoa, atob,
-    window: {}, document: { getElementById: element, querySelectorAll: () => [] }, confirm: (message) => { state.confirmation = message; return state.confirm; },
+    window: {}, document: { getElementById: element }, confirm: () => true,
     navigator: { clipboard: { writeText: async (v) => { state.copied = v; } } },
     NearConnector: class { on() {} },
     fetch: async (_, options) => {
       const { params } = JSON.parse(options.body);
-      if (params.request_type === 'view_account') return { ok: state.balanceStatus === 200, status: state.balanceStatus, json: async () => ({ result: { amount: '10000000000000000000000' } }) };
+      if (params.request_type === 'view_account') return { json: async () => ({ result: { amount: '10000000000000000000000' } }) };
       const args = JSON.parse(Buffer.from(params.args_base64, 'base64'));
       const value = params.method_name === 'get_meta' ? state.meta : params.method_name === 'total_announcements' ? state.rows.length : state.rows.slice(args.from_index, args.from_index + args.limit);
       return { ok: state.httpStatus === 200, status: state.httpStatus, json: async () => ({ result: { result: [...new TextEncoder().encode(JSON.stringify(value))] } }) };
     },
   });
-  runInContext(source + `\nglobalThis.api = {deriveKeys, deriveStealth, scan, signMessage, register, sendPrivate, refresh, spend, transfer, clearSession, runAction, auditorScan, copyViewKey, yocto, formatNear}; globalThis.session = (w, k) => { wallet=w; accountId='recipient.testnet'; keys=k; };`, ctx);
+  runInContext(source + `\nglobalThis.api = {deriveKeys, deriveStealth, scan, signMessage, register, sendPrivate, refresh, spend, auditorScan, copyViewKey, yocto}; globalThis.session = (w, k) => { wallet=w; accountId='recipient.testnet'; keys=k; };`, ctx);
   const wallet = {
     async signMessage(args) { state.message = args; return { signature: btoa(String.fromCharCode(...ed25519.sign(args.nonce, new Uint8Array(32).fill(17)))) }; },
     async signAndSendTransaction(tx) { state.calls.push(tx); return { status: { SuccessValue: '' } }; },
@@ -82,41 +82,6 @@ describe('web flow with simulated wallet and RPC', () => {
     expect(h.state.signed.transaction.signerId).toBe(h.state.rows[0].stealth_account);
     expect(h.state.signed.transaction.receiverId).toBe('recipient.testnet');
     expect(h.element('scan-output').textContent).toContain('simulated-spend');
-  });
-  it('transfers the chosen amount to the reviewed destination and lets the user cancel', async () => {
-    const h = harness(); h.session(h.wallet, h.keys); h.state.rows = [h.row(0)]; await h.api.refresh();
-    h.element('transfer-source').value = '0'; h.element('transfer-to').value = 'merchant.testnet'; h.element('transfer-amount').value = '0.002';
-    h.state.confirm = false; await h.api.transfer();
-    expect(h.state.signed).toBeUndefined(); expect(h.element('transfer-output').textContent).toContain('cancelled');
-    h.state.confirm = true; await h.api.transfer();
-    const tx = h.state.signed.transaction;
-    expect(tx.receiverId).toBe('merchant.testnet');
-    expect(tx.actions[0].transfer.deposit).toBe(h.api.yocto('0.002'));
-    expect(h.state.confirmation).toContain('public link'); expect(h.state.confirmation).toContain('merchant.testnet');
-    expect(h.element('transfer-output-link').href).toContain('simulated-spend');
-    for (const destination of ['ada.near', 'bad..testnet', '<script>', h.state.rows[0].stealth_account]) await expect(h.api.spend(0, destination, '0.002')).rejects.toThrow();
-    await expect(h.api.spend(0, 'merchant.testnet', '0.01')).rejects.toThrow('leaves no NEAR');
-  });
-  it('shows unavailable balances instead of zero and clears owned accounts on sign-out', async () => {
-    const h = harness(); h.session(h.wallet, h.keys); h.state.rows = [h.row(0), h.row(1)]; await h.api.refresh();
-    expect(h.element('total-balance').textContent).toBe('0.02');
-    h.state.balanceStatus = 503; await h.api.refresh();
-    expect(h.element('total-balance').textContent).toBe('—'); expect(h.element('inbox').innerHTML).toContain('Unavailable');
-    await expect(h.api.spend(0)).rejects.toThrow('Balance unavailable');
-    h.api.clearSession(); expect(h.element('transfer-source').innerHTML).not.toContain(h.state.rows[0].stealth_account);
-    await expect(h.api.spend(0)).rejects.toThrow('Payment not found');
-  });
-  it('retains a successful transfer receipt when the subsequent balance refresh fails', async () => {
-    const h = harness(); h.session(h.wallet, h.keys); h.state.rows = [h.row(0)]; await h.api.refresh();
-    h.state.httpStatus = 503; const result = await h.api.spend(0);
-    expect(result.transaction).toBe('simulated-spend'); expect(result.message).toContain('Do not resend');
-  });
-  it('prevents repeated actions while a wallet request is pending and restores controls', async () => {
-    const h = harness(); let finish; let calls = 0;
-    const pending = h.api.runAction('send', 'send-output', () => new Promise((resolve) => { calls++; finish = resolve; }), 'Waiting');
-    expect(h.element('send').disabled).toBe(true);
-    await h.api.runAction('send', 'send-output', () => { calls++; }, 'Waiting');
-    expect(calls).toBe(1); finish(); await pending; expect(h.element('send').disabled).toBe(false);
   });
   it('does not report success on failed receipts or HTTP errors', async () => {
     const h = harness(); h.session(h.wallet, h.keys); h.state.rows = [h.row(0)]; await h.api.refresh();

@@ -4,13 +4,13 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { createServer } from 'node:http';
 const { chromium } = createRequire(import.meta.url)(process.env.VEIL_PLAYWRIGHT_MODULE || 'playwright');
 const local = process.argv.includes('--local');
-const allowed = new Map([['/', 'index.html'], ...['index.html', 'app.js', 'config.js', 'styles.css', 'logo.svg', 'favicon.svg', 'fonts/geist-latin.woff2'].map((name) => [`/${name}`, name])]);
+const allowed = new Map([['/', 'index.html'], ['/index.html','index.html'], ['/app.js','app.js'], ['/config.js','config.js'], ['/styles.css','styles.css']]);
 let server;
 if (local) {
   server = createServer(async (req, res) => {
     const name = allowed.get(new URL(req.url, 'http://localhost').pathname);
     if (!name) { res.writeHead(404).end(); return; }
-    try { const body = await readFile(new URL(`../apps/web/${name}`, import.meta.url)); res.setHeader('content-type', name.endsWith('.js') ? 'text/javascript' : name.endsWith('.css') ? 'text/css' : name.endsWith('.svg') ? 'image/svg+xml' : name.endsWith('.woff2') ? 'font/woff2' : 'text/html'); res.end(body); } catch { res.writeHead(500).end(); }
+    try { const body = await readFile(new URL(`../apps/web/${name}`, import.meta.url)); res.setHeader('content-type', name.endsWith('.js') ? 'text/javascript' : name.endsWith('.css') ? 'text/css' : 'text/html'); res.end(body); } catch { res.writeHead(500).end(); }
   });
   await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
 }
@@ -27,7 +27,7 @@ try {
   await page.waitForFunction(() => document.querySelector('#scan-output')?.textContent !== 'No scan yet.', null, { timeout: 45000 });
   report.config = await page.evaluate(() => window.VEIL_CONFIG);
   if (report.config.network !== 'testnet' || report.config.registryId !== 'registry2.veil-williams.testnet' || report.config.routerId !== 'router2.veil-williams.testnet') throw new Error('Unexpected contract configuration');
-  for (const asset of [...(local ? [] : ['index','index.html']), 'app.js','config.js','styles.css','logo.svg','favicon.svg']) {
+  for (const asset of [...(local ? [] : ['index','index.html']), 'app.js','config.js','styles.css']) {
     const r = await page.request.get(new URL(asset, url + '/').href); if (!r.ok()) throw new Error(`Asset failed: ${asset}`);
     if (new URL(r.url()).hostname !== new URL(url).hostname) throw new Error(`Asset redirected away from the app: ${asset}`);
     report.checks.push({ asset, status: r.status() });
@@ -38,12 +38,7 @@ try {
   const scan = JSON.parse(await page.locator('#scan-output').textContent());
   if (typeof scan.announcements !== 'number') throw new Error('Router scan failed');
   report.checks.push({ routerRead: 'PASS', announcements: scan.announcements });
-  report.sections = await page.locator('h2').allTextContents();
-  for (const action of ['receive', 'transfer', 'send']) {
-    await page.locator(`#tab-${action}`).click();
-    if (!await page.locator(`#panel-${action}`).isVisible()) throw new Error(`Tab failed: ${action}`);
-  }
-  report.checks.push({ paymentTabs: 'PASS', logoAndFavicon: 'PASS' });
+  report.sections = await page.locator('h3').allTextContents();
   await page.locator('#connect').click();
   await page.waitForTimeout(3000);
   report.walletChooserVisible = await page.getByText('Select wallet', { exact: false }).count() > 0;

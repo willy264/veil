@@ -3,106 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#141517" />
-    <meta name="description" content="Receive NEAR at fresh one-time accounts. Connect a testnet wallet, send to a registered name, and scan your private inbox with Veil." />
     <title>Veil | Private receiving for NEAR</title>
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-    <link rel="preload" href="./fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to app</a>
-    <!-- One consistent, locally drawn stroke icon set. The Veil mark is original. -->
-    <svg class="icon-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
-      <symbol id="i-send" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></symbol>
-      <symbol id="i-receive" viewBox="0 0 24 24"><path d="M17 7 7 17M17 17H7V7"/></symbol>
-      <symbol id="i-transfer" viewBox="0 0 24 24"><path d="M4 8h16m-4-4 4 4-4 4M20 16H4m4-4-4 4 4 4"/></symbol>
-      <symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-8 9-8 9S4 17 4 12V6l8-3Z"/><path d="m8 12 3 3 5-6"/></symbol>
-      <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M20 8V5H5a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h15V8H5a1 1 0 0 1 0-2"/><path d="M20 12h-5v4h5"/></symbol>
-      <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 4H6a2 2 0 0 0-2 2v10"/></symbol>
-      <symbol id="i-scan" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5M4 12h16"/></symbol>
-      <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6m0-6L10 14M10 4H4v16h16v-6"/></symbol>
-    </defs></svg>
-    <header class="site-header"><div class="header-inner">
-      <a class="brand" href="./" aria-label="Veil home"><img src="./logo.svg" width="36" height="36" alt="" /><span>veil<span class="brand-dot">.</span></span></a>
-      <nav class="main-nav" aria-label="Main navigation"><a href="#main-content" aria-current="page">Wallet</a><a href="#private-inbox">Private inbox</a><a href="#auditor">Auditor</a></nav>
-      <div class="header-actions"><span class="network-pill"><span class="status-dot"></span>Testnet</span><button id="connect" class="primary compact"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg><span>Connect wallet</span></button></div>
-    </div></header>
-    <main class="shell" id="main-content" tabindex="-1">
-      <div class="page-heading"><div><p class="eyebrow">YOUR NAME. YOUR PRIVACY.</p><h1>Your private wallet.</h1></div><p class="page-caption">A familiar name.<br />A fresh account for every payment.</p></div>
-      <div class="workspace">
-        <section class="overview" aria-labelledby="overview-title">
-          <div class="section-heading"><h2 id="overview-title">Wallet overview</h2><span class="badge">NEAR testnet</span></div>
-          <p class="balance-label">Scanned NEAR balance</p><p class="balance"><span id="total-balance">—</span><span class="balance-unit">NEAR</span></p><p class="balance-hint" id="balance-hint">Connect and enable Veil to see your private balance.</p>
-          <div class="quick-actions" aria-label="Wallet actions">
-            <button class="quick-action" data-action="send"><span class="action-icon"><svg class="icon" aria-hidden="true"><use href="#i-send"/></svg></span>Send</button>
-            <button class="quick-action" data-action="receive"><span class="action-icon"><svg class="icon" aria-hidden="true"><use href="#i-receive"/></svg></span>Receive</button>
-            <button class="quick-action" data-action="transfer"><span class="action-icon"><svg class="icon" aria-hidden="true"><use href="#i-transfer"/></svg></span>Transfer</button>
-          </div>
-          <div class="account-line"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg><div><span class="small-label">Connected account</span><p id="wallet-status">Wallet disconnected</p></div></div>
-          <div class="privacy-note"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg><div><h3>Private receiving, on your terms.</h3><p>Each payment goes to a fresh account. Your keys stay in this browser session.</p></div></div>
-          <div class="how-it-works"><h3>One name. Separate payments.</h3><ol><li><span>01</span><div><strong>Enable your name</strong><p>Sign a message, then register your receiving keys.</p></div></li><li><span>02</span><div><strong>Receive privately</strong><p>Senders use your name. Veil creates a one-time account.</p></div></li><li><span>03</span><div><strong>Find your payments</strong><p>Scan your inbox and choose an account to spend from.</p></div></li></ol></div>
-        </section>
-        <section class="action-card" aria-label="Payment actions">
-          <div class="action-tabs" role="tablist" aria-label="Choose a payment action">
-            <button id="tab-send" role="tab" aria-selected="true" aria-controls="panel-send" tabindex="0"><svg class="icon" aria-hidden="true"><use href="#i-send"/></svg>Send</button>
-            <button id="tab-receive" role="tab" aria-selected="false" aria-controls="panel-receive" tabindex="-1"><svg class="icon" aria-hidden="true"><use href="#i-receive"/></svg>Receive</button>
-            <button id="tab-transfer" role="tab" aria-selected="false" aria-controls="panel-transfer" tabindex="-1"><svg class="icon" aria-hidden="true"><use href="#i-transfer"/></svg>Transfer</button>
-          </div>
-          <div id="panel-send" class="action-body" role="tabpanel" aria-labelledby="tab-send" tabindex="0">
-            <h2>Send privately</h2><p class="muted">Pay a registered name at a fresh one-time account.</p>
-            <div class="asset-line"><span class="asset-symbol" aria-hidden="true">N</span><div><strong>NEAR</strong><span>NEAR Protocol</span></div><span class="asset-network">Testnet only</span></div>
-            <form id="send-form">
-              <label for="recipient">Recipient name</label><input id="recipient" placeholder="name.testnet" value="alice.veil-williams.testnet" autocomplete="off" autocapitalize="none" spellcheck="false" required aria-describedby="recipient-help" /><p id="recipient-help" class="field-hint">The recipient must have enabled Veil.</p>
-              <label for="amount">Amount</label><div class="amount-field"><input id="amount" value="0.01" inputmode="decimal" autocomplete="off" required aria-describedby="send-cost" /><span>NEAR</span></div>
-              <dl class="transaction-facts"><div><dt>Destination</dt><dd>New one-time account</dd></div><div><dt>Network</dt><dd>NEAR testnet</dd></div></dl>
-              <p id="send-cost" class="field-hint">Your wallet also pays network fees. Send one payment at a time and wait for its announcement before sending again.</p>
-              <button class="primary full" id="send" type="submit">Send privately<svg class="icon" aria-hidden="true"><use href="#i-send"/></svg></button>
-            </form>
-            <p class="feedback" id="send-output-status" role="status">Connect your wallet to send a testnet payment.</p><a class="receipt-link" id="send-output-link" target="_blank" rel="noreferrer" hidden>View transaction on NearBlocks<svg class="icon small" aria-hidden="true"><use href="#i-external"/></svg></a>
-            <details class="technical"><summary>Payment details</summary><pre id="send-output">No payment yet.</pre></details>
-          </div>
-          <div id="panel-receive" class="action-body" role="tabpanel" aria-labelledby="tab-receive" tabindex="0" hidden>
-            <h2>Receive with your name</h2><p class="muted">Set up private receiving for your connected account.</p>
-            <div class="receive-identity"><img src="./logo.svg" width="48" height="48" alt="" /><span class="small-label">Your receiving name</span><strong id="receive-name">Connect a wallet first</strong><button id="copy-name" class="secondary" disabled><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg>Copy name</button></div>
-            <ol class="setup-steps"><li><span class="step-number">1</span><div><h3>Enable Veil</h3><p>Derive keys with a wallet signature.</p></div><button id="enable" class="secondary">Derive keys</button></li><li><span class="step-number">2</span><div><h3>Register your name</h3><p>Attach 0.01 NEAR for storage. Excess is refunded.</p></div><button id="register" class="primary">Register name</button></li></ol>
-            <p class="field-hint">Keep the same wallet signing key to recover your inbox. Changing that key can change your Veil identity.</p>
-            <p class="feedback" id="identity-output-status" role="status">Connect a testnet wallet to begin.</p><a class="receipt-link" id="identity-output-link" target="_blank" rel="noreferrer" hidden>View transaction on NearBlocks<svg class="icon small" aria-hidden="true"><use href="#i-external"/></svg></a>
-            <details class="technical"><summary>Identity details</summary><pre id="identity-output">Connect a testnet wallet to begin.</pre></details>
-            <div class="export-row"><p>Share incoming activity with an auditor.</p><button id="export-view" class="text-button"><svg class="icon small" aria-hidden="true"><use href="#i-copy"/></svg>Copy view key</button></div>
-          </div>
-          <div id="panel-transfer" class="action-body" role="tabpanel" aria-labelledby="tab-transfer" tabindex="0" hidden>
-            <h2>Transfer from your inbox</h2><p class="muted">Spend NEAR from one of your private accounts.</p>
-            <form id="transfer-form">
-              <label for="transfer-source">From</label><select id="transfer-source" required aria-describedby="transfer-balance"><option value="">Scan your inbox to choose an account</option></select><p class="field-hint" id="transfer-balance">No account selected.</p>
-              <label for="transfer-to">To</label><input id="transfer-to" placeholder="destination.testnet" required autocomplete="off" autocapitalize="none" spellcheck="false" />
-              <label for="transfer-amount">Amount</label><div class="amount-field"><input id="transfer-amount" value="0.001" inputmode="decimal" required autocomplete="off" /><span>NEAR</span></div>
-              <div class="warning"><svg class="icon" aria-hidden="true"><use href="#i-external"/></svg><p>This transfer creates a public link to the destination. Sending several private balances to one name links them together. Leave NEAR for account storage and gas.</p></div>
-              <button id="transfer" type="submit" class="primary full">Review transfer<svg class="icon" aria-hidden="true"><use href="#i-transfer"/></svg></button>
-            </form>
-            <p class="feedback" id="transfer-output-status" role="status">Enable Veil and scan before choosing an account.</p><a class="receipt-link" id="transfer-output-link" target="_blank" rel="noreferrer" hidden>View transaction on NearBlocks<svg class="icon small" aria-hidden="true"><use href="#i-external"/></svg></a>
-            <details class="technical"><summary>Transfer details</summary><pre id="transfer-output">No transfer yet.</pre></details>
-          </div>
-        </section>
-      </div>
-      <section class="inbox-section" id="private-inbox" aria-labelledby="inbox-title">
-        <div class="section-heading"><div><p class="eyebrow">ONLY YOU CAN MATCH THESE PAYMENTS</p><h2 id="inbox-title">Private inbox <span id="payment-count" class="count-badge">—</span></h2></div><button id="refresh" class="secondary"><svg class="icon" aria-hidden="true"><use href="#i-scan"/></svg>Scan inbox</button></div>
-        <div class="table-wrap"><table><caption class="sr-only">Owned one-time accounts and their current NEAR balances</caption><thead><tr><th scope="col">Payment</th><th scope="col">One-time account</th><th scope="col">Balance (NEAR)</th><th scope="col"><span class="sr-only">Actions</span></th></tr></thead><tbody id="inbox"><tr><td colspan="4" class="empty-cell"><svg class="empty-icon" aria-hidden="true"><use href="#i-receive"/></svg><strong>Your payments appear here</strong><p>Connect a wallet, enable Veil, then scan your inbox.</p></td></tr></tbody></table></div>
-        <p class="feedback" id="scan-output-status" role="status">Reading testnet announcements…</p><details class="technical"><summary>Scan details</summary><pre id="scan-output">No scan yet.</pre></details>
+    <main class="shell">
+      <header class="topbar">
+        <div><p class="kicker">NEAR testnet</p><h1>Veil</h1></div>
+        <div class="wallet"><span id="wallet-status">Wallet disconnected</span><button id="connect">Connect wallet</button></div>
+      </header>
+      <section class="hero-band" aria-labelledby="hero-title">
+        <div><p class="kicker">Private receiving for named accounts</p><h2 id="hero-title">Keep each payment separate.</h2><p class="lede">Veil lets a named-account owner receive payments at fresh implicit accounts while the public name stays readable.</p></div>
+        <div class="network-card"><span>Registry</span><strong id="registry-id">registry2.veil-williams.testnet</strong><span>Router</span><strong id="router-id">router2.veil-williams.testnet</strong></div>
       </section>
-      <div class="tools-grid">
-        <section class="tool-section" aria-labelledby="resolve-title">
-          <p class="eyebrow">PUBLIC EXPLORER</p><h2 id="resolve-title">Look up a name</h2><p class="muted">Compare a name’s public history with the private accounts in your inbox.</p>
-          <form id="resolve-form"><label for="name">NEAR name</label><div class="inline"><input id="name" value="alice.veil-williams.testnet" required autocapitalize="none" spellcheck="false" /><button id="resolve" type="submit" class="secondary">Resolve</button></div></form>
-          <p class="feedback" id="resolve-output-status" role="status">Look up a name without connecting a wallet.</p><a id="public-history" class="receipt-link" href="https://testnet.nearblocks.io/address/alice.veil-williams.testnet" target="_blank" rel="noreferrer">Open public history<svg class="icon small" aria-hidden="true"><use href="#i-external"/></svg></a><details class="technical"><summary>Registered public keys</summary><pre id="resolve-output">No lookup yet.</pre></details>
-        </section>
-        <section class="tool-section" id="auditor" aria-labelledby="auditor-title">
-          <div class="section-heading"><div><p class="eyebrow">SELECTIVE DISCLOSURE</p><h2 id="auditor-title">Auditor access</h2></div><span class="badge">Read only</span></div><p class="muted">A view key reveals incoming payments. It cannot spend them.</p>
-          <form id="audit-form"><label for="auditor-name">Registered name</label><input id="auditor-name" placeholder="name.testnet" required autocapitalize="none" spellcheck="false" /><label for="view-key">View key</label><div class="inline"><input id="view-key" type="password" placeholder="Paste a 32-byte hex view key" autocomplete="off" required /><button id="audit" type="submit" class="secondary">Scan as auditor</button></div></form>
-          <p class="feedback" id="auditor-output-status" role="status">The view key stays in this browser.</p><details class="technical"><summary>Incoming payments</summary><pre id="auditor-output">No auditor scan yet.</pre></details>
-        </section>
-      </div>
-      <footer><div class="footer-top"><a class="brand footer-brand" href="./"><img src="./logo.svg" width="28" height="28" alt="" /><span>veil.</span></a><p>Private receiving for NEAR’s named accounts.</p><span class="badge">V1 · Testnet prototype</span></div><p>Amounts, timing, sender identities and token contracts remain public. Veil hides the recipient’s link to a name, not the transaction.</p><details class="technical"><summary>Testnet contracts</summary><dl class="contract-list"><dt>Registry</dt><dd><a id="registry-id" target="_blank" rel="noreferrer">registry2.veil-williams.testnet</a></dd><dt>Router</dt><dd><a id="router-id" target="_blank" rel="noreferrer">router2.veil-williams.testnet</a></dd></dl><a id="comparison-link" class="receipt-link" target="_blank" rel="noreferrer">Inspect registry on NearBlocks</a></details></footer>
+      <section class="grid" id="main-content" tabindex="-1" aria-label="Veil controls">
+        <article class="panel"><div class="panel-heading"><div><p class="kicker">Receive</p><h3>Enable Veil</h3></div><span class="badge accent">keys in memory</span></div><p class="muted">A NEP-413 wallet signature derives viewing and spending keys locally. Keys are never sent to a server. Use the same wallet signing key to recover your inbox; changing wallets or signing keys can derive different keys.</p><div class="inline"><button id="enable">Derive keys</button><button id="register">Register name</button><button id="export-view">Copy view key</button></div><pre id="identity-output" aria-live="polite">Connect a testnet wallet to begin.</pre></article>
+        <article class="panel"><div class="panel-heading"><div><p class="kicker">Identity</p><h3>Resolve a named account</h3></div><span class="badge">read-only</span></div><label for="name">NEAR name</label><div class="inline"><input id="name" value="alice.veil-williams.testnet" /><button id="resolve">Resolve</button></div><pre id="resolve-output" aria-live="polite">No lookup yet.</pre><a id="public-history" class="quiet-link" target="_blank" rel="noreferrer">Open public history</a></article>
+        <article class="panel"><div class="panel-heading"><div><p class="kicker">Send</p><h3>Private payment</h3></div><span class="badge accent">wallet signed</span></div><label for="recipient">Recipient name</label><input id="recipient" value="alice.veil-williams.testnet" /><label for="amount">Amount in NEAR</label><input id="amount" value="0.01" inputmode="decimal" /><button class="wide" id="send">Send privately</button><pre id="send-output" aria-live="polite">Resolve the recipient, then sign with your wallet.</pre></article>
+        <article class="panel wide-panel"><div class="panel-heading"><div><p class="kicker">Inbox</p><h3>Owned stealth accounts</h3></div><button class="quiet" id="refresh">Scan</button></div><p class="muted">The view tag filters unrelated announcements before the full key calculation. Balances are read directly from testnet RPC.</p><div class="table-wrap"><table><thead><tr><th>Index</th><th>One-time account</th><th>Balance (yoctoNEAR)</th><th></th></tr></thead><tbody id="inbox"><tr><td colspan="4">Connect and derive keys to scan.</td></tr></tbody></table></div><pre id="scan-output" aria-live="polite">No scan yet.</pre></article>
+        <article class="panel"><div class="panel-heading"><div><p class="kicker">Auditor</p><h3>View-only scan</h3></div><span class="badge">no spend key</span></div><label for="auditor-name">Registered name</label><input id="auditor-name" placeholder="alice.veil-williams.testnet" /><label for="view-key">View key (32-byte hex)</label><input id="view-key" type="password" placeholder="Paste a view key" autocomplete="off" /><button id="audit">Scan as auditor</button><pre id="auditor-output" aria-live="polite">An auditor can inspect incoming payments but cannot spend them.</pre></article>
+        <article class="panel"><div class="panel-heading"><div><p class="kicker">Public comparison</p><h3>Explorer view</h3></div><span class="badge">NearBlocks</span></div><p class="muted">The named account remains the public identity. Private outputs are separate implicit accounts.</p><a id="comparison-link" class="quiet-link" target="_blank" rel="noreferrer">Compare on testnet.nearblocks.io</a></article>
+      </section>
+      <footer>Veil V1 | Testnet only | amounts, timing, sender identities, and token contracts remain public.</footer>
     </main>
     <script src="./config.js"></script>
     <script type="module" src="./app.js"></script>

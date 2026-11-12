@@ -16,65 +16,9 @@ let wallet;
 let accountId;
 let keys;
 let payments = [];
-let registeredName;
-let sessionVersion = 0;
-let scanVersion = 0;
-let actionPending = false;
 
 const $ = (id) => document.getElementById(id);
-function show(id, value, isError = false) {
-  $(id).textContent = typeof value === 'string' ? value : JSON.stringify(value, null, 2);
-  const status = $(`${id}-status`);
-  if (status) {
-    status.textContent = typeof value === 'string' ? value : value?.message ?? value?.status ?? (id === 'resolve-output' ? (value ? 'This name is registered with Veil.' : 'This name has not enabled Veil.') : id === 'scan-output' ? `${value.announcements} announcements checked. ${value.owned} owned payments found.` : id === 'auditor-output' ? `${value.incoming.length} incoming payments found. Read-only access.` : 'Done.');
-    status.dataset.error = String(isError);
-  }
-  const link = $(`${id}-link`);
-  if (link) {
-    const tx = value?.transaction;
-    const hash = typeof tx === 'string' ? tx : tx?.transaction?.hash ?? tx?.transaction_outcome?.id;
-    link.hidden = !hash;
-    if (hash) link.href = `https://testnet.nearblocks.io/txns/${encodeURIComponent(hash)}`;
-  }
-}
-const shortAccount = (value) => `${value.slice(0, 8)}…${value.slice(-8)}`;
-function formatNear(value) {
-  const n = BigInt(value), unit = 10n ** 24n;
-  const fraction = (n % unit).toString().padStart(24, '0').replace(/0+$/, '');
-  return `${n / unit}${fraction ? `.${fraction}` : ''}`;
-}
-function displayNear(value) {
-  const exact = formatNear(value);
-  if (BigInt(value) > 0n && BigInt(value) < 10n ** 18n) return '<0.000001';
-  const [whole, fraction] = exact.split('.');
-  return fraction ? `${whole}.${fraction.slice(0, 6).replace(/0+$/, '')}`.replace(/\.$/, '') : whole;
-}
-function selectAction(name, focus = false) {
-  for (const action of ['send', 'receive', 'transfer']) {
-    const selected = action === name;
-    $(`tab-${action}`).setAttribute('aria-selected', String(selected));
-    $(`tab-${action}`).tabIndex = selected ? 0 : -1;
-    $(`panel-${action}`).hidden = !selected;
-  }
-  if (focus) $(`tab-${name}`).focus();
-}
-async function runAction(buttonId, outputId, task, pending) {
-  if (actionPending) return;
-  actionPending = true;
-  const button = $(buttonId), label = button.innerHTML;
-  const controls = ['connect', 'enable', 'register', 'send', 'transfer', 'refresh', 'resolve', 'audit', 'export-view', 'copy-name'];
-  const disabled = controls.map((id) => $(id).disabled);
-  controls.forEach((id) => { $(id).disabled = true; });
-  button.setAttribute('aria-busy', 'true'); button.textContent = pending;
-  show(outputId, pending);
-  try { await task(); }
-  catch (error) { show(outputId, error.message || 'The action could not finish. Please try again.', true); }
-  finally {
-    controls.forEach((id, i) => { $(id).disabled = disabled[i]; });
-    $('copy-name').disabled = !registeredName;
-    button.innerHTML = label; button.removeAttribute('aria-busy'); actionPending = false;
-  }
-}
+const show = (id, value) => { $(id).textContent = typeof value === 'string' ? value : JSON.stringify(value, null, 2); };
 const hex = (bytes) => Array.from(bytes, (byte) => byte.toString(16).padStart(2, '0')).join('');
 const fromHex = (value) => { if (!/^[0-9a-f]{64}$/i.test(value)) throw new Error('Expected 32-byte hex'); return Uint8Array.from(value.match(/.{2}/g), (part) => Number.parseInt(part, 16)); };
 const concat = (...parts) => { const out = new Uint8Array(parts.reduce((n, part) => n + part.length, 0)); let offset = 0; for (const part of parts) { out.set(part, offset); offset += part.length; } return out; };
@@ -127,13 +71,10 @@ async function view(contractId, methodName, args) {
 
 async function signMessage() {
   if (!wallet || !accountId) throw new Error('Connect a testnet wallet first');
-  const version = sessionVersion;
   const signed = await wallet.signMessage({ message: `Veil key derivation v1: derive private receiving keys for this NEAR account.\nAccount: ${accountId}`, recipient: accountId, nonce: sha256(text.encode(`veil-key-derivation:testnet:v1:${accountId}`)) });
   const signature = signed.signature ?? signed; const bytes = typeof signature === 'string' ? decodeBase64(signature) : Uint8Array.from(signature);
   if (bytes.length !== 64) throw new Error('Wallet returned an unexpected NEP-413 signature');
-  if (version !== sessionVersion) throw new Error('Wallet account changed. Enable Veil again.');
   keys = deriveKeys(bytes); show('identity-output', { accountId, status: 'keys derived in memory', spendPublicKey: hex(keys.spendPublicKey), viewPublicKey: hex(keys.viewPublicKey) });
-  $('balance-hint').textContent = 'Keys ready. Scan your inbox to read current balances.';
 }
 
 async function callWallet(receiverId, methodName, args, deposit = '0', gas = '30000000000000') {
@@ -149,6 +90,7 @@ function assertSuccess(result) {
 }
 
 async function connect() {
+  connector.on('wallet:signIn', async ({ accounts }) => { accountId = accounts[0]?.accountId; wallet = await connector.wallet(); $('wallet-status').textContent = accountId ? `Connected: ${accountId}` : 'Wallet connected'; });
   await connector.connect();
 }
 
@@ -158,7 +100,6 @@ async function register() {
   const existing = await view(REGISTRY, 'get_meta', { account_id: accountId });
   if (existing && (existing.spend_pub_hex !== hex(keys.spendPublicKey) || existing.view_pub_hex !== hex(keys.viewPublicKey))) throw new Error('This name uses different Veil keys. Use its original wallet/key setup or a new testnet recipient; overwriting could lose access to old payments.');
   const tx = await callWallet(REGISTRY, 'register', { spend_pub_hex: hex(keys.spendPublicKey), view_pub_hex: hex(keys.viewPublicKey), scheme_id: 1 }, yocto('0.01').toString());
-  registeredName = accountId; $('receive-name').textContent = accountId; $('copy-name').disabled = false;
   show('identity-output', { status: 'registered', transaction: tx });
 }
 async function resolve() { const name = $('name').value.trim(); show('resolve-output', await view(REGISTRY, 'get_meta', { account_id: name })); $('public-history').href = `https://testnet.nearblocks.io/address/${name}`; }
@@ -178,73 +119,24 @@ async function announcements() {
 }
 
 async function refresh() {
-  const version = sessionVersion, scanId = ++scanVersion, scanKeys = keys;
   const rows = await announcements();
-  const owned = scanKeys ? rows.map((row) => scan(scanKeys, row)).filter(Boolean) : [];
-  const balances = await Promise.all(owned.map(async (payment) => {
-    try {
-      const response = await fetch(RPC, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ jsonrpc: '2.0', id: Date.now(), method: 'query', params: { request_type: 'view_account', finality: 'final', account_id: payment.stealth_account } }) });
-      if (!response.ok) throw new Error(`Testnet RPC HTTP ${response.status}`);
-      const payload = await response.json();
-      if (payload.error || !/^\d+$/.test(payload.result?.amount)) throw new Error('Balance unavailable');
-      return { ...payment, balance: payload.result.amount };
-    } catch { return { ...payment, balance: null }; }
-  }));
-  if (version !== sessionVersion || scanId !== scanVersion || scanKeys !== keys) return;
-  payments = balances;
-  renderInbox();
-  show('scan-output', { announcements: rows.length, owned: balances.length, unavailableBalances: balances.filter((p) => p.balance === null).length, ...(!keys ? { message: `${rows.length} public announcements available. Enable Veil to find your payments.` } : {}) });
+  payments = keys ? rows.map((row) => scan(keys, row)).filter(Boolean) : [];
+  const balances = await Promise.all(payments.map(async (payment) => { try { const response = await fetch(RPC, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ jsonrpc: '2.0', id: Date.now(), method: 'query', params: { request_type: 'view_account', finality: 'final', account_id: payment.stealth_account } }) }); const payload = await response.json(); return { ...payment, balance: payload.result?.amount ?? '0' }; } catch { return { ...payment, balance: '0' }; } }));
+  $('inbox').innerHTML = balances.length ? balances.map((row) => `<tr><td>${row.index}</td><td>${row.stealth_account}</td><td>${row.balance}</td><td><button data-spend="${row.index}">Spend</button></td></tr>`).join('') : '<tr><td colspan="4">No owned payments found. Enable Veil and refresh.</td></tr>';
+  $('inbox').querySelectorAll('[data-spend]').forEach((button) => button.addEventListener('click', () => spend(Number(button.dataset.spend)).catch((error) => show('scan-output', error.message))));
+  show('scan-output', { announcements: rows.length, owned: balances.length });
 }
 
-function renderInbox() {
-  const unknown = payments.some((p) => p.balance === null);
-  const total = payments.reduce((sum, p) => sum + BigInt(p.balance ?? '0'), 0n);
-  $('total-balance').textContent = keys && !unknown ? displayNear(total) : '—';
-  $('total-balance').title = keys && !unknown ? `${formatNear(total)} NEAR (includes storage reserve)` : '';
-  $('payment-count').textContent = keys ? String(payments.length) : '—';
-  $('balance-hint').textContent = !keys ? 'Connect and enable Veil to see your private balance.' : unknown ? 'Some balances are unavailable. Scan again to retry.' : 'Total across your scanned accounts, including storage reserves. Gas costs extra.';
-  $('inbox').innerHTML = payments.length ? payments.map((row) => `<tr><td>#${Number(row.index)}</td><td><a href="https://testnet.nearblocks.io/address/${row.stealth_account}" target="_blank" rel="noreferrer" title="${row.stealth_account}">${shortAccount(row.stealth_account)}</a></td><td title="${row.balance === null ? 'Balance unavailable' : formatNear(row.balance) + ' NEAR'}">${row.balance === null ? 'Unavailable' : displayNear(row.balance).replace('<', '&lt;')}</td><td><button class="secondary" data-spend="${Number(row.index)}">Transfer</button></td></tr>`).join('') : `<tr><td colspan="4" class="empty-cell"><svg class="empty-icon" aria-hidden="true"><use href="#i-receive"/></svg><strong>${keys ? 'No payments found yet' : 'Your payments appear here'}</strong><p>${keys ? 'Share your registered name, then scan after the payment confirms.' : 'Connect a wallet, enable Veil, then scan your inbox.'}</p></td></tr>`;
-  $('inbox').querySelectorAll('[data-spend]').forEach((button) => button.addEventListener('click', () => {
-    selectAction('transfer', true); $('transfer-source').value = button.dataset.spend; updateTransferBalance();
-    $('panel-transfer').scrollIntoView({ block: 'center' });
-  }));
-  const previous = $('transfer-source').value;
-  $('transfer-source').innerHTML = '<option value="">Choose an owned account</option>' + payments.map((p) => `<option value="${Number(p.index)}">#${Number(p.index)} · ${shortAccount(p.stealth_account)} · ${p.balance === null ? 'Unavailable' : displayNear(p.balance).replace('<', '&lt;') + ' NEAR'}</option>`).join('');
-  if (payments.some((p) => String(p.index) === previous)) $('transfer-source').value = previous;
-  updateTransferBalance();
-}
-function updateTransferBalance() {
-  const p = payments.find((row) => String(row.index) === $('transfer-source').value);
-  $('transfer-balance').textContent = p ? p.balance === null ? 'Balance unavailable. Scan again to retry.' : `Balance: ${formatNear(p.balance)} NEAR, including storage reserve.` : 'No account selected.';
-}
-
-async function transfer() {
-  const source = $('transfer-source').value;
-  if (source === '') throw new Error('Scan your inbox and choose an account first');
-  const result = await spend(Number(source), $('transfer-to').value.trim(), $('transfer-amount').value);
-  show('transfer-output', result ?? 'Transfer cancelled. No transaction submitted.');
-}
-
-async function spend(index, destination = accountId, amount = '0.001') {
+async function spend(index) {
   const payment = payments.find((row) => Number(row.index) === index); if (!payment) throw new Error('Payment not found');
   if (!accountId || !keys) throw new Error('Connect and derive the recipient keys first');
-  if (!/^(?:[a-z0-9]+(?:[-_][a-z0-9]+)*\.)*testnet$/.test(destination) && !/^[0-9a-f]{64}$/.test(destination)) throw new Error('Enter a testnet account name or a 64-character implicit account');
-  if (destination.length > 64 || destination === payment.stealth_account) throw new Error('Choose a different valid destination');
-  const amountYocto = yocto(amount);
-  if (payment.balance === null) throw new Error('Balance unavailable. Scan again before transferring.');
-  if (amountYocto >= BigInt(payment.balance)) throw new Error('Amount exceeds the balance or leaves no NEAR for storage and gas');
-  const version = sessionVersion;
-  if (!confirm(`Transfer ${formatNear(amountYocto)} testnet NEAR from ${payment.stealth_account} to ${destination}? This creates a public link to the destination. Sending several accounts here also links them together. Network fees apply.`)) return;
+  if (!confirm(`Send 0.001 testnet NEAR to ${accountId}? This links this stealth account to your named account. Sweeping several accounts here also links them together.`)) return;
   const provider = new JsonRpcProvider({ url: RPC }); const publicKey = PublicKey.fromString(`ed25519:${baseEncode(fromHex(payment.stealth_account))}`);
   const access = await provider.viewAccessKey({ accountId: payment.stealth_account, publicKey: publicKey.toString(), finalityQuery: { finality: 'final' } }); const block = await provider.viewBlock({ finality: 'final' });
-  if (version !== sessionVersion) throw new Error('Wallet account changed. Scan again before transferring.');
-  const tx = createTransaction(payment.stealth_account, publicKey, destination, BigInt(access.nonce) + 1n, [actions.transfer(amountYocto)], baseDecode(block.header.hash));
+  const tx = createTransaction(payment.stealth_account, publicKey, accountId, BigInt(access.nonce) + 1n, [actions.transfer(yocto('0.001'))], baseDecode(block.header.hash));
   class ScalarSigner extends Signer { async getPublicKey() { return publicKey; } async signBytes(bytes) { return signScalar(payment.privateScalar, bytes); } }
   const signer = new ScalarSigner();
-  const signed = await signer.signTransaction(tx); const result = await provider.sendTransaction(signed.signedTransaction); assertSuccess(result);
-  const receipt = { status: 'Transfer confirmed.', transaction: result.transaction?.hash ?? result.transaction_outcome?.id, destination, amount: formatNear(amountYocto), warning: 'This spend links the stealth account to the destination.' };
-  try { await refresh(); } catch { receipt.message = 'Transfer confirmed. Balance refresh failed; scan again. Do not resend.'; }
-  show('scan-output', receipt); return receipt;
+  const signed = await signer.signTransaction(tx); const result = await provider.sendTransaction(signed.signedTransaction); assertSuccess(result); await refresh(); show('scan-output', { status: 'spent', transaction: result.transaction?.hash ?? result.transaction_outcome?.id, warning: 'This spend links the stealth account to the destination.' });
 }
 
 function signScalar(privateScalar, message) { const publicKey = point(privateScalar).toBytes(); const nonce = scalar(sha512(concat(text.encode('veil-ed25519-nonce-v1'), scalarBytes(privateScalar), message, new Uint8Array(32).fill(0x56)))) % ORDER; const r = point(nonce).toBytes(); const challenge = scalar(sha512(concat(r, publicKey, message))) % ORDER; return concat(r, scalarBytes((nonce + challenge * privateScalar) % ORDER)); }
@@ -262,46 +154,16 @@ async function auditorScan() {
 
 async function copyViewKey() { if (!keys) throw new Error('Derive recipient keys first'); await navigator.clipboard.writeText(hex(scalarBytes(keys.view))); show('identity-output', 'View key copied for your auditor. It reveals incoming payments; it cannot spend.'); }
 
-function clearSession() {
-  sessionVersion += 1; wallet = undefined; accountId = undefined; keys = undefined; payments = []; registeredName = undefined;
-  $('wallet-status').textContent = 'Wallet disconnected'; $('receive-name').textContent = 'Connect a wallet first';
-  $('copy-name').disabled = true; $('transfer-to').value = ''; $('view-key').value = '';
-  renderInbox();
-  show('identity-output', 'Connect a testnet wallet to begin.'); show('scan-output', 'Connect and enable Veil before scanning.');
-  show('transfer-output', 'Enable Veil and scan before choosing an account.'); show('auditor-output', 'The view key stays in this browser.');
-}
-connector.on('wallet:signIn', async ({ accounts }) => {
-  clearSession(); const version = sessionVersion, connected = accounts[0]?.accountId;
-  try {
-    const connectedWallet = await connector.wallet(); if (version !== sessionVersion || !connected) return;
-    wallet = connectedWallet; accountId = connected;
-    $('wallet-status').textContent = accountId; $('receive-name').textContent = accountId;
-    $('transfer-to').value = accountId; $('name').value = accountId;
-    show('identity-output', 'Wallet connected. Derive keys to enable private receiving.');
-    show('send-output', 'Wallet connected. Enter a registered recipient and amount.');
-  } catch (error) { show('identity-output', error.message, true); }
-});
-connector.on('wallet:signOut', clearSession);
-const actionsByTab = ['send', 'receive', 'transfer'];
-actionsByTab.forEach((name, index) => {
-  $(`tab-${name}`).addEventListener('click', () => selectAction(name));
-  $(`tab-${name}`).addEventListener('keydown', (event) => {
-    const next = event.key === 'ArrowRight' ? (index + 1) % 3 : event.key === 'ArrowLeft' ? (index + 2) % 3 : event.key === 'Home' ? 0 : event.key === 'End' ? 2 : -1;
-    if (next !== -1) { event.preventDefault(); selectAction(actionsByTab[next], true); }
-  });
-});
-document.querySelectorAll('[data-action]').forEach((button) => button.addEventListener('click', () => { selectAction(button.dataset.action, true); $(`panel-${button.dataset.action}`).scrollIntoView({ block: 'center' }); }));
-$('connect').addEventListener('click', () => { selectAction('receive'); runAction('connect', 'identity-output', connect, 'Opening wallet…'); });
-for (const [id, output, task, pending] of [['enable', 'identity-output', enable, 'Approve message…'], ['register', 'identity-output', register, 'Registering…'], ['refresh', 'scan-output', refresh, 'Scanning…'], ['export-view', 'identity-output', copyViewKey, 'Copying…'], ['copy-name', 'identity-output', async () => { if (!registeredName) throw new Error('Register your name first'); await navigator.clipboard.writeText(registeredName); show('identity-output', 'Name copied. Ask the sender to use it in Veil’s Send tab.'); }, 'Copying…']]) {
-  $(id).addEventListener('click', () => runAction(id, output, task, pending));
-}
-for (const [id, output, task, pending] of [['send', 'send-output', sendPrivate, 'Approve payment…'], ['transfer', 'transfer-output', transfer, 'Reviewing transfer…'], ['resolve', 'resolve-output', resolve, 'Looking up…'], ['audit', 'auditor-output', auditorScan, 'Scanning…']]) {
-  $(`${id}-form`).addEventListener('submit', (event) => { event.preventDefault(); runAction(id, output, task, pending); });
-}
-$('transfer-source').addEventListener('change', updateTransferBalance);
+connector.on('wallet:signOut', () => { wallet = undefined; accountId = undefined; keys = undefined; $('wallet-status').textContent = 'Wallet disconnected'; });
+$('connect').addEventListener('click', () => connect().catch((error) => show('identity-output', error.message)));
+$('enable').addEventListener('click', () => enable().catch((error) => show('identity-output', error.message)));
+$('register').addEventListener('click', () => register().catch((error) => show('identity-output', error.message)));
+$('resolve').addEventListener('click', () => resolve().catch((error) => show('resolve-output', error.message)));
+$('send').addEventListener('click', () => sendPrivate().catch((error) => show('send-output', error.message)));
+$('refresh').addEventListener('click', () => refresh().catch((error) => show('scan-output', error.message)));
+$('audit').addEventListener('click', () => auditorScan().catch((error) => show('auditor-output', error.message)));
+$('export-view').addEventListener('click', () => copyViewKey().catch((error) => show('identity-output', error.message)));
 $('registry-id').textContent = REGISTRY;
 $('router-id').textContent = ROUTER;
-$('registry-id').href = `https://testnet.nearblocks.io/address/${REGISTRY}`;
-$('router-id').href = `https://testnet.nearblocks.io/address/${ROUTER}`;
 $('comparison-link').href = `https://testnet.nearblocks.io/address/${REGISTRY}`;
-refresh().catch((error) => show('scan-output', error.message, true));
+refresh().catch((error) => show('scan-output', error.message));
