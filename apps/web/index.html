@@ -3,38 +3,84 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Share your NEAR name and receive payments in separate accounts. Enable Veil, send privately and find your payments in a browser-only testnet inbox." />
     <title>Veil | Private receiving for NEAR</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to app</a>
-    <main class="shell">
+    <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+      <symbol id="icon-inbox" viewBox="0 0 24 24"><path d="m4 4-3 9v7h22v-7l-3-9H4Z M1 13h6l2 3h6l2-3h6" /></symbol>
+      <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6" /></symbol>
+      <symbol id="icon-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M12 11v6 M12 7v1" /></symbol>
+      <symbol id="icon-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" /><path d="M16 8V4H4v12h4" /></symbol>
+    </defs></svg>
+    <div class="shell">
       <header class="topbar">
-        <div><p class="kicker">NEAR testnet</p><h1>Veil</h1></div>
-        <div class="wallet"><span id="wallet-status">Wallet disconnected</span><button id="connect">Connect wallet</button></div>
+        <a class="wordmark" href="#main-content" aria-label="Veil Testnet home">Veil <span class="badge">Testnet</span></a>
+        <div class="wallet"><span id="wallet-status">Wallet not connected</span><button id="connect" class="secondary">Connect wallet</button><button id="disconnect" class="quiet" hidden>Disconnect</button></div>
       </header>
-      <section class="hero-band" aria-labelledby="hero-title">
-        <div><p class="kicker">Private receiving for named accounts</p><h2 id="hero-title">Keep each payment separate.</h2><p class="lede">Share your NEAR name. Receive each payment in a separate account, then find it in your private inbox.</p></div>
-        <div class="proof-panel" aria-label="Public history and private inbox comparison">
-          <div class="proof-heading"><span id="proof-mode" class="badge">Example</span><p id="proof-caption" class="muted">An illustration of private receiving. These are not live account records.</p></div>
-          <div class="proof-columns">
-            <section id="proof-public" aria-labelledby="proof-public-title"><h3 id="proof-public-title">What anyone sees for alice.near</h3><p class="muted">Public activity on the named account</p><div id="proof-public-list" class="proof-list"><p class="proof-empty">No new payments to this name in this example.</p></div><a id="proof-public-link" class="quiet-link" href="#how-it-works">See how receiving works</a></section>
-            <section id="proof-private" aria-labelledby="proof-private-title"><h3 id="proof-private-title">What Alice sees</h3><p class="muted">Private payments found with her keys</p><div id="proof-private-list" class="proof-list"><p><span>Payment 01</span><strong class="money">0.0100 NEAR</strong></p><p><span>Payment 02</span><strong class="money">0.0250 NEAR</strong></p><p><span>Payment 03</span><strong class="money">0.0400 NEAR</strong></p></div><p class="proof-note muted">Each payment has a separate destination.</p></section>
+      <main id="main-content" tabindex="-1">
+        <section class="hero-band" aria-labelledby="hero-title">
+          <div><p class="kicker">Private receiving for named accounts</p><h1 id="hero-title">Keep each payment separate.</h1><p class="lede">Share your NEAR name. Receive each payment in a separate account, then find it in your private inbox.</p></div>
+          <div class="proof-panel" aria-label="Public history and private inbox comparison">
+            <div class="proof-heading"><span id="proof-mode" class="badge">Example</span><p id="proof-caption" class="muted">An illustration of private receiving. These are not live account records.</p></div>
+            <div class="proof-columns">
+              <section id="proof-public" aria-labelledby="proof-public-title"><h2 id="proof-public-title">What anyone sees for alice.near</h2><p class="muted">Public activity on the named account</p><div id="proof-public-list" class="proof-list"><div class="empty-state"><svg class="icon" aria-hidden="true"><use href="#icon-inbox" /></svg><p>No new payments to this name in this example.</p></div></div><a id="proof-public-link" class="quiet-link" href="#how-it-works">See how receiving works</a></section>
+              <section id="proof-private" aria-labelledby="proof-private-title"><h2 id="proof-private-title">What Alice sees</h2><p class="muted">Private payments found with her keys</p><div id="proof-private-list" class="proof-list"><p><span>Payment 01</span><strong class="money">0.0100 NEAR</strong></p><p><span>Payment 02</span><strong class="money">0.0250 NEAR</strong></p><p><span>Payment 03</span><strong class="money">0.0400 NEAR</strong></p></div><p class="proof-note muted">Each payment has a separate destination.</p></section>
+            </div>
           </div>
-        </div>
-        <details class="network-details"><summary>Network details</summary><div class="network-card"><span>NEAR testnet registry</span><strong id="registry-id">registry2.veil-williams.testnet</strong><span>Router</span><strong id="router-id">router2.veil-williams.testnet</strong></div></details>
-      </section>
-      <section class="grid" id="main-content" tabindex="-1" aria-label="Veil controls">
-        <article class="panel"><div class="panel-heading"><div><p class="kicker">Receive</p><h3>Enable Veil</h3></div><span class="badge accent">keys in memory</span></div><p class="muted">A NEP-413 wallet signature derives viewing and spending keys locally. Keys are never sent to a server. Use the same wallet signing key to recover your inbox; changing wallets or signing keys can derive different keys.</p><div class="inline"><button id="enable">Derive keys</button><button id="register">Register name</button><button id="export-view">Copy view key</button></div><pre id="identity-output" aria-live="polite">Connect a testnet wallet to begin.</pre></article>
-        <article class="panel"><div class="panel-heading"><div><p class="kicker">Identity</p><h3>Resolve a named account</h3></div><span class="badge">read-only</span></div><label for="name">NEAR name</label><div class="inline"><input id="name" value="alice.veil-williams.testnet" /><button id="resolve">Resolve</button></div><pre id="resolve-output" aria-live="polite">No lookup yet.</pre><a id="public-history" class="quiet-link" target="_blank" rel="noreferrer">Open public history</a></article>
-        <article class="panel"><div class="panel-heading"><div><p class="kicker">Send</p><h3>Private payment</h3></div><span class="badge accent">wallet signed</span></div><label for="recipient">Recipient name</label><input id="recipient" value="alice.veil-williams.testnet" /><label for="amount">Amount in NEAR</label><input id="amount" value="0.01" inputmode="decimal" /><button class="wide" id="send">Send privately</button><pre id="send-output" aria-live="polite">Resolve the recipient, then sign with your wallet.</pre></article>
-        <article class="panel wide-panel"><div class="panel-heading"><div><p class="kicker">Inbox</p><h3>Private payments</h3></div><button class="quiet" id="refresh">Scan</button></div><p class="muted">Find your incoming payments and check their available balances.</p><div class="table-wrap"><table><thead><tr><th>Payment</th><th>Receiving account</th><th>Balance (NEAR)</th><th></th></tr></thead><tbody id="inbox"><tr><td colspan="4">Connect and enable Veil to find your payments.</td></tr></tbody></table></div><pre id="scan-output" aria-live="polite">No scan yet.</pre></article>
-        <article class="panel"><div class="panel-heading"><div><p class="kicker">Auditor</p><h3>View-only scan</h3></div><span class="badge">no spend key</span></div><label for="auditor-name">Registered name</label><input id="auditor-name" placeholder="alice.veil-williams.testnet" /><label for="view-key">View key (32-byte hex)</label><input id="view-key" type="password" placeholder="Paste a view key" autocomplete="off" /><button id="audit">Scan as auditor</button><pre id="auditor-output" aria-live="polite">An auditor can inspect incoming payments but cannot spend them.</pre></article>
-        <article class="panel"><div class="panel-heading"><div><p class="kicker">Public comparison</p><h3>Explorer view</h3></div><span class="badge">NearBlocks</span></div><p class="muted">The named account remains the public identity. Private outputs are separate implicit accounts.</p><a id="comparison-link" class="quiet-link" target="_blank" rel="noreferrer">Compare on testnet.nearblocks.io</a></article>
-      </section>
-      <details id="how-it-works" class="network-details"><summary>How it works</summary><p>Veil uses a NEP-413 signed message to derive your keys in this browser. A sender creates a fresh implicit account for each payment. Your viewing key and a view tag help your inbox find the payments that belong to you.</p><p>Amounts, timing, senders and token contracts remain public. Sending funds back to your named account creates a public link.</p></details>
-      <footer>Veil is a testnet prototype. Amounts, timing and senders remain public. Keep the same wallet signing key to recover your private inbox.</footer>
-    </main>
+          <details class="network-details"><summary>Network details</summary><dl class="network-card"><dt>Network</dt><dd>NEAR testnet</dd><dt>Registry</dt><dd id="registry-id">registry2.veil-williams.testnet</dd><dt>Router</dt><dd id="router-id">router2.veil-williams.testnet</dd></dl></details>
+        </section>
+
+        <section class="paths-section" aria-label="Receive or send a payment">
+          <div class="path-tabs" role="tablist" aria-label="Choose your task">
+            <button id="tab-receive" role="tab" aria-selected="true" aria-controls="receive-path">Receive</button>
+            <button id="tab-send" role="tab" aria-selected="false" aria-controls="send-path" tabindex="-1">Send</button>
+          </div>
+          <div id="receive-path" role="tabpanel" aria-labelledby="tab-receive" class="path-panel">
+            <div class="path-intro"><h2>Receive with your name</h2><p class="muted">Set up once. Share your name whenever someone needs to pay you.</p></div>
+            <ol class="stepper" aria-label="Receiving steps">
+              <li id="receive-step-1" class="step is-current"><span class="step-number" aria-hidden="true">1</span><div class="step-body"><h3>Connect wallet</h3><p id="connect-help" class="muted">Choose the testnet wallet whose name you want to share.</p><div class="step-actions"><button id="connect-receive" aria-describedby="connect-help">Connect wallet</button></div><div id="connect-output" class="state-box" role="status" aria-live="polite"></div></div></li>
+              <li id="receive-step-2" class="step"><span class="step-number" aria-hidden="true">2</span><div class="step-body"><h3>Enable Veil</h3><p id="enable-help" class="muted">Sign a message to open your private inbox. Your keys stay in this browser. No payment is made.</p><div class="step-actions"><button id="enable" class="secondary" disabled aria-describedby="enable-help">Enable Veil</button></div><div id="identity-output" class="state-box" role="status" aria-live="polite"><span>Connect your wallet to continue.</span></div></div></li>
+              <li id="receive-step-3" class="step"><span class="step-number" aria-hidden="true">3</span><div class="step-body"><h3>Register your name</h3><p id="register-help" class="muted">Make your name ready for private payments. Your wallet will show a 0.0100 NEAR storage deposit plus the network fee.</p><div class="step-actions"><button id="register" class="secondary" disabled aria-describedby="register-help">Register name</button></div><div id="register-output" class="state-box" role="status" aria-live="polite"><span>Enable Veil before registering.</span></div></div></li>
+              <li id="receive-step-4" class="step"><span class="step-number" aria-hidden="true">4</span><div class="step-body"><h3>Share your name</h3><p id="share-name" class="share-name muted">Your registered name will appear here.</p><div class="step-actions"><button id="share" class="secondary" disabled>Copy name</button><a class="quiet-link" href="#private-payments">Open private payments</a></div><div id="share-output" class="state-box" role="status" aria-live="polite"></div></div></li>
+            </ol>
+            <details class="auditor-access"><summary>Auditor access</summary><p class="muted">An auditor key lets someone find your incoming payments. It cannot spend them. Share it only with someone you trust.</p><button id="export-view" class="secondary" disabled>Copy auditor key</button><div id="export-output" class="state-box" role="status" aria-live="polite"></div></details>
+            <p class="path-note muted">Use the same wallet signing key when you return. A different key opens a different inbox.</p>
+          </div>
+          <div id="send-path" role="tabpanel" aria-labelledby="tab-send" class="path-panel" hidden>
+            <div class="path-intro"><h2>Send to a name</h2><p class="muted">The recipient receives in a fresh account. You can send without enabling a private inbox of your own.</p></div>
+            <form id="send-form" novalidate>
+              <ol class="stepper" aria-label="Sending steps">
+                <li class="step"><span class="step-number" aria-hidden="true">1</span><div class="step-body"><h3>Enter a name</h3><label for="recipient">Recipient name <span class="required-label">(required)</span></label><input id="recipient" placeholder="alice.testnet" autocapitalize="none" spellcheck="false" autocomplete="off" required aria-describedby="resolve-output" /><div id="resolve-output" class="state-box" role="status" aria-live="polite"><span>Enter a testnet name to check whether Veil is enabled.</span></div></div></li>
+                <li class="step"><span class="step-number" aria-hidden="true">2</span><div class="step-body"><h3>Choose an amount</h3><label for="amount">Amount in NEAR <span class="required-label">(required)</span></label><input id="amount" placeholder="0.0100" inputmode="decimal" autocomplete="off" required aria-describedby="amount-help amount-output" /><p id="amount-help" class="field-hint">Your wallet adds the network fee. This app uses testnet NEAR.</p><div id="amount-output" class="state-box" role="status" aria-live="polite"></div></div></li>
+                <li class="step"><span class="step-number" aria-hidden="true">3</span><div class="step-body"><h3>Send privately</h3><p id="send-help" class="muted">Connect a wallet, check the recipient and enter an amount. Send one payment at a time.</p><div class="step-actions"><button id="send" type="submit" disabled aria-describedby="send-help send-output">Send privately</button><button id="connect-send" type="button" class="secondary">Connect wallet</button></div><div id="send-output" class="state-box" role="status" aria-live="polite"></div></div></li>
+                <li class="step"><span class="step-number" aria-hidden="true">4</span><div class="step-body"><h3>Receipt</h3><div id="send-receipt" class="receipt-area" aria-live="polite"><div class="empty-state"><svg class="icon" aria-hidden="true"><use href="#icon-inbox" /></svg><p>Your receipt will appear after the payment is confirmed.</p></div></div></div></li>
+              </ol>
+            </form>
+          </div>
+        </section>
+
+        <section class="panel inbox-section" id="private-payments" aria-labelledby="inbox-title">
+          <div class="panel-heading"><div><h2 id="inbox-title">Private payments</h2><p class="muted">Scan for incoming payments and check the balance in each account.</p></div><button class="secondary" id="refresh">Scan payments</button></div>
+          <div id="scan-output" class="state-box" role="status" aria-live="polite"><div class="empty-state"><svg class="icon" aria-hidden="true"><use href="#icon-inbox" /></svg><p>Enable Veil to find payments sent to you.</p></div></div>
+          <div id="inbox-table" class="table-wrap" tabindex="0" role="region" aria-label="Private payment balances" hidden><table><caption class="sr-only">Available balances for your private receiving accounts</caption><thead><tr><th scope="col">Payment</th><th scope="col">Receiving account</th><th scope="col" class="amount-cell">Available NEAR</th><th scope="col"><span class="sr-only">Actions</span></th></tr></thead><tbody id="inbox"></tbody></table></div>
+          <div id="spend-output" class="state-box" role="status" aria-live="polite"></div>
+          <p class="field-hint">Balances are rounded to four decimals. Sending to your named account makes the connection public.</p>
+        </section>
+
+        <section class="panel auditor-section" aria-labelledby="auditor-title">
+          <div class="panel-heading"><div><h2 id="auditor-title">Auditor</h2><p class="muted">See incoming payments with a shared auditor key. This mode cannot spend.</p></div><span class="badge">Read-only</span></div>
+          <form id="audit-form" novalidate><div class="auditor-fields"><div><label for="auditor-name">Registered name <span class="required-label">(required)</span></label><input id="auditor-name" placeholder="alice.testnet" autocomplete="off" autocapitalize="none" spellcheck="false" required aria-describedby="auditor-output" /></div><div><label for="view-key">Auditor key <span class="required-label">(required)</span></label><input id="view-key" type="password" placeholder="Paste the shared auditor key" autocomplete="off" required aria-describedby="auditor-key-help auditor-output" /><p id="auditor-key-help" class="field-hint">Used only in this browser. It is never sent to the network.</p></div></div><div class="step-actions"><button id="audit" type="submit" class="secondary">Scan as auditor</button><button id="clear-auditor" type="button" class="quiet">Clear auditor key</button></div></form>
+          <div id="auditor-output" class="state-box" role="status" aria-live="polite"><div class="empty-state"><svg class="icon" aria-hidden="true"><use href="#icon-inbox" /></svg><p>Enter a registered name and auditor key to see incoming payments.</p></div></div>
+          <div id="auditor-results" class="table-wrap" tabindex="0" role="region" aria-label="Auditor payment balances" hidden></div>
+        </section>
+
+        <details id="how-it-works" class="network-details how-it-works"><summary>How it works</summary><p>Veil uses a NEP-413 signed message to derive spending and viewing keys in your browser. Registration publishes only their public keys.</p><p>A sender derives a fresh implicit account for each payment and posts an announcement. Your viewing key and a view tag help your inbox find the matching payments.</p><p>The auditor key is your private viewing key: a 32-byte value written as 64 hexadecimal characters. It reveals incoming payments, but cannot sign a spend.</p><p>Amounts, timing, senders and token contracts stay public. Combining balances or sending to a named account can reveal links. Send payments sequentially; concurrent sends can affect discovery in this prototype.</p><p>Keep the same wallet signing key. Registrations made with older random signatures may need their original key setup.</p></details>
+      </main>
+      <footer><p>Veil is a testnet prototype. Amounts, timing and senders remain public.</p><a class="quiet-link" href="https://github.com/willy264/veil#honest-limits" target="_blank" rel="noreferrer">Read the limits <span class="sr-only">(opens in a new tab)</span></a></footer>
+    </div>
     <script src="./config.js"></script>
     <script type="module" src="./app.js"></script>
   </body>

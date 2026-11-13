@@ -1,6 +1,10 @@
 # Veil handoff
 
-Active UI polish, 13 Nov 2026: user requests retaining the green palette/fonts while clarifying the product. Kit is at `C:/Users/HP/Downloads/design-kit/design-kit`. Frontend stop is 14 Nov 10:00 UTC. Step 1 implements the hero proof panel, live data after enabling, labelled examples, network disclosure and NEAR formatting. Build/21 tests/local public reads pass. Next: numbered Receive/Send paths and real states; QA at 1440/390 plus responsive matrix; deploy; real hosted wallet run if a signing session is made available. Current agent process has no demo signer environment variables. An asynchronous wallet-access question is pending; continue independent implementation. Video from the prior task will need re-recording after this UI polish.
+Active UI polish, 13 Nov 2026 19:02 UTC: Receive/Send steppers, live proof panel, NEAR balances, plain states, receipts and separate inbox/auditor sections are implemented. Existing palette/font tokens are preserved. Build, typecheck and 24 tests pass. First browser QA pass has no failures; screenshots at 1440/390 reviewed. See `results/ui-polish/first-pass/results.json`. Follow-up covers both tabs and keyboard interaction before deployment. Frontend stop is 14 Nov 10:00 UTC, about 15 hours away.
+
+The user has now authorized scripted test signing with `veil-demo-recv.testnet` and `veil-demo-send.testnet`; their two near-cli files exist. The Node-only runner loads these into ignored `.env` after key/balance verification, never into Chromium or logs. Do not request wallet credentials again. Fastnear returned HTTP 429; the frontend now defaults to the official `https://rpc.testnet.near.org`, whose chain ID was checked. Preflight is in progress. No new transaction has been submitted yet.
+
+Exact next action: finish both-tab/keyboard QA, commit/push the frontend, deploy Vercel with the official testnet RPC, then run `node apps/web/demo-hosted.mjs --execute` on the hosted URL. Review public evidence and edit the recorded clips into a 1:50–2:00 narrated demo. README/video must say **scripted test signer, not a browser wallet**. Update current screenshots, submission, evidence and this handoff; verify CI, re-tag and push. The older video below is historical and must be replaced for this UI.
 
 Updated 2026-11-12 23:44 UTC. About 48.3 hours remain until 14 Nov 23:59 UTC.
 

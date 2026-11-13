@@ -2,7 +2,7 @@ import { writeFile } from 'node:fs/promises';
 
 const value = (name, fallback) => process.env[name] || fallback;
 const config = {
-  rpcUrl: value('VEIL_RPC_URL', 'https://rpc.testnet.fastnear.com'),
+  rpcUrl: value('VEIL_RPC_URL', 'https://rpc.testnet.near.org'),
   registryId: value('VEIL_REGISTRY_ID', 'registry2.veil-williams.testnet'),
   routerId: value('VEIL_ROUTER_ID', 'router2.veil-williams.testnet'),
   network: 'testnet',
