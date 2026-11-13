@@ -54,13 +54,13 @@ export function parseArgs(argv) {
 }
 
 async function startLocalServer() {
-  const files = new Map([['/', 'index.html'], ['/index.html', 'index.html'], ['/app.js', 'app.js'], ['/styles.css', 'styles.css'], ['/config.js', 'config.js']]);
+  const files = new Map([['/', 'index.html'], ['/index.html', 'index.html'], ['/app.js', 'app.js'], ['/styles.css', 'styles.css'], ['/config.js', 'config.js'], ['/favicon.svg', 'favicon.svg']]);
   const server = createServer(async (request, response) => {
     const file = files.get(new URL(request.url, 'http://localhost').pathname);
     if (request.method !== 'GET' || !file) { response.writeHead(404).end(); return; }
     try {
       const body = await readFile(path.join(WEB_ROOT, file));
-      response.writeHead(200, { 'content-type': file.endsWith('.js') ? 'text/javascript' : file.endsWith('.css') ? 'text/css' : 'text/html' });
+      response.writeHead(200, { 'content-type': file.endsWith('.js') ? 'text/javascript' : file.endsWith('.css') ? 'text/css' : file.endsWith('.svg') ? 'image/svg+xml' : 'text/html' });
       response.end(body);
     } catch { response.writeHead(404).end(); }
   });
@@ -171,7 +171,6 @@ export async function main(argv = process.argv.slice(2)) {
     const entry = { context, role };
     contexts.push(entry);
     let page;
-    let connectorSeen = false;
     await context.route('**/*', async (route) => {
       try {
         const request = route.request();
@@ -181,7 +180,6 @@ export async function main(argv = process.argv.slice(2)) {
         }
         if (request.url() === CONNECTOR_IMPORT) {
           check(request.method() === 'GET', 'Unexpected connector request.');
-          connectorSeen = true;
           await route.fulfill({ status: 200, contentType: 'text/javascript', headers: { 'access-control-allow-origin': '*' }, body: CONNECTOR_MODULE });
           return;
         }
@@ -207,7 +205,7 @@ export async function main(argv = process.argv.slice(2)) {
           }
           await route.continue(); return;
         }
-        const appAsset = url.origin === new URL(source).origin && ['/', '/index.html', '/app.js', '/config.js', '/styles.css', '/favicon.ico'].includes(url.pathname);
+        const appAsset = url.origin === new URL(source).origin && ['/', '/index.html', '/app.js', '/config.js', '/styles.css', '/favicon.ico', '/favicon.svg'].includes(url.pathname);
         const dependency = url.origin === 'https://esm.sh';
         const publicHistory = url.origin === 'https://api-testnet.nearblocks.io';
         check(request.method() === 'GET' && (appAsset || dependency || publicHistory), 'Unexpected outbound browser request blocked.');
@@ -268,7 +266,7 @@ export async function main(argv = process.argv.slice(2)) {
         exportInDetails: !!document.querySelector('.auditor-access #export-view'),
         network: config.network, registry: config.registryId, router: config.routerId, rpc: config.rpcUrl };
     }, REQUIRED_IDS);
-    check(connectorSeen && schema.ids && schema.empty && schema.password && schema.exportInDetails, 'Hosted app schema is not ready: require polished IDs, empty inputs and masked auditor input.');
+    check(schema.ids && schema.empty && schema.password && schema.exportInDetails, 'Hosted app schema is not ready: require polished IDs, empty inputs and masked auditor input.');
     check(schema.network === 'testnet' && schema.registry === REGISTRY && schema.router === ROUTER && schema.rpc === RPC, 'Hosted app testnet configuration does not match the approved contracts/RPC.');
     healthy(); mark(role, 'page-ready');
     return entry;

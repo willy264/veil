@@ -1,9 +1,7 @@
-import { NearConnector } from 'https://esm.sh/@hot-labs/near-connect@0.12.0';
 import { ed25519 } from 'https://esm.sh/@noble/curves@1.9.7/ed25519';
 import { hkdf } from 'https://esm.sh/@noble/hashes@1.8.0/hkdf';
 import { sha256 } from 'https://esm.sh/@noble/hashes@1.8.0/sha256';
 import { sha512 } from 'https://esm.sh/@noble/hashes@1.8.0/sha512';
-import { JsonRpcProvider, PublicKey, Signer, actions, baseDecode, baseEncode, createTransaction } from 'https://esm.sh/near-api-js@7.4.0';
 
 const CONFIG = window.VEIL_CONFIG ?? {};
 const RPC = CONFIG.rpcUrl ?? 'https://rpc.testnet.near.org';
@@ -11,7 +9,8 @@ const REGISTRY = CONFIG.registryId ?? 'registry2.veil-williams.testnet';
 const ROUTER = CONFIG.routerId ?? 'router2.veil-williams.testnet';
 const ORDER = ed25519.CURVE.n;
 const text = new TextEncoder();
-const connector = new NearConnector({ network: 'testnet', features: { testnet: true, signMessage: true } });
+let connector;
+let connectorPromise;
 let wallet;
 let accountId;
 let keys;
@@ -273,7 +272,17 @@ function transactionLink(tx) {
   const hash = transactionHash(tx);
   return /^[1-9A-HJ-NP-Za-km-z]{32,64}$/.test(hash) ? '<a href="' + explorer + '/txns/' + hash + '" target="_blank" rel="noreferrer">View transaction on NearBlocks</a>' : '';
 }
-async function connect() { await connector.connect(); }
+async function getConnector() {
+  if (!connectorPromise) connectorPromise = (async () => {
+    const { NearConnector } = await import('https://esm.sh/@hot-labs/near-connect@0.12.0');
+    connector = new NearConnector({ network: 'testnet', features: { testnet: true, signMessage: true } });
+    connector.on('wallet:signIn', acceptWallet);
+    connector.on('wallet:signOut', resetSession);
+    return connector;
+  })().catch((error) => { connectorPromise = undefined; throw error; });
+  return connectorPromise;
+}
+async function connect() { await (await getConnector()).connect(); }
 async function acceptWallet({ accounts }) {
   try {
     const id = accounts[0]?.accountId;
@@ -437,6 +446,7 @@ async function spend(index) {
   if (!confirm('Send 0.0010 testnet NEAR to ' + destination + '? This publicly links this payment account to your name. Combining several payments here links them together too.')) {
     state('spend-output', 'empty', 'Spend cancelled. No transaction was sent.'); return;
   }
+  const { JsonRpcProvider, PublicKey, Signer, actions, baseDecode, baseEncode, createTransaction } = await import('https://esm.sh/near-api-js@7.4.0');
   const provider = new JsonRpcProvider({ url: RPC });
   const publicKey = PublicKey.fromString('ed25519:' + baseEncode(fromHex(payment.stealth_account)));
   const access = await provider.viewAccessKey({ accountId: payment.stealth_account, publicKey: publicKey.toString(), finalityQuery: { finality: 'final' } });
@@ -489,8 +499,6 @@ async function copyViewKey() {
   state('export-output', 'success', 'Auditor key copied. It reveals incoming payments and cannot spend them.');
 }
 const connectAction = () => run('connect', 'connect-output', 'Choose a testnet wallet to connect.', connect);
-connector.on('wallet:signIn', acceptWallet);
-connector.on('wallet:signOut', resetSession);
 ['connect', 'connect-receive', 'connect-send'].forEach((id) => $(id).addEventListener('click', connectAction));
 $('disconnect').addEventListener('click', () => run('disconnect', 'connect-output', 'Disconnecting your wallet.', async () => { await connector.disconnect(); resetSession(); }));
 $('enable').addEventListener('click', () => run('enable', 'identity-output', 'Sign the message in your wallet to enable Veil.', enable));

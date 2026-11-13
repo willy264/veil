@@ -4,6 +4,8 @@ UI polish update: 13 Nov 2026 19:02 UTC. Frontend hard stop: 14 Nov 10:00 UTC (a
 
 Scripted-signer preparation: both authorized demo keys verified, each account has 10 NEAR, ignored `.env` populated. Runner is inert by default; `--preflight` reads only and `--execute` permits one guarded real flow. Preflight evidence: `results/hosted-wallet-20261113T190029570Z.json`. Production UI `2237b61` deployed automatically after push. No transaction submitted yet. Prior status below is historical until the final evidence update.
 
+Performance item: deferred wallet/transaction code until Connect/Spend and added the missing favicon, preserving colours and fonts. All 24 tests pass. Initial Lighthouse: performance 57, accessibility 100, SEO 100, CLS 0; repeat after deployment. Both-tab responsive/keyboard QA is running. About 14.8 hours remain to the frontend stop at 14 Nov 10:00 UTC.
+
 | Task | State | Evidence / next action |
 |---|---|---|
 | Narrated video recreation | Complete locally | results/veil-demo-green-ui.mp4; 117 seconds, 1080p, synthetic voice, full captions; results/narrated-tour-video.json |

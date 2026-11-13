@@ -4,7 +4,9 @@ Active UI polish, 13 Nov 2026 19:02 UTC: Receive/Send steppers, live proof panel
 
 The user has authorized scripted test signing with `veil-demo-recv.testnet` and `veil-demo-send.testnet`. Both keys passed FullAccess verification and both balances were 10 NEAR. The Node-only runner loaded the keys into ignored `.env`, never into Chromium or logs. See `results/hosted-wallet-20261113T190029570Z.json` (preflight only). Do not request wallet credentials again. Fastnear returned HTTP 429; frontend commit `2237b61` now uses the official `https://rpc.testnet.near.org` and is live on the production alias. No new transaction has been submitted yet.
 
-Exact next action: finish both-tab/keyboard QA, commit/push the frontend, deploy Vercel with the official testnet RPC, then run `node apps/web/demo-hosted.mjs --execute` on the hosted URL. Review public evidence and edit the recorded clips into a 1:50–2:00 narrated demo. README/video must say **scripted test signer, not a browser wallet**. Update current screenshots, submission, evidence and this handoff; verify CI, re-tag and push. The older video below is historical and must be replaced for this UI.
+Exact next action: finish both-tab/keyboard QA and performance follow-up, then run `node apps/web/demo-hosted.mjs --execute` on the hosted URL. Review public evidence and edit the recorded clips into a 1:50–2:00 narrated demo. README/video must say **scripted test signer, not a browser wallet**. Update current screenshots, submission, evidence and this handoff; verify CI, re-tag and push. The older video below is historical and must be replaced for this UI.
+
+Performance follow-up: first mobile Lighthouse run scored performance 57 / accessibility 100 / SEO 100 / CLS 0. Wallet and transaction imports are now deferred to their actions, and a green V favicon fixes the missing-icon request. All 24 tests still pass. The both-path QA repeat and a fresh production Lighthouse run are required before recording. First Lighthouse evidence is retained as a baseline, not a passing performance claim.
 
 Updated 2026-11-12 23:44 UTC. About 48.3 hours remain until 14 Nov 23:59 UTC.
 

@@ -9,7 +9,10 @@ import { sha256 } from '@noble/hashes/sha256';
 import { sha512 } from '@noble/hashes/sha512';
 import * as near from 'near-api-js';
 
-const source = readFileSync(new URL('../../../apps/web/app.js', import.meta.url), 'utf8').replace(/^import .*;\r?\n/gm, '');
+const source = readFileSync(new URL('../../../apps/web/app.js', import.meta.url), 'utf8')
+  .replace(/^import .*;\r?\n/gm, '')
+  .replace("await import('https://esm.sh/near-api-js@7.4.0')", 'globalThis')
+  .replace("await import('https://esm.sh/@hot-labs/near-connect@0.12.0')", 'globalThis');
 function harness() {
   const elements = new Map();
   const selectorDataKey = (selector) => selector.match(/^\[data-([\w-]+)\]$/)?.[1].replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
