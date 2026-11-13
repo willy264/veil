@@ -2,7 +2,7 @@
 
 UI polish update: 13 Nov 2026 19:02 UTC. Frontend hard stop: 14 Nov 10:00 UTC (about 15 hours left); submission deadline 14 Nov 23:59 UTC (about 29 hours left). Hero comparison, Receive/Send steppers, plain states, button hierarchy, receipt/copy, inbox/auditor and four-decimal NEAR balances are implemented. Existing palette/font tokens unchanged. Build/typecheck/24 tests and initial browser QA pass. Screenshots at 1440/390 reviewed; both-tab and keyboard follow-up in progress. Next: deploy, real hosted scripted-signer run, and updated narrated video. User has supplied two authorized demo account keyfiles; no human wallet session is required for this scripted recording. Browser wallet approvals will be clearly distinguished from it.
 
-Updated 2026-11-12 23:44 UTC. Deadline: 2026-11-14 23:59 UTC; approximately 48.3 hours remain.
+Scripted-signer preparation: both authorized demo keys verified, each account has 10 NEAR, ignored `.env` populated. Runner is inert by default; `--preflight` reads only and `--execute` permits one guarded real flow. Preflight evidence: `results/hosted-wallet-20261113T190029570Z.json`. Production UI `2237b61` deployed automatically after push. No transaction submitted yet. Prior status below is historical until the final evidence update.
 
 | Task | State | Evidence / next action |
 |---|---|---|

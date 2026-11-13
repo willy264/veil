@@ -1,0 +1,34 @@
+{
+  "sourceUrl": "https://veil-eta-khaki.vercel.app/",
+  "scriptedSigner": true,
+  "browserWallet": false,
+  "accountIds": {
+    "receiver": "veil-demo-recv.testnet",
+    "sender": "veil-demo-send.testnet",
+    "registry": "registry2.veil-williams.testnet",
+    "router": "router2.veil-williams.testnet"
+  },
+  "nearAmounts": {
+    "registration": "0.01",
+    "payment": "0.05",
+    "spend": "0.001"
+  },
+  "transactions": {},
+  "checks": {
+    "preflight": false,
+    "executeRequested": false,
+    "receiverConnected": false,
+    "receiverEnabled": false,
+    "receiverRegistered": false,
+    "senderConnected": false,
+    "recipientResolved": false,
+    "deliveredPrivately": false,
+    "receiverFoundPayment": false,
+    "spendConfirmed": false,
+    "spendCompleted": false,
+    "auditorFoundPayment": false,
+    "auditorUnsigned": false,
+    "auditorCannotSpend": false,
+    "completed": false
+  }
+}
