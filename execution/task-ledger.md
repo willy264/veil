@@ -1,5 +1,7 @@
 # Veil execution ledger
 
+UI polish update: 13 Nov 2026 18:29 UTC. Frontend hard stop: 14 Nov 10:00 UTC (about 15.5 hours left). The hero comparison, Example label, live public/private data path, Network details disclosure and four-decimal NEAR balances are implemented. Build and 21 tests pass; local browser reads registry2/router2 successfully. Next: Receive/Send steppers, plain states and button hierarchy, then responsive/contrast QA and hosted wallet verification. The previous demo video must be re-recorded after the UI is final.
+
 Updated 2026-11-12 23:44 UTC. Deadline: 2026-11-14 23:59 UTC; approximately 48.3 hours remain.
 
 | Task | State | Evidence / next action |

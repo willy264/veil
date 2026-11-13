@@ -19,6 +19,49 @@ let payments = [];
 
 const $ = (id) => document.getElementById(id);
 const show = (id, value) => { $(id).textContent = typeof value === 'string' ? value : JSON.stringify(value, null, 2); };
+const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+function formatNear(value) {
+  if (value === null || value === undefined) return 'Unavailable';
+  const units = (BigInt(value) + 5n * 10n ** 19n) / 10n ** 20n;
+  return `${(units / 10000n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}.${(units % 10000n).toString().padStart(4, '0')}`;
+}
+let proofRequest = 0;
+function resetProof() {
+  proofRequest++;
+  $('proof-mode').textContent = 'Example';
+  $('proof-caption').textContent = 'An illustration of private receiving. These are not live account records.';
+  $('proof-public-title').textContent = 'What anyone sees for alice.near';
+  $('proof-private-title').textContent = 'What Alice sees';
+  $('proof-public-list').innerHTML = '<p class="proof-empty">No new payments to this name in this example.</p>';
+  $('proof-private-list').innerHTML = ['0.0100', '0.0250', '0.0400'].map((amount, i) => `<p><span>Payment 0${i + 1}</span><strong class="money">${amount} NEAR</strong></p>`).join('');
+  $('proof-public-link').href = '#how-it-works';
+  $('proof-public-link').textContent = 'See how receiving works';
+}
+async function updateProof(balances = []) {
+  if (!keys || !accountId) return;
+  const request = ++proofRequest;
+  const name = accountId;
+  $('proof-mode').textContent = 'Live testnet';
+  $('proof-caption').textContent = 'Public history beside payments found in this browser. Amounts and senders remain public.';
+  $('proof-public-title').textContent = `What anyone sees for ${name}`;
+  $('proof-private-title').textContent = 'What you see';
+  $('proof-private-list').innerHTML = balances.length ? balances.slice(0, 3).map((row, i) => `<p><span>Payment ${String(i + 1).padStart(2, '0')}</span><strong class="money">${formatNear(row.balance)}${row.balance == null ? '' : ' NEAR'}</strong></p>`).join('') : '<p class="proof-empty">Scan your inbox to find incoming payments.</p>';
+  $('proof-public-link').textContent = 'Open public activity on NearBlocks';
+  $('proof-public-link').href = `https://testnet.nearblocks.io/address/${encodeURIComponent(name)}`;
+  $('proof-public-list').textContent = 'Loading public activity…';
+  try {
+    const response = await fetch(`https://api-testnet.nearblocks.io/v1/account/${encodeURIComponent(name)}/txns?page=1&per_page=3&order=desc`);
+    if (!response.ok) throw new Error('Public activity unavailable');
+    const data = await response.json();
+    if (request !== proofRequest || accountId !== name || !keys) return;
+    if (!Array.isArray(data.txns)) throw new Error('Public activity unavailable');
+    const seen = new Set();
+    const rows = data.txns.filter((row) => /^[1-9A-HJ-NP-Za-km-z]{32,64}$/.test(row.transaction_hash) && !seen.has(row.transaction_hash) && seen.add(row.transaction_hash));
+    $('proof-public-list').innerHTML = rows.length ? rows.map((row) => `<a href="https://testnet.nearblocks.io/txns/${row.transaction_hash}" target="_blank" rel="noreferrer"><span>Public transaction</span><span>${row.transaction_hash.slice(0, 8)}…</span></a>`).join('') : '<p class="proof-empty">No public transactions were returned for this name.</p>';
+  } catch {
+    if (request === proofRequest) $('proof-public-list').textContent = 'Public activity could not load. Open NearBlocks to check the account.';
+  }
+}
 const hex = (bytes) => Array.from(bytes, (byte) => byte.toString(16).padStart(2, '0')).join('');
 const fromHex = (value) => { if (!/^[0-9a-f]{64}$/i.test(value)) throw new Error('Expected 32-byte hex'); return Uint8Array.from(value.match(/.{2}/g), (part) => Number.parseInt(part, 16)); };
 const concat = (...parts) => { const out = new Uint8Array(parts.reduce((n, part) => n + part.length, 0)); let offset = 0; for (const part of parts) { out.set(part, offset); offset += part.length; } return out; };
@@ -94,7 +137,7 @@ async function connect() {
   await connector.connect();
 }
 
-async function enable() { await signMessage(); }
+async function enable() { await signMessage(); await refresh(); }
 async function register() {
   if (!keys) await enable();
   const existing = await view(REGISTRY, 'get_meta', { account_id: accountId });
@@ -122,9 +165,10 @@ async function refresh() {
   const rows = await announcements();
   payments = keys ? rows.map((row) => scan(keys, row)).filter(Boolean) : [];
   const balances = await Promise.all(payments.map(async (payment) => { try { const response = await fetch(RPC, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ jsonrpc: '2.0', id: Date.now(), method: 'query', params: { request_type: 'view_account', finality: 'final', account_id: payment.stealth_account } }) }); const payload = await response.json(); return { ...payment, balance: payload.result?.amount ?? '0' }; } catch { return { ...payment, balance: '0' }; } }));
-  $('inbox').innerHTML = balances.length ? balances.map((row) => `<tr><td>${row.index}</td><td>${row.stealth_account}</td><td>${row.balance}</td><td><button data-spend="${row.index}">Spend</button></td></tr>`).join('') : '<tr><td colspan="4">No owned payments found. Enable Veil and refresh.</td></tr>';
+  $('inbox').innerHTML = balances.length ? balances.map((row) => `<tr><td>${row.index}</td><td>${row.stealth_account}</td><td class="money">${formatNear(row.balance)}</td><td><button data-spend="${row.index}">Spend</button></td></tr>`).join('') : '<tr><td colspan="4">Enable Veil, then scan for private payments.</td></tr>';
   $('inbox').querySelectorAll('[data-spend]').forEach((button) => button.addEventListener('click', () => spend(Number(button.dataset.spend)).catch((error) => show('scan-output', error.message))));
   show('scan-output', { announcements: rows.length, owned: balances.length });
+  void updateProof(balances);
 }
 
 async function spend(index) {
@@ -154,7 +198,7 @@ async function auditorScan() {
 
 async function copyViewKey() { if (!keys) throw new Error('Derive recipient keys first'); await navigator.clipboard.writeText(hex(scalarBytes(keys.view))); show('identity-output', 'View key copied for your auditor. It reveals incoming payments; it cannot spend.'); }
 
-connector.on('wallet:signOut', () => { wallet = undefined; accountId = undefined; keys = undefined; $('wallet-status').textContent = 'Wallet disconnected'; });
+connector.on('wallet:signOut', () => { wallet = undefined; accountId = undefined; keys = undefined; payments = []; resetProof(); $('inbox').innerHTML = '<tr><td colspan="4">Enable Veil, then scan for private payments.</td></tr>'; $('wallet-status').textContent = 'Wallet disconnected'; });
 $('connect').addEventListener('click', () => connect().catch((error) => show('identity-output', error.message)));
 $('enable').addEventListener('click', () => enable().catch((error) => show('identity-output', error.message)));
 $('register').addEventListener('click', () => register().catch((error) => show('identity-output', error.message)));

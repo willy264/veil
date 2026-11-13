@@ -1,5 +1,7 @@
 # Veil handoff
 
+Active UI polish, 13 Nov 2026: user requests retaining the green palette/fonts while clarifying the product. Kit is at `C:/Users/HP/Downloads/design-kit/design-kit`. Frontend stop is 14 Nov 10:00 UTC. Step 1 implements the hero proof panel, live data after enabling, labelled examples, network disclosure and NEAR formatting. Build/21 tests/local public reads pass. Next: numbered Receive/Send paths and real states; QA at 1440/390 plus responsive matrix; deploy; real hosted wallet run if a signing session is made available. Current agent process has no demo signer environment variables. An asynchronous wallet-access question is pending; continue independent implementation. Video from the prior task will need re-recording after this UI polish.
+
 Updated 2026-11-12 23:44 UTC. About 48.3 hours remain until 14 Nov 23:59 UTC.
 
 ## Narrated video recreation
