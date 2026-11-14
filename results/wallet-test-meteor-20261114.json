@@ -1,0 +1,106 @@
+{
+  "status": "PASS",
+  "date": "2026-11-14",
+  "network": "testnet",
+  "app": "https://veil-eta-khaki.vercel.app (production build of commit 22f713b)",
+  "wallet": "Meteor Wallet, Chrome extension (chosen in the app's near-connect wallet selector)",
+  "operator": "A team member, by hand in their own browser; recorded with Windows screen recording",
+  "accounts": {
+    "receiver": "veil-wallet-recv.testnet",
+    "sender": "veil-wallet-send.testnet",
+    "note": "Throwaway testnet accounts created for this test on 14 Nov 2026"
+  },
+  "steps": [
+    {
+      "step": "Connect receiver",
+      "result": "Meteor Connect Request for veil-eta-khaki.vercel.app approved",
+      "screenshot": "docs/screenshots/wallet-test/01-meteor-connect-request.png"
+    },
+    {
+      "step": "Enable Veil (NEP-413 v2 key message)",
+      "result": "Meteor Sign Message showed the site veil-eta-khaki.vercel.app, account veil-wallet-recv and the message \"Veil key derivation v2: derive private receiving keys for this NEAR account. Account: veil-wallet-recv.testnet\"; approved twice in the recording, and both times the app matched the registered keys",
+      "keyCheck": "The keys registered for veil-wallet-recv.testnet equal the keys @veil/sdk derives from a standard NEP-413 signature of the v2 request (recipient veil-eta-khaki.vercel.app) by the same account key, and not those of the v1 request",
+      "registeredKeys": {
+        "spend_pub_hex": "ab2152286a906d69bd7acaafaba7ccf7dae4e0bfcae827fefb606f076fed773a",
+        "view_pub_hex": "6ef5e2ff18af0f978e525501665ae13c0949efda16319636d7fef84580ce4e9c",
+        "scheme_id": 1
+      },
+      "screenshots": [
+        "docs/screenshots/wallet-test/02-meteor-sign-message.png",
+        "docs/screenshots/wallet-test/03-meteor-full-message.png"
+      ]
+    },
+    {
+      "step": "Register name",
+      "result": "Registration transaction succeeded. Its wallet approval screen is not in the recording: the name was already registered when the recorded take began, so the app showed \"Name registered\" after matching keys.",
+      "tx": {
+        "step": "register",
+        "hash": "69GhB5Xth35J3cBLEHw82DdaDZRHcBBFYC4vBAtzZrwQ",
+        "signer": "veil-wallet-recv.testnet",
+        "receiver": "registry2.veil-williams.testnet",
+        "time": "2026-11-14T06:48:41Z",
+        "status": "SuccessValue",
+        "failedReceipts": 0,
+        "explorerUrl": "https://testnet.nearblocks.io/txns/69GhB5Xth35J3cBLEHw82DdaDZRHcBBFYC4vBAtzZrwQ"
+      }
+    },
+    {
+      "step": "Private send 0.02 NEAR",
+      "result": "Approved in Meteor (Approve Transaction to router2.veil-williams.testnet); receipt \"0.0200 NEAR Delivered privately\"",
+      "tx": {
+        "step": "send_near 0.02 NEAR",
+        "hash": "GvbfCLjUBi6fPtBbNLNWCGvDZFPPt5V7w27iwAbhWrfy",
+        "signer": "veil-wallet-send.testnet",
+        "receiver": "router2.veil-williams.testnet",
+        "time": "2026-11-14T06:57:32Z",
+        "status": "SuccessValue",
+        "failedReceipts": 0,
+        "explorerUrl": "https://testnet.nearblocks.io/txns/GvbfCLjUBi6fPtBbNLNWCGvDZFPPt5V7w27iwAbhWrfy"
+      },
+      "announcement": {
+        "index": 9,
+        "block_height": 277623124,
+        "token": "router2.veil-williams.testnet",
+        "stealth_account": "6d886b6c4ffe38bdc11709b385e7f329e5ed311bebab9b584d273a38daeed47e",
+        "ephemeral_pub_hex": "b3e3cc683dc8db6bd73873e7bbbfc463fb21c6ca05c25c826f894eb12571136c",
+        "view_tag": 48,
+        "amount": "20000000000000000000000"
+      },
+      "screenshots": [
+        "docs/screenshots/wallet-test/04-meteor-approve-send.png",
+        "docs/screenshots/wallet-test/05-send-receipt.png"
+      ]
+    },
+    {
+      "step": "Scan and spend 0.005 NEAR",
+      "result": "Inbox \"Found 1 private payment\"; after the browser re-link warning the app signed a 0.005 NEAR transfer from the receiving account to veil-wallet-send.testnet with the derived key (no wallet pop-up, by design)",
+      "tx": {
+        "step": "spend 0.005 NEAR",
+        "hash": "5jH6qyzyu2Cp1VdfLuGoG2tX41V799ucvL871rjmD8HW",
+        "signer": "6d886b6c4ffe38bdc11709b385e7f329e5ed311bebab9b584d273a38daeed47e",
+        "receiver": "veil-wallet-send.testnet",
+        "time": "2026-11-14T07:04:45Z",
+        "status": "SuccessValue",
+        "failedReceipts": 0,
+        "explorerUrl": "https://testnet.nearblocks.io/txns/5jH6qyzyu2Cp1VdfLuGoG2tX41V799ucvL871rjmD8HW"
+      },
+      "screenshot": "docs/screenshots/wallet-test/06-inbox-spend-done.png"
+    }
+  ],
+  "recording": {
+    "trimmedCopy": "results/wallet-test-meteor-20261114.mp4 (git-ignored, not published)",
+    "raw": "Kept locally by the team, not committed",
+    "edits": [
+      "Removed a Windows clipboard-history overlay (raw 4:06-4:12)",
+      "Blurred the wallet account list where it showed an unrelated personal account name (raw 0:20.8-0:23.2, 1:34.9-1:37.2, 3:18.9-3:20.7)",
+      "Cut dead time while wallet pop-ups loaded and while the send executed (raw 0:16.0-0:19.6, 2:25.5-2:32.5, 3:10.0-3:17.6)",
+      "Dropped a silent audio track"
+    ],
+    "gaps": "The take is not one continuous session: about 7 minutes pass between the send and the spend on-chain but about 2.3 minutes in the recording, and the registration happened before it."
+  },
+  "notTested": [
+    "Meteor Web (browser, no extension): an automated browser was blocked by Cloudflare on its connect page; whether real users are affected is unverified",
+    "MyNearWallet: in limited mode since 1 Nov (no app connections or approvals) and not offered on testnet by near-connect 0.12.0",
+    "Other wallets in the selector (Intear, Ledger, Nightly, NEAR CLI)"
+  ]
+}

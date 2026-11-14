@@ -43,14 +43,21 @@ The payments were sent on 14 November 2026 by [`scripts/judge-demo.ts`](scripts/
 
 ## Try it with a wallet
 
-You need a testnet wallet that supports NEP-413 message signing through the wallet selector.
+**Tested with Meteor Wallet (Chrome extension) on testnet on 14 November 2026.** On testnet the wallet chooser offers Meteor, Intear, Ledger, Nightly and NEAR CLI. MyNearWallet is not offered on testnet and has switched off app approvals.
 
 1. **Receive.** Connect wallet → **Enable Veil**: sign one message, which makes no payment and keeps keys in your browser. → **Register name**: 0.01 NEAR storage deposit, excess refunded.
 2. **Send** (from another account). Enter the registered name, leave the field to check it, enter an amount, then **Send privately**. The receipt shows a fresh receiving account.
 3. **Scan.** Back as the receiver, press **Scan payments**. The payment appears with its balance.
 4. **Spend.** Choose a destination and an amount, or **Send all** (which closes the receiving account), then press **Spend** after the re-link warning.
 
-The team's automated runs drive this flow with a scripted Node signer through the same hosted app. Browser-wallet approval screens have not been exercised by those runs.
+In that test, a team member ran the flow by hand on the hosted app with two throwaway accounts.
+
+- **Wallet approvals:** Meteor showed and approved the connection, the **Enable Veil** key message (v2, naming `veil-eta-khaki.vercel.app`) and the private send.
+- **Keys:** the keys registered on-chain equal the ones Veil derives from that v2 signature.
+- **Registration:** it succeeded on-chain, but its approval screen was not recorded.
+- **Not tested:** Meteor's web wallet (without the extension) and the other wallets.
+
+Details, transactions and screenshots: [evidence](results/wallet-test-meteor-20261114.json). The other recorded flows use a scripted Node signer through the same hosted app.
 
 ## Run it locally
 
@@ -93,7 +100,8 @@ The testnet demo scripts send real testnet transactions:
 |---|---|
 | Contracts | Registry `registry2.veil-williams.testnet`, router `router2.veil-williams.testnet`, mock six-decimal FT `mockft.veil-williams.testnet` ([deployment evidence](results/deploy-20261111.json)) |
 | Judge path, 14 Nov 2026 | [Registration](https://testnet.nearblocks.io/txns/D1VZR6UDdnPFsWK7ux6ZkTSKdojjhWdKqPCN4aWJmgup) under the current key message, three private sends ([0.02](https://testnet.nearblocks.io/txns/CA2KEYmAxhEL6TaP8byJo4SRzFytvinyeCWEeJ6N5Cmv), [0.03](https://testnet.nearblocks.io/txns/EPA9T69gQmemgznZQ7Gb3YUu6mPaasTK18vFjoVRdusu), [0.05](https://testnet.nearblocks.io/txns/QXkMZRkThs11tLGzADsEarGj1TwxMAjHCzY5QXfTrrc) NEAR), each adding 259 bytes of router storage, all found by the receiver's keys ([evidence](results/judge-demo-20261114014907.json)) |
-| Demo video, 14 Nov 2026 | 1:58 narrated walkthrough of the hosted app on testnet: registration, private send, scan, spend with the re-link warning, and auditor. Uses a scripted signer, not browser-wallet screens. [Script](docs/VIDEO-SCRIPT.md), [captions](results/veil-demo-v2.srt), [transactions and timings](results/veil-demo-v2.json), [recorder](apps/web/record-video.mjs). The public video link is added with the X post. |
+| Demo video, 14 Nov 2026 | 2:00 narrated walkthrough of the hosted app on testnet: registration, private send, scan, spend with the re-link warning, and auditor. One scene shows the real Meteor Wallet approval of the key message; the rest uses a scripted signer. [Script](docs/VIDEO-SCRIPT.md), [captions](results/veil-demo-v2.srt), [transactions and timings](results/veil-demo-v2.json), [recorder](apps/web/record-video.mjs). The public video link is added with the X post. |
+| Real wallet test, 14 Nov 2026 | Meteor Wallet (Chrome extension), by hand. [Registration](https://testnet.nearblocks.io/txns/69GhB5Xth35J3cBLEHw82DdaDZRHcBBFYC4vBAtzZrwQ), [0.02 NEAR private send](https://testnet.nearblocks.io/txns/GvbfCLjUBi6fPtBbNLNWCGvDZFPPt5V7w27iwAbhWrfy) approved in Meteor, and a [0.005 NEAR spend](https://testnet.nearblocks.io/txns/5jH6qyzyu2Cp1VdfLuGoG2tX41V799ucvL871rjmD8HW) from the private receiving account. Registered keys match the v2 key message. Screenshots: [connect](docs/screenshots/wallet-test/01-meteor-connect-request.png), [sign message](docs/screenshots/wallet-test/02-meteor-sign-message.png), [full message](docs/screenshots/wallet-test/03-meteor-full-message.png), [approve send](docs/screenshots/wallet-test/04-meteor-approve-send.png), [receipt](docs/screenshots/wallet-test/05-send-receipt.png), [scan and spend](docs/screenshots/wallet-test/06-inbox-spend-done.png). [evidence](results/wallet-test-meteor-20261114.json) |
 | Router storage top-up, 14 Nov 2026 | [4 testnet NEAR](https://testnet.nearblocks.io/txns/3GXt3n5cd3k9FEfgoEiCmdB8wEW4jzH6wTgnzTR6F2di) to `router2`, leaving about 1,600 announcements of spare storage |
 | Hosted signed flow, 13 Nov 2026 (earlier key message) | `veil-demo-recv.testnet` registered, received 0.0500 NEAR, scanned it, spent 0.0010 NEAR, auditor found it. Scripted test signer, not a browser wallet. [Registration](https://testnet.nearblocks.io/txns/8ojP7xQ2DpLpAXjzyEdo5hmEnMBf8sfsWSMyanpWhSKA), [payment](https://testnet.nearblocks.io/txns/GU7Yg8hhdNDBHNvvxuXomaneKzJmPMBevzfrHjrL9ojz), [spend](https://testnet.nearblocks.io/txns/CVVXiD2TVSqyY8vGYARKH2XQqmjAasKbMqmdUXCyQZq8), [full evidence](results/hosted-wallet-20261113T191343566Z.json) |
 | Scripted demo, 11 Nov 2026 | Registered Alice with keys from a fixed test signature, sent three private payments through `router2`, scanned all three, spent one ([evidence](results/demo-20261111221900.json)) |
@@ -148,7 +156,7 @@ This repository is hosted by the `willy264` GitHub account, which also hosts two
 - **AI tools.** Codex assisted with implementation, review, research and test orchestration. Claude Code assisted with the 14 November 2026 review fixes, tests, documentation and the judge demo.
 - **Libraries and references.** [near-api-js](https://github.com/near/near-api-js), [noble-curves](https://github.com/paulmillr/noble-curves), [noble-hashes](https://github.com/paulmillr/noble-hashes), [near-sdk-rs](https://github.com/near/near-sdk-rs), [curve25519-dalek](https://github.com/dalek-cryptography/curve25519-dalek), [near-connect](https://github.com/hot-dao/near-selector), [NEAR docs](https://docs.near.org/) and the [Sputnik README](https://github.com/near-daos/sputnik-dao-contract#setup).
 - **Demo keys.** Testnet keys live in git-ignored `.env` files or near-cli credential files, and are never printed or committed.
-- **Video.** The narrated video uses synthetic speech and Playwright/FFmpeg editing, with the scripted-signer scope disclosed.
+- **Video.** The narrated video uses synthetic speech and Playwright/FFmpeg editing. One scene is a real Meteor Wallet approval; the rest uses the scripted signer, which the narration says.
 
 ## License
 

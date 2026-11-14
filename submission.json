@@ -13,18 +13,18 @@
   "repository": "https://github.com/willy264/veil",
   "live_url": "https://veil-eta-khaki.vercel.app",
   "hosted_verification": "results/ui-polish/final-pass/results.json",
-  "hosted_wallet_approvals": "Browser wallet approvals not verified; real hosted transactions verified with a scripted test signer.",
+  "hosted_wallet_approvals": "Tested with Meteor Wallet (Chrome extension) on testnet on 14 Nov 2026: connect, the NEP-413 v2 key message and a private send approved in the wallet; registration succeeded on-chain (approval not recorded); the spend is signed by the app. See results/wallet-test-meteor-20261114.json. The other recorded runs use a scripted test signer.",
   "video": {
-    "status": "14 Nov 2026 cut rendered locally; human review and public upload pending",
-    "duration_seconds": 117.6,
-    "scope": "Real hosted testnet register/send/scan/spend/auditor for veil-film-recv.testnet with a scripted Node signer (not browser wallet approvals); opener uses NearBlocks API data for ref-finance.near; implicit-account card uses live RPC data",
+    "status": "14 Nov 2026 cut with a real Meteor approval scene, rendered locally; human review and public upload pending",
+    "duration_seconds": 119.9,
+    "scope": "Scene 3 is a real Meteor Wallet approval of the Enable Veil key message (veil-wallet-recv.testnet); the other scenes are a real hosted testnet run (veil-film-recv.testnet) with a scripted Node signer; opener uses NearBlocks API data for ref-finance.near; implicit-account card uses live RPC data",
     "local_file": "results/veil-demo-v2.mp4",
     "script": "docs/VIDEO-SCRIPT.md",
     "recorder": "apps/web/record-video.mjs",
     "captions": "results/veil-demo-v2.srt",
     "evidence": "results/veil-demo-v2.json",
     "synthetic_narration": true,
-    "browser_wallet_approval_shown": false,
+    "browser_wallet_approval_shown": true,
     "public_url": null
   },
   "demo": {
@@ -72,5 +72,17 @@
     "auditor_key": "865df8cb1b16beb1face316a6c6b0dfc05443b2e6d47f56f1c22bda8a6646d0c",
     "expected": "Found 3 payments for veil-judge-recv.testnet. Read-only access.",
     "evidence": "results/judge-demo-20261114014907.json"
+  },
+  "wallet_test": {
+    "wallet": "Meteor Wallet (Chrome extension)",
+    "date": "2026-11-14",
+    "receiver": "veil-wallet-recv.testnet",
+    "sender": "veil-wallet-send.testnet",
+    "register": "https://testnet.nearblocks.io/txns/69GhB5Xth35J3cBLEHw82DdaDZRHcBBFYC4vBAtzZrwQ",
+    "send": "https://testnet.nearblocks.io/txns/GvbfCLjUBi6fPtBbNLNWCGvDZFPPt5V7w27iwAbhWrfy",
+    "spend": "https://testnet.nearblocks.io/txns/5jH6qyzyu2Cp1VdfLuGoG2tX41V799ucvL871rjmD8HW",
+    "key_check": "Registered keys equal the v2 key-message derivation",
+    "evidence": "results/wallet-test-meteor-20261114.json",
+    "screenshots": "docs/screenshots/wallet-test/"
   }
 }
