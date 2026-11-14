@@ -4,13 +4,13 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { createServer } from 'node:http';
 const { chromium } = createRequire(import.meta.url)(process.env.VEIL_PLAYWRIGHT_MODULE || 'playwright');
 const local = process.argv.includes('--local');
-const allowed = new Map([['/', 'index.html'], ['/index.html','index.html'], ['/app.js','app.js'], ['/config.js','config.js'], ['/styles.css','styles.css']]);
+const allowed = new Map([['/', 'index.html'], ['/index.html','index.html'], ['/app.js','app.js'], ['/config.js','config.js'], ['/styles.css','styles.css'], ['/favicon.svg','favicon.svg']]);
 let server;
 if (local) {
   server = createServer(async (req, res) => {
     const name = allowed.get(new URL(req.url, 'http://localhost').pathname);
     if (!name) { res.writeHead(404).end(); return; }
-    try { const body = await readFile(new URL(`../apps/web/${name}`, import.meta.url)); res.setHeader('content-type', name.endsWith('.js') ? 'text/javascript' : name.endsWith('.css') ? 'text/css' : 'text/html'); res.end(body); } catch { res.writeHead(500).end(); }
+    try { const body = await readFile(new URL(`../apps/web/${name}`, import.meta.url)); res.setHeader('content-type', name.endsWith('.js') ? 'text/javascript' : name.endsWith('.css') ? 'text/css' : name.endsWith('.svg') ? 'image/svg+xml' : 'text/html'); res.end(body); } catch { res.writeHead(500).end(); }
   });
   await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
 }
@@ -36,9 +36,10 @@ try {
   await page.waitForFunction(() => document.querySelector('#refresh')?.disabled === true && document.querySelector('#send')?.disabled === true, null, { timeout: 45000 });
   report.config = await page.evaluate(() => window.VEIL_CONFIG);
   if (report.config?.network !== 'testnet' || report.config.registryId !== 'registry2.veil-williams.testnet' || report.config.routerId !== 'router2.veil-williams.testnet' || !report.config.rpcUrl) throw new Error('Unexpected contract configuration');
-  for (const asset of [...(local ? [] : ['index','index.html']), 'app.js','config.js','styles.css']) {
+  for (const asset of [...(local ? [] : ['index','index.html']), 'app.js','config.js','styles.css','favicon.svg']) {
     const r = await page.request.get(new URL(asset, url + '/').href); if (!r.ok()) throw new Error(`Asset failed: ${asset}`);
     if (new URL(r.url()).hostname !== new URL(url).hostname) throw new Error(`Asset redirected away from the app: ${asset}`);
+    if (asset === 'favicon.svg' && r.headers()['content-type']?.split(';')[0].trim().toLowerCase() !== 'image/svg+xml') throw new Error('Favicon must use image/svg+xml');
     report.checks.push({ asset, status: r.status() });
   }
   report.freshState = await page.evaluate(() => {

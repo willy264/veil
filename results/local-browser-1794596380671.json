@@ -1,0 +1,77 @@
+{
+  "checkedAt": "2026-11-13T18:58:49.095Z",
+  "url": "http://127.0.0.1:56043",
+  "scope": "LOCAL_BROWSER_LIVE_TESTNET_READS",
+  "walletTransactionsSubmitted": false,
+  "walletVerification": "Chooser only. Real wallet connection, message signing and transaction approvals remain pending human verification.",
+  "checks": [
+    {
+      "asset": "app.js",
+      "status": 200
+    },
+    {
+      "asset": "config.js",
+      "status": 200
+    },
+    {
+      "asset": "styles.css",
+      "status": 200
+    },
+    {
+      "freshAppState": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "httpStatus": 200,
+  "finalUrl": "http://127.0.0.1:56043/",
+  "config": {
+    "rpcUrl": "https://rpc.testnet.fastnear.com",
+    "registryId": "registry2.veil-williams.testnet",
+    "routerId": "router2.veil-williams.testnet",
+    "network": "testnet"
+  },
+  "freshState": {
+    "walletStatus": "Wallet not connected",
+    "receiveSelected": true,
+    "receiveVisible": true,
+    "sendHidden": true,
+    "inboxHidden": true,
+    "proofMode": "Example",
+    "inputsEmpty": true,
+    "preCount": 0,
+    "states": [
+      {
+        "id": "identity-output",
+        "text": "Connect your wallet to continue.",
+        "state": "initial",
+        "semanticStatus": true
+      },
+      {
+        "id": "resolve-output",
+        "text": "Enter a testnet name to check whether Veil is enabled.",
+        "state": "initial",
+        "semanticStatus": true
+      },
+      {
+        "id": "send-output",
+        "text": "",
+        "state": "initial",
+        "semanticStatus": true
+      },
+      {
+        "id": "scan-output",
+        "text": "Enable Veil to find payments sent to you.",
+        "state": "initial",
+        "semanticStatus": true
+      },
+      {
+        "id": "auditor-output",
+        "text": "Enter a registered name and auditor key to see incoming payments.",
+        "state": "initial",
+        "semanticStatus": true
+      }
+    ]
+  },
+  "status": "BLOCKED_OR_FAILED",
+  "error": "page.waitForResponse: Timeout 45000ms exceeded while waiting for event \"response\""
+}

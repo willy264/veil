@@ -1,0 +1,1278 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-11-13T19:11:50.348Z",
+  "status": "FAIL",
+  "scope": "LOCAL_STATIC_BROWSER_QA",
+  "target": {
+    "requestedUrl": null,
+    "url": "http://127.0.0.1:63176/",
+    "localStaticServer": true
+  },
+  "outputDirectory": "results/ui-polish/second-pass",
+  "metricScope": "Single-run browser lab observations only; no p75 field metrics are claimed.",
+  "requiredIds": [
+    "connect",
+    "enable",
+    "register",
+    "recipient",
+    "amount",
+    "send",
+    "refresh",
+    "inbox",
+    "view-key",
+    "auditor-name",
+    "audit",
+    "scan-output",
+    "identity-output",
+    "send-output",
+    "resolve-output",
+    "proof-public",
+    "proof-private",
+    "receive-path",
+    "send-path"
+  ],
+  "screenshots": [
+    {
+      "phase": "screenshot",
+      "width": 1440,
+      "motion": "normal",
+      "path": "results/ui-polish/second-pass/1440-receive-fullpage.png",
+      "httpStatus": 200,
+      "finalUrl": "http://127.0.0.1:63176/",
+      "fullPage": true
+    },
+    {
+      "phase": "screenshot",
+      "width": 1440,
+      "motion": "normal",
+      "path": "results/ui-polish/second-pass/1440-send-fullpage.png",
+      "httpStatus": 200,
+      "finalUrl": "http://127.0.0.1:63176/",
+      "fullPage": true
+    },
+    {
+      "phase": "screenshot",
+      "width": 390,
+      "motion": "normal",
+      "path": "results/ui-polish/second-pass/390-receive-fullpage.png",
+      "httpStatus": 200,
+      "finalUrl": "http://127.0.0.1:63176/",
+      "fullPage": true
+    },
+    {
+      "phase": "screenshot",
+      "width": 390,
+      "motion": "normal",
+      "path": "results/ui-polish/second-pass/390-send-fullpage.png",
+      "httpStatus": 200,
+      "finalUrl": "http://127.0.0.1:63176/",
+      "fullPage": true
+    }
+  ],
+  "viewports": [
+    {
+      "width": 320,
+      "motion": "normal",
+      "status": "FAIL",
+      "paths": [],
+      "error": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "width": 360,
+      "motion": "normal",
+      "status": "FAIL",
+      "paths": [],
+      "error": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "width": 375,
+      "motion": "normal",
+      "status": "FAIL",
+      "paths": [],
+      "error": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "width": 390,
+      "motion": "normal",
+      "status": "PASS",
+      "paths": [
+        {
+          "path": "receive",
+          "status": "PASS",
+          "documentOverflow": {
+            "clientWidth": 390,
+            "scrollWidth": 390,
+            "overflow": 0,
+            "elements": []
+          },
+          "pointerTargets": {
+            "checked": 16,
+            "minimum": 24,
+            "undersized": []
+          },
+          "layoutShift": {
+            "supported": true,
+            "value": 0,
+            "threshold": 0.1,
+            "entries": []
+          },
+          "activeAnimations": [],
+          "contrasts": {
+            "pairs": [
+              {
+                "name": "body text",
+                "foreground": "rgb(237, 244, 238)",
+                "background": "rgb(13, 17, 16)",
+                "ratio": 16.995127837100085,
+                "minimum": 4.5
+              },
+              {
+                "name": "muted text",
+                "foreground": "rgb(163, 176, 167)",
+                "background": "rgb(21, 27, 24)",
+                "ratio": 7.759249680216441,
+                "minimum": 4.5
+              },
+              {
+                "name": "input text",
+                "foreground": "rgb(237, 244, 238)",
+                "background": "rgb(10, 14, 13)",
+                "ratio": 17.36034908331242,
+                "minimum": 4.5
+              },
+              {
+                "name": "input placeholder",
+                "foreground": "rgb(163, 176, 167)",
+                "background": "rgb(10, 14, 13)",
+                "ratio": 8.622432308458402,
+                "minimum": 4.5
+              }
+            ],
+            "failures": []
+          },
+          "axe": {
+            "violations": [],
+            "violationCount": 0,
+            "passes": 46,
+            "incomplete": [
+              {
+                "id": "aria-prohibited-attr",
+                "impact": "serious",
+                "help": "Elements must only use permitted ARIA attributes"
+              }
+            ]
+          }
+        },
+        {
+          "path": "send",
+          "status": "PASS",
+          "documentOverflow": {
+            "clientWidth": 390,
+            "scrollWidth": 390,
+            "overflow": 0,
+            "elements": []
+          },
+          "pointerTargets": {
+            "checked": 16,
+            "minimum": 24,
+            "undersized": []
+          },
+          "layoutShift": {
+            "supported": true,
+            "value": 0,
+            "threshold": 0.1,
+            "entries": []
+          },
+          "activeAnimations": [],
+          "contrasts": {
+            "pairs": [
+              {
+                "name": "body text",
+                "foreground": "rgb(237, 244, 238)",
+                "background": "rgb(13, 17, 16)",
+                "ratio": 16.995127837100085,
+                "minimum": 4.5
+              },
+              {
+                "name": "muted text",
+                "foreground": "rgb(163, 176, 167)",
+                "background": "rgb(21, 27, 24)",
+                "ratio": 7.759249680216441,
+                "minimum": 4.5
+              },
+              {
+                "name": "input text",
+                "foreground": "rgb(237, 244, 238)",
+                "background": "rgb(10, 14, 13)",
+                "ratio": 17.36034908331242,
+                "minimum": 4.5
+              },
+              {
+                "name": "input placeholder",
+                "foreground": "rgb(163, 176, 167)",
+                "background": "rgb(10, 14, 13)",
+                "ratio": 8.622432308458402,
+                "minimum": 4.5
+              }
+            ],
+            "failures": []
+          },
+          "axe": {
+            "violations": [],
+            "violationCount": 0,
+            "passes": 46,
+            "incomplete": [
+              {
+                "id": "aria-prohibited-attr",
+                "impact": "serious",
+                "help": "Elements must only use permitted ARIA attributes"
+              }
+            ]
+          }
+        }
+      ],
+      "httpStatus": 200,
+      "finalUrl": "http://127.0.0.1:63176/",
+      "pageErrorCount": 0
+    },
+    {
+      "width": 450,
+      "motion": "normal",
+      "status": "FAIL",
+      "paths": [],
+      "error": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "width": 768,
+      "motion": "normal",
+      "status": "FAIL",
+      "paths": [],
+      "error": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "width": 1024,
+      "motion": "normal",
+      "status": "FAIL",
+      "paths": [],
+      "error": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "width": 1280,
+      "motion": "normal",
+      "status": "FAIL",
+      "paths": [],
+      "error": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "width": 1440,
+      "motion": "normal",
+      "status": "PASS",
+      "paths": [
+        {
+          "path": "receive",
+          "status": "PASS",
+          "documentOverflow": {
+            "clientWidth": 1440,
+            "scrollWidth": 1440,
+            "overflow": 0,
+            "elements": []
+          },
+          "pointerTargets": {
+            "checked": 16,
+            "minimum": 24,
+            "undersized": []
+          },
+          "layoutShift": {
+            "supported": true,
+            "value": 0,
+            "threshold": 0.1,
+            "entries": []
+          },
+          "activeAnimations": [],
+          "contrasts": {
+            "pairs": [
+              {
+                "name": "body text",
+                "foreground": "rgb(237, 244, 238)",
+                "background": "rgb(13, 17, 16)",
+                "ratio": 16.995127837100085,
+                "minimum": 4.5
+              },
+              {
+                "name": "muted text",
+                "foreground": "rgb(163, 176, 167)",
+                "background": "rgb(21, 27, 24)",
+                "ratio": 7.759249680216441,
+                "minimum": 4.5
+              },
+              {
+                "name": "input text",
+                "foreground": "rgb(237, 244, 238)",
+                "background": "rgb(10, 14, 13)",
+                "ratio": 17.36034908331242,
+                "minimum": 4.5
+              },
+              {
+                "name": "input placeholder",
+                "foreground": "rgb(163, 176, 167)",
+                "background": "rgb(10, 14, 13)",
+                "ratio": 8.622432308458402,
+                "minimum": 4.5
+              }
+            ],
+            "failures": []
+          },
+          "axe": {
+            "violations": [],
+            "violationCount": 0,
+            "passes": 46,
+            "incomplete": [
+              {
+                "id": "aria-prohibited-attr",
+                "impact": "serious",
+                "help": "Elements must only use permitted ARIA attributes"
+              }
+            ]
+          }
+        },
+        {
+          "path": "send",
+          "status": "PASS",
+          "documentOverflow": {
+            "clientWidth": 1440,
+            "scrollWidth": 1440,
+            "overflow": 0,
+            "elements": []
+          },
+          "pointerTargets": {
+            "checked": 16,
+            "minimum": 24,
+            "undersized": []
+          },
+          "layoutShift": {
+            "supported": true,
+            "value": 0,
+            "threshold": 0.1,
+            "entries": []
+          },
+          "activeAnimations": [],
+          "contrasts": {
+            "pairs": [
+              {
+                "name": "body text",
+                "foreground": "rgb(237, 244, 238)",
+                "background": "rgb(13, 17, 16)",
+                "ratio": 16.995127837100085,
+                "minimum": 4.5
+              },
+              {
+                "name": "muted text",
+                "foreground": "rgb(163, 176, 167)",
+                "background": "rgb(21, 27, 24)",
+                "ratio": 7.759249680216441,
+                "minimum": 4.5
+              },
+              {
+                "name": "input text",
+                "foreground": "rgb(237, 244, 238)",
+                "background": "rgb(10, 14, 13)",
+                "ratio": 17.36034908331242,
+                "minimum": 4.5
+              },
+              {
+                "name": "input placeholder",
+                "foreground": "rgb(163, 176, 167)",
+                "background": "rgb(10, 14, 13)",
+                "ratio": 8.622432308458402,
+                "minimum": 4.5
+              }
+            ],
+            "failures": []
+          },
+          "axe": {
+            "violations": [],
+            "violationCount": 0,
+            "passes": 46,
+            "incomplete": [
+              {
+                "id": "aria-prohibited-attr",
+                "impact": "serious",
+                "help": "Elements must only use permitted ARIA attributes"
+              }
+            ]
+          }
+        }
+      ],
+      "httpStatus": 200,
+      "finalUrl": "http://127.0.0.1:63176/",
+      "pageErrorCount": 0
+    },
+    {
+      "width": 1536,
+      "motion": "normal",
+      "status": "FAIL",
+      "paths": [],
+      "error": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "width": 1920,
+      "motion": "normal",
+      "status": "FAIL",
+      "paths": [],
+      "error": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "width": 320,
+      "motion": "reduced",
+      "status": "FAIL",
+      "paths": [],
+      "error": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "width": 360,
+      "motion": "reduced",
+      "status": "FAIL",
+      "paths": [],
+      "error": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "width": 375,
+      "motion": "reduced",
+      "status": "FAIL",
+      "paths": [],
+      "error": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "width": 390,
+      "motion": "reduced",
+      "status": "PASS",
+      "paths": [
+        {
+          "path": "receive",
+          "status": "PASS",
+          "documentOverflow": {
+            "clientWidth": 390,
+            "scrollWidth": 390,
+            "overflow": 0,
+            "elements": []
+          },
+          "pointerTargets": {
+            "checked": 16,
+            "minimum": 24,
+            "undersized": []
+          },
+          "layoutShift": {
+            "supported": true,
+            "value": 0,
+            "threshold": 0.1,
+            "entries": []
+          },
+          "activeAnimations": [],
+          "contrasts": {
+            "pairs": [
+              {
+                "name": "body text",
+                "foreground": "rgb(237, 244, 238)",
+                "background": "rgb(13, 17, 16)",
+                "ratio": 16.995127837100085,
+                "minimum": 4.5
+              },
+              {
+                "name": "muted text",
+                "foreground": "rgb(163, 176, 167)",
+                "background": "rgb(21, 27, 24)",
+                "ratio": 7.759249680216441,
+                "minimum": 4.5
+              },
+              {
+                "name": "input text",
+                "foreground": "rgb(237, 244, 238)",
+                "background": "rgb(10, 14, 13)",
+                "ratio": 17.36034908331242,
+                "minimum": 4.5
+              },
+              {
+                "name": "input placeholder",
+                "foreground": "rgb(163, 176, 167)",
+                "background": "rgb(10, 14, 13)",
+                "ratio": 8.622432308458402,
+                "minimum": 4.5
+              }
+            ],
+            "failures": []
+          },
+          "axe": {
+            "violations": [],
+            "violationCount": 0,
+            "passes": 46,
+            "incomplete": [
+              {
+                "id": "aria-prohibited-attr",
+                "impact": "serious",
+                "help": "Elements must only use permitted ARIA attributes"
+              }
+            ]
+          },
+          "reducedMotion": {
+            "disallowed": []
+          }
+        },
+        {
+          "path": "send",
+          "status": "PASS",
+          "documentOverflow": {
+            "clientWidth": 390,
+            "scrollWidth": 390,
+            "overflow": 0,
+            "elements": []
+          },
+          "pointerTargets": {
+            "checked": 16,
+            "minimum": 24,
+            "undersized": []
+          },
+          "layoutShift": {
+            "supported": true,
+            "value": 0,
+            "threshold": 0.1,
+            "entries": []
+          },
+          "activeAnimations": [],
+          "contrasts": {
+            "pairs": [
+              {
+                "name": "body text",
+                "foreground": "rgb(237, 244, 238)",
+                "background": "rgb(13, 17, 16)",
+                "ratio": 16.995127837100085,
+                "minimum": 4.5
+              },
+              {
+                "name": "muted text",
+                "foreground": "rgb(163, 176, 167)",
+                "background": "rgb(21, 27, 24)",
+                "ratio": 7.759249680216441,
+                "minimum": 4.5
+              },
+              {
+                "name": "input text",
+                "foreground": "rgb(237, 244, 238)",
+                "background": "rgb(10, 14, 13)",
+                "ratio": 17.36034908331242,
+                "minimum": 4.5
+              },
+              {
+                "name": "input placeholder",
+                "foreground": "rgb(163, 176, 167)",
+                "background": "rgb(10, 14, 13)",
+                "ratio": 8.622432308458402,
+                "minimum": 4.5
+              }
+            ],
+            "failures": []
+          },
+          "axe": {
+            "violations": [],
+            "violationCount": 0,
+            "passes": 46,
+            "incomplete": [
+              {
+                "id": "aria-prohibited-attr",
+                "impact": "serious",
+                "help": "Elements must only use permitted ARIA attributes"
+              }
+            ]
+          },
+          "reducedMotion": {
+            "disallowed": []
+          }
+        }
+      ],
+      "httpStatus": 200,
+      "finalUrl": "http://127.0.0.1:63176/",
+      "pageErrorCount": 0
+    },
+    {
+      "width": 450,
+      "motion": "reduced",
+      "status": "FAIL",
+      "paths": [],
+      "error": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "width": 768,
+      "motion": "reduced",
+      "status": "FAIL",
+      "paths": [],
+      "error": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "width": 1024,
+      "motion": "reduced",
+      "status": "FAIL",
+      "paths": [],
+      "error": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "width": 1280,
+      "motion": "reduced",
+      "status": "FAIL",
+      "paths": [],
+      "error": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "width": 1440,
+      "motion": "reduced",
+      "status": "PASS",
+      "paths": [
+        {
+          "path": "receive",
+          "status": "PASS",
+          "documentOverflow": {
+            "clientWidth": 1440,
+            "scrollWidth": 1440,
+            "overflow": 0,
+            "elements": []
+          },
+          "pointerTargets": {
+            "checked": 16,
+            "minimum": 24,
+            "undersized": []
+          },
+          "layoutShift": {
+            "supported": true,
+            "value": 0,
+            "threshold": 0.1,
+            "entries": []
+          },
+          "activeAnimations": [],
+          "contrasts": {
+            "pairs": [
+              {
+                "name": "body text",
+                "foreground": "rgb(237, 244, 238)",
+                "background": "rgb(13, 17, 16)",
+                "ratio": 16.995127837100085,
+                "minimum": 4.5
+              },
+              {
+                "name": "muted text",
+                "foreground": "rgb(163, 176, 167)",
+                "background": "rgb(21, 27, 24)",
+                "ratio": 7.759249680216441,
+                "minimum": 4.5
+              },
+              {
+                "name": "input text",
+                "foreground": "rgb(237, 244, 238)",
+                "background": "rgb(10, 14, 13)",
+                "ratio": 17.36034908331242,
+                "minimum": 4.5
+              },
+              {
+                "name": "input placeholder",
+                "foreground": "rgb(163, 176, 167)",
+                "background": "rgb(10, 14, 13)",
+                "ratio": 8.622432308458402,
+                "minimum": 4.5
+              }
+            ],
+            "failures": []
+          },
+          "axe": {
+            "violations": [],
+            "violationCount": 0,
+            "passes": 46,
+            "incomplete": [
+              {
+                "id": "aria-prohibited-attr",
+                "impact": "serious",
+                "help": "Elements must only use permitted ARIA attributes"
+              }
+            ]
+          },
+          "reducedMotion": {
+            "disallowed": []
+          }
+        },
+        {
+          "path": "send",
+          "status": "PASS",
+          "documentOverflow": {
+            "clientWidth": 1440,
+            "scrollWidth": 1440,
+            "overflow": 0,
+            "elements": []
+          },
+          "pointerTargets": {
+            "checked": 16,
+            "minimum": 24,
+            "undersized": []
+          },
+          "layoutShift": {
+            "supported": true,
+            "value": 0,
+            "threshold": 0.1,
+            "entries": []
+          },
+          "activeAnimations": [],
+          "contrasts": {
+            "pairs": [
+              {
+                "name": "body text",
+                "foreground": "rgb(237, 244, 238)",
+                "background": "rgb(13, 17, 16)",
+                "ratio": 16.995127837100085,
+                "minimum": 4.5
+              },
+              {
+                "name": "muted text",
+                "foreground": "rgb(163, 176, 167)",
+                "background": "rgb(21, 27, 24)",
+                "ratio": 7.759249680216441,
+                "minimum": 4.5
+              },
+              {
+                "name": "input text",
+                "foreground": "rgb(237, 244, 238)",
+                "background": "rgb(10, 14, 13)",
+                "ratio": 17.36034908331242,
+                "minimum": 4.5
+              },
+              {
+                "name": "input placeholder",
+                "foreground": "rgb(163, 176, 167)",
+                "background": "rgb(10, 14, 13)",
+                "ratio": 8.622432308458402,
+                "minimum": 4.5
+              }
+            ],
+            "failures": []
+          },
+          "axe": {
+            "violations": [],
+            "violationCount": 0,
+            "passes": 46,
+            "incomplete": [
+              {
+                "id": "aria-prohibited-attr",
+                "impact": "serious",
+                "help": "Elements must only use permitted ARIA attributes"
+              }
+            ]
+          },
+          "reducedMotion": {
+            "disallowed": []
+          }
+        }
+      ],
+      "httpStatus": 200,
+      "finalUrl": "http://127.0.0.1:63176/",
+      "pageErrorCount": 0
+    },
+    {
+      "width": 1536,
+      "motion": "reduced",
+      "status": "FAIL",
+      "paths": [],
+      "error": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "width": 1920,
+      "motion": "reduced",
+      "status": "FAIL",
+      "paths": [],
+      "error": "Cannot read properties of undefined (reading 'length')"
+    }
+  ],
+  "pageErrors": [],
+  "failures": [
+    {
+      "check": "viewport-run",
+      "viewport": "320px/normal",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "check": "viewport-run",
+      "viewport": "360px/normal",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "check": "viewport-run",
+      "viewport": "375px/normal",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "check": "viewport-run",
+      "viewport": "450px/normal",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "check": "viewport-run",
+      "viewport": "768px/normal",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "check": "viewport-run",
+      "viewport": "1024px/normal",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "check": "viewport-run",
+      "viewport": "1280px/normal",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "check": "viewport-run",
+      "viewport": "1536px/normal",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "check": "viewport-run",
+      "viewport": "1920px/normal",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "check": "viewport-run",
+      "viewport": "320px/reduced",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "check": "viewport-run",
+      "viewport": "360px/reduced",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "check": "viewport-run",
+      "viewport": "375px/reduced",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "check": "viewport-run",
+      "viewport": "450px/reduced",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "check": "viewport-run",
+      "viewport": "768px/reduced",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "check": "viewport-run",
+      "viewport": "1024px/reduced",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "check": "viewport-run",
+      "viewport": "1280px/reduced",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "check": "viewport-run",
+      "viewport": "1536px/reduced",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "check": "viewport-run",
+      "viewport": "1920px/reduced",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    }
+  ],
+  "walletChecks": {
+    "chooserRequested": true,
+    "chooserOpened": true,
+    "dismissedViaBackdrop": true,
+    "reloadedAfterDismissal": true,
+    "realWalletConnection": "NOT_TESTED",
+    "messageSignatureApproval": "NOT_TESTED",
+    "transactionApproval": "NOT_TESTED",
+    "walletSelected": false,
+    "signed": false,
+    "transactionsSubmitted": false,
+    "note": "Automated QA never selects a wallet, signs a message, or submits a transaction. Real wallet checks remain absent."
+  },
+  "keyboardChecks": {
+    "status": "PASS",
+    "sendState": {
+      "receiveSelected": "false",
+      "sendSelected": "true",
+      "receiveHidden": true,
+      "sendHidden": false
+    },
+    "sendTab": {
+      "label": "ArrowRight selects Send",
+      "id": "tab-send",
+      "tag": "button",
+      "disabled": false,
+      "focusVisible": true,
+      "hasIndicator": true,
+      "outline": "2px solid rgb(168, 239, 200)",
+      "boxShadow": "none"
+    },
+    "sendFirst": {
+      "label": "Tab enters Send path",
+      "id": "recipient",
+      "tag": "input",
+      "disabled": false,
+      "focusVisible": true,
+      "hasIndicator": true,
+      "outline": "2px solid rgb(168, 239, 200)",
+      "boxShadow": "none"
+    },
+    "receiveTab": {
+      "label": "ArrowLeft selects Receive",
+      "id": "tab-receive",
+      "tag": "button",
+      "disabled": false,
+      "focusVisible": true,
+      "hasIndicator": true,
+      "outline": "2px solid rgb(168, 239, 200)",
+      "boxShadow": "none"
+    },
+    "receiveOrder": [
+      {
+        "label": "Tab enters Receive path",
+        "id": "connect-receive",
+        "tag": "button",
+        "disabled": false,
+        "focusVisible": true,
+        "hasIndicator": true,
+        "outline": "2px solid rgb(168, 239, 200)",
+        "boxShadow": "none"
+      },
+      {
+        "label": "Receive Tab 2",
+        "id": null,
+        "tag": "a",
+        "disabled": false,
+        "focusVisible": true,
+        "hasIndicator": true,
+        "outline": "2px solid rgb(168, 239, 200)",
+        "boxShadow": "none"
+      },
+      {
+        "label": "Receive Tab 3",
+        "id": null,
+        "tag": "summary",
+        "disabled": false,
+        "focusVisible": true,
+        "hasIndicator": true,
+        "outline": "2px solid rgb(168, 239, 200)",
+        "boxShadow": "none"
+      },
+      {
+        "label": "Receive Tab 4",
+        "id": "auditor-name",
+        "tag": "input",
+        "disabled": false,
+        "focusVisible": true,
+        "hasIndicator": true,
+        "outline": "2px solid rgb(168, 239, 200)",
+        "boxShadow": "none"
+      },
+      {
+        "label": "Receive Tab 5",
+        "id": "view-key",
+        "tag": "input",
+        "disabled": false,
+        "focusVisible": true,
+        "hasIndicator": true,
+        "outline": "2px solid rgb(168, 239, 200)",
+        "boxShadow": "none"
+      },
+      {
+        "label": "Receive Tab 6",
+        "id": "audit",
+        "tag": "button",
+        "disabled": false,
+        "focusVisible": true,
+        "hasIndicator": true,
+        "outline": "2px solid rgb(168, 239, 200)",
+        "boxShadow": "none"
+      },
+      {
+        "label": "Receive Tab 7",
+        "id": "clear-auditor",
+        "tag": "button",
+        "disabled": false,
+        "focusVisible": true,
+        "hasIndicator": true,
+        "outline": "2px solid rgb(168, 239, 200)",
+        "boxShadow": "none"
+      },
+      {
+        "label": "Receive Tab 8",
+        "id": null,
+        "tag": "summary",
+        "disabled": false,
+        "focusVisible": true,
+        "hasIndicator": true,
+        "outline": "2px solid rgb(168, 239, 200)",
+        "boxShadow": "none"
+      }
+    ],
+    "disabledStepIds": [
+      "enable",
+      "register",
+      "share",
+      "export-view",
+      "refresh",
+      "send"
+    ],
+    "hiddenOrDisabledFocus": [],
+    "missingFocusStyles": []
+  },
+  "interactionChecks": {
+    "status": "PASS",
+    "existing": {
+      "state": "success",
+      "text": "Veil enabled"
+    },
+    "invalidName": {
+      "state": "error",
+      "text": "Enter a valid testnet account name, such as alice.testnet.",
+      "ariaInvalid": "true"
+    },
+    "unregistered": {
+      "name": "qa-1794597159684-unregistered.testnet",
+      "state": "error",
+      "text": "Not on Veil yet. Ask the recipient to enable Veil and register this name."
+    },
+    "invalidAmount": {
+      "state": "error",
+      "text": "Enter a NEAR amount greater than zero, such as 0.0100.",
+      "ariaInvalid": "true",
+      "sendDisabled": true
+    },
+    "invalidAuditor": {
+      "state": "error",
+      "text": "Enter the auditor key shared by the recipient.Try again",
+      "ariaInvalid": "true"
+    },
+    "rpcMethods": [
+      "query",
+      "query",
+      "query"
+    ]
+  },
+  "modules": {
+    "playwright": "C:\\Users\\HP\\AppData\\Local\\Temp\\veil-video-tools\\node_modules\\playwright",
+    "axePlaywright": "C:\\Users\\HP\\AppData\\Local\\Temp\\veil-video-tools\\node_modules\\@axe-core\\playwright"
+  },
+  "structure": {
+    "requiredIds": [
+      {
+        "id": "connect",
+        "count": 1
+      },
+      {
+        "id": "enable",
+        "count": 1
+      },
+      {
+        "id": "register",
+        "count": 1
+      },
+      {
+        "id": "recipient",
+        "count": 1
+      },
+      {
+        "id": "amount",
+        "count": 1
+      },
+      {
+        "id": "send",
+        "count": 1
+      },
+      {
+        "id": "refresh",
+        "count": 1
+      },
+      {
+        "id": "inbox",
+        "count": 1
+      },
+      {
+        "id": "view-key",
+        "count": 1
+      },
+      {
+        "id": "auditor-name",
+        "count": 1
+      },
+      {
+        "id": "audit",
+        "count": 1
+      },
+      {
+        "id": "scan-output",
+        "count": 1
+      },
+      {
+        "id": "identity-output",
+        "count": 1
+      },
+      {
+        "id": "send-output",
+        "count": 1
+      },
+      {
+        "id": "resolve-output",
+        "count": 1
+      },
+      {
+        "id": "proof-public",
+        "count": 1
+      },
+      {
+        "id": "proof-private",
+        "count": 1
+      },
+      {
+        "id": "receive-path",
+        "count": 1
+      },
+      {
+        "id": "send-path",
+        "count": 1
+      }
+    ],
+    "headings": [
+      {
+        "level": 1,
+        "text": "Keep each payment separate.",
+        "selector": "#hero-title"
+      },
+      {
+        "level": 2,
+        "text": "What anyone sees for alice.near",
+        "selector": "#proof-public-title"
+      },
+      {
+        "level": 2,
+        "text": "What Alice sees",
+        "selector": "#proof-private-title"
+      },
+      {
+        "level": 2,
+        "text": "Receive with your name",
+        "selector": "body > div > main > section:nth-of-type(2) > div:nth-of-type(2) > div > h2"
+      },
+      {
+        "level": 3,
+        "text": "Connect wallet",
+        "selector": "body > div > main > section:nth-of-type(2) > div:nth-of-type(2) > ol > li:nth-of-type(1) > div > h3"
+      },
+      {
+        "level": 3,
+        "text": "Enable Veil",
+        "selector": "body > div > main > section:nth-of-type(2) > div:nth-of-type(2) > ol > li:nth-of-type(2) > div > h3"
+      },
+      {
+        "level": 3,
+        "text": "Register your name",
+        "selector": "body > div > main > section:nth-of-type(2) > div:nth-of-type(2) > ol > li:nth-of-type(3) > div > h3"
+      },
+      {
+        "level": 3,
+        "text": "Share your name",
+        "selector": "body > div > main > section:nth-of-type(2) > div:nth-of-type(2) > ol > li:nth-of-type(4) > div > h3"
+      },
+      {
+        "level": 2,
+        "text": "Send to a name",
+        "selector": "body > div > main > section:nth-of-type(2) > div:nth-of-type(3) > div > h2"
+      },
+      {
+        "level": 3,
+        "text": "Enter a name",
+        "selector": "body > div > main > section:nth-of-type(2) > div:nth-of-type(3) > form > ol > li:nth-of-type(1) > div > h3"
+      },
+      {
+        "level": 3,
+        "text": "Choose an amount",
+        "selector": "body > div > main > section:nth-of-type(2) > div:nth-of-type(3) > form > ol > li:nth-of-type(2) > div > h3"
+      },
+      {
+        "level": 3,
+        "text": "Send privately",
+        "selector": "body > div > main > section:nth-of-type(2) > div:nth-of-type(3) > form > ol > li:nth-of-type(3) > div > h3"
+      },
+      {
+        "level": 3,
+        "text": "Receipt",
+        "selector": "body > div > main > section:nth-of-type(2) > div:nth-of-type(3) > form > ol > li:nth-of-type(4) > div > h3"
+      },
+      {
+        "level": 2,
+        "text": "Private payments",
+        "selector": "#inbox-title"
+      },
+      {
+        "level": 2,
+        "text": "Auditor",
+        "selector": "#auditor-title"
+      }
+    ],
+    "labels": [
+      {
+        "text": "Recipient name (required)",
+        "for": "recipient",
+        "control": "#recipient"
+      },
+      {
+        "text": "Amount in NEAR (required)",
+        "for": "amount",
+        "control": "#amount"
+      },
+      {
+        "text": "Registered name (required)",
+        "for": "auditor-name",
+        "control": "#auditor-name"
+      },
+      {
+        "text": "Auditor key (required)",
+        "for": "view-key",
+        "control": "#view-key"
+      }
+    ],
+    "counts": {
+      "headings": 15,
+      "labels": 4
+    },
+    "headingChecks": {
+      "h1Count": 1,
+      "skippedLevels": [],
+      "privatePayments": true,
+      "auditor": true
+    },
+    "unlabelledInputs": [],
+    "rawPreElements": [],
+    "prefilledInputs": []
+  },
+  "contractConfig": {
+    "expected": {
+      "network": "testnet",
+      "registryId": "registry2.veil-williams.testnet",
+      "routerId": "router2.veil-williams.testnet",
+      "rpcUrl": "https://rpc.testnet.near.org"
+    },
+    "observed": {
+      "raw": {
+        "rpcUrl": "https://rpc.testnet.near.org",
+        "registryId": "registry2.veil-williams.testnet",
+        "routerId": "router2.veil-williams.testnet",
+        "network": "testnet"
+      },
+      "effective": {
+        "network": "testnet",
+        "registryId": "registry2.veil-williams.testnet",
+        "routerId": "router2.veil-williams.testnet",
+        "rpcUrl": "https://rpc.testnet.near.org"
+      },
+      "source": "window.VEIL_CONFIG"
+    }
+  },
+  "finishedAt": "2026-11-13T19:14:08.381Z"
+}

@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-11-14T00:07:50.038Z",
+  "network": "testnet",
+  "rpc": "https://rpc.testnet.near.org",
+  "balancesNear": {
+    "veil-demo-recv.testnet": "10.00036895215491",
+    "veil-demo-send.testnet": "9.9421203864621149",
+    "7d86abd76e8d4814aafb42995d8c1e47526e03f1e12b87bd8100786a64c79bb0": "0.0489553634875"
+  },
+  "transactionEvidence": "results/hosted-wallet-20261113T191343566Z.json"
+}

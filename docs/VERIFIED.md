@@ -2,6 +2,19 @@
 
 Only facts backed by a source or a real executed test belong here. Simulated results must be labelled `SIMULATED` elsewhere.
 
+## Polished hosted flow: 2026-11-13 / 14
+
+- **VERIFIED:** The restored green palette/fonts remain. Receive/Send steppers, live public/private comparison, plain states, NEAR balances, receipts and a read-only auditor are live at https://veil-eta-khaki.vercel.app. [QA report](UI-QA-20261114.md).
+- **VERIFIED:** Production checks pass 44 path/viewport/motion combinations, keyboard navigation, live resolution, errors, no page errors and no document overflow. [Browser QA](../results/ui-polish/final-pass/results.json).
+- **VERIFIED:** Mobile Lighthouse reports 98 performance, 100 accessibility, 100 best practices, 100 SEO, 1.59s LCP and 0 CLS. These are lab measurements. [Report](../results/ui-polish/lighthouse-final-mobile.json).
+- **VERIFIED:** The hosted app derived keys from a real NEP-413 signature for `veil-demo-recv.testnet`, registered it, received 0.0500 NEAR from `veil-demo-send.testnet`, found the payment, spent 0.0010 NEAR and found it in an unsigned auditor session. [Complete public evidence](../results/hosted-wallet-20261113T191343566Z.json).
+- Registration: [8ojP7xQ2DpLpAXjzyEdo5hmEnMBf8sfsWSMyanpWhSKA](https://testnet.nearblocks.io/txns/8ojP7xQ2DpLpAXjzyEdo5hmEnMBf8sfsWSMyanpWhSKA).
+- Private send: [GU7Yg8hhdNDBHNvvxuXomaneKzJmPMBevzfrHjrL9ojz](https://testnet.nearblocks.io/txns/GU7Yg8hhdNDBHNvvxuXomaneKzJmPMBevzfrHjrL9ojz).
+- Spend: [CVVXiD2TVSqyY8vGYARKH2XQqmjAasKbMqmdUXCyQZq8](https://testnet.nearblocks.io/txns/CVVXiD2TVSqyY8vGYARKH2XQqmjAasKbMqmdUXCyQZq8).
+- Receiving account: [7d86abd76e8d4814aafb42995d8c1e47526e03f1e12b87bd8100786a64c79bb0](https://testnet.nearblocks.io/address/7d86abd76e8d4814aafb42995d8c1e47526e03f1e12b87bd8100786a64c79bb0).
+- **SCOPE:** The real signed run used a scripted test signer, not a browser wallet. Only the connector module was replaced in the recording browser; hosted app derivation, scanning, raw-scalar signing and RPC submissions ran for real. No browser-extension approval coverage is claimed. Auditor input stayed masked; private keys were not printed or committed.
+- **VERIFIED:** The official `https://rpc.testnet.near.org` endpoint is used after Fastnear returned HTTP 429. Contracts remain registry2/router2. Earlier dated sections below are historical.
+
 ## Design rollback: 2026-11-12
 
 - **VERIFIED:** At the user's request, commit `7ff421b` restores the previous green fintech design from `ebfd14f`. Web files and wallet-flow tests match that version. Build, typecheck and all 21 tests pass.

@@ -1,0 +1,173 @@
+{
+  "checkedAt": "2026-11-13T19:05:56.064Z",
+  "url": "https://veil-eta-khaki.vercel.app",
+  "scope": "PUBLIC_BROWSER_LIVE_TESTNET_READS",
+  "walletTransactionsSubmitted": false,
+  "walletVerification": "Chooser only. Real wallet connection, message signing and transaction approvals remain pending human verification.",
+  "checks": [
+    {
+      "asset": "index",
+      "status": 200
+    },
+    {
+      "asset": "index.html",
+      "status": 200
+    },
+    {
+      "asset": "app.js",
+      "status": 200
+    },
+    {
+      "asset": "config.js",
+      "status": 200
+    },
+    {
+      "asset": "styles.css",
+      "status": 200
+    },
+    {
+      "freshAppState": "PASS"
+    },
+    {
+      "registryResolve": "PASS",
+      "account": "alice.veil-williams.testnet",
+      "rpcUrl": "https://rpc.testnet.near.org/",
+      "status": 200,
+      "contract": "registry2.veil-williams.testnet",
+      "method": "get_meta",
+      "schemeId": 1,
+      "blockHeight": 277550760,
+      "blockHash": "6wzbM8tV2gofSHrT2zVdXSUmbhveh3ZxeRmNZ7a7eRs6",
+      "uiState": "success",
+      "message": "Veil enabled"
+    },
+    {
+      "routerRead": "PASS",
+      "announcements": 4,
+      "firstPageCount": 4
+    }
+  ],
+  "pageErrors": [],
+  "httpStatus": 200,
+  "finalUrl": "https://veil-eta-khaki.vercel.app/",
+  "config": {
+    "rpcUrl": "https://rpc.testnet.near.org",
+    "registryId": "registry2.veil-williams.testnet",
+    "routerId": "router2.veil-williams.testnet",
+    "network": "testnet"
+  },
+  "freshState": {
+    "walletStatus": "Wallet not connected",
+    "receiveSelected": true,
+    "receiveVisible": true,
+    "sendHidden": true,
+    "inboxHidden": true,
+    "proofMode": "Example",
+    "inputsEmpty": true,
+    "preCount": 0,
+    "states": [
+      {
+        "id": "identity-output",
+        "text": "Connect your wallet to continue.",
+        "state": "initial",
+        "semanticStatus": true
+      },
+      {
+        "id": "resolve-output",
+        "text": "Enter a testnet name to check whether Veil is enabled.",
+        "state": "initial",
+        "semanticStatus": true
+      },
+      {
+        "id": "send-output",
+        "text": "",
+        "state": "initial",
+        "semanticStatus": true
+      },
+      {
+        "id": "scan-output",
+        "text": "Enable Veil to find payments sent to you.",
+        "state": "initial",
+        "semanticStatus": true
+      },
+      {
+        "id": "auditor-output",
+        "text": "Enter a registered name and auditor key to see incoming payments.",
+        "state": "initial",
+        "semanticStatus": true
+      }
+    ]
+  },
+  "routerReads": {
+    "total": {
+      "method": "total_announcements",
+      "args": {},
+      "status": 200,
+      "rpcUrl": "https://rpc.testnet.near.org/",
+      "contract": "router2.veil-williams.testnet",
+      "blockHeight": 277550767,
+      "blockHash": "B45XcXZMZ431foGR9tzrHq4XmVoTXWB6gxnGHyzYvZAw",
+      "value": 4
+    },
+    "announcements": {
+      "method": "get_announcements",
+      "args": {
+        "from_index": 0,
+        "limit": 100
+      },
+      "status": 200,
+      "rpcUrl": "https://rpc.testnet.near.org/",
+      "contract": "router2.veil-williams.testnet",
+      "blockHeight": 277550773,
+      "blockHash": "3hs5XEGwNyJvA35oRtYVLikjQNSqEThV2EKBrtsjxXhM",
+      "value": [
+        {
+          "index": 0,
+          "block_height": 277274349,
+          "token": "router2.veil-williams.testnet",
+          "stealth_account": "47fc80fb091df782903007d9b568a40098409d3c93f94b9cc0df7cc903937c10",
+          "ephemeral_pub_hex": "119d08c23bfd787f544e0cb4637e8cbde69bcd1ba332f40aee0ba7e1bbbf647f",
+          "view_tag": 211,
+          "amount": "40000000000000000000000"
+        },
+        {
+          "index": 1,
+          "block_height": 277275630,
+          "token": "router2.veil-williams.testnet",
+          "stealth_account": "f072d36ab350aaa7fab9a6d2c7d384e53ae953ca4381115694a050c4155e15a2",
+          "ephemeral_pub_hex": "be097b2ae4977d49ae12dbd657950cd1077c804f2f02cef012bbd4b5e11ada05",
+          "view_tag": 66,
+          "amount": "10000000000000000000000"
+        },
+        {
+          "index": 2,
+          "block_height": 277275639,
+          "token": "router2.veil-williams.testnet",
+          "stealth_account": "dbc259a19c88d6284d4fbc6ce81bb227b9b98aaf56d94ceb6e5e4e62da29596a",
+          "ephemeral_pub_hex": "3c053ccec9993c4516162d87cf3eb5611ad1b2ed058f1ea1a025e2b0bdc491d1",
+          "view_tag": 68,
+          "amount": "10000000000000000000000"
+        },
+        {
+          "index": 3,
+          "block_height": 277275648,
+          "token": "router2.veil-williams.testnet",
+          "stealth_account": "25332a7fc7ddcc683078b8ddde3bbd7ed1f7ef262dfdcd53d6a2fd61545850a4",
+          "ephemeral_pub_hex": "473e122cc4af7888a6b5c0ade04a21e211fc226da8366aa8b206c0d5ce7ce814",
+          "view_tag": 161,
+          "amount": "10000000000000000000000"
+        }
+      ]
+    }
+  },
+  "sections": [
+    "What anyone sees for alice.near",
+    "What Alice sees",
+    "Receive with your name",
+    "Send to a name",
+    "Private payments",
+    "Auditor"
+  ],
+  "walletChooserVisible": true,
+  "status": "PASS_READ_ONLY"
+}
