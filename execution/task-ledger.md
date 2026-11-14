@@ -1,25 +1,27 @@
 # Veil execution ledger
 
-Updated 14 Nov 2026 00:23 UTC. Frontend hard stop: 14 Nov 10:00 UTC (9.6 hours left). Submission deadline: 14 Nov 23:59 UTC (23.6 hours left).
+Updated 14 Nov 2026 00:31 UTC. Frontend hard stop: 14 Nov 10:00 UTC (9.5 hours left). Submission deadline: 14 Nov 23:59 UTC (23.5 hours left).
 
-| Task | State | Evidence / next action |
+| Task | State | Evidence |
 |---|---|---|
-| Research R0–R2 | Done | research/01-prior-art.md; research/02-problem-evidence.md |
+| Research R0-R2 | Done | research/01-prior-art.md; research/02-problem-evidence.md |
 | Gate R and FT costs | Verified | docs/VERIFIED.md; FT storage 0.00125 NEAR, lowest tested stipend 0.03092 NEAR |
-| Registry/router/SDK V1–V5 | Deployed and tested | registry2/router2; Ubuntu CI, 10,000-send property test |
-| Scripted three-sender demo | Verified | results/demo-20261111221900.json |
+| Registry/router/SDK V1-V5 | Deployed and tested | registry2/router2; Ubuntu CI and 10,000-send property test |
+| Three-sender demo | Verified | results/demo-20261111221900.json |
 | Sputnik DAO payout | Verified | results/demo-dao-20261111220608.json |
-| Green UI product polish | Live | Proof panel, Receive/Send steppers, NEAR formatting, real states, receipts, auditor, layout |
-| UI regression tests | Passing | 24 tests including ten simulated web flows; CI 43490083710 |
-| Responsive/contrast/keyboard QA | Passing | results/ui-polish/final-pass/results.json; 44 path/motion/width checks |
-| Mobile lab performance | Passing | results/ui-polish/lighthouse-final-mobile.json; 98/100/100/100, LCP 1.59s, CLS 0 |
-| Hosted signed flow | Verified | results/hosted-wallet-20261113T191343566Z.json; enable/register/send/scan/spend/auditor |
-| Signer disclosure | Required in delivery | Scripted Node test signer, not browser wallet approvals |
-| Current screenshots | Captured | docs/screenshots/; raw capture directory in handoff |
-| New video with voiceover | Complete locally | 117 seconds, 236 words, 23 captions; product-video-verification.json and product-video-review.json pass |
-| README/submission/video docs | In progress | Update to real UI, signed evidence and final video |
+| Green UI product polish | Live | Proof, steppers, NEAR amounts, real states, receipts, auditor, mobile containment |
+| UI regression tests | Passing | 24 tests including 10 simulated web flows |
+| Responsive/contrast/keyboard QA | Passing | results/ui-polish/final-pass/results.json; 44 checks |
+| Mobile lab performance | Passing | lighthouse-final-mobile.json; 98/100/100/100, LCP 1.59s, CLS 0 |
+| Hosted signed flow | Verified | results/hosted-wallet-20261113T191343566Z.json |
+| Signer disclosure | Complete | Scripted test signer, not browser wallet approvals; README/video/submission |
+| Current screenshots | Complete | docs/screenshots/ |
+| Video with voiceover | Complete locally | 117s; product-video-verification.json and product-video-review.json |
+| README/submission/video/X drafts | Updated | Current URL, receipts, screenshot links, honest limits; public video URL awaits human upload |
 | Dependency alerts | Documented unchanged | docs/DEPENDABOT.md |
-| Fresh clone / final CI / tag | Pending final files | Verify frozen install/build/tests, green CI, retag and push |
-| Public video upload / X / form | Human action | No publication or submission performed |
+| Fresh clone | Passing | results/fresh-clone-20261114.json at 0a0c70f |
+| CI and deployment | Passing at 0a0c70f | CI 43533851015; Vercel success. Final documentation commit uses the same release gate |
+| Submission tag | Release gate | Move/push only after final commit CI and Vercel pass; final report records exact commit |
+| Public video upload / X / form | Human action | Nothing published or submitted |
 
-No old funding, DAO, contract or Vercel-login blocker remains. Demo keys are available in ignored `.env`; no new credentials are needed. The replacement video is complete after the UI change. Re-edit existing footage rather than repeating payments. Stop frontend work at 10:00 UTC even if extras remain.
+No funding, DAO, contract or Vercel-login blocker remains. No implementation work is pending. The old video required re-recording after the UI change; the replacement is complete. Preserve ignored raw media and the local MP4. Stop frontend work at 10:00 UTC.

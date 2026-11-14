@@ -1,7 +1,16 @@
-Veil brings private receiving to NEAR named accounts. Built at NEAR HACKATHON with @NEARProtocol #NEARHackathon.
+# X thread draft
 
-`ada.near` stays readable, but each payment lands at a fresh Ed25519 implicit account. The sender announces only an ephemeral public key and a view tag. Alice scans with her viewing key, finds the payments, and spends with her separate spending key.
+Draft only. Nothing has been posted. Attach the reviewed current video after uploading it; do not imply browser-wallet approvals were recorded.
 
-Why NEAR: named accounts create a privacy leak, while implicit accounts make one-time destinations possible without a protocol change.
+1. Veil brings private receiving to NEAR names. Share one name; each payment lands at a fresh account. Try the testnet app: https://veil-eta-khaki.vercel.app @NEARProtocol #NEARHackathon
 
-Testnet proof: 3 private sends, scan finds 3, 1 stealth spend, and a Sputnik DAO sole-council payout approved through the router and found by the recipient scanner. Amounts, timing, senders, and later sweeping remain public. #NEAR #Privacy
+2. The new demo enables Veil, registers a name, sends 0.0500 NEAR, scans, spends 0.0010 NEAR and opens read-only auditor access. These are real testnet transactions with a scripted signer, not browser-wallet approvals.
+
+3. Separate evidence verifies three private sends and a Sputnik DAO payout. Amounts, timing and senders remain public. Spending to a named account reveals that link. Code and receipts: https://github.com/willy264/veil #NEAR #Privacy
+
+## Claim sources
+
+- [Hosted signed flow](../results/hosted-wallet-20261113T191343566Z.json) and [payment receipt](https://testnet.nearblocks.io/txns/GU7Yg8hhdNDBHNvvxuXomaneKzJmPMBevzfrHjrL9ojz).
+- [Three-sender demo](../results/demo-20261111221900.json).
+- [DAO payout](../results/demo-dao-20261111220608.json) and [approval receipt](https://testnet.nearblocks.io/txns/5JQtGN7P2xUM2zMef2QxT9s3eWErPFrWgNkHMVhJBSHP).
+- [Current video scope](NARRATED-TOUR.md) and [honest limits](../README.md#honest-limits).

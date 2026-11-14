@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "checkedAt": "2026-11-14T00:23:57.0380884Z",
+  "sourceCommit": "0a0c70fe288c1a865f88cff9f0b74f485f759468",
+  "cleanClone": true,
+  "credentialsCopied": false,
+  "commands": [
+    {
+      "command": "pnpm install --frozen-lockfile",
+      "exitCode": 0,
+      "seconds": 9.37
+    },
+    {
+      "command": "pnpm typecheck",
+      "exitCode": 0,
+      "seconds": 7.09
+    },
+    {
+      "command": "pnpm test",
+      "exitCode": 0,
+      "seconds": 9.84
+    },
+    {
+      "command": "pnpm test:v1",
+      "exitCode": 0,
+      "seconds": 287.01
+    },
+    {
+      "command": "pnpm --dir apps/web build",
+      "exitCode": 0,
+      "seconds": 1.41
+    },
+    {
+      "command": "node --check apps/web/render-demo.mjs",
+      "exitCode": 0
+    }
+  ],
+  "cloneDirectory": "C:\\Users\\HP\\AppData\\Local\\Temp\\veil-release-check-ffe1e395",
+  "completedAt": "2026-11-14T00:31:11.478Z",
+  "nodeVersion": "v25.8.1",
+  "testsPassed": 24,
+  "property": {
+    "sends": 10000,
+    "decoys": 256,
+    "falseNegatives": 0,
+    "falsePositives": 0,
+    "distinctAccounts": 10000
+  },
+  "rustValidation": "Ubuntu CI: https://github.com/willy264/veil/actions/runs/43533851015"
+}
