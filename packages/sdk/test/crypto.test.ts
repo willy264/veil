@@ -1,8 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import { ed25519 } from '@noble/curves/ed25519';
 import {
+  bytesToHex,
   deriveStealth,
   generateKeys,
+  publicKeyFromScalar,
   scanAnnouncement,
   signWithScalar,
   ORDER,
@@ -19,6 +21,23 @@ describe('Veil ed25519 stealth prototype', () => {
     const found = scanAnnouncement(keys, derived);
     expect(found.owned).toBe(true);
     if (found.owned) expect(found.privateScalar).toBe((spend + derived.privateScalar) % ORDER);
+  });
+
+  it('finds a payment the router stored 1-5 indexes after the index the sender derived with', () => {
+    const keys = generateKeys(spend, view);
+    for (const shift of [1, 2, 3, 4, 5]) {
+      const derived = deriveStealth(keys.spendPublicKey, keys.viewPublicKey, ephemeral + BigInt(shift), 7);
+      const found = scanAnnouncement(keys, { ...derived, outputIndex: 7 + shift });
+      expect(found.owned).toBe(true);
+      if (found.owned) expect(bytesToHex(publicKeyFromScalar(found.privateScalar))).toBe(derived.stealthAccount);
+    }
+  });
+
+  it('searches the stored index and at most 32 earlier indexes', () => {
+    const keys = generateKeys(spend, view);
+    const derived = deriveStealth(keys.spendPublicKey, keys.viewPublicKey, ephemeral, 0);
+    expect(scanAnnouncement(keys, { ...derived, outputIndex: 32 }).owned).toBe(true);
+    expect(scanAnnouncement(keys, { ...derived, outputIndex: 33 }).owned).toBe(false);
   });
 
   it('rejects an unrelated announcement after the view-tag fast path', () => {

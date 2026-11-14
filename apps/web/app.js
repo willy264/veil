@@ -216,15 +216,23 @@ function deriveStealth(spendPublicKey, viewPublicKey, ephemeralScalar, outputInd
   return { stealthAccount: hex(stealthPoint.toBytes()), ephemeralPublicKey: point(ephemeralScalar).toBytes(), viewTag: sha256(concat(text.encode('veil-tag'), sharedBytes))[0], privateScalar: h };
 }
 
+// The sender derives with the announcement count it read before signing. The router stores the
+// announcement at its count when the transfer settles, so concurrent sends can only move the
+// stored index later. Scanning the stored index and the SCAN_WINDOW indexes before it finds them.
+const SCAN_WINDOW = 32;
 function scan(keysForScan, row) {
   const ephemeral = validPoint(fromHex(row.ephemeral_pub_hex));
   const shared = ephemeral.multiply(keysForScan.view).toBytes();
   if (sha256(concat(text.encode('veil-tag'), shared))[0] !== Number(row.view_tag)) return null;
-  const index = new Uint8Array(4); new DataView(index.buffer).setUint32(0, Number(row.index), false);
-  const h = hashScalar(text.encode('veil-v1'), shared, index);
-  const expected = hex(validPoint(validPoint(keysForScan.spendPublicKey).add(ed25519.Point.BASE.multiplyUnsafe(h)).toBytes()).toBytes());
-  if (expected !== row.stealth_account) return null;
-  return keysForScan.spend === undefined ? { ...row } : { ...row, privateScalar: (keysForScan.spend + h) % ORDER };
+  const spendPoint = validPoint(keysForScan.spendPublicKey);
+  const stored = Number(row.index);
+  for (let i = stored; i >= Math.max(0, stored - SCAN_WINDOW); i -= 1) {
+    const index = new Uint8Array(4); new DataView(index.buffer).setUint32(0, i, false);
+    const h = hashScalar(text.encode('veil-v1'), shared, index);
+    if (hex(spendPoint.add(ed25519.Point.BASE.multiplyUnsafe(h)).toBytes()) !== row.stealth_account) continue;
+    return keysForScan.spend === undefined ? { ...row } : { ...row, privateScalar: (keysForScan.spend + h) % ORDER };
+  }
+  return null;
 }
 
 function randomScalar() { const bytes = new Uint8Array(32); crypto.getRandomValues(bytes); return scalar(bytes) % (ORDER - 1n) + 1n; }

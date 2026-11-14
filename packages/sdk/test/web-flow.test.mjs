@@ -187,6 +187,23 @@ describe('web flow with simulated wallet and RPC', () => {
     expect(h.api.scan(h.keys, { ...args, index: 4 })).not.toBeNull();
     expect(h.state.message).toBeUndefined();
   });
+  it.each([1, 2, 3, 4, 5])('finds a payment the router stored %i index(es) after the index the sender derived with', async (shift) => {
+    const h = harness(); h.state.rows = Array.from({ length: 3 }, (_, i) => h.row(i));
+    h.element('recipient').value = 'recipient.testnet'; h.element('amount').value = '0.01';
+    await h.api.sendPrivate();
+    const args = h.state.calls[0].actions[0].params.args;
+    // Concurrent sends from other people land first and take indexes 3..3+shift-1.
+    const decoy = h.row(0);
+    const concurrent = Array.from({ length: shift }, (_, j) => ({ ...decoy, index: 3 + j, view_tag: decoy.view_tag ^ 255 }));
+    h.state.rows = [...h.state.rows, ...concurrent, { ...args, index: 3 + shift, token: 'router2.veil-williams.testnet', amount: '10000000000000000000000' }];
+    h.session(h.wallet, h.keys);
+    const found = (await h.api.refresh()).find((row) => row.stealth_account === args.stealth_account);
+    expect(found).toBeDefined();
+    expect(Buffer.from(ed25519.Point.BASE.multiply(found.privateScalar).toBytes()).toString('hex')).toBe(args.stealth_account);
+    h.element('view-key').value = Buffer.from(new Uint8Array(32).map((_, i) => Number((h.keys.view >> BigInt(8 * i)) & 255n))).toString('hex');
+    h.element('auditor-name').value = 'recipient.testnet';
+    expect((await h.api.auditorScan()).map((row) => row.stealth_account)).toContain(args.stealth_account);
+  });
   it('auditor finds owned payments without a spending scalar and scans beyond 100 announcements', async () => {
     const h = harness(); const decoy = h.row(0);
     h.state.rows = [...Array.from({ length: 100 }, (_, index) => ({ ...decoy, index, view_tag: decoy.view_tag ^ 255 })), h.row(100)];

@@ -104,6 +104,11 @@ export function deriveStealth(
   };
 }
 
+// The sender derives with the announcement count it read before signing. The router stores the
+// announcement at its count when the transfer settles, so concurrent sends can only move the
+// stored index later. Scanning the stored index and the SCAN_WINDOW indexes before it finds them.
+export const SCAN_WINDOW = 32;
+
 export function scanAnnouncement(
   keys: Pick<StealthKeys, 'spend' | 'view' | 'spendPublicKey'>,
   announcement: Announcement,
@@ -114,14 +119,18 @@ export function scanAnnouncement(
   const expectedTag = sha256(concat(utf8('veil-tag'), sharedBytes))[0]!;
   if (expectedTag !== announcement.viewTag) return { owned: false };
 
-  const indexBytes = new Uint8Array(4);
-  new DataView(indexBytes.buffer).setUint32(0, announcement.outputIndex ?? 0, false);
-  const h = hashToScalar(utf8('veil-v1'), sharedBytes, indexBytes);
-  const expectedAccount = bytesToHex(
-    ed25519.Point.fromHex(keys.spendPublicKey).add(pointFromScalar(h)).toBytes(),
-  );
-  if (expectedAccount !== announcement.stealthAccount.toLowerCase()) return { owned: false };
-  return { owned: true, privateScalar: (keys.spend + h) % ORDER };
+  const spendPoint = ed25519.Point.fromHex(keys.spendPublicKey);
+  const stored = announcement.outputIndex ?? 0;
+  for (let index = stored; index >= Math.max(0, stored - SCAN_WINDOW); index -= 1) {
+    const indexBytes = new Uint8Array(4);
+    new DataView(indexBytes.buffer).setUint32(0, index, false);
+    const h = hashToScalar(utf8('veil-v1'), sharedBytes, indexBytes);
+    const expectedAccount = bytesToHex(spendPoint.add(pointFromScalar(h)).toBytes());
+    if (expectedAccount === announcement.stealthAccount.toLowerCase()) {
+      return { owned: true, privateScalar: (keys.spend + h) % ORDER };
+    }
+  }
+  return { owned: false };
 }
 
 export function signWithScalar(privateScalar: bigint, message: Uint8Array, random = new Uint8Array(32)) {
