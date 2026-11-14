@@ -61,9 +61,10 @@ Details, transactions and screenshots: [evidence](results/wallet-test-meteor-202
 
 ## Run it locally
 
-Requirements: Node 20+, pnpm 10+, Rust (`wasm32-unknown-unknown` target) for the contracts.
+Requirements: Node 20+ and pnpm 10+. Rust with the `wasm32-unknown-unknown` target is needed only for the contract checks.
 
 ```bash
+git clone https://github.com/willy264/veil && cd veil
 pnpm install --frozen-lockfile
 pnpm typecheck
 pnpm test            # 48 tests: crypto, SDK, scheme vectors, web flow with simulated wallet and RPC
@@ -71,6 +72,8 @@ pnpm test:v1         # 10,000 random sends: no false negatives, no false positiv
 pnpm --dir apps/web build   # writes config.js and bundles @noble into vendor/noble.js
 pnpm web:dev                # serves apps/web on http://127.0.0.1:4173
 ```
+
+Open http://127.0.0.1:4173. The local app uses the same testnet contracts as the hosted one, so the 30-second auditor path above works locally too.
 
 ```bash
 cd contracts

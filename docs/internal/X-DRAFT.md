@@ -1,16 +1,41 @@
 # X thread draft
 
-Draft only. Nothing has been posted. Attach the reviewed current video after uploading it; do not imply browser-wallet approvals were recorded.
+Draft only. Nothing has been posted. Attach `results/veil-demo-v2.mp4` (1:59.9) to post 1 after the team has reviewed it.
 
-1. Veil brings private receiving to NEAR names. Share one name; each payment lands at a fresh account. Try the testnet app: https://veil-eta-khaki.vercel.app @NEARProtocol #NEARHackathon
+**1/**
 
-2. The new demo enables Veil, registers a name, sends 0.0500 NEAR, scans, spends 0.0010 NEAR and opens read-only auditor access. These are real testnet transactions with a scripted signer, not browser-wallet approvals.
+Your .near name is a public ledger: anyone can look up every payment you receive.
 
-3. Separate evidence verifies three private sends and a Sputnik DAO payout. Amounts, timing and senders remain public. Spending to a named account reveals that link. Code and receipts: https://github.com/willy264/veil #NEAR #Privacy
+Veil gives NEAR names private receiving. People still pay your name, but each payment lands in a fresh account only you can find and spend.
+
+Built at NEAR HACKATHON @NEARProtocol #NEARHackathon
+
+**2/**
+
+How NEAR makes this simple: each payment address is an ordinary NEAR implicit account, whose ID is a one-time public key.
+
+No new account type, no contract wallet. One wallet signature derives your keys in the browser, and only you can spend.
+
+**3/**
+
+Try it in 30 seconds, no wallet needed: open veil-eta-khaki.vercel.app → Auditor → veil-judge-recv.testnet + the auditor key in the README.
+
+3 private payments appear. The name's public history shows none of them.
+
+Tested end to end with Meteor Wallet on testnet.
+
+**4/**
+
+Testnet prototype. Amounts, timing and senders stay public, and spending links a payment to its destination.
+
+Code, spec draft and receipts: github.com/willy264/veil
+
+What would you use private receiving for? @NearBuilders @NearLegion
 
 ## Claim sources
 
-- [Hosted signed flow](../results/hosted-wallet-20261113T191343566Z.json) and [payment receipt](https://testnet.nearblocks.io/txns/GU7Yg8hhdNDBHNvvxuXomaneKzJmPMBevzfrHjrL9ojz).
-- [Three-sender demo](../results/demo-20261111221900.json).
-- [DAO payout](../results/demo-dao-20261111220608.json) and [approval receipt](https://testnet.nearblocks.io/txns/5JQtGN7P2xUM2zMef2QxT9s3eWErPFrWgNkHMVhJBSHP).
-- [Current video scope](NARRATED-TOUR.md) and [honest limits](../README.md#honest-limits).
+- **Public ledger:** the [public visibility table](../../research/02-problem-evidence.md).
+- **Implicit account, ID = public key:** the [NEP draft](../NEP-DRAFT-stealth-meta-address.md#spend) and the live RPC check in [results/veil-demo-v2.json](../../results/veil-demo-v2.json).
+- **30-second path, 3 payments, none on the public history:** [judge demo evidence](../../results/judge-demo-20261114014907.json), checked on the hosted app and the NearBlocks API on 14 November 2026.
+- **Tested with Meteor:** [wallet test evidence](../../results/wallet-test-meteor-20261114.json).
+- **Limits:** [README honest limits](../../README.md#honest-limits).
