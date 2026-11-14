@@ -1,0 +1,95 @@
+1
+00:00:00,000 --> 00:00:04,151
+Veil keeps incoming payments separate while you share one NEAR name.
+
+2
+00:00:04,151 --> 00:00:10,331
+This recording uses real testnet transactions and a scripted signer, not browser wallet
+approvals.
+
+3
+00:00:12,000 --> 00:00:16,885
+The receiver connects, then enables Veil with one signed message.
+
+4
+00:00:16,885 --> 00:00:21,033
+The hosted app derives receiving keys in browser memory.
+
+5
+00:00:21,033 --> 00:00:26,991
+Enabling makes no payment, and the named account's private key stays in the Node signer.
+
+6
+00:00:28,000 --> 00:00:30,976
+Registration publishes public receiving keys.
+
+7
+00:00:30,976 --> 00:00:33,519
+Matching keys mean the name is already ready.
+
+8
+00:00:33,519 --> 00:00:37,299
+A new registration requires a small storage deposit on testnet.
+
+9
+00:00:38,000 --> 00:00:44,773
+In a separate session, the sender enters the receiver's name and zero point zero five
+NEAR.
+
+10
+00:00:44,773 --> 00:00:48,826
+Leaving the name field checks that Veil is enabled.
+
+11
+00:00:48,826 --> 00:00:53,859
+The confirmed receipt shows delivery to a fresh receiving account.
+
+12
+00:00:56,000 --> 00:01:01,173
+Back in the receiver's session, scanning finds the matching payment.
+
+13
+00:01:01,173 --> 00:01:08,685
+Its destination matches the sender's receipt, and the inbox shows the received balance
+with a Spend action.
+
+14
+00:01:10,000 --> 00:01:13,957
+The receiver confirms a small spend back to their named account.
+
+15
+00:01:13,957 --> 00:01:16,215
+This creates a public link.
+
+16
+00:01:16,215 --> 00:01:20,373
+A transaction receipt confirms that the receiving account can spend.
+
+17
+00:01:22,000 --> 00:01:27,653
+A third, unsigned session uses the shared auditor key in a masked field.
+
+18
+00:01:27,653 --> 00:01:31,676
+It finds the same payment with read-only access.
+
+19
+00:01:31,676 --> 00:01:34,475
+There is no Spend control.
+
+20
+00:01:35,000 --> 00:01:42,409
+Separate evidence from November eleventh, twenty twenty-six, records a verified DAO
+payout and one owned payment.
+
+21
+00:01:42,409 --> 00:01:45,821
+This evidence panel is not DAO interface footage.
+
+22
+00:01:47,000 --> 00:01:49,904
+Veil is a testnet prototype.
+
+23
+00:01:49,904 --> 00:01:56,291
+Amounts, timing and senders remain public, and spending can link identities.

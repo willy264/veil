@@ -1,0 +1,77 @@
+{
+    "status":  "PASS",
+    "scope":  "NARRATION_TIMING_ONLY",
+    "durationSeconds":  117,
+    "wordCount":  236,
+    "voice":  "Microsoft Hazel Desktop",
+    "syntheticNarration":  true,
+    "speechTruncated":  false,
+    "scenePlanSha256":  "6d8b7f179743ab841702ec4ec296ffd09c02223797565e3045030b1490f8f5bd",
+    "audioSha256":  "795191cb2dd35b1a08c007bf8836a76cd54f0eda923c89af2cea8c06a5ce0b31",
+    "captionTiming":  "Complete sentences measured from WAV sample durations",
+    "scenes":  [
+                   {
+                       "id":  "intro",
+                       "start":  0,
+                       "end":  12,
+                       "spokenSeconds":  10.33111111111111,
+                       "speechRate":  2
+                   },
+                   {
+                       "id":  "enable",
+                       "start":  12,
+                       "end":  28,
+                       "spokenSeconds":  14.991473922902493,
+                       "speechRate":  1
+                   },
+                   {
+                       "id":  "register",
+                       "start":  28,
+                       "end":  38,
+                       "spokenSeconds":  9.2990476190476183,
+                       "speechRate":  3
+                   },
+                   {
+                       "id":  "send",
+                       "start":  38,
+                       "end":  56,
+                       "spokenSeconds":  15.859047619047619,
+                       "speechRate":  0
+                   },
+                   {
+                       "id":  "scan",
+                       "start":  56,
+                       "end":  70,
+                       "spokenSeconds":  12.684897959183674,
+                       "speechRate":  0
+                   },
+                   {
+                       "id":  "spend",
+                       "start":  70,
+                       "end":  82,
+                       "spokenSeconds":  10.373378684807257,
+                       "speechRate":  2
+                   },
+                   {
+                       "id":  "auditor",
+                       "start":  82,
+                       "end":  95,
+                       "spokenSeconds":  12.474965986394556,
+                       "speechRate":  0
+                   },
+                   {
+                       "id":  "dao",
+                       "start":  95,
+                       "end":  107,
+                       "spokenSeconds":  10.821088435374151,
+                       "speechRate":  2
+                   },
+                   {
+                       "id":  "limits",
+                       "start":  107,
+                       "end":  117,
+                       "spokenSeconds":  9.2914285714285718,
+                       "speechRate":  0
+                   }
+               ]
+}

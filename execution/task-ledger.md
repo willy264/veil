@@ -1,6 +1,6 @@
 # Veil execution ledger
 
-Updated 14 Nov 2026 00:12 UTC. Frontend stop: 14 Nov 10:00 UTC, about 9.8 hours left. Submission: 14 Nov 23:59 UTC, about 23.8 hours left.
+Updated 14 Nov 2026 00:23 UTC. Frontend hard stop: 14 Nov 10:00 UTC (9.6 hours left). Submission deadline: 14 Nov 23:59 UTC (23.6 hours left).
 
 | Task | State | Evidence / next action |
 |---|---|---|
@@ -16,10 +16,10 @@ Updated 14 Nov 2026 00:12 UTC. Frontend stop: 14 Nov 10:00 UTC, about 9.8 hours 
 | Hosted signed flow | Verified | results/hosted-wallet-20261113T191343566Z.json; enable/register/send/scan/spend/auditor |
 | Signer disclosure | Required in delivery | Scripted Node test signer, not browser wallet approvals |
 | Current screenshots | Captured | docs/screenshots/; raw capture directory in handoff |
-| New video with voiceover | Rendering in progress | 117-second plan, real hosted clips; final narration scene error under repair |
+| New video with voiceover | Complete locally | 117 seconds, 236 words, 23 captions; product-video-verification.json and product-video-review.json pass |
 | README/submission/video docs | In progress | Update to real UI, signed evidence and final video |
 | Dependency alerts | Documented unchanged | docs/DEPENDABOT.md |
 | Fresh clone / final CI / tag | Pending final files | Verify frozen install/build/tests, green CI, retag and push |
 | Public video upload / X / form | Human action | No publication or submission performed |
 
-No old funding, DAO, contract or Vercel-login blocker remains. Demo keys are available in ignored `.env`; no new credentials are needed. The older video must be replaced after the UI change; render from existing signed footage rather than repeating payments. Stop frontend work at 10:00 UTC even if extras remain.
+No old funding, DAO, contract or Vercel-login blocker remains. Demo keys are available in ignored `.env`; no new credentials are needed. The replacement video is complete after the UI change. Re-edit existing footage rather than repeating payments. Stop frontend work at 10:00 UTC even if extras remain.

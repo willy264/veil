@@ -1,0 +1,314 @@
+{
+  "status": "PASS",
+  "completedRealFlow": true,
+  "signingPerformed": false,
+  "credentialsRead": false,
+  "scriptedSigner": true,
+  "browserWallet": false,
+  "syntheticNarration": true,
+  "sourceUrl": "https://veil-eta-khaki.vercel.app/",
+  "disclosure": "TESTNET · SCRIPTED SIGNER · NOT BROWSER WALLET APPROVALS",
+  "daoEvidenceDate": "2026-11-11",
+  "daoUiClaimed": false,
+  "scenePlanSha256": "6d8b7f179743ab841702ec4ec296ffd09c02223797565e3045030b1490f8f5bd",
+  "evidenceSha256": "cdd18af18ff533364ab07d35a7251f9472de3e5ef3bd62e93c125ab99ade1690",
+  "markersSha256": "2e760d9ddf59ac1b83d8f0b37c707ca7de5472bbb5f330ceb8549f1a282bd323",
+  "daoSha256": "bedc6447519d1548faa4a9dda0a5512d6f83acb7d9b1e3c9baddeb77c0412a10",
+  "sourceEvidence": "results/hosted-wallet-20261113T191343566Z.json",
+  "sourceCapture": "results/video-assets/product-polish/20261113T191343566Z",
+  "rawVideoSha256": {
+    "receiver": "773748563127e0f94830c740cb141552a3eefaecdb9b43a3b58ff97652e508d4",
+    "sender": "285ddcdc7f005aff1d183f9b8f256de854d17b29200fc1549cd98cde30b8466a",
+    "auditor": "435aa10634a0e0af8334e518bcd0080b419f6e33001e1a3fcacd5a26917d2e36"
+  },
+  "measuredMobileIntervals": {
+    "receiver": [
+      [
+        10.44,
+        10.92
+      ],
+      [
+        40.92,
+        41.44
+      ],
+      [
+        80.52,
+        81.04
+      ],
+      [
+        112.48,
+        112.8
+      ]
+    ],
+    "sender": [
+      [
+        41.8,
+        42.4
+      ],
+      [
+        66.16,
+        66.68
+      ]
+    ],
+    "auditor": [
+      [
+        123.4,
+        123.76
+      ]
+    ]
+  },
+  "timelineClock": "Runner videoSeconds approximate page/video start; contact sheet and action continuity still require editorial review.",
+  "durationSeconds": 117,
+  "resolution": "1920x1080",
+  "frameRate": 30,
+  "layout": {
+    "headerHeight": 70,
+    "ui": {
+      "x": 256,
+      "y": 70,
+      "width": 1408,
+      "height": 880
+    },
+    "captionFooterHeight": 130
+  },
+  "checks": {
+    "captionCoverage": true,
+    "srtCoverage": true,
+    "speechFitsEveryScene": true,
+    "fullDecode": true,
+    "duration117": true,
+    "h2641080pAac30fps": true,
+    "mobileIntervalsExcluded": true,
+    "completeSentenceSubtitles": true,
+    "disclosureSpokenAndOnScreen": true,
+    "contactSheetGenerated": true,
+    "humanVisualReview": false
+  },
+  "scenes": [
+    {
+      "id": "intro",
+      "seconds": 12,
+      "segments": [],
+      "screenshot": "receiver-initial-1440.png",
+      "speed": 1,
+      "selectedSeconds": 0,
+      "paddedLastFrameSeconds": 0,
+      "note": "Public hosted UI screenshot"
+    },
+    {
+      "id": "enable",
+      "seconds": 16,
+      "segments": [
+        {
+          "role": "receiver",
+          "step": "connect",
+          "start": 11.953,
+          "end": 12.772
+        },
+        {
+          "role": "receiver",
+          "step": "enable",
+          "start": 12.022,
+          "end": 19.795
+        }
+      ],
+      "speed": 1,
+      "selectedSeconds": 8.592,
+      "paddedLastFrameSeconds": 7.408,
+      "note": "Edited waits · normal speed"
+    },
+    {
+      "id": "register",
+      "seconds": 10,
+      "segments": [
+        {
+          "role": "receiver",
+          "step": "register",
+          "start": 19.045,
+          "end": 21.945
+        },
+        {
+          "role": "receiver",
+          "step": "register",
+          "start": 32.239,
+          "end": 33.539
+        },
+        {
+          "role": "receiver",
+          "step": "register",
+          "start": 37.444,
+          "end": 40.8
+        },
+        {
+          "role": "receiver",
+          "step": "register-desktop-result",
+          "start": 41.76,
+          "end": 42.36
+        }
+      ],
+      "speed": 1,
+      "selectedSeconds": 8.156,
+      "paddedLastFrameSeconds": 1.844,
+      "note": "Edited waits · normal speed"
+    },
+    {
+      "id": "send",
+      "seconds": 18,
+      "segments": [
+        {
+          "role": "sender",
+          "step": "connect-and-fill",
+          "start": 37.613,
+          "end": 41.68
+        },
+        {
+          "role": "sender",
+          "step": "send",
+          "start": 43.4,
+          "end": 46.3
+        },
+        {
+          "role": "sender",
+          "step": "send",
+          "start": 57.886,
+          "end": 59.186
+        },
+        {
+          "role": "sender",
+          "step": "send",
+          "start": 62.755,
+          "end": 66.04
+        },
+        {
+          "role": "sender",
+          "step": "send-desktop-result",
+          "start": 67,
+          "end": 67.6
+        }
+      ],
+      "speed": 1,
+      "selectedSeconds": 12.152,
+      "paddedLastFrameSeconds": 5.848,
+      "note": "Edited waits · normal speed"
+    },
+    {
+      "id": "scan",
+      "seconds": 14,
+      "segments": [
+        {
+          "role": "receiver",
+          "step": "scan",
+          "start": 72.545,
+          "end": 80.4
+        },
+        {
+          "role": "receiver",
+          "step": "scan-desktop-result",
+          "start": 81.36,
+          "end": 81.96
+        }
+      ],
+      "speed": 1,
+      "selectedSeconds": 8.455,
+      "paddedLastFrameSeconds": 5.545,
+      "note": "Edited waits · normal speed"
+    },
+    {
+      "id": "spend",
+      "seconds": 12,
+      "segments": [
+        {
+          "role": "receiver",
+          "step": "spend",
+          "start": 82.049,
+          "end": 84.949
+        },
+        {
+          "role": "receiver",
+          "step": "spend",
+          "start": 89.864,
+          "end": 91.164
+        },
+        {
+          "role": "receiver",
+          "step": "spend",
+          "start": 109.091,
+          "end": 112.36
+        },
+        {
+          "role": "receiver",
+          "step": "spend-desktop-result",
+          "start": 113.12,
+          "end": 113.72
+        }
+      ],
+      "speed": 1,
+      "selectedSeconds": 8.069,
+      "paddedLastFrameSeconds": 3.931,
+      "note": "Edited waits · normal speed"
+    },
+    {
+      "id": "auditor",
+      "seconds": 13,
+      "segments": [
+        {
+          "role": "receiver",
+          "step": "copy-auditor-key",
+          "start": 113.834,
+          "end": 114.759
+        },
+        {
+          "role": "auditor",
+          "step": "scan-read-only",
+          "start": 105.994,
+          "end": 108.894
+        },
+        {
+          "role": "auditor",
+          "step": "scan-read-only",
+          "start": 119.929,
+          "end": 123.28
+        },
+        {
+          "role": "auditor",
+          "step": "scan-read-only-desktop-result",
+          "start": 124.08,
+          "end": 124.68
+        }
+      ],
+      "speed": 1,
+      "selectedSeconds": 7.776,
+      "paddedLastFrameSeconds": 5.224,
+      "note": "Edited waits · normal speed"
+    },
+    {
+      "id": "dao",
+      "seconds": 12,
+      "segments": [],
+      "speed": 1,
+      "selectedSeconds": 0,
+      "paddedLastFrameSeconds": 0,
+      "note": "Dated evidence panel · no DAO UI"
+    },
+    {
+      "id": "limits",
+      "seconds": 10,
+      "segments": [],
+      "screenshot": "receiver-initial-1440.png",
+      "speed": 1,
+      "selectedSeconds": 0,
+      "paddedLastFrameSeconds": 0,
+      "note": "Public hosted UI screenshot"
+    }
+  ],
+  "speechTruncated": false,
+  "wordCount": 236,
+  "captionCount": 23,
+  "file": "results/veil-demo-product.mp4",
+  "subtitleFile": "results/veil-demo-product.srt",
+  "contactSheet": "results/video-assets/product-polish/edit/contact-sheet.png",
+  "sha256": "24cce45baabb243eb21463ff204d83f347827dffe23ac72c61757ddc13634250",
+  "bytes": 5746950,
+  "renderedAt": "2026-11-14T00:20:00.173Z",
+  "measuredSeconds": 117
+}

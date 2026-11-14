@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "scope": "Agent visual review and automated media checks; human listening/review still pending.",
+  "reviewedAt": "2026-11-14T00:22:39.675Z",
+  "file": "results/veil-demo-product.mp4",
+  "sha256": "24cce45baabb243eb21463ff204d83f347827dffe23ac72c61757ddc13634250",
+  "durationSeconds": 117,
+  "reviewedFrames": 29,
+  "frameSelection": "Start +0.5s, midpoint, end -0.5s of all nine scenes; full-size send receipt at54s and auditor result at93s.",
+  "checks": {
+    "preservedGreenUi": true,
+    "noMobileMatteInReviewedFrames": true,
+    "scriptedSignerDisclosureVisible": true,
+    "exampleLabelVisible": true,
+    "realRegistrationConfirmationVisible": true,
+    "privateReceiptShows00500Near": true,
+    "scanResultVisible": true,
+    "spendResultAndPublicLinkWarningVisible": true,
+    "auditorKeyMasked": true,
+    "auditorReadOnlyAndBalanceVisible": true,
+    "daoExplicitlyDated": true,
+    "daoNotPresentedAsUi": true,
+    "captionsOutsideUi": true,
+    "finalLimitSentenceComplete": true
+  },
+  "audio": {
+    "exitCode": 0,
+    "meanDb": -16.5,
+    "peakDb": -1.5,
+    "sampleRateHz": 48000,
+    "syntheticVoice": "Microsoft Hazel Desktop",
+    "fullDecode": true,
+    "speechTruncated": false,
+    "listeningByHuman": false
+  },
+  "publicUploadPerformed": false,
+  "humanReviewPending": true
+}

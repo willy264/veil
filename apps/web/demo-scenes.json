@@ -1,0 +1,47 @@
+[
+  {
+    "id": "intro", "title": "Keep each payment separate", "seconds": 12,
+    "text": "Veil keeps incoming payments separate while you share one NEAR name. This recording uses real testnet transactions and a scripted signer, not browser wallet approvals.",
+    "visual": { "kind": "screenshot", "file": "receiver-initial-1440.png", "crop": "top" }
+  },
+  {
+    "id": "enable", "title": "Connect and enable Veil", "seconds": 16,
+    "text": "The receiver connects, then enables Veil with one signed message. The hosted app derives receiving keys in browser memory. Enabling makes no payment, and the named account's private key stays in the Node signer.",
+    "visual": { "kind": "actions", "shots": [{ "role": "receiver", "step": "connect" }, { "role": "receiver", "step": "enable" }] }
+  },
+  {
+    "id": "register", "title": "Make your name ready", "seconds": 10,
+    "text": "Registration publishes public receiving keys. Matching keys mean the name is already ready. A new registration requires a small storage deposit on testnet.",
+    "visual": { "kind": "actions", "shots": [{ "role": "receiver", "step": "register" }] }
+  },
+  {
+    "id": "send", "title": "Send to a name", "seconds": 18,
+    "text": "In a separate session, the sender enters the receiver's name and zero point zero five NEAR. Leaving the name field checks that Veil is enabled. The confirmed receipt shows delivery to a fresh receiving account.",
+    "visual": { "kind": "actions", "shots": [{ "role": "sender", "step": "connect-and-fill" }, { "role": "sender", "step": "send" }] }
+  },
+  {
+    "id": "scan", "title": "Find the private payment", "seconds": 14,
+    "text": "Back in the receiver's session, scanning finds the matching payment. Its destination matches the sender's receipt, and the inbox shows the received balance with a Spend action.",
+    "visual": { "kind": "actions", "shots": [{ "role": "receiver", "step": "scan" }] }
+  },
+  {
+    "id": "spend", "title": "Spend with a public-link warning", "seconds": 12,
+    "text": "The receiver confirms a small spend back to their named account. This creates a public link. A transaction receipt confirms that the receiving account can spend.",
+    "visual": { "kind": "actions", "shots": [{ "role": "receiver", "step": "spend" }] }
+  },
+  {
+    "id": "auditor", "title": "Share read-only access", "seconds": 13,
+    "text": "A third, unsigned session uses the shared auditor key in a masked field. It finds the same payment with read-only access. There is no Spend control.",
+    "visual": { "kind": "actions", "shots": [{ "role": "receiver", "step": "copy-auditor-key" }, { "role": "auditor", "step": "scan-read-only" }] }
+  },
+  {
+    "id": "dao", "title": "DAO payout: dated evidence", "seconds": 12,
+    "text": "Separate evidence from November eleventh, twenty twenty-six, records a verified DAO payout and one owned payment. This evidence panel is not DAO interface footage.",
+    "visual": { "kind": "dao-evidence", "source": "results/demo-dao-20261111220608.json", "verifiedDate": "2026-11-11" }
+  },
+  {
+    "id": "limits", "title": "Understand the limits", "seconds": 10,
+    "text": "Veil is a testnet prototype. Amounts, timing and senders remain public, and spending can link identities.",
+    "visual": { "kind": "screenshot", "file": "receiver-initial-1440.png", "crop": "bottom" }
+  }
+]

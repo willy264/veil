@@ -1,6 +1,6 @@
 # Veil handoff
 
-Updated 14 Nov 2026 00:12 UTC. Frontend hard stop: 14 Nov 10:00 UTC (about 9.8 hours left). Submission deadline: 14 Nov 23:59 UTC (about 23.8 hours left).
+Updated 14 Nov 2026 00:23 UTC. Frontend hard stop: 14 Nov 10:00 UTC (9.6 hours left). Submission deadline: 14 Nov 23:59 UTC (23.6 hours left).
 
 ## Completed
 
@@ -13,21 +13,15 @@ Updated 14 Nov 2026 00:12 UTC. Frontend hard stop: 14 Nov 10:00 UTC (about 9.8 h
 - Public screenshots copied to `docs/screenshots/`. Raw video and full captures: `results/video-assets/product-polish/20261113T191343566Z/`.
 - Existing contracts, SDK, Gate R, V1–V5, DAO payout and research remain verified. The former faucet/owner/hosting blockers are resolved. Dependencies remain documented in `docs/DEPENDABOT.md`.
 
-## In progress
+## Current state
 
-The new 117-second video editor is in `apps/web/render-demo.mjs`, with `demo-scenes.json` and `narrate-product.ps1`. Inputs validate successfully. First narration attempt failed at the final limits scene; the media worker is fixing it. No transaction or credential work is involved in rendering. Do not present the older green six-panel video as current footage.
+The new 117-second video is complete: `results/veil-demo-product.mp4` (local and ignored), captions, timing, media verification and agent frame review. It contains real hosted enable/register/send/scan/spend/auditor footage, with a scripted-signer disclosure throughout. The DAO panel is separate verified evidence dated 11 November. Full decode, complete speech and 23 captions pass; human listening/review and upload remain. Preserve `results/video-assets/product-polish/` for re-editing without another transaction.
 
-README and verified evidence are being updated to the current UI and signed flow. Final submission/video metadata and release tag are still pending.
+README, submission and X draft updates are prepared. Final fresh-clone checks, final CI and release tag are next.
 
 ## Exact next action
 
-Finish narration/render using:
-
-```powershell
-node apps/web/render-demo.mjs --capture-dir results/video-assets/product-polish/20261113T191343566Z --evidence results/hosted-wallet-20261113T191343566Z.json
-```
-
-Review contact sheet plus each scene boundary and narration timing. Fix edits using existing clips, without resending payments. Update README, video plan/script, submission, evidence, ledger/handoff. Commit each completed task after checking staged diff for secrets; push; run fresh-clone checks and wait for CI; move and push `hackathon-submission` to the final commit.
+Commit and push the completed media package after staged secret checks. Clone that commit into a clean temporary directory; run frozen install, typecheck, tests, V1 property check and web build. Commit the documentation and verification results, push, wait for green CI and Vercel, then move/push `hackathon-submission`. Do not resend demo payments for verification.
 
 ## Limits and human actions
 

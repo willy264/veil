@@ -1,27 +1,39 @@
-# Veil narration — 1:57
+# Video script: 1:57
 
-Record the real hosted flow at https://veil-eta-khaki.vercel.app using the [shot list](VIDEO-PLAN.md). The wording below is for footage of completed steps, not a claim that this recording has already happened. The automated browser check submits no wallet transactions.
+236 words. Synthetic narration; real hosted testnet transactions with a scripted test signer, not browser wallet approvals. The DAO panel is dated separate evidence. Source: [scene plan](../apps/web/demo-scenes.json).
 
-The generated synthetic narration is `results/video-assets/voiceover-final.wav` (117 seconds). Its source is [video-scenes.json](video-scenes.json), and the [timing report](../results/video-narration-timing.json) confirms that each complete spoken segment fits its scene, with at least half a second of remaining room. No spoken audio is cut. The old `results/veil-demo.mp4` is an obsolete draft.
+## 0:00 to 0:12: Keep each payment separate
 
-| Time | Narration |
-|---|---|
-| 0:00–0:10 | Veil brings private receiving to NEAR named accounts. Keep one readable name, while every payment goes to a fresh address. |
-| 0:10–0:24 | First, connect a testnet wallet and choose Derive keys. Approve the message in your wallet. Veil derives viewing and spending keys in this browser. Keep the same wallet signing key. |
-| 0:24–0:36 | Register name publishes the two public keys. Approve the registry transaction, then resolve the name. Senders can now look up this reusable identity. |
-| 0:36–0:53 | In a separate sender window, enter that name and send a small testnet payment. The browser derives a new implicit account and asks the wallet to approve the router call. The result shows the one-time destination. |
-| 0:53–1:07 | Back in the recipient window, Scan checks the public announcements with the private viewing key. The matching payment appears with its balance. Other people's announcements stay outside this inbox. |
-| 1:07–1:22 | Choose Spend to send a small amount from that stealth account. Read the warning: sending to your named account creates a public link. Confirm, then check the successful transaction receipt. |
-| 1:22–1:36 | Copy the view key and open a separate auditor window. Paste it into the masked field and scan the registered name. The auditor sees incoming payments, with no spending key or spend control. |
-| 1:36–1:47 | Recorded Sputnik DAO evidence shows council approval of a private router payout, and the recipient scanner finding that payment. |
-| 1:47–1:57 | Testnet only. Amounts, timing and senders remain public. Combining balances reveals links. |
+Veil keeps incoming payments separate while you share one NEAR name. This recording uses real testnet transactions and a scripted signer, not browser wallet approvals.
 
-Regenerate on Windows with System.Speech and FFmpeg installed:
+## 0:12 to 0:28: Connect and enable Veil
 
-```powershell
-powershell -ExecutionPolicy Bypass -File scripts/generate-voiceover.ps1 -Ffmpeg ffmpeg
-```
+The receiver connects, then enables Veil with one signed message. The hosted app derives receiving keys in browser memory. Enabling makes no payment, and the named account's private key stays in the Node signer.
 
-The script measures each WAV, adjusts speaking rate if needed, then pads silence to each scene length. It fails rather than trimming speech. The generated audio is ignored by Git; the source and timing report are committed. The narrator is synthetic, not a recording of a team member.
+## 0:28 to 0:38: Make your name ready
 
-Use the [fresh scripted demo](../results/demo-20261111221900.json) only as prior evidence. The DAO shot uses the separately verified [DAO evidence](../results/demo-dao-20261111220608.json), with [council approval](https://testnet.nearblocks.io/txns/5JQtGN7P2xUM2zMef2QxT9s3eWErPFrWgNkHMVhJBSHP).
+Registration publishes public receiving keys. Matching keys mean the name is already ready. A new registration requires a small storage deposit on testnet.
+
+## 0:38 to 0:56: Send to a name
+
+In a separate session, the sender enters the receiver's name and zero point zero five NEAR. Leaving the name field checks that Veil is enabled. The confirmed receipt shows delivery to a fresh receiving account.
+
+## 0:56 to 1:10: Find the private payment
+
+Back in the receiver's session, scanning finds the matching payment. Its destination matches the sender's receipt, and the inbox shows the received balance with a Spend action.
+
+## 1:10 to 1:22: Spend with a public-link warning
+
+The receiver confirms a small spend back to their named account. This creates a public link. A transaction receipt confirms that the receiving account can spend.
+
+## 1:22 to 1:35: Share read-only access
+
+A third, unsigned session uses the shared auditor key in a masked field. It finds the same payment with read-only access. There is no Spend control.
+
+## 1:35 to 1:47: DAO payout: dated evidence
+
+Separate evidence from November eleventh, twenty twenty-six, records a verified DAO payout and one owned payment. This evidence panel is not DAO interface footage.
+
+## 1:47 to 1:57: Understand the limits
+
+Veil is a testnet prototype. Amounts, timing and senders remain public, and spending can link identities.
