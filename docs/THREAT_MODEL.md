@@ -56,7 +56,8 @@ These are in `router2.veil-williams.testnet`. The contract source in this reposi
 
 When the router cannot pay for an announcement's storage, the callback that appends it fails after the NEAR transfer has already reached the receiving account. The payment arrives, but there is no announcement, so the recipient's scan never finds it. The FT callback fails the same way.
 
-- **Current margin:** on 14 November 2026, `router2` held 3.2975 NEAR with 313,609 bytes stored (3.1361 NEAR staked at 10⁻⁵ NEAR per byte), leaving 0.1615 NEAR, roughly 50–65 more announcements at an estimated 250–300 bytes each.
+- **Measured cost:** each NEAR announcement adds 259 bytes of router storage, 0.00259 NEAR at 10⁻⁵ NEAR per byte (three sends in [judge demo evidence](../results/judge-demo-20261114014907.json)).
+- **Margin:** on 14 November 2026, `router2` had 0.1615 NEAR spare, about 60 announcements. It was then topped up with 4 testnet NEAR ([transfer](https://testnet.nearblocks.io/txns/3GXt3n5cd3k9FEfgoEiCmdB8wEW4jzH6wTgnzTR6F2di)), leaving 4.1537 NEAR spare, about 1,600 announcements. Spam can still use this up; only the fee in issue 2 removes the risk.
 - **Mitigation without a redeploy:** top up the router's balance with a plain transfer.
 - **Recovery:** the original `send_near` arguments are public in its transaction, so anyone can re-announce them with `announce()`. The recipient finds it if fewer than 32 announcements were added in between.
 - **Fix:** issue 2's storage fee removes the dependency on the router's own balance.

@@ -1,0 +1,65 @@
+{
+  "status": "PASS",
+  "network": "testnet",
+  "registry": "registry2.veil-williams.testnet",
+  "router": "router2.veil-williams.testnet",
+  "receiver": "veil-judge-recv.testnet",
+  "sender": "veil-judge-send.testnet",
+  "keyRequest": {
+    "message": "Veil key derivation v2: derive private receiving keys for this NEAR account.\nAccount: veil-judge-recv.testnet",
+    "recipient": "veil-eta-khaki.vercel.app",
+    "version": "v2"
+  },
+  "auditorKey": "865df8cb1b16beb1face316a6c6b0dfc05443b2e6d47f56f1c22bda8a6646d0c",
+  "auditorKeyNote": "Published on purpose for the judge path. It finds incoming payments for this demo receiver and cannot spend them.",
+  "registration": {
+    "hash": "D1VZR6UDdnPFsWK7ux6ZkTSKdojjhWdKqPCN4aWJmgup",
+    "explorerUrl": "https://testnet.nearblocks.io/txns/D1VZR6UDdnPFsWK7ux6ZkTSKdojjhWdKqPCN4aWJmgup"
+  },
+  "sends": [
+    {
+      "amount": "0.02",
+      "derivationIndex": 5,
+      "stealthAccount": "334f40cdb67a451672f9a060a1fe406dd74343358c68a74503492528e82fc746",
+      "routerStorageBytes": 259,
+      "hash": "CA2KEYmAxhEL6TaP8byJo4SRzFytvinyeCWEeJ6N5Cmv",
+      "explorerUrl": "https://testnet.nearblocks.io/txns/CA2KEYmAxhEL6TaP8byJo4SRzFytvinyeCWEeJ6N5Cmv"
+    },
+    {
+      "amount": "0.03",
+      "derivationIndex": 6,
+      "stealthAccount": "473ef921164194df67e197786303c0a058c7bce53ed3fceba86d0a1936350d13",
+      "routerStorageBytes": 259,
+      "hash": "EPA9T69gQmemgznZQ7Gb3YUu6mPaasTK18vFjoVRdusu",
+      "explorerUrl": "https://testnet.nearblocks.io/txns/EPA9T69gQmemgznZQ7Gb3YUu6mPaasTK18vFjoVRdusu"
+    },
+    {
+      "amount": "0.05",
+      "derivationIndex": 7,
+      "stealthAccount": "2144afa816617f8dcd4736669f18aa2453b306bd70fd3dcabc39ee95fbcc2038",
+      "routerStorageBytes": 259,
+      "hash": "QXkMZRkThs11tLGzADsEarGj1TwxMAjHCzY5QXfTrrc",
+      "explorerUrl": "https://testnet.nearblocks.io/txns/QXkMZRkThs11tLGzADsEarGj1TwxMAjHCzY5QXfTrrc"
+    }
+  ],
+  "scan": {
+    "announcementsRead": 8,
+    "found": [
+      {
+        "storedIndex": 5,
+        "stealthAccount": "334f40cdb67a451672f9a060a1fe406dd74343358c68a74503492528e82fc746",
+        "balanceYocto": "20000000000000000000000"
+      },
+      {
+        "storedIndex": 6,
+        "stealthAccount": "473ef921164194df67e197786303c0a058c7bce53ed3fceba86d0a1936350d13",
+        "balanceYocto": "30000000000000000000000"
+      },
+      {
+        "storedIndex": 7,
+        "stealthAccount": "2144afa816617f8dcd4736669f18aa2453b306bd70fd3dcabc39ee95fbcc2038",
+        "balanceYocto": "50000000000000000000000"
+      }
+    ]
+  }
+}

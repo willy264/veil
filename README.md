@@ -2,69 +2,68 @@
 
 [![CI](https://github.com/willy264/veil/actions/workflows/ci.yml/badge.svg)](https://github.com/willy264/veil/actions/workflows/ci.yml)
 
-Private receiving for NEAR named accounts. Veil lets `ada.near` publish one reusable identity while senders derive a fresh Ed25519 implicit account for every payment.
+**Private receiving for NEAR names.** People pay `alice.testnet` as usual, but each payment lands in a fresh one-time account that only Alice can find and spend. Testnet prototype, built at NEAR HACKATHON.
 
-## Status
+## The problem
 
-The V1 registry and router contracts are deployed on NEAR testnet; receipts are listed in [verified evidence](docs/VERIFIED.md):
+A `.near` name is a public ledger. Anyone who knows your name can open an explorer and see every payment you receive, who sent it, how much, and your balance. Sharing your name to get paid shares your financial history. See the [public visibility table](research/02-problem-evidence.md).
 
-- Registry: `registry2.veil-williams.testnet`
-- Router: `router2.veil-williams.testnet`
-- Mock six-decimal FT: `mockft.veil-williams.testnet`
+## How it works
 
-Fresh registry/router creation, funding, deployment, initialization, WASM sizes, and view checks are recorded in [deployment evidence](results/deploy-20261111.json) and [verified links](docs/VERIFIED.md). The verified DAO payout is recorded in [DAO evidence](results/demo-dao-20261111220608.json).
+```
+ Alice (receiver)                Sender                           NEAR testnet
+ ────────────────                ──────                           ────────────
+ signs one NEAR wallet message
+ → spend key s, view key v
+ registers S = s·G, V = v·G ───────────────────────────────────► registry2
+                                 looks up alice.testnet ◄──────── registry2
+                                 derives a one-time key
+                                 P = S + h·G (h from r·V)
+                                 send_near(P, R, tag) + NEAR ───► router2 ─┬─► pays account hex(P)
+                                                                           └─► announcement (R, tag, P)
+ scans announcements ◄────────────────────────────────────────── router2
+ view tag skips ~255/256; recomputes P → "this one is mine"
+ spends from P with p = s + h ─────────────────────────────────► NEAR RPC
+```
 
-The Ubuntu gate passes Rust formatting, clippy with warnings denied, workspace tests, sandbox tests, release WASM builds and the web build; see the [green release run](https://github.com/willy264/veil/actions/runs/43533851015). There are [24 passing tests](packages/sdk/test), including ten web-flow regressions with simulated wallet/RPC responses. The standalone 10,000-send property test also passes in CI. A [fresh clone](results/fresh-clone-20261114.json) passed frozen installation, typecheck, all 24 tests, the property test and web build without copying credentials. The separate [hosted demo evidence](results/hosted-wallet-20261113T191343566Z.json) records real signed testnet transactions through the app.
+- **Each one-time account is an ordinary NEAR implicit account.** Its account ID is the hex of an Ed25519 public key, so `P` *is* an account and `p` signs for it directly. There is no new account type and no contract wallet.
+- **The view key works as an auditor key.** It finds incoming payments but cannot spend them.
+- **Specification:** exact hashes, byte layouts and test vectors are in the [NEP draft](docs/NEP-DRAFT-stealth-meta-address.md). The [architecture](docs/ARCHITECTURE.md) and [threat model](docs/THREAT_MODEL.md) cover the rest.
 
-## Try it
+## Try it in 30 seconds, no wallet
 
-Requirements: Node 20+, pnpm 10+, Rust, WSL2 Ubuntu for sandbox tests, and a NEAR testnet account. Never commit a private key or publish it in hosting configuration.
+The demo receiver `veil-judge-recv.testnet` has received three private payments. Its auditor key is published here on purpose: it can find the payments but cannot spend them.
+
+1. Open **https://veil-eta-khaki.vercel.app** and scroll to **Auditor**.
+2. Enter **Registered name** `veil-judge-recv.testnet` and **Auditor key** `865df8cb1b16beb1face316a6c6b0dfc05443b2e6d47f56f1c22bda8a6646d0c`.
+3. Press **Scan as auditor**. You see "Found 3 payments for veil-judge-recv.testnet. Read-only access." and three receiving accounts holding 0.0200, 0.0300 and 0.0500 NEAR. There is no Spend button.
+4. Open [veil-judge-recv.testnet on NearBlocks](https://testnet.nearblocks.io/address/veil-judge-recv.testnet). Its public history shows the account's creation and its Veil registration, but none of the three payments.
+
+The payments were sent on 14 November 2026 by [`scripts/judge-demo.ts`](scripts/judge-demo.ts); the transaction links are in the [judge demo evidence](results/judge-demo-20261114014907.json).
+
+## Try it with a wallet
+
+You need a testnet wallet that supports NEP-413 message signing through the wallet selector.
+
+1. **Receive.** Connect wallet → **Enable Veil**: sign one message, which makes no payment and keeps keys in your browser. → **Register name**: 0.01 NEAR storage deposit, excess refunded.
+2. **Send** (from another account). Enter the registered name, leave the field to check it, enter an amount, then **Send privately**. The receipt shows a fresh receiving account.
+3. **Scan.** Back as the receiver, press **Scan payments**. The payment appears with its balance.
+4. **Spend.** Choose a destination and an amount, or **Send all** (which closes the receiving account), then press **Spend** after the re-link warning.
+
+The team's automated runs drive this flow with a scripted Node signer through the same hosted app. Browser-wallet approval screens have not been exercised by those runs.
+
+## Run it locally
+
+Requirements: Node 20+, pnpm 10+, Rust (`wasm32-unknown-unknown` target) for the contracts.
 
 ```bash
-pnpm install
+pnpm install --frozen-lockfile
 pnpm typecheck
-pnpm test
-pnpm test:v1
+pnpm test            # 48 tests: crypto, SDK, scheme vectors, web flow with simulated wallet and RPC
+pnpm test:v1         # 10,000 random sends: no false negatives, no false positives
+pnpm --dir apps/web build   # writes config.js and bundles @noble into vendor/noble.js
+pnpm web:dev                # serves apps/web on http://127.0.0.1:4173
 ```
-
-Run the web surface:
-
-```bash
-pnpm --dir apps/web build
-pnpm web:dev
-```
-
-Open `http://127.0.0.1:4173`. The app reads `registry2.veil-williams.testnet` and `router2.veil-williams.testnet` through final testnet RPC, connects a testnet wallet with near-connect, derives keys in memory from a NEP-413 signature, and never sends private keys to a server.
-
-### Vercel deployment
-
-Open [Veil on testnet](https://veil-eta-khaki.vercel.app). Choose **Receive** to connect, enable Veil, register and share your name. Choose **Send** to enter a registered name and amount, then approve the private payment. The name resolves when you leave the field. The inbox and read-only Auditor section appear below; technical details are in disclosures.
-
-The hosted run registered `veil-demo-recv.testnet`, sent **0.0500 NEAR** from `veil-demo-send.testnet`, found it in the inbox, spent **0.0010 NEAR**, and found the same payment from an unsigned auditor context. It uses a **scripted test signer, not a browser wallet**. The hosted app performs derivation, scanning and spending; the runner substitutes the connector with a local Node signer. Browser-extension approval screens are not verified by this run. [Registration](https://testnet.nearblocks.io/txns/8ojP7xQ2DpLpAXjzyEdo5hmEnMBf8sfsWSMyanpWhSKA), [private payment](https://testnet.nearblocks.io/txns/GU7Yg8hhdNDBHNvvxuXomaneKzJmPMBevzfrHjrL9ojz), [spend](https://testnet.nearblocks.io/txns/CVVXiD2TVSqyY8vGYARKH2XQqmjAasKbMqmdUXCyQZq8), [full evidence](results/hosted-wallet-20261113T191343566Z.json).
-
-Public access, keyboard paths, empty/error states and both tabs passed checks across 320–1920px in normal/reduced motion. [Browser QA](results/ui-polish/final-pass/results.json). The production mobile Lighthouse run scored **98 performance / 100 accessibility / 100 best practices / 100 SEO**, with **1.59s LCP and 0 CLS**; these are lab measurements, not field p75 claims. [Lighthouse evidence](results/ui-polish/lighthouse-final-mobile.json).
-
-The final [public hosted check](results/hosted-check-1794615996906.json) confirms unauthenticated page/assets access, the wallet chooser, name resolution through registry2 and five announcements from router2. It is a read-only check; the separate signed-flow record above covers the actual payment.
-
-Current screenshots from the signed hosted run: [Receive, 1440px](docs/screenshots/receive-desktop.png), [Send receipt, 390px](docs/screenshots/send-mobile.png), [Spend](docs/screenshots/spend-desktop.png), [Auditor](docs/screenshots/auditor-desktop.png).
-
-Vercel project `veil` uses repository root `.`. The root [vercel.json](vercel.json) runs `pnpm --dir apps/web build` and serves `apps/web`. `veil.vercel.app` was unavailable; use the verified production alias above. Environment: `VEIL_NETWORK=testnet`, `VEIL_RPC_URL=https://rpc.testnet.near.org`, `VEIL_REGISTRY_ID=registry2.veil-williams.testnet`, `VEIL_ROUTER_ID=router2.veil-williams.testnet`. The official testnet RPC replaced Fastnear after reproducible HTTP 429 responses. No private keys belong in Vercel configuration.
-
-The new [1:57 narrated product demo](docs/NARRATED-TOUR.md) records the polished UI completing the signed hosted flow above. It has synthetic voiceover and captions, with the scripted-signer disclosure throughout. Local export: `results/veil-demo-product.mp4`; [timing](results/product-video-timing.json), [media verification](results/product-video-verification.json), [frame review](results/product-video-review.json). The DAO scene is clearly labelled separate evidence from 11 November 2026. This replaces both older videos after the UI change. Public upload remains pending; a [shot list](docs/VIDEO-PLAN.md) is provided for optional browser-wallet approval footage.
-
-Run the scripted testnet demo with process-only key variables:
-
-```powershell
-$env:VEIL_ALICE_PRIVATE_KEY = "ed25519:..."
-$env:VEIL_SENDER1_PRIVATE_KEY = "ed25519:..."
-$env:VEIL_SENDER2_PRIVATE_KEY = "ed25519:..."
-$env:VEIL_SENDER3_PRIVATE_KEY = "ed25519:..."
-pnpm demo:all
-```
-
-The fresh-contract demo is committed as [demo evidence](results/demo-20261111221900.json): it registered Alice, sent three private payments through `router2`, scanned all three, and spent one. The committed DAO run separately created a sole-council Sputnik DAO, approved a private router payout, and verified the recipient scan in [DAO evidence](results/demo-dao-20261111220608.json).
-
-For Rust and sandbox verification in WSL2 Ubuntu:
 
 ```bash
 cd contracts
@@ -74,34 +73,82 @@ cargo test --workspace
 cargo build --workspace --target wasm32-unknown-unknown --release
 ```
 
-## Design
+The testnet demo scripts send real testnet transactions:
 
-Alice registers a viewing public key and spending public key in the registry. A sender uses an ephemeral scalar and Alice's public keys to derive a one-time implicit account, pays that account, and announces the ephemeral public key plus view tag through the router. Alice scans announcements, skips almost all with the view tag, and derives the private scalar only for owned outputs.
+- `pnpm exec tsx scripts/judge-demo.ts` sets up the judge path. It reads keys from near-cli credential files and never prints them.
+- `pnpm demo:all` and `pnpm demo:dao` read keys from process environment variables.
 
-The SDK uses a NEP-413 signature as wallet-bound key material. `exportViewKey` supports selective disclosure; a view key cannot spend. See `docs/NEP-DRAFT-stealth-meta-address.md`, `docs/ARCHITECTURE.md`, and `docs/THREAT_MODEL.md`.
+## NEAR features used
 
-## Research
+- **Implicit accounts** as one-time receiving accounts.
+- **NEP-413** signed messages for wallet-bound key derivation. The request names the Veil app as recipient.
+- **NEP-141** forwarding in the router (FT path; see the known issues below).
+- **Sputnik DAO** for a private DAO payout through the router.
+- **Contract event logs:** `meta_registered` and `stealth_sent`.
+- **near-connect** as the wallet selector.
 
-Veil follows the stealth-address pattern established by [ERC-5564](https://eips.ethereum.org/EIPS/eip-5564) and [ERC-6538](https://eips.ethereum.org/EIPS/eip-6538), with lessons from [Umbra](https://github.com/ScopeLift/umbra-protocol), [Fluidkey](https://docs.fluidkey.com/), [Monero](https://web.getmonero.org/resources/moneropedia/stealthaddress.html), and the [Nervos CCC extension](https://talk.nervos.org/t/introducing-a-stealth-address-extension-for-ccc/10802). NEAR-specific grounding is its [implicit-account model](https://github.com/near/nearcore/blob/master/docs/DataStructures/Account.md); no finalized stealth-address NEP was found in the [NEP repository](https://github.com/near/NEPs) during this research pass. See the full [prior-art review](research/01-prior-art.md) and [public visibility table](research/02-problem-evidence.md).
+## Evidence
 
-## Related projects
+| What | Where |
+|---|---|
+| Contracts | Registry `registry2.veil-williams.testnet`, router `router2.veil-williams.testnet`, mock six-decimal FT `mockft.veil-williams.testnet` ([deployment evidence](results/deploy-20261111.json)) |
+| Judge path, 14 Nov 2026 | [Registration](https://testnet.nearblocks.io/txns/D1VZR6UDdnPFsWK7ux6ZkTSKdojjhWdKqPCN4aWJmgup) under the current key message, three private sends ([0.02](https://testnet.nearblocks.io/txns/CA2KEYmAxhEL6TaP8byJo4SRzFytvinyeCWEeJ6N5Cmv), [0.03](https://testnet.nearblocks.io/txns/EPA9T69gQmemgznZQ7Gb3YUu6mPaasTK18vFjoVRdusu), [0.05](https://testnet.nearblocks.io/txns/QXkMZRkThs11tLGzADsEarGj1TwxMAjHCzY5QXfTrrc) NEAR), each adding 259 bytes of router storage, all found by the receiver's keys ([evidence](results/judge-demo-20261114014907.json)) |
+| Router storage top-up, 14 Nov 2026 | [4 testnet NEAR](https://testnet.nearblocks.io/txns/3GXt3n5cd3k9FEfgoEiCmdB8wEW4jzH6wTgnzTR6F2di) to `router2`, leaving about 1,600 announcements of spare storage |
+| Hosted signed flow, 13 Nov 2026 (earlier key message) | `veil-demo-recv.testnet` registered, received 0.0500 NEAR, scanned it, spent 0.0010 NEAR, auditor found it. Scripted test signer, not a browser wallet. [Registration](https://testnet.nearblocks.io/txns/8ojP7xQ2DpLpAXjzyEdo5hmEnMBf8sfsWSMyanpWhSKA), [payment](https://testnet.nearblocks.io/txns/GU7Yg8hhdNDBHNvvxuXomaneKzJmPMBevzfrHjrL9ojz), [spend](https://testnet.nearblocks.io/txns/CVVXiD2TVSqyY8vGYARKH2XQqmjAasKbMqmdUXCyQZq8), [full evidence](results/hosted-wallet-20261113T191343566Z.json) |
+| Scripted demo, 11 Nov 2026 | Registered Alice with keys from a fixed test signature, sent three private payments through `router2`, scanned all three, spent one ([evidence](results/demo-20261111221900.json)) |
+| DAO payout, 11 Nov 2026 | A sole-council Sputnik DAO approved a private router payout, and the recipient's scan found it ([evidence](results/demo-dao-20261111220608.json)) |
+| Browser QA and performance, 13 Nov 2026 build | Keyboard paths, empty and error states, 320–1920 px, normal and reduced motion ([QA](results/ui-polish/final-pass/results.json)). Mobile Lighthouse lab scores 98 / 100 / 100 / 100, LCP 1.59 s, CLS 0 ([report](results/ui-polish/lighthouse-final-mobile.json)). Not re-run after the 14 November changes. |
+| Screenshots, 13 Nov 2026 UI | [Receive](docs/screenshots/receive-desktop.png), [Send receipt](docs/screenshots/send-mobile.png), [Spend](docs/screenshots/spend-desktop.png), [Auditor](docs/screenshots/auditor-desktop.png) |
+| Verified sources and links | [docs/VERIFIED.md](docs/VERIFIED.md) |
 
-Veil is independent; no second hackathon project is being submitted under this team.
+Vercel deploys `main` from the repository root. [vercel.json](vercel.json) runs `pnpm --dir apps/web build` and serves `apps/web`. The build reads only the network, RPC URL and contract IDs from its environment ([build.mjs](apps/web/build.mjs)). No private key belongs in hosting configuration.
 
-## AI and tools disclosure
+## Design and research
 
-Codex assisted with implementation, review, research, and test orchestration. References and dependencies include [NEAR docs](https://docs.near.org/), [near-api-js](https://github.com/near/near-api-js), [noble-hashes](https://github.com/paulmillr/noble-hashes), and the [Sputnik README](https://github.com/near-daos/sputnik-dao-contract#setup). The user authorized two testnet demo keys, loaded locally into an ignored `.env` and the Node signer; key values were not printed or committed. The narrated video uses synthetic Windows speech and Playwright/FFmpeg editing, with the scripted-signer scope disclosed on screen and in narration.
+Veil follows the stealth-address pattern of [ERC-5564](https://eips.ethereum.org/EIPS/eip-5564) and [ERC-6538](https://eips.ethereum.org/EIPS/eip-6538), with lessons from [Umbra](https://github.com/ScopeLift/umbra-protocol), [Fluidkey](https://docs.fluidkey.com/), [Monero](https://web.getmonero.org/resources/moneropedia/stealthaddress.html) and the [Nervos CCC extension](https://talk.nervos.org/t/introducing-a-stealth-address-extension-for-ccc/10802). The NEAR-specific basis is the [implicit-account model](https://github.com/near/nearcore/blob/master/docs/DataStructures/Account.md). No finalised stealth-address NEP was found in the [NEP repository](https://github.com/near/NEPs) during research. See the [prior-art review](research/01-prior-art.md).
 
 ## Honest limits
 
-Amounts, timing, sender identities, and token contracts remain public. Sweeping multiple stealth balances to one destination links them. The project is testnet-only and has not touched mainnet; transaction-level limits and receipts are in [verified evidence](docs/VERIFIED.md).
-
-Senders derive with the router's announcement count read before wallet approval; concurrent sends can store the announcement later, so the inbox checks the stored index and the 32 before it. More than 32 announcements in that gap needs a wider rescan. Re-derivation requires the same wallet signing key. Since 14 November 2026 the key message names the Veil app as its NEP-413 recipient; names registered with the earlier message open their old payments from **Earlier inbox** and can register new keys after a confirmation ([threat model](docs/THREAT_MODEL.md#key-derivation)). Spend sends a chosen amount, or the full balance by closing the receiving account, to a chosen destination, and warns that the destination becomes publicly linked. The wallet connector and `near-api-js` still load from esm.sh; `@noble` crypto is bundled. Seven dependency alerts remain [documented](docs/DEPENDABOT.md), as requested.
+- **What stays public.** Amounts, timing, senders and token contracts. Any spend links the receiving account to its destination, and sending several payments to one destination links them together.
+- **Testnet only.** It has not touched mainnet, and it has not been audited.
+- **Scan window.** Senders derive with the router's announcement count read before wallet approval, and concurrent sends can store the announcement later. The inbox checks the stored index and the 32 before it. A gap of more than 32 announcements needs a wider rescan.
+- **Same signing key.** Re-deriving keys requires the same wallet signing key.
+- **Key message change.** Since 14 November 2026 the key message names the Veil app as its NEP-413 recipient. Names registered with the earlier message open their old payments from **Earlier inbox**, and can register new keys after a confirmation ([threat model](docs/THREAT_MODEL.md#key-derivation)).
+- **CDN code.** The wallet connector and `near-api-js` still load from esm.sh. The `@noble` crypto is bundled.
+- **Dependency alerts.** Seven remain, [documented](docs/DEPENDABOT.md).
 
 ### Known contract issues (not redeployed)
 
-The deployed router has three known issues. The fixes are described in the [threat model](docs/THREAT_MODEL.md#known-contract-issues-on-the-deployed-router) and are not deployed:
+The deployed router has three known issues. The fixes are described in the [threat model](docs/THREAT_MODEL.md#known-contract-issues-on-the-deployed-router) and are not deployed.
 
-1. **FT forward refund.** `on_ft_forward_complete` returns nothing, which NEP-141 reads as "full amount unused", so overlapping FT sends can refund one sender from another sender's tokens. Fix: return `U128(0)` on success and `U128(amount)` on failure, and drop the manual refund. The web app sends NEAR only, and no FT payment has gone through `router2`.
-2. **Storage spam on `send_near`.** Any deposit above zero is accepted, and announcement storage is paid from the router's own balance. Fix: charge a storage fee from the attached deposit, as `announce()` does.
-3. **Lost announcements when router storage runs out.** The payment arrives but its announcement callback fails, so the recipient cannot find it. On 14 November 2026 `router2` had about 0.16 NEAR of spare storage balance. Mitigation: top up the router. Recovery: re-announce the public `send_near` arguments with `announce()`.
+1. **FT forward refund.** `on_ft_forward_complete` returns nothing, which NEP-141 reads as "full amount unused". Overlapping FT sends can therefore refund one sender from another sender's tokens.
+   - *Fix:* return `U128(0)` on success and `U128(amount)` on failure, and drop the manual refund.
+   - *Exposure:* the web app sends NEAR only, and no FT payment has gone through `router2`.
+2. **Storage spam on `send_near`.** Any deposit above zero is accepted, and announcement storage is paid from the router's own balance.
+   - *Fix:* charge a storage fee from the attached deposit, as `announce()` does.
+3. **Lost announcements when router storage runs out.** The payment arrives, but its announcement callback fails, so the recipient cannot find it.
+   - *Mitigation:* `router2` was topped up on 14 November 2026 and has about 1,600 announcements of room. Spam can still use it up.
+   - *Recovery:* re-announce the public `send_near` arguments with `announce()`.
+
+## Team and contributions
+
+Veil was built for NEAR HACKATHON by the Veil team, starting 9 November 2026.
+
+- All commits up to `ff3dd2d` were pushed through the `willy264` GitHub account.
+- On 14 November 2026, a teammate committed fixes from a separate GitHub account after a judge-style code review. These were the license, scan window, SDK alignment, key-message binding, local crypto bundle, spend controls, disclosures, scheme vectors and this README.
+- The team's planning documents and agent briefs are kept in [docs/internal](docs/internal/README.md). They describe plans, not shipped features.
+
+## Related projects
+
+This repository is hosted by the `willy264` GitHub account, which also hosts two other NEAR HACKATHON projects: [FRONTIER](https://github.com/willy264/frontier) and an [invoice-clearing project](https://github.com/willy264/near). Each is a separate submission with its own repository.
+
+## AI and tools disclosure
+
+- **AI tools.** Codex assisted with implementation, review, research and test orchestration. Claude Code assisted with the 14 November 2026 review fixes, tests, documentation and the judge demo.
+- **Libraries and references.** [near-api-js](https://github.com/near/near-api-js), [noble-curves](https://github.com/paulmillr/noble-curves), [noble-hashes](https://github.com/paulmillr/noble-hashes), [near-sdk-rs](https://github.com/near/near-sdk-rs), [curve25519-dalek](https://github.com/dalek-cryptography/curve25519-dalek), [near-connect](https://github.com/hot-dao/near-selector), [NEAR docs](https://docs.near.org/) and the [Sputnik README](https://github.com/near-daos/sputnik-dao-contract#setup).
+- **Demo keys.** Testnet keys live in git-ignored `.env` files or near-cli credential files, and are never printed or committed.
+- **Video.** The narrated video uses synthetic speech and Playwright/FFmpeg editing, with the scripted-signer scope disclosed.
+
+## License
+
+[MIT](LICENSE)
