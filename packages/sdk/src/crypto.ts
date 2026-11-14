@@ -67,6 +67,14 @@ export function publicKeyFromScalar(scalar: bigint): Uint8Array {
   return pointFromScalar(scalar).toBytes();
 }
 
+// Registry keys and announced ephemeral keys come from other people. Reject the identity and any
+// point with a small-order component, matching the registry and router contract checks.
+export function validPoint(bytes: Uint8Array, label: string): typeof ed25519.Point.BASE {
+  const point = ed25519.Point.fromHex(bytes);
+  if (point.is0() || !point.isTorsionFree()) throw new Error(`${label} must be a prime-order Edwards point`);
+  return point;
+}
+
 export function generateKeys(spend: bigint, view: bigint): StealthKeys {
   if (spend <= 0n || spend >= ORDER || view <= 0n || view >= ORDER) {
     throw new Error('key scalar must be in the ed25519 prime-order range');
@@ -85,8 +93,8 @@ export function deriveStealth(
   ephemeralScalar: bigint,
   outputIndex = 0,
 ): Announcement & { privateScalar: bigint } {
-  const spendPoint = ed25519.Point.fromHex(spendPublicKey);
-  const viewPoint = ed25519.Point.fromHex(viewPublicKey);
+  const spendPoint = validPoint(spendPublicKey, 'spend key');
+  const viewPoint = validPoint(viewPublicKey, 'view key');
   const ephemeralPoint = pointFromScalar(ephemeralScalar);
   const sharedPoint = viewPoint.multiply(ephemeralScalar);
   const sharedBytes = sharedPoint.toBytes();
@@ -113,13 +121,13 @@ export function scanAnnouncement(
   keys: Pick<StealthKeys, 'spend' | 'view' | 'spendPublicKey'>,
   announcement: Announcement,
 ): { owned: true; privateScalar: bigint } | { owned: false } {
-  const ephemeralPoint = ed25519.Point.fromHex(announcement.ephemeralPublicKey);
+  const ephemeralPoint = validPoint(announcement.ephemeralPublicKey, 'ephemeral key');
   const sharedPoint = ephemeralPoint.multiply(keys.view);
   const sharedBytes = sharedPoint.toBytes();
   const expectedTag = sha256(concat(utf8('veil-tag'), sharedBytes))[0]!;
   if (expectedTag !== announcement.viewTag) return { owned: false };
 
-  const spendPoint = ed25519.Point.fromHex(keys.spendPublicKey);
+  const spendPoint = validPoint(keys.spendPublicKey, 'spend key');
   const stored = announcement.outputIndex ?? 0;
   for (let index = stored; index >= Math.max(0, stored - SCAN_WINDOW); index -= 1) {
     const indexBytes = new Uint8Array(4);

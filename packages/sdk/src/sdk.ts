@@ -11,7 +11,8 @@ import {
   ORDER,
 } from './crypto.js';
 
-const NEP_413_DOMAIN = 'near-veiled-keys-v1';
+// HKDF salt prefix. It must match apps/web/app.js so a wallet signature opens the same inbox in both.
+const NEP_413_DOMAIN = 'veil-nep413-v1';
 const NEP_413_MESSAGE = 'Veil key derivation v1: derive private receiving keys for this NEAR account.';
 const MIN_REGISTRY_DEPOSIT = 1_000_000_000_000_000_000_000n;
 const DEFAULT_GAS = 30_000_000_000_000n;
@@ -116,26 +117,42 @@ export function buildRegistryRegister(registryId: string, keys: Pick<VeilKeys, '
   };
 }
 
+function deriveForRecipient(recipient: VeilMeta, ephemeralScalar: bigint, outputIndex: number) {
+  if (recipient.scheme_id !== 1) throw new Error('unsupported Veil scheme');
+  if (!Number.isSafeInteger(outputIndex) || outputIndex < 0 || outputIndex > 0xffffffff) throw new Error('invalid output index');
+  return deriveStealth(hexToBytes(recipient.spend_pub_hex), hexToBytes(recipient.view_pub_hex), ephemeralScalar, outputIndex);
+}
+
+// Index rule (same as the web app): derive with the router's total_announcements read just before
+// sending. Recipients scan the stored index and the SCAN_WINDOW indexes before it.
 export class VeilClient {
   constructor(
     private readonly accountId: string,
     private readonly registryId: string,
     private readonly routerId: string,
     private readonly view: VeilView,
-    private readonly keys: VeilKeys,
+    private readonly keys?: VeilKeys,
   ) {}
 
+  private ownKeys(): VeilKeys {
+    if (!this.keys) throw new Error('this action needs the account owner Veil keys');
+    return this.keys;
+  }
+
   register(): CallAction {
-    return buildRegistryRegister(this.registryId, this.keys);
+    return buildRegistryRegister(this.registryId, this.ownKeys());
   }
 
   async resolve(name: string): Promise<VeilMeta | null> {
     return await this.view.viewFunction(this.registryId, 'get_meta', { account_id: name }) as VeilMeta | null;
   }
 
-  buildSendNear(to: string, amount: bigint, ephemeralScalar: bigint): CallAction {
-    void to;
-    const derived = deriveStealth(this.keys.spendPublicKey, this.keys.viewPublicKey, ephemeralScalar);
+  async nextOutputIndex(): Promise<number> {
+    return Number(await this.view.viewFunction(this.routerId, 'total_announcements', {}));
+  }
+
+  buildSendNear(recipient: VeilMeta, amount: bigint, ephemeralScalar: bigint, outputIndex: number): CallAction {
+    const derived = deriveForRecipient(recipient, ephemeralScalar, outputIndex);
     return {
       contractId: this.routerId,
       methodName: 'send_near',
@@ -149,9 +166,8 @@ export class VeilClient {
     };
   }
 
-  buildSendFt(to: string, tokenId: string, amount: bigint, ephemeralScalar: bigint): CallAction[] {
-    void to;
-    const derived = deriveStealth(this.keys.spendPublicKey, this.keys.viewPublicKey, ephemeralScalar);
+  buildSendFt(recipient: VeilMeta, tokenId: string, amount: bigint, ephemeralScalar: bigint, outputIndex: number): CallAction[] {
+    const derived = deriveForRecipient(recipient, ephemeralScalar, outputIndex);
     return [
       {
         contractId: tokenId,
@@ -184,6 +200,7 @@ export class VeilClient {
   }
 
   async scan(fromIndex = 0, limit = 100): Promise<OwnedPayment[]> {
+    const keys = this.ownKeys();
     const raw = await this.view.viewFunction(this.routerId, 'get_announcements', { from_index: fromIndex, limit });
     const announcements = raw as VeilAnnouncement[];
     return announcements.flatMap((rawAnnouncement) => {
@@ -194,8 +211,9 @@ export class VeilClient {
           ? rawAnnouncement.ephemeralPublicKey
           : hexToBytes(rawAnnouncement.ephemeral_pub_hex ?? ''),
         viewTag: rawAnnouncement.viewTag ?? rawAnnouncement.view_tag ?? 0,
+        outputIndex: rawAnnouncement.outputIndex ?? rawAnnouncement.index,
       };
-      const found = scanAnnouncement(this.keys, announcement);
+      const found = scanAnnouncement(keys, announcement);
       return found.owned ? [{ announcement, privateScalar: found.privateScalar }] : [];
     });
   }
@@ -209,7 +227,7 @@ export class VeilClient {
   }
 
   viewKeyForAuditor(): string {
-    return exportViewKey(this.keys);
+    return exportViewKey(this.ownKeys());
   }
 
   get ownerId(): string {
@@ -218,7 +236,7 @@ export class VeilClient {
 }
 
 function hexToBytes(hex: string): Uint8Array {
-  if (!/^[0-9a-f]{64}$/i.test(hex)) throw new Error('announcement ephemeral key must be 32-byte hex');
+  if (!/^[0-9a-f]{64}$/i.test(hex)) throw new Error('Veil key must be 32-byte hex');
   return Uint8Array.from(hex.match(/.{2}/g)!, (part) => Number.parseInt(part, 16));
 }
 

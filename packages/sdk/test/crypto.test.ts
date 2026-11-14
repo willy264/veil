@@ -40,6 +40,18 @@ describe('Veil ed25519 stealth prototype', () => {
     expect(scanAnnouncement(keys, { ...derived, outputIndex: 33 }).owned).toBe(false);
   });
 
+  it('rejects identity and small-order points in derivation and scanning', () => {
+    const keys = generateKeys(spend, view);
+    const identity = new Uint8Array(32); identity[0] = 1;
+    const orderTwo = Uint8Array.from([0xec, ...new Array(30).fill(0xff), 0x7f]);
+    for (const bad of [identity, orderTwo]) {
+      expect(() => deriveStealth(bad, keys.viewPublicKey, ephemeral)).toThrow(/point/);
+      expect(() => deriveStealth(keys.spendPublicKey, bad, ephemeral)).toThrow(/point/);
+      const derived = deriveStealth(keys.spendPublicKey, keys.viewPublicKey, ephemeral);
+      expect(() => scanAnnouncement(keys, { ...derived, ephemeralPublicKey: bad })).toThrow(/point/);
+    }
+  });
+
   it('rejects an unrelated announcement after the view-tag fast path', () => {
     const recipient = generateKeys(spend, view);
     const other = generateKeys(spend + 1n, view + 1n);

@@ -8,6 +8,8 @@ import { hkdf } from '@noble/hashes/hkdf';
 import { sha256 } from '@noble/hashes/sha256';
 import { sha512 } from '@noble/hashes/sha512';
 import * as near from 'near-api-js';
+import { deriveStealth as sdkDeriveStealth, scanAnnouncement as sdkScan } from '../src/crypto.ts';
+import { deriveKeysFromNep413 } from '../src/sdk.ts';
 
 const source = readFileSync(new URL('../../../apps/web/app.js', import.meta.url), 'utf8')
   .replace(/^import .*;\r?\n/gm, '')
@@ -234,6 +236,27 @@ describe('web flow with simulated wallet and RPC', () => {
     const h = harness(); h.session(h.wallet, h.keys); h.state.rows = [h.row(0)]; await h.api.refresh();
     h.state.providerResult = { final_execution_status: 'FINAL', status: { Failure: {} } }; await expect(h.api.spend(0)).rejects.toThrow('Transaction failed');
     h.state.httpStatus = 503; await expect(h.api.refresh()).rejects.toThrow('HTTP 503');
+  });
+  it('SDK and app derive identical keys, addresses and spend scalars from the same wallet signature', () => {
+    const h = harness(); const signature = new Uint8Array(64).map((_, i) => (i * 7 + 3) & 255);
+    const hex = (bytes) => Buffer.from(bytes).toString('hex');
+    const app = h.api.deriveKeys(signature);
+    const sdk = deriveKeysFromNep413(signature, 'recipient.testnet');
+    expect(app.spend).toBe(sdk.spend);
+    expect(app.view).toBe(sdk.view);
+    expect(hex(app.spendPublicKey)).toBe(hex(sdk.spendPublicKey));
+    expect(hex(app.viewPublicKey)).toBe(hex(sdk.viewPublicKey));
+    for (const index of [0, 5, 1000]) {
+      const a = h.api.deriveStealth(app.spendPublicKey, app.viewPublicKey, 99n + BigInt(index), index);
+      const s = sdkDeriveStealth(sdk.spendPublicKey, sdk.viewPublicKey, 99n + BigInt(index), index);
+      expect(a.stealthAccount).toBe(s.stealthAccount);
+      expect(a.viewTag).toBe(s.viewTag);
+      expect(hex(a.ephemeralPublicKey)).toBe(hex(s.ephemeralPublicKey));
+      const appFound = h.api.scan(app, { index, stealth_account: a.stealthAccount, ephemeral_pub_hex: hex(a.ephemeralPublicKey), view_tag: a.viewTag });
+      const sdkFound = sdkScan(sdk, { ...s, outputIndex: index });
+      expect(sdkFound.owned).toBe(true);
+      expect(appFound.privateScalar).toBe(sdkFound.privateScalar);
+    }
   });
   it('rejects malformed points, identity, torsion and invalid amounts', () => {
     const h = harness();
