@@ -15,19 +15,16 @@
   "hosted_verification": "results/ui-polish/final-pass/results.json",
   "hosted_wallet_approvals": "Browser wallet approvals not verified; real hosted transactions verified with a scripted test signer.",
   "video": {
-    "status": "Current signed hosted-flow video complete locally; human review and public upload pending",
-    "duration_seconds": 117,
-    "scope": "Real hosted testnet enable/register/send/scan/spend/auditor with scripted signer, not browser wallet approvals; separate DAO evidence dated 2026-11-11",
-    "local_file": "results/veil-demo-product.mp4",
+    "status": "14 Nov 2026 cut rendered locally; human review and public upload pending",
+    "duration_seconds": 117.6,
+    "scope": "Real hosted testnet register/send/scan/spend/auditor for veil-film-recv.testnet with a scripted Node signer (not browser wallet approvals); opener uses NearBlocks API data for ref-finance.near; implicit-account card uses live RPC data",
+    "local_file": "results/veil-demo-v2.mp4",
     "script": "docs/VIDEO-SCRIPT.md",
-    "scene_plan": "apps/web/demo-scenes.json",
-    "recording_notes": "docs/NARRATED-TOUR.md",
-    "wallet_shot_list": "docs/VIDEO-PLAN.md",
-    "captions": "results/veil-demo-product.srt",
+    "recorder": "apps/web/record-video.mjs",
+    "captions": "results/veil-demo-v2.srt",
+    "evidence": "results/veil-demo-v2.json",
     "synthetic_narration": true,
-    "timing_evidence": "results/product-video-timing.json",
-    "media_verification": "results/product-video-verification.json",
-    "final_review": "results/product-video-review.json",
+    "browser_wallet_approval_shown": false,
     "public_url": null
   },
   "demo": {
@@ -41,9 +38,10 @@
     "Amounts, timing, sender identity, and token contracts remain public.",
     "Sweeping multiple stealth accounts to one destination creates a link.",
     "The current implementation is testnet-only and uses Ed25519 implicit accounts.",
-    "Concurrent sends can change the derivation index; V1 requires sequential sends.",
-    "Wallet key recovery requires the same signing key; older random-nonce registrations may not be recoverable by re-deriving.",
-    "Seven dependency alerts remain documented in docs/DEPENDABOT.md."
+    "Concurrent sends can store an announcement up to 32 positions after the index the sender derived with; the scanner checks that window, and larger gaps need a wider rescan.",
+    "Re-deriving keys requires the same wallet signing key. Keys from the earlier (v1) key message open via Earlier inbox.",
+    "Seven dependency alerts remain documented in docs/DEPENDABOT.md.",
+    "The deployed router has three disclosed issues (FT forward refund, storage spam on send_near, announcements lost if router storage runs out); fixes are described in docs/THREAT_MODEL.md and not deployed."
   ],
   "hosted_signed_flow": "results/hosted-wallet-20261113T191343566Z.json",
   "performance_evidence": "results/ui-polish/lighthouse-final-mobile.json",
@@ -68,5 +66,11 @@
   "ci_evidence": "https://github.com/willy264/veil/actions/runs/43533851015",
   "secret_check": "results/secret-check-20261114.json",
   "fresh_clone_evidence": "results/fresh-clone-20261114.json",
-  "release_tag": "hackathon-submission"
+  "release_tag": "hackathon-submission",
+  "judge_path": {
+    "receiver": "veil-judge-recv.testnet",
+    "auditor_key": "865df8cb1b16beb1face316a6c6b0dfc05443b2e6d47f56f1c22bda8a6646d0c",
+    "expected": "Found 3 payments for veil-judge-recv.testnet. Read-only access.",
+    "evidence": "results/judge-demo-20261114014907.json"
+  }
 }

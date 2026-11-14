@@ -1,5 +1,7 @@
 # Narrated product demo
 
+> Superseded on 14 November 2026 by the cut described in [VIDEO-SCRIPT.md](VIDEO-SCRIPT.md). This file describes the earlier 13 November video.
+
 The current 1:57 video records the polished green app at https://veil-eta-khaki.vercel.app performing real testnet actions. The receiver enabled Veil and registered, the sender paid 0.0500 NEAR, the receiver scanned and spent 0.0010 NEAR, and an unsigned auditor found the payment. [Signed-flow evidence](../results/hosted-wallet-20261113T191343566Z.json).
 
 It uses a **scripted test signer, not a browser wallet**. The Node runner replaces the wallet connector for the two user-authorized demo accounts; the hosted app runs its own derivation, scanning and raw-scalar spend signing. Browser extension approval screens are not covered. The disclosure stays on screen and is spoken at the start.

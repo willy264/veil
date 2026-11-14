@@ -1,39 +1,91 @@
-# Video script: 1:57
+# Video script: 1:58
 
-236 words. Synthetic narration; real hosted testnet transactions with a scripted test signer, not browser wallet approvals. The DAO panel is dated separate evidence. Source: [scene plan](../apps/web/demo-scenes.json).
+250 words, 14 scenes, 1920×1080. Synthetic narration (Windows speech, Microsoft David). It shows real testnet transactions on the hosted app; a scripted Node signer replaces only the wallet connector, so no browser-wallet approval screens are shown. That is said once, in the second scene.
 
-## 0:00 to 0:12: Keep each payment separate
+- **Frames:** recorded by [`apps/web/record-video.mjs`](../apps/web/record-video.mjs) at a 960×540 viewport with device scale 2.
+- **Cards:** the opener uses public NearBlocks API data for `ref-finance.near`, with counterparty names shortened. The implicit-account card uses live testnet RPC data.
+- **Evidence:** transactions, scene timings and the spend warning are in [results/veil-demo-v2.json](../results/veil-demo-v2.json). Captions are in [results/veil-demo-v2.srt](../results/veil-demo-v2.srt).
 
-Veil keeps incoming payments separate while you share one NEAR name. This recording uses real testnet transactions and a scripted signer, not browser wallet approvals.
+## 0:00 to 0:13
 
-## 0:12 to 0:28: Connect and enable Veil
+Frame: `cards/public.png`
 
-The receiver connects, then enables Veil with one signed message. The hosted app derives receiving keys in browser memory. Enabling makes no payment, and the named account's private key stays in the Node signer.
+A NEAR name is a public ledger. Anyone can look up ref-finance.near and see its balance, 91 tokens and nearly a million transactions, each with its counterparty.
 
-## 0:28 to 0:38: Make your name ready
+## 0:13 to 0:23
 
-Registration publishes public receiving keys. Matching keys mean the name is already ready. A new registration requires a small storage deposit on testnet.
+Frame: `frames/01-hero.png`
 
-## 0:38 to 0:56: Send to a name
+Veil gives a NEAR name private receiving. People still pay the name, but each payment lands in a fresh account that only the owner can find and spend.
 
-In a separate session, the sender enters the receiver's name and zero point zero five NEAR. Leaving the name field checks that Veil is enabled. The confirmed receipt shows delivery to a fresh receiving account.
+## 0:23 to 0:32
 
-## 0:56 to 1:10: Find the private payment
+Frame: `frames/01-hero.png`
 
-Back in the receiver's session, scanning finds the matching payment. Its destination matches the sender's receipt, and the inbox shows the received balance with a Spend action.
+This recording uses real testnet transactions, signed by a scripted test signer instead of a browser wallet.
 
-## 1:10 to 1:22: Spend with a public-link warning
+## 0:32 to 0:40
 
-The receiver confirms a small spend back to their named account. This creates a public link. A transaction receipt confirms that the receiving account can spend.
+Frame: `frames/02-enabled.png`
 
-## 1:22 to 1:35: Share read-only access
+The receiver connects and signs one message. Veil derives a spend key and a view key in the browser.
 
-A third, unsigned session uses the shared auditor key in a masked field. It finds the same payment with read-only access. There is no Spend control.
+## 0:40 to 0:46
 
-## 1:35 to 1:47: DAO payout: dated evidence
+Frame: `frames/03-registered.png`
 
-Separate evidence from November eleventh, twenty twenty-six, records a verified DAO payout and one owned payment. This evidence panel is not DAO interface footage.
+Registering publishes only their public halves for the name, with a small storage deposit.
 
-## 1:47 to 1:57: Understand the limits
+## 0:46 to 0:53
 
-Veil is a testnet prototype. Amounts, timing and senders remain public, and spending can link identities.
+Frame: `frames/04-send-filled.png`
+
+In another session, a sender types the name and 0.05 NEAR.
+
+## 0:53 to 0:58
+
+Frame: `frames/05-send-receipt.png`
+
+The receipt shows delivery to a fresh receiving account, not to the name.
+
+## 0:58 to 1:06
+
+Frame: `frames/06-inbox.png`
+
+Back with the receiver, one scan finds the payment among everyone's announcements, using the view key.
+
+## 1:06 to 1:14
+
+Frame: `frames/07-proof.png`
+
+Live NearBlocks data for the name shows only its registration. The payment is visible only to the receiver.
+
+## 1:14 to 1:26
+
+Frame: `cards/implicit.png`
+
+Each payment address is an ordinary NEAR implicit account, with no new account type. Its only key is the account ID itself, and the receiver's derived key signs for it.
+
+## 1:26 to 1:31
+
+Frame: `frames/08-spend-form.png`
+
+To spend, the receiver picks a destination and an amount.
+
+## 1:31 to 1:38
+
+Frame: `frames/09-spent.png`
+
+Veil warns that the destination becomes publicly linked to this payment, then signs the transfer.
+
+## 1:38 to 1:46
+
+Frame: `frames/10-auditor.png`
+
+An auditor with the shared view key finds the same payment, read-only. There is no spend control.
+
+## 1:46 to 1:57
+
+Frame: `cards/end.png`
+
+Veil is a testnet prototype. Amounts, timing and senders stay public. Try it at veil-eta-khaki.vercel.app

@@ -1,0 +1,139 @@
+{
+  "video": "results/veil-demo-v2.mp4 (git-ignored; public upload pending)",
+  "duration_seconds": 117.55,
+  "resolution": "1920x1080, 30 fps",
+  "loudness": "-16.4 LUFS integrated",
+  "frames": "Recorded by apps/web/record-video.mjs from the hosted app at a 960x540 viewport, device scale 2",
+  "signer": "Scripted Node signer (near-api-js) for the NEP-413 key message, registration and send; the hosted app signed the spend. Not a browser wallet.",
+  "recording": {
+    "recordedAt": "2026-11-14T02:00:58.611Z",
+    "receiver": "veil-film-recv.testnet",
+    "sender": "veil-judge-send.testnet",
+    "transactions": [
+      {
+        "signer": "veil-film-recv.testnet",
+        "method": "register",
+        "hash": "FwyFRYX46S1R6wm1v5ddaakHLVFec6889CJvyEqBARPX",
+        "explorerUrl": "https://testnet.nearblocks.io/txns/FwyFRYX46S1R6wm1v5ddaakHLVFec6889CJvyEqBARPX"
+      },
+      {
+        "signer": "veil-judge-send.testnet",
+        "method": "send_near",
+        "hash": "DMRTKHY9BgM6TD53asRRq7Qa5AE7t4DVQV6WFVt47Ni4",
+        "explorerUrl": "https://testnet.nearblocks.io/txns/DMRTKHY9BgM6TD53asRRq7Qa5AE7t4DVQV6WFVt47Ni4"
+      },
+      {
+        "signer": "hosted app (scalar signer)",
+        "method": "spend transfer 0.01 NEAR",
+        "explorerUrl": "https://testnet.nearblocks.io/txns/94tGtKSPQp4qKXsAReSFjqraGmU7o6ZwpEv4PmGw51M6"
+      }
+    ],
+    "spendWarningShown": [
+      "Send 0.0100 testnet NEAR to veil-judge-send.testnet? This publicly links this payment account to veil-judge-send.testnet. Sending several payments to one destination links them together."
+    ]
+  },
+  "cards": {
+    "opener": "ref-finance.near public data from the NearBlocks API (mainnet), captured 14 Nov 2026; counterparty names shortened",
+    "implicitAccount": "Live testnet RPC view_access_key_list for the receiving account; its only full-access key decodes to the account ID bytes"
+  },
+  "scenes": [
+    {
+      "scene": 1,
+      "frame": "cards/public.png",
+      "start": 0.0,
+      "duration": 13.493,
+      "caption": "A NEAR name is a public ledger. Anyone can look up ref-finance.near and see its balance, 91 tokens and nearly a million transactions, each with its counterparty."
+    },
+    {
+      "scene": 2,
+      "frame": "frames/01-hero.png",
+      "start": 13.49,
+      "duration": 10.483,
+      "caption": "Veil gives a NEAR name private receiving. People still pay the name, but each payment lands in a fresh account that only the owner can find and spend."
+    },
+    {
+      "scene": 3,
+      "frame": "frames/01-hero.png",
+      "start": 23.98,
+      "duration": 8.138,
+      "caption": "This recording uses real testnet transactions, signed by a scripted test signer instead of a browser wallet."
+    },
+    {
+      "scene": 4,
+      "frame": "frames/02-enabled.png",
+      "start": 32.11,
+      "duration": 7.933,
+      "caption": "The receiver connects and signs one message. Veil derives a spend key and a view key in the browser."
+    },
+    {
+      "scene": 5,
+      "frame": "frames/03-registered.png",
+      "start": 40.05,
+      "duration": 6.559,
+      "caption": "Registering publishes only their public halves for the name, with a small storage deposit."
+    },
+    {
+      "scene": 6,
+      "frame": "frames/04-send-filled.png",
+      "start": 46.61,
+      "duration": 6.544,
+      "caption": "In another session, a sender types the name and 0.05 NEAR."
+    },
+    {
+      "scene": 7,
+      "frame": "frames/05-send-receipt.png",
+      "start": 53.15,
+      "duration": 5.604,
+      "caption": "The receipt shows delivery to a fresh receiving account, not to the name."
+    },
+    {
+      "scene": 8,
+      "frame": "frames/06-inbox.png",
+      "start": 58.75,
+      "duration": 7.398,
+      "caption": "Back with the receiver, one scan finds the payment among everyone's announcements, using the view key."
+    },
+    {
+      "scene": 9,
+      "frame": "frames/07-proof.png",
+      "start": 66.15,
+      "duration": 8.053,
+      "caption": "Live NearBlocks data for the name shows only its registration. The payment is visible only to the receiver."
+    },
+    {
+      "scene": 10,
+      "frame": "cards/implicit.png",
+      "start": 74.2,
+      "duration": 12.148,
+      "caption": "Each payment address is an ordinary NEAR implicit account, with no new account type. Its only key is the account ID itself, and the receiver's derived key signs for it."
+    },
+    {
+      "scene": 11,
+      "frame": "frames/08-spend-form.png",
+      "start": 86.35,
+      "duration": 5.389,
+      "caption": "To spend, the receiver picks a destination and an amount."
+    },
+    {
+      "scene": 12,
+      "frame": "frames/09-spent.png",
+      "start": 91.74,
+      "duration": 6.833,
+      "caption": "Veil warns that the destination becomes publicly linked to this payment, then signs the transfer."
+    },
+    {
+      "scene": 13,
+      "frame": "frames/10-auditor.png",
+      "start": 98.57,
+      "duration": 7.763,
+      "caption": "An auditor with the shared view key finds the same payment, read-only. There is no spend control."
+    },
+    {
+      "scene": 14,
+      "frame": "cards/end.png",
+      "start": 106.34,
+      "duration": 11.128,
+      "caption": "Veil is a testnet prototype. Amounts, timing and senders stay public. Try it at veil-eta-khaki.vercel.app"
+    }
+  ]
+}

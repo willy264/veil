@@ -1,0 +1,55 @@
+1
+00:00:00,250 --> 00:00:13,143
+A NEAR name is a public ledger. Anyone can look up ref-finance.near and see its balance, 91 tokens and nearly a million transactions, each with its counterparty.
+
+2
+00:00:13,743 --> 00:00:23,626
+Veil gives a NEAR name private receiving. People still pay the name, but each payment lands in a fresh account that only the owner can find and spend.
+
+3
+00:00:24,226 --> 00:00:31,764
+This recording uses real testnet transactions, signed by a scripted test signer instead of a browser wallet.
+
+4
+00:00:32,364 --> 00:00:39,697
+The receiver connects and signs one message. Veil derives a spend key and a view key in the browser.
+
+5
+00:00:40,297 --> 00:00:46,256
+Registering publishes only their public halves for the name, with a small storage deposit.
+
+6
+00:00:46,856 --> 00:00:52,800
+In another session, a sender types the name and 0.05 NEAR.
+
+7
+00:00:53,400 --> 00:00:58,404
+The receipt shows delivery to a fresh receiving account, not to the name.
+
+8
+00:00:59,004 --> 00:01:05,802
+Back with the receiver, one scan finds the payment among everyone's announcements, using the view key.
+
+9
+00:01:06,402 --> 00:01:13,855
+Live NearBlocks data for the name shows only its registration. The payment is visible only to the receiver.
+
+10
+00:01:14,455 --> 00:01:26,003
+Each payment address is an ordinary NEAR implicit account, with no new account type. Its only key is the account ID itself, and the receiver's derived key signs for it.
+
+11
+00:01:26,603 --> 00:01:31,392
+To spend, the receiver picks a destination and an amount.
+
+12
+00:01:31,992 --> 00:01:38,225
+Veil warns that the destination becomes publicly linked to this payment, then signs the transfer.
+
+13
+00:01:38,825 --> 00:01:45,988
+An auditor with the shared view key finds the same payment, read-only. There is no spend control.
+
+14
+00:01:46,588 --> 00:01:57,116
+Veil is a testnet prototype. Amounts, timing and senders stay public. Try it at veil-eta-khaki.vercel.app
