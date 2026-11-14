@@ -1,0 +1,36 @@
+{
+  "description": "Veil scheme 1 end-to-end vectors. Scalars are 32-byte little-endian hex; points are RFC 8032 compressed Edwards hex.",
+  "accountId": "alice.testnet",
+  "nep413": {
+    "message": "Veil key derivation v2: derive private receiving keys for this NEAR account.\nAccount: alice.testnet",
+    "recipient": "veil-eta-khaki.vercel.app",
+    "nonce": "524b7ab1a12acb6965017c574f0763406c71bbb7400e2f9a818cbdb68babd171"
+  },
+  "walletSignature": "0104070a0d101316191c1f2225282b2e3134373a3d404346494c4f5255585b5e6164676a6d707376797c7f8285888b8e9194979a9da0a3a6a9acafb2b5b8bbbe",
+  "keys": {
+    "hkdfSalt": "veil-nep413-v1\nalice.testnet",
+    "hkdfInfo": "spend-and-view",
+    "spendScalar": "be651aed11f361af19b44d4eb424e0ae0699c893997699918193deef96426101",
+    "viewScalar": "2857bd3fc8b2fd76b9f256145ce0e0d642ad7c2d64940664d5acdc563ce4cb03",
+    "spendPublicKey": "716f27790c70804a94fbe483a1eb0680afa4d353c7a283a72074b75f971c7a06",
+    "viewPublicKey": "44914c0f592dda87d4b83d1166282e7f103eec67ffa5a4bcbb05d9fc53502270"
+  },
+  "send": {
+    "ephemeralScalar": "efcdab8967452301efcdab8967452301efcdab8967452301efcdab8967452301",
+    "derivationIndex": 7,
+    "ephemeralPublicKey": "89735cc0223ef615eae81a4d5e32a4e394d2c2e0f88a3ae4bfc5e7c4673b6651",
+    "sharedPoint": "560bd7fce6c9394ce5e4ed7949a340da38507c8a1bef32cf3bd068864867a67a",
+    "hashScalar": "7a36f78c96d6cfd79e3959a2df71cc4b9322bb52f6b06bcd0d9974fa06728f09",
+    "stealthAccount": "2d0b6d224fb580cdd1f88bd94a15e613367f1bf84d3b2dff956ee754ee2e7a0e",
+    "viewTag": 61
+  },
+  "scan": {
+    "storedIndex": 9,
+    "privateScalar": "389c117aa8c93187b8eda6f09396acfa99bb83e68f27055f8f2c53ea9db4f00a"
+  },
+  "spend": {
+    "message": "veil-scheme1-vector",
+    "random": "0000000000000000000000000000000000000000000000000000000000000000",
+    "signature": "a4a2a3781c16e36dccdf276c104fd15283380fe931d0a9bec758f4eb01ad790896569e8d76f3dc9001b6f0d25a93e8d131facff9278e4faedff16783dd3e1e00"
+  }
+}

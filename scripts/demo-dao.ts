@@ -13,6 +13,7 @@ import {
 import { mkdir, writeFile } from 'node:fs/promises';
 import { bytesToHex, deriveStealth, scanAnnouncement } from '../packages/sdk/src/crypto.js';
 import { deriveKeysFromNep413 } from '../packages/sdk/src/sdk.js';
+import { allAnnouncements, totalAnnouncements } from './router-pages.js';
 
 const RPC_URL = 'https://rpc.testnet.fastnear.com';
 const FACTORY_ID = 'sputnikv2.testnet';
@@ -156,7 +157,7 @@ async function main(): Promise<void> {
   const approveOwner = await call(provider, OWNER_ID, daoId, owner, 'act_proposal', { id: proposalId, action: 'VoteApprove' }, 0n, 100_000_000_000_000n);
   let announcements: any[] = [];
   for (let attempt = 0; attempt < 20; attempt += 1) {
-    announcements = await provider.callFunction({ contractId: ROUTER_ID, method: 'get_announcements', args: { from_index: 0, limit: 10_000 }, blockQuery: { finality: 'final' } }) as any[];
+    announcements = await allAnnouncements(provider, ROUTER_ID);
     if (announcements.some((item) => item.stealth_account === derived.stealthAccount)) break;
     await new Promise((resolve) => setTimeout(resolve, 2_000));
   }
@@ -196,8 +197,7 @@ async function finishExistingDao(
   keys: ReturnType<typeof deriveKeysFromNep413>,
   daoId: string,
 ): Promise<void> {
-  const existing = await provider.callFunction({ contractId: ROUTER_ID, method: 'get_announcements', args: { from_index: 0, limit: 10_000 }, blockQuery: { finality: 'final' } }) as any[];
-  const outputIndex = existing.length;
+  const outputIndex = await totalAnnouncements(provider, ROUTER_ID);
   const derived = deriveStealth(keys.spendPublicKey, keys.viewPublicKey, 0x789abcdef123456789abcdef123456789n, outputIndex);
   const proposal = await call(provider, OWNER_ID, daoId, owner, 'add_proposal', {
     proposal: {
@@ -209,7 +209,7 @@ async function finishExistingDao(
   const approve = await call(provider, OWNER_ID, daoId, owner, 'act_proposal', { id: proposalId, action: 'VoteApprove' }, 0n, 100_000_000_000_000n);
   let announcements: any[] = [];
   for (let attempt = 0; attempt < 20; attempt += 1) {
-    announcements = await provider.callFunction({ contractId: ROUTER_ID, method: 'get_announcements', args: { from_index: 0, limit: 10_000 }, blockQuery: { finality: 'final' } }) as any[];
+    announcements = await allAnnouncements(provider, ROUTER_ID);
     if (announcements.some((item) => item.stealth_account === derived.stealthAccount)) break;
     await new Promise((resolve) => setTimeout(resolve, 2_000));
   }

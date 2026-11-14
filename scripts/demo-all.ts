@@ -19,6 +19,7 @@ import {
   type StealthKeys,
 } from '../packages/sdk/src/crypto.js';
 import { deriveKeysFromNep413 } from '../packages/sdk/src/sdk.js';
+import { allAnnouncements, totalAnnouncements } from './router-pages.js';
 
 const RPC_URL = 'https://rpc.testnet.fastnear.com';
 const REGISTRY_ID = 'registry2.veil-williams.testnet';
@@ -126,13 +127,7 @@ async function main(): Promise<void> {
     scheme_id: 1,
   }, 1_000_000_000_000_000_000_000n);
 
-  const existingAnnouncements = await provider.callFunction({
-    contractId: ROUTER_ID,
-    method: 'get_announcements',
-    args: { from_index: 0, limit: 10_000 },
-    blockQuery: { finality: 'final' },
-  }) as Array<Record<string, unknown>>;
-  const firstOutputIndex = existingAnnouncements.length;
+  const firstOutputIndex = await totalAnnouncements(provider, ROUTER_ID);
 
   const sends = [] as Array<Record<string, unknown>>;
   const announcements = [] as Array<Record<string, unknown>>;
@@ -148,12 +143,7 @@ async function main(): Promise<void> {
 
   let rawAnnouncements: Array<Record<string, unknown>> = [];
   for (let attempt = 0; attempt < 20; attempt += 1) {
-    rawAnnouncements = await provider.callFunction({
-      contractId: ROUTER_ID,
-      method: 'get_announcements',
-      args: { from_index: 0, limit: 100 },
-      blockQuery: { finality: 'final' },
-    }) as Array<Record<string, unknown>>;
+    rawAnnouncements = await allAnnouncements(provider, ROUTER_ID) as Array<Record<string, unknown>>;
     if (rawAnnouncements.length >= firstOutputIndex + senderSigners.length) break;
     await new Promise((resolve) => setTimeout(resolve, 2_000));
   }
