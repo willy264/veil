@@ -144,15 +144,12 @@ The deployed router has three known issues. The fixes are described in the [thre
 
 ## Team and contributions
 
-Veil was built for NEAR HACKATHON by the Veil team, starting 9 November 2026.
+Veil was built for NEAR HACKATHON by the Veil team, starting 8 November 2026. NEAR hackathon research and first idea book (2nd November 2026).
 
 - All commits up to `ff3dd2d` were pushed through the `willy264` GitHub account.
 - On 14 November 2026, a teammate committed fixes from a separate GitHub account after a judge-style code review. These were the license, scan window, SDK alignment, key-message binding, local crypto bundle, spend controls, disclosures, scheme vectors and this README.
 - The team's planning documents and agent briefs are kept in [docs/internal](docs/internal/README.md). They describe plans, not shipped features.
 
-## Related projects
-
-This repository is hosted by the `willy264` GitHub account, which also hosts two other NEAR HACKATHON projects: [FRONTIER](https://github.com/willy264/frontier) and an [invoice-clearing project](https://github.com/willy264/near). Each is a separate submission with its own repository.
 
 ## AI and tools disclosure
 
