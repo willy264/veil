@@ -1,5 +1,12 @@
 {
   "name": "@veil/web",
   "private": true,
-  "scripts": { "build": "node build.mjs" }
+  "scripts": { "build": "node build.mjs" },
+  "dependencies": {
+    "@noble/curves": "1.9.7",
+    "@noble/hashes": "1.8.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  }
 }

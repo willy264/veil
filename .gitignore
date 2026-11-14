@@ -23,3 +23,5 @@ results/demo-dao-20261110154917.json
 results/video-assets/
 results/*.mp4
 results/ui-*.png
+apps/web/vendor/
+*:Zone.Identifier

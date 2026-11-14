@@ -197,3 +197,6 @@ footer .quiet-link { margin-top: 0; }
   button:active:not(:disabled) { transform: none; }
   .spinner, .is-new .new-label { animation: none; opacity: 1; transform: none; }
 }
+.spend-controls { margin-top: var(--space-4); }
+.check-row { display: flex; align-items: center; gap: var(--space-2); min-height: var(--target-min); margin: var(--space-3) 0 0; font-weight: 400; }
+.check-row input { inline-size: var(--space-5); block-size: var(--space-5); min-height: 0; padding: 0; accent-color: var(--primary); }

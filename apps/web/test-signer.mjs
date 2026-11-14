@@ -221,10 +221,16 @@ export function createTestSigner({ rpc, credentials, execute = false, onTransact
   }
   async function signMessage(accountId, params) {
     check(accountId === RECEIVER && exactKeys(params, ['message', 'recipient', 'nonce']), 'Unexpected NEP-413 signing request.');
-    const expected = createHash('sha256').update(`veil-key-derivation:testnet:v1:${accountId}`).digest();
     check(Array.isArray(params.nonce) && params.nonce.length === 32 && params.nonce.every((n) => Number.isInteger(n) && n >= 0 && n <= 255), 'Unexpected NEP-413 nonce.');
-    check(params.message === `Veil key derivation v1: derive private receiving keys for this NEAR account.\nAccount: ${accountId}`
-      && params.recipient === accountId && timingSafeEqual(Buffer.from(params.nonce), expected), 'NEP-413 message contract changed; refusing to sign.');
+    // Only the two key requests the app makes: current (v2, recipient = the Veil app) and the
+    // earlier-inbox request (v1, recipient = the signer). Mirrors nep413Request in @veil/sdk.
+    const allowed = [['v2', 'veil-eta-khaki.vercel.app'], ['v1', accountId]].map(([v, recipient]) => ({
+      message: `Veil key derivation ${v}: derive private receiving keys for this NEAR account.\nAccount: ${accountId}`,
+      recipient,
+      nonce: createHash('sha256').update(`veil-key-derivation:testnet:${v}:${accountId}`).digest(),
+    }));
+    check(allowed.some((request) => params.message === request.message && params.recipient === request.recipient
+      && timingSafeEqual(Buffer.from(params.nonce), request.nonce)), 'NEP-413 message contract changed; refusing to sign.');
     consume('message');
     // Installed 7.4.0 signNep413Message uses serializeMessage: LE u32
     // 2147484061 + Borsh payload, SHA-256, then ed25519. No fake signature.

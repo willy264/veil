@@ -1,12 +1,13 @@
-import { ed25519 } from 'https://esm.sh/@noble/curves@1.9.7/ed25519';
-import { hkdf } from 'https://esm.sh/@noble/hashes@1.8.0/hkdf';
-import { sha256 } from 'https://esm.sh/@noble/hashes@1.8.0/sha256';
-import { sha512 } from 'https://esm.sh/@noble/hashes@1.8.0/sha512';
+// Key-handling crypto is bundled by build.mjs from the locked @noble packages, not fetched from a CDN.
+import { ed25519, hkdf, sha256, sha512 } from './vendor/noble.js';
 
 const CONFIG = window.VEIL_CONFIG ?? {};
 const RPC = CONFIG.rpcUrl ?? 'https://rpc.testnet.near.org';
 const REGISTRY = CONFIG.registryId ?? 'registry2.veil-williams.testnet';
 const ROUTER = CONFIG.routerId ?? 'router2.veil-williams.testnet';
+// NEP-413 recipient for the current key message (same as NEP_413_RECIPIENT in @veil/sdk). It must
+// not depend on where the app is hosted, because it is part of the signed key material.
+const KEY_RECIPIENT = 'veil-eta-khaki.vercel.app';
 const ORDER = ed25519.CURVE.n;
 const text = new TextEncoder();
 let connector;
@@ -14,6 +15,9 @@ let connectorPromise;
 let wallet;
 let accountId;
 let keys;
+let keyVersion;
+let keyMismatch = false;
+let spentTo = new Map();
 let payments = [];
 
 
@@ -66,7 +70,12 @@ function friendlyError(error) {
     'Copying was blocked. Allow clipboard access in your browser, then try again.',
     'A payment is already in progress.', 'This payment is awaiting confirmation. Check its account before sending again.',
     'Transaction confirmation is unavailable. Check your wallet activity on NearBlocks.',
-    'Only testnet accounts are supported.', 'Registration could not be confirmed. Check the registry before trying again.'
+    'Only testnet accounts are supported.', 'Registration could not be confirmed. Check the registry before trying again.',
+    'Enable Veil before registering your name.',
+    'Enter a valid destination: a testnet name or a 64-character implicit account.',
+    'Enter an amount, or choose Send all.',
+    'That amount leaves too little for the network fee. Lower it or choose Send all.',
+    'The destination account does not exist yet. Send all needs an existing account.'
   ];
   return allowed.includes(message) ? message : 'This step could not finish. Check your wallet and connection, then try again.';
 }
@@ -98,8 +107,12 @@ function syncControls() {
   $('disconnect').disabled = working;
   ['connect', 'connect-receive', 'connect-send'].forEach((id) => { $(id).disabled = busy.has('connect') || working || !!accountId; });
   $('connect-send').hidden = !!accountId;
-  $('enable').disabled = !accountId || !!keys || working;
-  $('register').disabled = !keys || registered || working;
+  $('enable').disabled = !accountId || keyVersion === 'current' || working;
+  $('register').disabled = !keys || registered || keyMismatch || keyVersion !== 'current' || working;
+  $('reregister').hidden = !(keyMismatch && keyVersion === 'current');
+  $('reregister').disabled = working;
+  $('open-legacy').disabled = !accountId || keyVersion === 'earlier' || working;
+  $('spend-amount').disabled = !!$('spend-all').checked;
   $('share').disabled = !registered || busy.has('share');
   $('export-view').disabled = !keys || busy.has('export');
   $('refresh').disabled = !keys || busy.has('refresh') || working;
@@ -114,7 +127,7 @@ function syncControls() {
     $(id).classList.toggle('secondary', current !== i + 1);
   });
   $('connect-receive').textContent = accountId ? 'Wallet connected' : 'Connect wallet';
-  $('enable').textContent = keys ? 'Veil enabled' : 'Enable Veil';
+  $('enable').textContent = keyVersion === 'current' ? 'Veil enabled' : 'Enable Veil';
   $('register').textContent = registered ? 'Name registered' : 'Register name';
   const sendStep = sentReceipt ? 4 : !resolvedMeta ? 1 : !validAmount() ? 2 : 3;
   $('send-path').querySelectorAll('.step').forEach((el, i) => el.classList.toggle('is-current', sendStep === i + 1));
@@ -141,15 +154,16 @@ function clearAuditor() {
 }
 function resetSession() {
   sessionVersion++;
-  wallet = undefined; accountId = undefined; keys = undefined; payments = [];
-  registered = false; lastBalances = []; scanComplete = false; knownPayments = new Set();
+  wallet = undefined; accountId = undefined; keys = undefined; keyVersion = undefined; keyMismatch = false; payments = [];
+  registered = false; lastBalances = []; scanComplete = false; knownPayments = new Set(); spentTo = new Map();
+  $('spend-controls').hidden = true;
   $('inbox').innerHTML = ''; $('inbox-table').hidden = true;
   $('wallet-status').textContent = 'Wallet not connected';
   $('share-name').textContent = 'Your registered name will appear here.';
   state('connect-output', 'empty', '');
   state('identity-output', 'empty', 'Connect your wallet to continue.');
   state('register-output', 'empty', 'Enable Veil before registering.');
-  ['share-output', 'export-output', 'spend-output'].forEach((id) => state(id, 'empty', ''));
+  ['share-output', 'export-output', 'spend-output', 'legacy-output'].forEach((id) => state(id, 'empty', ''));
   state('scan-output', 'empty', 'Enable Veil to find payments sent to you.');
   clearAuditor(); resetProof(); syncControls();
 }
@@ -245,24 +259,44 @@ async function rpcQuery(params) {
   const response = await fetch(RPC, { method: 'POST', headers: { 'content-type': 'application/json' }, signal: AbortSignal.timeout(20000), body: JSON.stringify({ jsonrpc: '2.0', id: Date.now(), method: 'query', params }) });
   if (!response.ok) throw new Error('Testnet RPC HTTP ' + response.status);
   const payload = await response.json();
-  if (payload.error || payload.result?.error) throw new Error('Testnet RPC could not complete this request.');
+  if (payload.error || payload.result?.error) {
+    const error = new Error('Testnet RPC could not complete this request.');
+    error.code = payload.error?.cause?.name;
+    throw error;
+  }
   return payload.result;
+}
+// Resolves to false only when the RPC says the account does not exist; other failures throw.
+async function accountExists(account) {
+  try { await rpcQuery({ request_type: 'view_account', finality: 'final', account_id: account }); return true; }
+  catch (error) { if (error.code === 'UNKNOWN_ACCOUNT') return false; throw error; }
 }
 async function view(contractId, methodName, args) {
   const result = await rpcQuery({ request_type: 'call_function', finality: 'final', account_id: contractId, method_name: methodName, args_base64: base64(text.encode(JSON.stringify(args))) });
   return JSON.parse(new TextDecoder().decode(Uint8Array.from(result.result)));
 }
-async function signMessage() {
+// NEP-413 key request (same as nep413Request in @veil/sdk). 'earlier' is the v1 request used before
+// 14 Nov 2026, whose recipient was the signer's own account; it only opens inboxes made with it.
+function keyRequest(version, account) {
+  const v = version === 'earlier' ? 'v1' : 'v2';
+  return {
+    message: 'Veil key derivation ' + v + ': derive private receiving keys for this NEAR account.\nAccount: ' + account,
+    recipient: version === 'earlier' ? account : KEY_RECIPIENT,
+    nonce: sha256(text.encode('veil-key-derivation:testnet:' + v + ':' + account)),
+  };
+}
+async function signMessage(keySet = 'current') {
   if (!wallet || !accountId) throw new Error('Connect a testnet wallet first');
   const version = sessionVersion;
-  const signed = await wallet.signMessage({ message: 'Veil key derivation v1: derive private receiving keys for this NEAR account.\nAccount: ' + accountId, recipient: accountId, nonce: sha256(text.encode('veil-key-derivation:testnet:v1:' + accountId)) });
+  const signed = await wallet.signMessage(keyRequest(keySet, accountId));
   if (version !== sessionVersion) throw new Error('The wallet changed. Start this step again.');
   const signature = signed.signature ?? signed;
   const bytes = typeof signature === 'string' ? decodeBase64(signature) : Uint8Array.from(signature);
   if (bytes.length !== 64) throw new Error('The wallet returned an unexpected signature.');
-  keys = deriveKeys(bytes);
-  state('identity-output', 'success', 'Veil enabled. Your receiving keys are held in this browser.');
-  state('register-output', 'empty', 'Register your name so people can pay you privately.');
+  keys = deriveKeys(bytes); keyVersion = keySet; keyMismatch = false; registered = false;
+  if (keySet === 'earlier') state('identity-output', 'success', 'Earlier inbox open. Its keys are held in this browser.');
+  else state('identity-output', 'success', 'Veil enabled. Your receiving keys are held in this browser.');
+  state('register-output', 'empty', keySet === 'earlier' ? 'The earlier inbox can see and spend its payments. Enable Veil to register current keys.' : 'Register your name so people can pay you privately.');
   syncControls(); void updateProof();
 }
 async function callWallet(receiverId, methodName, args, deposit = '0', gas = '30000000000000') {
@@ -311,15 +345,39 @@ function markRegistered(tx) {
   syncControls();
 }
 async function enable() {
-  await signMessage(); const version = sessionVersion;
+  await signMessage('current'); const version = sessionVersion;
   await run('lookup', 'register-output', 'Checking your registered name.', async () => {
     const meta = await view(REGISTRY, 'get_meta', { account_id: accountId });
     if (version !== sessionVersion) return;
     if (sameKeys(meta, keys)) markRegistered();
-    else if (meta) throw new Error('This name uses different Veil keys.');
+    else if (meta) showMigration();
     else state('register-output', 'empty', 'Register your name so people can pay you privately.');
   });
   await run('refresh', 'scan-output', 'Scanning for your private payments.', refresh);
+}
+function showMigration() {
+  keyMismatch = true;
+  state('register-output', 'empty', 'This name is registered with keys from the earlier Veil message or another signing key. Open the earlier inbox to reach those payments, or register new keys for future payments.');
+  $('legacy-access').open = true;
+  syncControls();
+}
+async function openEarlierInbox() {
+  await signMessage('earlier'); const version = sessionVersion;
+  const meta = await view(REGISTRY, 'get_meta', { account_id: accountId });
+  if (version !== sessionVersion) return;
+  if (sameKeys(meta, keys)) markRegistered();
+  state('legacy-output', 'success', 'Earlier inbox open. You can see and spend payments sent to your earlier keys.');
+  await run('refresh', 'scan-output', 'Scanning for your private payments.', refresh);
+}
+async function reregister() {
+  if (!keys || keyVersion !== 'current') throw new Error('Enable Veil before registering your name.');
+  if (!confirm('Replace the keys registered for ' + accountId + '? New payments will use the new keys. Payments sent before this stay in the earlier inbox, which you can still open.')) {
+    state('register-output', 'empty', 'Registration unchanged. No transaction was sent.'); return;
+  }
+  const version = sessionVersion;
+  const tx = await callWallet(REGISTRY, 'register', { spend_pub_hex: hex(keys.spendPublicKey), view_pub_hex: hex(keys.viewPublicKey), scheme_id: 1 }, yocto('0.01').toString());
+  if (version !== sessionVersion) return;
+  keyMismatch = false; markRegistered(tx); return tx;
 }
 async function register() {
   if (!keys) throw new Error('Enable Veil before registering your name.');
@@ -421,7 +479,10 @@ async function balancesFor(rows) {
       const result = await rpcQuery({ request_type: 'view_account', finality: 'final', account_id: row.stealth_account });
       if (!/^\d+$/.test(result?.amount)) throw new Error('Balance unavailable');
       return { ...row, balance: result.amount };
-    } catch { return { ...row, balance: null }; }
+    } catch (error) {
+      // A receiving account closed with Send all no longer exists; its balance is zero, not unknown.
+      return { ...row, balance: error.code === 'UNKNOWN_ACCOUNT' ? '0' : null };
+    }
   }));
 }
 function accountLink(account) {
@@ -441,17 +502,39 @@ async function refresh() {
   }).join('');
   knownPayments = new Set(owned.map((row) => row.stealth_account));
   $('inbox-table').hidden = !balances.length;
+  $('spend-controls').hidden = !balances.length || keys.spend === undefined;
   $('inbox').querySelectorAll('[data-spend]').forEach((button) => button.addEventListener('click', () => run('spend', 'spend-output', 'Preparing your spend. Check the public-link warning.', () => spend(Number(button.dataset.spend)), false)));
   const missing = balances.filter((row) => row.balance === null).length;
   state('scan-output', balances.length ? 'success' : 'empty', balances.length ? 'Found ' + balances.length + (balances.length === 1 ? ' private payment.' : ' private payments.') + (missing ? ' Some balances could not load. Scan again to retry.' : '') : 'No incoming payments found. Share your registered name to receive one.');
   void updateProof(balances); syncControls(); return balances;
 }
+// Left in the receiving account for the transfer's network fee when sending a chosen amount.
+const SPEND_FEE_RESERVE = 100_000_000_000_000_000_000n;
+function validDestination(value) { return validName(value) || /^[0-9a-f]{64}$/.test(value); }
 async function spend(index) {
   const payment = payments.find((row) => Number(row.index) === index);
   if (!payment) throw new Error('No matching private payment was found.');
   if (!accountId || !keys || payment.privateScalar === undefined) throw new Error('Connect and enable Veil before spending.');
-  const destination = accountId; const version = sessionVersion;
-  if (!confirm('Send 0.0010 testnet NEAR to ' + destination + '? This publicly links this payment account to your name. Combining several payments here links them together too.')) {
+  const destination = $('spend-destination').value.trim() || accountId;
+  if (!validDestination(destination)) throw new Error('Enter a valid destination: a testnet name or a 64-character implicit account.');
+  const sendAll = !!$('spend-all').checked;
+  let amount;
+  if (!sendAll) {
+    const raw = $('spend-amount').value.trim();
+    if (!raw) throw new Error('Enter an amount, or choose Send all.');
+    amount = yocto(raw);
+    const balance = lastBalances.find((row) => Number(row.index) === index)?.balance;
+    if (balance != null && amount + SPEND_FEE_RESERVE > BigInt(balance)) throw new Error('That amount leaves too little for the network fee. Lower it or choose Send all.');
+  }
+  // DeleteAccount burns the balance when the beneficiary does not exist, so check it first.
+  if (sendAll && !(await accountExists(destination))) throw new Error('The destination account does not exist yet. Send all needs an existing account.');
+  const version = sessionVersion;
+  const target = destination === accountId ? 'your name' : destination;
+  const linked = [...(spentTo.get(destination) ?? [])].some((account) => account !== payment.stealth_account);
+  const warning = 'Send ' + (sendAll ? 'the full balance' : formatNear(amount) + ' testnet NEAR') + ' to ' + destination + '? This publicly links this payment account to ' + target + '.'
+    + (linked ? ' You already sent another payment to ' + destination + ', so this also links those payments together.' : ' Sending several payments to one destination links them together.')
+    + (sendAll ? ' The receiving account will be closed.' : '');
+  if (!confirm(warning)) {
     state('spend-output', 'empty', 'Spend cancelled. No transaction was sent.'); return;
   }
   const { JsonRpcProvider, PublicKey, Signer, actions, baseDecode, baseEncode, createTransaction } = await import('https://esm.sh/near-api-js@7.4.0');
@@ -460,7 +543,10 @@ async function spend(index) {
   const access = await provider.viewAccessKey({ accountId: payment.stealth_account, publicKey: publicKey.toString(), finalityQuery: { finality: 'final' } });
   const block = await provider.viewBlock({ finality: 'final' });
   if (version !== sessionVersion) throw new Error('The wallet changed. Start this step again.');
-  const tx = createTransaction(payment.stealth_account, publicKey, destination, BigInt(access.nonce) + 1n, [actions.transfer(yocto('0.001'))], baseDecode(block.header.hash));
+  // DeleteAccount must be addressed to the account being closed; a transfer goes to the destination.
+  const receiver = sendAll ? payment.stealth_account : destination;
+  const action = sendAll ? actions.deleteAccount(destination) : actions.transfer(amount);
+  const tx = createTransaction(payment.stealth_account, publicKey, receiver, BigInt(access.nonce) + 1n, [action], baseDecode(block.header.hash));
   class ScalarSigner extends Signer {
     async getPublicKey() { return publicKey; }
     async signBytes(bytes) { return signScalar(payment.privateScalar, bytes); }
@@ -468,7 +554,8 @@ async function spend(index) {
   const signed = await new ScalarSigner().signTransaction(tx);
   const result = await provider.sendTransaction(signed.signedTransaction);
   assertSuccess(result);
-  state('spend-output', 'success', 'Sent 0.0010 NEAR to ' + destination + '. This spend publicly links the receiving account to that name.');
+  spentTo.set(destination, new Set([...(spentTo.get(destination) ?? []), payment.stealth_account]));
+  state('spend-output', 'success', (sendAll ? 'Sent the full balance to ' + destination + ' and closed the receiving account.' : 'Sent ' + formatNear(amount) + ' NEAR to ' + destination + '.') + ' This spend publicly links the receiving account to ' + target + '.');
   $('spend-output').innerHTML += transactionLink(result);
   await run('refresh', 'scan-output', 'Updating your private balances.', refresh);
   return result;
@@ -511,6 +598,9 @@ const connectAction = () => run('connect', 'connect-output', 'Choose a testnet w
 $('disconnect').addEventListener('click', () => run('disconnect', 'connect-output', 'Disconnecting your wallet.', async () => { await connector.disconnect(); resetSession(); }));
 $('enable').addEventListener('click', () => run('enable', 'identity-output', 'Sign the message in your wallet to enable Veil.', enable));
 $('register').addEventListener('click', () => run('register', 'register-output', 'Approve registration in your wallet.', register, false));
+$('reregister').addEventListener('click', () => run('register', 'register-output', 'Approve the new registration in your wallet.', reregister, false));
+$('open-legacy').addEventListener('click', () => run('legacy', 'legacy-output', 'Sign the earlier Veil message in your wallet.', openEarlierInbox));
+$('spend-all').addEventListener('change', syncControls);
 $('share').addEventListener('click', () => run('share', 'share-output', 'Copying your registered name.', async () => { await navigator.clipboard.writeText(accountId); state('share-output', 'success', 'Name copied. Share it with someone who wants to pay you.'); }));
 $('export-view').addEventListener('click', () => run('export', 'export-output', 'Copying auditor access.', copyViewKey));
 $('recipient').addEventListener('input', invalidateRecipient);

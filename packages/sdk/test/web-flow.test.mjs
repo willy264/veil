@@ -9,7 +9,7 @@ import { sha256 } from '@noble/hashes/sha256';
 import { sha512 } from '@noble/hashes/sha512';
 import * as near from 'near-api-js';
 import { deriveStealth as sdkDeriveStealth, scanAnnouncement as sdkScan } from '../src/crypto.ts';
-import { deriveKeysFromNep413 } from '../src/sdk.ts';
+import { deriveKeysFromNep413, nep413Request } from '../src/sdk.ts';
 
 const source = readFileSync(new URL('../../../apps/web/app.js', import.meta.url), 'utf8')
   .replace(/^import .*;\r?\n/gm, '')
@@ -107,7 +107,7 @@ function harness() {
   }
   const element = (id) => { if (!elements.has(id)) elements.set(id, new FakeElement(id)); return elements.get(id); };
   const state = {
-    rows: [], calls: [], meta: null, copied: '', httpStatus: 200, connectorCalls: [],
+    rows: [], calls: [], meta: null, copied: '', httpStatus: 200, connectorCalls: [], confirms: [], confirmAnswer: true, missingAccounts: new Set(),
     walletResult: { final_execution_status: 'FINAL', status: { SuccessValue: '' }, transaction: { hash: '11111111111111111111111111111111' } },
     providerResult: { final_execution_status: 'FINAL', status: { SuccessValue: '' }, transaction: { hash: '22222222222222222222222222222222' } },
   };
@@ -138,19 +138,20 @@ function harness() {
     querySelector: (selector) => document.querySelectorAll(selector)[0] ?? null,
   };
   const ctx = createContext({ ...near, JsonRpcProvider: Provider, ed25519, hkdf, sha256, sha512, Uint8Array, DataView, TextEncoder, TextDecoder, AbortSignal, crypto: webcrypto, btoa, atob,
-    window: {}, document, confirm: () => true,
+    window: {}, document, confirm: (message) => { state.confirms.push(message); return state.confirmAnswer; },
     navigator: { clipboard: { writeText: async (v) => { state.copied = v; } } },
     NearConnector: FakeConnector,
     fetch: async (url, options = {}) => {
       if (!options.body) return { ok: true, status: 200, json: async () => ({ txns: [] }) };
       const { params } = JSON.parse(options.body);
+      if (params.request_type === 'view_account' && state.missingAccounts.has(params.account_id)) return { ok: true, status: 200, json: async () => ({ error: { name: 'HANDLER_ERROR', cause: { name: 'UNKNOWN_ACCOUNT' } } }) };
       if (params.request_type === 'view_account') return { ok: true, status: 200, json: async () => ({ result: { amount: '10000000000000000000000' } }) };
       const args = JSON.parse(Buffer.from(params.args_base64, 'base64'));
       const value = params.method_name === 'get_meta' ? state.meta : params.method_name === 'total_announcements' ? state.rows.length : state.rows.slice(args.from_index, args.from_index + args.limit);
       return { ok: state.httpStatus === 200, status: state.httpStatus, json: async () => ({ result: { result: [...new TextEncoder().encode(JSON.stringify(value))] } }) };
     },
   });
-  runInContext(source + `\nglobalThis.api = {deriveKeys, deriveStealth, scan, signMessage, register, sendPrivate, refresh, spend, auditorScan, copyViewKey, yocto}; globalThis.session = (w, k) => { wallet=w; accountId='recipient.testnet'; keys=k; };`, ctx);
+  runInContext(source + `\nglobalThis.api = {deriveKeys, deriveStealth, scan, signMessage, register, reregister, enable, openEarlierInbox, sendPrivate, refresh, spend, auditorScan, copyViewKey, yocto}; globalThis.session = (w, k) => { wallet=w; accountId='recipient.testnet'; keys=k; keyVersion=k ? 'current' : undefined; };`, ctx);
   const wallet = {
     async signMessage(args) { state.message = args; return { signature: btoa(String.fromCharCode(...ed25519.sign(args.nonce, new Uint8Array(32).fill(17)))) }; },
     async signAndSendTransaction(tx) { state.calls.push(tx); return state.walletResult; },
@@ -218,7 +219,8 @@ describe('web flow with simulated wallet and RPC', () => {
     expect(h.state.calls).toHaveLength(0);
   }, 30000);
   it('signs a real serialized spend transaction and preserves the receipt after refreshing', async () => {
-    const h = harness(); h.session(h.wallet, h.keys); h.state.rows = [h.row(0)]; await h.api.refresh(); await h.api.spend(0);
+    const h = harness(); h.session(h.wallet, h.keys); h.state.rows = [h.row(0)]; await h.api.refresh();
+    h.element('spend-amount').value = '0.001'; await h.api.spend(0);
     expect(h.state.signed.transaction.signerId).toBe(h.state.rows[0].stealth_account);
     expect(h.state.signed.transaction.receiverId).toBe('recipient.testnet');
     expect(h.element('spend-output').innerHTML).toContain('22222222222222222222222222222222');
@@ -234,6 +236,7 @@ describe('web flow with simulated wallet and RPC', () => {
   });
   it('does not report success on failed spend receipts or HTTP errors', async () => {
     const h = harness(); h.session(h.wallet, h.keys); h.state.rows = [h.row(0)]; await h.api.refresh();
+    h.element('spend-amount').value = '0.001';
     h.state.providerResult = { final_execution_status: 'FINAL', status: { Failure: {} } }; await expect(h.api.spend(0)).rejects.toThrow('Transaction failed');
     h.state.httpStatus = 503; await expect(h.api.refresh()).rejects.toThrow('HTTP 503');
   });
@@ -257,6 +260,88 @@ describe('web flow with simulated wallet and RPC', () => {
       expect(sdkFound.owned).toBe(true);
       expect(appFound.privateScalar).toBe(sdkFound.privateScalar);
     }
+  });
+  it('asks the wallet to sign the v2 key message bound to the Veil app, exactly as the SDK specifies', async () => {
+    const h = harness(); await h.api.signMessage();
+    const expected = nep413Request('recipient.testnet');
+    expect(h.state.message.recipient).toBe('veil-eta-khaki.vercel.app');
+    expect(h.state.message.message).toBe(expected.message);
+    expect(h.state.message.message).toContain('Veil key derivation v2');
+    expect(Buffer.from(h.state.message.nonce).toString('hex')).toBe(Buffer.from(expected.nonce).toString('hex'));
+  });
+  const earlierKeys = (h) => h.api.deriveKeys(ed25519.sign(sha256(new TextEncoder().encode('veil-key-derivation:testnet:v1:recipient.testnet')), new Uint8Array(32).fill(17)));
+  const metaOf = (k) => ({ spend_pub_hex: Buffer.from(k.spendPublicKey).toString('hex'), view_pub_hex: Buffer.from(k.viewPublicKey).toString('hex'), scheme_id: 1 });
+  it('opens the earlier inbox with the v1 message and finds payments sent to earlier keys', async () => {
+    const h = harness(); const earlier = earlierKeys(h);
+    expect(nep413Request('recipient.testnet', 'earlier').recipient).toBe('recipient.testnet');
+    h.state.meta = metaOf(earlier);
+    const d = h.api.deriveStealth(earlier.spendPublicKey, earlier.viewPublicKey, 55n, 0);
+    h.state.rows = [{ index: 0, stealth_account: d.stealthAccount, ephemeral_pub_hex: Buffer.from(d.ephemeralPublicKey).toString('hex'), view_tag: d.viewTag }];
+    await h.api.openEarlierInbox();
+    expect(h.state.message.recipient).toBe('recipient.testnet');
+    expect(h.state.message.message).toContain('Veil key derivation v1');
+    expect(h.element('scan-output').textContent).toContain('Found 1 private payment');
+  });
+  it('shows the migration path instead of a dead end when the name is registered with earlier keys', async () => {
+    const h = harness(); h.state.meta = metaOf(earlierKeys(h));
+    await h.api.enable();
+    expect(h.element('register-output').textContent).toContain('earlier Veil message');
+    expect(h.element('reregister').hidden).toBe(false);
+    expect(h.element('legacy-access').open).toBe(true);
+  });
+  it('replaces mismatched registered keys only after confirmation', async () => {
+    const h = harness(); h.state.meta = metaOf(earlierKeys(h));
+    await h.api.enable();
+    h.state.confirmAnswer = false; await h.api.reregister();
+    expect(h.state.calls).toHaveLength(0);
+    h.state.confirmAnswer = true; await h.api.reregister();
+    expect(h.state.calls).toHaveLength(1);
+    expect(h.state.calls[0].actions[0].params.methodName).toBe('register');
+    expect(h.state.confirms.at(-1)).toContain('earlier inbox');
+  });
+  it('spends a chosen amount to a chosen destination after a re-link warning', async () => {
+    const h = harness(); h.session(h.wallet, h.keys); h.state.rows = [h.row(0)]; await h.api.refresh();
+    h.element('spend-destination').value = 'savings.testnet'; h.element('spend-amount').value = '0.002';
+    await h.api.spend(0);
+    const tx = h.state.signed.transaction;
+    expect(tx.receiverId).toBe('savings.testnet');
+    expect(tx.actions[0].transfer.deposit).toBe(2_000_000_000_000_000_000_000n);
+    expect(h.state.confirms[0]).toContain('publicly links this payment account to savings.testnet');
+  });
+  it('send all closes the receiving account into an existing destination', async () => {
+    const h = harness(); h.session(h.wallet, h.keys); h.state.rows = [h.row(0)]; await h.api.refresh();
+    h.element('spend-destination').value = 'savings.testnet'; h.element('spend-all').checked = true;
+    await h.api.spend(0);
+    const tx = h.state.signed.transaction;
+    expect(tx.receiverId).toBe(h.state.rows[0].stealth_account);
+    expect(tx.actions[0].deleteAccount.beneficiaryId).toBe('savings.testnet');
+    expect(h.state.confirms[0]).toContain('closed');
+  });
+  it('send all refuses a destination that does not exist, because closing would burn the balance', async () => {
+    const h = harness(); h.session(h.wallet, h.keys); h.state.rows = [h.row(0)]; await h.api.refresh();
+    h.state.missingAccounts.add('ghost.testnet');
+    h.element('spend-destination').value = 'ghost.testnet'; h.element('spend-all').checked = true;
+    await expect(h.api.spend(0)).rejects.toThrow('does not exist');
+    expect(h.state.signed).toBeUndefined();
+  });
+  it('warns that a second payment to the same destination links the payments together', async () => {
+    const h = harness(); h.session(h.wallet, h.keys); h.state.rows = [h.row(0), h.row(1)]; await h.api.refresh();
+    h.element('spend-destination').value = 'savings.testnet'; h.element('spend-amount').value = '0.001';
+    await h.api.spend(0); await h.api.spend(1);
+    expect(h.state.confirms[1]).toContain('already sent another payment to savings.testnet');
+  });
+  it('rejects an invalid spend destination and a missing amount without signing', async () => {
+    const h = harness(); h.session(h.wallet, h.keys); h.state.rows = [h.row(0)]; await h.api.refresh();
+    h.element('spend-destination').value = 'not a name'; h.element('spend-amount').value = '0.001';
+    await expect(h.api.spend(0)).rejects.toThrow('valid destination');
+    h.element('spend-destination').value = 'savings.testnet'; h.element('spend-amount').value = '';
+    await expect(h.api.spend(0)).rejects.toThrow('Enter an amount');
+    expect(h.state.signed).toBeUndefined();
+  });
+  it('loads @noble crypto from the local bundle, not from a CDN', () => {
+    const raw = readFileSync(new URL('../../../apps/web/app.js', import.meta.url), 'utf8');
+    expect(raw).not.toMatch(/esm\.sh\/@noble/);
+    expect(raw).toContain("from './vendor/noble.js'");
   });
   it('rejects malformed points, identity, torsion and invalid amounts', () => {
     const h = harness();

@@ -13,7 +13,11 @@ import {
 
 // HKDF salt prefix. It must match apps/web/app.js so a wallet signature opens the same inbox in both.
 const NEP_413_DOMAIN = 'veil-nep413-v1';
-const NEP_413_MESSAGE = 'Veil key derivation v1: derive private receiving keys for this NEAR account.';
+const NEP_413_MESSAGE = 'Veil key derivation v2: derive private receiving keys for this NEAR account.';
+const NEP_413_EARLIER_MESSAGE = 'Veil key derivation v1: derive private receiving keys for this NEAR account.';
+// NEP-413 recipient for the current key message: the Veil app, not the signer's own account, so a
+// wallet shows which app the key-deriving signature is for.
+export const NEP_413_RECIPIENT = 'veil-eta-khaki.vercel.app';
 const MIN_REGISTRY_DEPOSIT = 1_000_000_000_000_000_000_000n;
 const DEFAULT_GAS = 30_000_000_000_000n;
 
@@ -81,6 +85,19 @@ function scalarFromKeyMaterial(bytes: Uint8Array): bigint {
 
 export function nep413Message(accountId: string): string {
   return `${NEP_413_MESSAGE}\nAccount: ${accountId}`;
+}
+
+export type Nep413Request = { message: string; recipient: string; nonce: Uint8Array };
+
+// The exact NEP-413 payload to sign. 'earlier' is the v1 request used before 14 Nov 2026: it set
+// the recipient to the signer's own account and opens inboxes registered with that request.
+export function nep413Request(accountId: string, version: 'current' | 'earlier' = 'current'): Nep413Request {
+  const earlier = version === 'earlier';
+  return {
+    message: `${earlier ? NEP_413_EARLIER_MESSAGE : NEP_413_MESSAGE}\nAccount: ${accountId}`,
+    recipient: earlier ? accountId : NEP_413_RECIPIENT,
+    nonce: sha256(new TextEncoder().encode(`veil-key-derivation:testnet:${earlier ? 'v1' : 'v2'}:${accountId}`)),
+  };
 }
 
 export function deriveKeysFromNep413(signature: Uint8Array | string, accountId: string): VeilKeys {
